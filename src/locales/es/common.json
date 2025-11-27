@@ -97,35 +97,35 @@
     "explore": "Explorar"
   },
   "menu_items": [
-     {
-      "id": "zibas_creators",
-      "text": "Ziba's Creators",
-      "href": "/es/zibas-creators"
-    },
     {
       "id": "products",
       "text": "Productos",
       "href": "/es/#products"
     },
     {
-      "id": "gallery",
-      "text": "Galería",
-      "href": "/es/#gallery"
-    },
-    {
       "id": "recipes",
       "text": "Recetas",
-      "href": "/es/recetas"
+      "href": "/es/recipes"
     },
     {
-      "id": "blog",
-      "text": "Blog",
-      "href": "/es/blog"
+      "id": "news",
+      "text": "Noticias",
+      "href": "/es/news"
+    },
+    {
+      "id": "promotios",
+      "text": "Promos",
+      "href": "/es/promotios"
+    },
+    {
+      "id": "brand",
+      "text": "Marca",
+      "href": "/es/brand"
     },
     {
       "id": "contact",
-      "text": "Contacto",
-      "href": "/es/contacto"
+      "text": "Contáctanos",
+      "href": "/es/contact"
     }
    
   ],
@@ -164,6 +164,15 @@
           "url":"https://www.instagram.com/reel/DNEaatBuSfZ/?igsh=MTZuZjgzZnZ4dzg0dw=="
         }
       ]
+    },
+    "text_home": {
+      "since": "Desde 2000",
+      "title": "EL CRUNCH",
+      "subtitle": "MÁS HONESTO",
+      "description": "Ranchitas es el snack que nunca falla: crujiente, sabroso y perfecto para cualquier ocasión.",
+      "descrition2": "Disfrútalas solo, con amigos o en familia, porque siempre es buen momento para un crunch.",
+      "button": "Ver más",
+      "button2": "Contactárnos"
     }
   },
   "footer": {

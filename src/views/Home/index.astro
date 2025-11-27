@@ -34,6 +34,7 @@ const aboutAssets = t('', { namespace: 'aboutus', locale: currentLang }) || {};
 const brandsAssets = t('', { namespace: 'brands', locale: currentLang }) || {};
 const newsAssets =  t('', { namespace: 'news', locale: currentLang }) || {};
 const products = t('items', { namespace: 'products', locale: currentLang }) || [];
+const textHome = t('home.text_home', { namespace: 'common', locale: currentLang }) || {};
 const brandsList = brandsAssets.brands || [];
 const zibasBrand = brandsList.find((brand: any) => brand.id === 'zibas');
 const zibasProducts = zibasBrand?.products || [];
@@ -81,16 +82,14 @@ const noNewsText = currentLang==='es' ? 'No se encuentra novedades aún para mos
 const topNewsLabel = currentLang==='es' ? 'NOTICIAS MÁS IMPORTANTES' : 'TOP NEWS';
 const featuredLabel = currentLang==='es' ? 'DESTACADOS' : 'FEATURED';
 
+
 ---
 
   <main class="w-full flex flex-col items-center justify-center mt-0">
     <!-- Slider Section con VideoCarousel -->
     <div class="relative w-full overflow-hidden">
       <VideoCarousel 
-        slides={slides} 
-        height="100vh" 
-        mobileHeight="300px" 
-        showOverlay={true} 
+        textHome={textHome} 
       />
     </div>
     

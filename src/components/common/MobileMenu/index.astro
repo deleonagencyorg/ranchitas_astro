@@ -28,7 +28,11 @@ const closeMenuLabel = t('menu_labels.close_main_menu', { namespace: 'common', l
   <div class="container mx-auto px-4 py-8">
     <div class="flex justify-between items-center mb-8">
       <a href={`/${currentLang}/`} class="block">
-        <img src={logos.principal.url} alt={logos.principal.alt} class="h-10 w-auto" />
+        <img 
+            src="/images/es/logo/logobanner.png" 
+            alt={logos.principal.alt} 
+            class="h-[28px] w-[120px] md:h-[38px] md:w-[187px] w-auto object-contain"
+          />
       </a>
       <button id="mobile-menu-close" type="button" class="text-white">
         <span class="sr-only">{closeMenuLabel}</span>
@@ -92,19 +96,6 @@ const closeMenuLabel = t('menu_labels.close_main_menu', { namespace: 'common', l
     </nav>
 
     <!-- Selector de Idioma Móvil -->
-    <div class="mt-6 mb-6 flex justify-center">
-      <LanguageSwitcher activeLocale={currentLang} headerColorConfig={headerColorConfig} />
-      <br />
-     
-    </div>
-    <div class="flex justify-center">
-      <SocialMediaIcons 
-        currentLang={currentLang} 
-        iconColor="white"
-        centered={false} 
-      />
-    </div>
-
     <div class="mt-auto flex space-x-4">
       {socialMedia && Object.entries(socialMedia).map(([key, social]) => {
         const sm = social as { name: string; url: string; alt?: string; iconUrl?: string };

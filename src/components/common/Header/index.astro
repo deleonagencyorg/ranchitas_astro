@@ -52,19 +52,11 @@ if (headerColors) {
 <header 
   id="site-header" 
   class={`relative w-full transition-all duration-300 font-sans flex flex-col ${customHeaderConfig.textColor}`} 
-  style={'background-color: ' + (customStyles.backgroundColor || 'transparent') + '; color: ' + (customStyles.color || 'inherit')}
+  style={'background-color: #FAF0D5'}
   data-header-config={JSON.stringify(customHeaderConfig)}
 >
 {headerColorConfig.showMessageCarousel && <MessageCarousel currentLang={currentLang} />}
-  
-  <!-- Banner superior azul claro con mensaje -->
-  <!--{customHeaderConfig.showMessageCarousel && <MessageCarousel currentLang={currentLang} />}
-  
-  <!-- Navbar principal - ocupa el 100% del ancho -->
-  <div 
-    class={`w-full bg-yellow`}
-    style={customStyles.backgroundColor ? `background-color: ${customStyles.backgroundColor}` : ''}
-  >
+  <div>
     <!-- Navbar de Desktop (solo en pantallas lg y superiores) -->
     <div class="hidden lg:block">
       <DesktopNavbar currentLang={currentLang} headerColorConfig={customHeaderConfig} />
@@ -72,19 +64,18 @@ if (headerColors) {
 
     <!-- Navegación Móvil -->
     <nav 
-      class={`mobile-nav lg:hidden w-full py-2 px-4 flex justify-between items-center ${customHeaderConfig.backgroundColor}`}
-      style={customStyles.backgroundColor ? `background-color: ${customStyles.backgroundColor}` : ''}
+      class={`lg:hidden mobile-nav flex justify-between items-center bg-orange mt-6 py-4 px-6 rounded-[25px]`}
     >
       <!-- Logo para Móvil -->
+      <!-- src={logosData.principal.url} -->
+      
       <div class="logo-container">
         <a href={`/${currentLang}/`} class="flex-shrink-0">
           <LocalizedImage
-            src={logosData.principal.url}
-            alt={logosData.principal.alt || "Ziba's Logo"}
-            class="h-12 w-auto object-contain"
+            src="/images/es/logo/logobanner.png" 
+            alt={logosData.principal.alt || "Ranchitas Logo"}
+            class="h-[28px] w-[120px] md:h-[38px] md:w-[187px] w-auto object-contain"
             loading="eager"
-            width="120"
-            height="48"
             priority={true}
           />
         </a>
@@ -96,8 +87,33 @@ if (headerColors) {
       </div>
     </nav>
   </div>
-
 </header>
+
+<style>
+  @media (min-width: 900px) {
+    .mobile-nav {
+      max-width: 850px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  @media (min-width: 768px) and (max-width: 898px) {
+    .mobile-nav {
+      max-width: 720px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+
+  @media (max-width: 767px) {
+    .mobile-nav {
+      max-width: 350px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+  }
+</style>
 
 <script>
 // Función para controlar el comportamiento del header al hacer scroll en desktop

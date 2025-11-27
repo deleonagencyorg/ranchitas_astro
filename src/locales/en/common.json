@@ -92,16 +92,10 @@
     "explore": "Explorar"
   },
   "menu_items": [
- 
     {
       "id": "products",
       "text": "Products",
       "href": "/en/#products"
-    },
-    {
-      "id": "gallery",
-      "text": "Gallery",
-      "href": "/en/#gallery"
     },
     {
       "id": "recipes",
@@ -109,11 +103,25 @@
       "href": "/en/recipes"
     },
     {
+      "id": "news",
+      "text": "News",
+      "href": "/en/news"
+    },
+    {
+      "id": "promotios",
+      "text": "Promos",
+      "href": "/en/promotios"
+    },
+    {
+      "id": "brand",
+      "text": "Brand",
+      "href": "/en/brand"
+    },
+    {
       "id": "contact",
-      "text": "Contact",
+      "text": "Contact Us",
       "href": "/en/contact"
     }
-   
   ],
   "about_us": {
     "title": "Conoce Nuestra",
@@ -150,6 +158,15 @@
           "url":"https://www.instagram.com/p/DKaTrbKRfmO/?igsh=bTIyMGd5Y3kxYzY0"
         }
       ]
+    },
+    "text_home": {
+      "since": "Since 2000",
+      "title": "THE CRUNCH",
+      "subtitle": "YOU CAN TRUST",
+      "description": "Ranchitas is the snack that never fails: crispy, tasty, and perfect for any occasion.",
+      "descrition2": "Enjoy them on your own, with friends, or with family—because it’s always a good moment for a crunch.",
+      "button": "Learn more",
+      "button2": "Contact us"
     }
   },
   "footer": {
