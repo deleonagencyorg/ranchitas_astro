@@ -22,6 +22,7 @@ module.exports = {
         red: '#E92104',
         redButton: '#D61F2C',
         orange: '#F86509',
+        orangeButton: '#EC6503',
         primaryCream: "#FAF0D5",
       },
       fontFamily: {

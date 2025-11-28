@@ -202,5 +202,14 @@
   },
   "subscribe": {
     "success": "Thank you for subscribing!"
+  },
+  "cardVideo": {
+    "badge": "Our Story",
+    "title": "Who",
+    "titleHighlight": "We Are?",
+    "description1": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "description2": "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
+    "videoSrc": "/images/es/video/videoranchitas.mp4",
+    "backgroundColor": "#B91C1C"
   }
 }
