@@ -176,17 +176,29 @@
     }
   },
   "footer": {
-    "main_text": "Vibras sin filtro.",
-    "description": "Vive tu vida al máximo, expresa lo que sientes, explora el mundo y ve lo mejor de ti. Porque ¡Hoy Ziba's a ser tú! Disfruta tus Ziba's en todo momento.",
+    "main_text": "El sabor que ",
+    "main_text2": "conquista",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mauris urna, lacinia a porttitor non, tristique congue lectus.",
     "choose": "Elige",
-    "follow_us": "Síguenos",
+    "follow_us": "REDES",
     "contact_us": "Contáctanos",
+    "ranchitas": "Ranchitas",
+    "help": "Ayuda",
     "instagram_text": "Instagram",
     "facebook_text": "Facebook",
+    "tiktok_text": "Tiktok",
     "email": "ayudacliente@zibas.com",
     "copyright": "Copyright 2025. Ziba's. Todos los derechos reservados.",
     "privacy_policy_text": "Política de Privacidad",
-    "privacy_policy_url": "/es/politica-privacidad"
+    "privacy_policy_url": "/es/politica-privacidad",
+    "products": "Productos",
+    "recipes": "Recetas",
+    "news": "Noticias",
+    "promotios": "Promos",
+    "brand": "Marca",
+    "buy": "Comprar",
+    "emailPlaceholder": "tucorreo@email.com",
+    "subscribe_button": "Suscribirse"
   },
   "messagetop":[
     {
@@ -217,5 +229,14 @@
     "description2" : "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
     "videoSrc" : "/images/es/video/videoranchitas.mp4",
     "backgroundColor" : "#B91C1C"
+  },
+  "cardQuiz": {
+    "badge" : "Nuestra Historia",
+    "title" : "¿Qué ranchita",
+    "titleHighlight" : "eres?",
+    "description1" : "Cronchea con actitud y deja que el sabor diga quién eres. ¿Listo para el reto? Descubre tu esencia Ranchitas en cada mordida.",
+    "titleButton": "Hacer Quiz",
+    "imageSrc" : "/images/es/video/videoranchitas.mp4",
+    "backgroundColor": "#0041CD"
   }
 }
