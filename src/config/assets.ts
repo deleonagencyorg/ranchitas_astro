@@ -33,7 +33,7 @@ export interface SocialLink {
 export const logos = {
   principal: {
     url: `${S3_BASE_ASSETS_URL}/zibas-logo-3.webp`,
-    alt: 'Snacks Yummies'
+    alt: 'Ranchitas Logo'
   }
 };
 

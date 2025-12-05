@@ -1,386 +1,85 @@
 ---
 import { Image } from 'astro:assets';
 
-interface SlideItem {
-  desktop: string;
-  mobile: string;
-  alt: string;
-  title?: string;
-  subtitle?: string;
-  description?: string;
-  link?: string;
+interface textHome {
+  since: string;
+  title: string;
+  subtitle: string;
+  description: string;
+  descrition2: string;
+  button: string;
+  button2: string;
 }
 
 interface Props {
-  slides: SlideItem[];
-  height?: string;
-  mobileHeight?: string;
-  overlayOpacity?: string;
-  textColor?: string;
-  showOverlay?: boolean;
+  textHome: textHome;
 }
 
-const {
-  slides = [],
-  height = "100vh",
-  mobileHeight = "300px",
-  overlayOpacity = "50",
-  textColor = "text-white",
-  showOverlay = true
-} = Astro.props;
-
-// Identificar el primer slide para precargar
-const firstSlide = slides[0] || {};
-const isFirstSlideVideo = firstSlide.desktop?.toLowerCase().endsWith('.mp4') || 
-                         firstSlide.desktop?.toLowerCase().endsWith('.webm');
+const { textHome } = Astro.props;
 ---
 
-<div class="video-carousel-container">
-  <!-- Swiper container -->
-  <div class="swiper-container video-carousel">
-    <div class="swiper-wrapper">
-      {slides.map((slide, index) => {
-        const isVideo = slide.desktop?.toLowerCase().endsWith('.mp4') || 
-                       slide.desktop?.toLowerCase().endsWith('.webm');
-        const slideId = `slide-${index}`;
-        
-        return (
-          <div class="swiper-slide" id={slideId}>
-            <div class="slide-content" style={`height: ${height};`}>
-              <!-- Fallback image that shows while video loads or if video fails -->
-              <div class="fallback-image">
-                <img 
-                  src={isVideo ? slide.desktop.replace(/\.(mp4|webm)$/i, '.jpg') : slide.desktop} 
-                  alt={slide.alt || "Slide background"} 
-                  width="1920" 
-                  height="1080"
-                  loading={index === 0 ? "eager" : "lazy"}
-                />
-              </div>
-              
-              {isVideo ? (
-                <!-- Video background -->
-                <div class="video-container">
-                  <video 
-                    autoplay 
-                    muted 
-                    loop 
-                    playsinline
-                    class="slide-video"
-                    data-slide-id={slideId}
-                    preload={index === 0 ? "auto" : "metadata"}
-                  >
-                    <source src={slide.desktop} type={slide.desktop.toLowerCase().endsWith('.webm') ? 'video/webm' : 'video/mp4'}>
-                    <!-- If the browser doesn't support video, the fallback image will remain visible -->
-                    Your browser does not support the video tag.
-                  </video>
-                </div>
-              ) : (
-                <!-- Image background for non-video slides -->
-                <div class="image-container">
-                  <img 
-                    src={slide.desktop} 
-                    alt={slide.alt || "Slide background"} 
-                    class="slide-image desktop-image"
-                    loading={index === 0 ? "eager" : "lazy"}
-                  />
-                  <img 
-                    src={slide.mobile} 
-                    alt={slide.alt || "Slide background"} 
-                    class="slide-image mobile-image"
-                    loading={index === 0 ? "eager" : "lazy"}
-                  />
-                </div>
-              )}
-              
-              <!-- Overlay with text (conditional) -->
-              {showOverlay && (slide.title || slide.subtitle) && (
-                <div class={`overlay bg-black bg-opacity-${overlayOpacity}`}>
-                  <div class="text-content">
-                    {slide.title && <h1 class={`slide-title ${textColor}`}>{slide.title}</h1>}
-                    {slide.subtitle && <p class={`slide-subtitle ${textColor}`}>{slide.subtitle}</p>}
-                    {slide.link && (
-                      <a href={slide.link} class="slide-link">
-                        <span>Ver más</span>
-                        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                          <line x1="5" y1="12" x2="19" y2="12"></line>
-                          <polyline points="12 5 19 12 12 19"></polyline>
-                        </svg>
-                      </a>
-                    )}
-                  </div>
-                </div>
-              )}
-            </div>
-          </div>
-        );
-      })}
+<div class="home-container bg-primaryCream flex items-center">
+  <div class="max-w-[1400px] mx-auto w-full flex items-center justify-between px-10 flex flex-col sm:flex-row ">
+
+    <!-- TEXT CONTENT -->
+    <div class="md:w-1/2 lg:w-1/2 lg:mb-0 md:mb-0 mb-16">
+      <p class="text-[#D99D3C] text-lg font-semibold">{textHome.since}</p>
+
+      <h1 class="text-[40px] md:text-[60px] lg:text-[80px] font-black uppercase  leading-none">
+        {textHome.title} <br/>
+        {textHome.subtitle}
+      </h1>
+      <p class="text-lg text-black w-[320px] md:max-w-[310px] md:w-full lg:w-full lg:max-w-[600px] mt-6  leading-[22px]">
+        {textHome.description} <br class="md:hidden lg:block hidden"/> {textHome.descrition2}
+      </p>
+
+      <div class="flex items-center gap-4 mt-6 leading-none">
+        <a 
+          href="#"
+          class="bg-redButton text-white px-12 py-3 md:px-8 lg:px-8 md:py-3 lg:py-3 rounded-full font-semibold shadow-md hover:opacity-90 transition"
+        >
+          {textHome.button}
+        </a>
+        <a 
+          href="#"
+          class="border border-redButton text-redButton px-9 py-3 md:px-8 lg:px-8 md:py-3 lg:py-3 rounded-full font-semibold hover:bg-redButton/10 transition"
+        >
+          {textHome.button2}
+        </a>
+      </div>
     </div>
-    
-    <!-- Navigation controls -->
-    <div class="swiper-button-next"></div>
-    <div class="swiper-button-prev"></div>
-    <div class="swiper-pagination"></div>
+
+    <div class="relative md:w-1/2 lg:w-1/2 flex justify-center">
+      <img 
+        src="/images/es/products/product2.png" 
+        alt="Ranchitas Nacho" 
+        class="w-[250px] md:w-[320px] lg:w-[500px] rotate-[-13deg]"
+      />
+
+      <img 
+        src="/images/es/products/product1.png" 
+        alt="Ranchitas Nacho Picante" 
+        class="w-[150px] bottom-[-60px] right-[130px] md:w-[169.90px] lg:w-[247px] absolute md:bottom-[-49px] lg:bottom-[-52px] md:right-[185px] lg:right-[340px] md:w-[200px]"
+      />
+    </div>
   </div>
 </div>
 
 <style>
-  /* Estilos para flechas y puntos de navegación blancos */
-  :global(.swiper-button-next),
-  :global(.swiper-button-prev) {
-    color: white !important;
-    filter: drop-shadow(0px 0px 3px rgba(0, 0, 0, 0.5));
-  }
-  
-  :global(.swiper-pagination-bullet) {
-    background: white !important;
-    opacity: 0.7;
-  }
-  
-  :global(.swiper-pagination-bullet-active) {
-    opacity: 1;
-    background: white !important;
-  }
-  
-  .video-carousel-container {
-    position: relative;
+  .home-container {
+    height: 850px;
     width: 100%;
-    overflow: hidden;
   }
-  
-  .slide-content {
-    position: relative;
-    width: 100%;
-    overflow: hidden;
-  }
-  
-  .fallback-image {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 1;
-  }
-  
-  .fallback-image img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .video-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-  }
-  
-  .slide-video {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-  }
-  
-  .image-container {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    z-index: 2;
-  }
-  
-  .slide-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    object-position: center;
-  }
-  
-  .desktop-image {
-    display: none;
-  }
-  
-  .mobile-image {
-    display: block;
-  }
-  
-  .overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    z-index: 3;
-  }
-  
-  .text-content {
-    text-align: center;
-    padding: 0 1rem;
-    max-width: 800px;
-  }
-  
-  .slide-title {
-    font-size: 2.5rem;
-    font-weight: 700;
-    margin-bottom: 1rem;
-  }
-  
-  .slide-subtitle {
-    font-size: 1.5rem;
-    font-weight: 400;
-    margin-bottom: 2rem;
-  }
-  
-  .slide-link {
-    display: inline-flex;
-    align-items: center;
-    gap: 0.5rem;
-    padding: 0.75rem 1.5rem;
-    background-color: rgba(255, 255, 255, 0.2);
-    color: white;
-    border-radius: 9999px;
-    text-decoration: none;
-    font-weight: 600;
-    transition: all 0.3s ease;
-  }
-  
-  .slide-link:hover {
-    background-color: rgba(255, 255, 255, 0.3);
-    transform: translateY(-2px);
-  }
-  
-  /* Responsive styles */
-  @media (min-width: 768px) {
-    .desktop-image {
-      display: block;
-    }
-    
-    .mobile-image {
-      display: none;
-    }
-    
-    .slide-title {
-      font-size: 3.5rem;
-    }
-    
-    .slide-subtitle {
-      font-size: 2rem;
+
+  @media (min-width: 768px) and (max-width: 1024px) {
+    .home-container {
+      height: 600px;
     }
   }
-  
+
   @media (max-width: 767px) {
-    .slide-content {
-      height: 300px !important;
+    .home-container {
+      height: 800px;
     }
   }
 </style>
-
-<script>
-  import Swiper from 'swiper';
-  import { Navigation, Pagination, Autoplay } from 'swiper/modules';
-  import 'swiper/css';
-  import 'swiper/css/navigation';
-  import 'swiper/css/pagination';
-  
-  document.addEventListener('DOMContentLoaded', () => {
-    // Initialize Swiper
-    const swiper = new Swiper('.video-carousel', {
-      modules: [Navigation, Pagination, Autoplay],
-      slidesPerView: 1,
-      spaceBetween: 0,
-      loop: true,
-      autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-      },
-      navigation: {
-        nextEl: '.swiper-button-next',
-        prevEl: '.swiper-button-prev',
-      },
-      pagination: {
-        el: '.swiper-pagination',
-        clickable: true,
-      },
-    });
-    
-    // Handle video playback
-    const videos = document.querySelectorAll('.slide-video');
-    const fallbackImages = document.querySelectorAll('.fallback-image');
-    
-    // Function to play video
-    function playVideo(video) {
-      if (!video) return;
-      
-      const playPromise = video.play();
-      
-      if (playPromise !== undefined) {
-        playPromise
-          .then(() => {
-            // Video playback started successfully
-            const slideId = video.getAttribute('data-slide-id');
-            const fallbackImage = document.querySelector(`#${slideId} .fallback-image`);
-            if (fallbackImage) {
-              fallbackImage.style.opacity = '0';
-            }
-          })
-          .catch(error => {
-            // Auto-play was prevented
-            console.warn('Video playback was prevented:', error);
-          });
-      }
-    }
-    
-    // Function to pause all videos
-    function pauseAllVideos() {
-      videos.forEach(video => {
-        video.pause();
-      });
-    }
-    
-    // Play video on active slide
-    swiper.on('slideChange', () => {
-      pauseAllVideos();
-      
-      const activeSlide = swiper.slides[swiper.activeIndex];
-      const activeVideo = activeSlide?.querySelector('.slide-video');
-      
-      if (activeVideo) {
-        setTimeout(() => playVideo(activeVideo), 300);
-      }
-    });
-    
-    // Play initial video
-    const initialVideo = swiper.slides[swiper.activeIndex]?.querySelector('.slide-video');
-    if (initialVideo) {
-      playVideo(initialVideo);
-    }
-    
-    // Handle video loading and fallback
-    videos.forEach((video) => {
-      const slideId = video.getAttribute('data-slide-id');
-      const fallbackImage = document.querySelector(`#${slideId} .fallback-image`);
-      
-      // Hide fallback image once video can play
-      video.addEventListener('canplay', () => {
-        if (fallbackImage) {
-          fallbackImage.style.opacity = '0';
-        }
-      });
-      
-      // Show fallback image if video errors
-      video.addEventListener('error', () => {
-        if (fallbackImage) {
-          fallbackImage.style.opacity = '1';
-        }
-      });
-    });
-  });
-</script>

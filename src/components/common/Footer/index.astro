@@ -5,7 +5,6 @@ import { logos } from '../../../config/assets';
 import './styles.css';
 import Skeleton from './Skeleton.astro';
 import LazyImage from '../LazyImage.astro';
-import { span } from 'framer-motion/m';
 
 export interface Props {
   currentLang: Locale;
@@ -24,151 +23,115 @@ const instagramText = t('footer.instagram_text', { namespace: 'common', locale: 
 const facebookText = t('footer.facebook_text', { namespace: 'common', locale: currentLang });
 const email = t('footer.email', { namespace: 'common', locale: currentLang });
 const copyrightText = t('footer.copyright', { namespace: 'common', locale: currentLang });
-
-
-// Social media URLs
-const instagramUrl = t('social_media.instagram.url', { namespace: 'common', locale: currentLang });
-const facebookUrl = t('social_media.facebook.url', { namespace: 'common', locale: currentLang });
-const instagramIconUrl = t('social_media.instagram.iconUrl', { namespace: 'common', locale: currentLang });
-const facebookIconUrl = t('social_media.facebook.iconUrl', { namespace: 'common', locale: currentLang });
-
-// Obtener el logo específico de Zibas desde brands.json
-const zibasLogo = 'https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-logo-3.webp';
+const ranchitas = t('footer.ranchitas', { namespace: 'common', locale: currentLang });
+const help = t('footer.help', { namespace: 'common', locale: currentLang });
+const tiktokText = t('footer.tiktok_text', { namespace: 'common', locale: currentLang });
+const products = t('footer.products', { namespace: 'common', locale: currentLang });
+const recipes = t('footer.recipes', { namespace: 'common', locale: currentLang });
+const news = t('footer.news', { namespace: 'common', locale: currentLang });
+const promos = t('footer.promotios', { namespace: 'common', locale: currentLang });
+const brand = t('footer.brand', { namespace: 'common', locale: currentLang });
+const buy = t('footer.buy', { namespace: 'common', locale: currentLang });
+const mainText2 = t('footer.main_text2', { namespace: 'common', locale: currentLang });
+const emailPlaceholder = t('footer.email_placeholder', { namespace: 'common', locale: currentLang });
+const subscribeButton = t('footer.subscribe_button', { namespace: 'common', locale: currentLang });
 ---
 
 {loading ? (
   <Skeleton />
 ) : (
-  <footer class="bg-secondary text-white relative overflow-hidden z-10">
-    <div class="container mx-auto px-6 py-8 md:py-8 flex md:flex-row flex-col items-center justify-center md:gap-20 lg:gap-80">
-      <div class="w-full md:w-1/3 mb-8 md:mb-0 flex justify-start items-start flex-col">
-        <h3 class="font-title text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight">
-            {mainText}
+  <footer class="bg-[#D61F2C] text-white relative overflow-hidden z-10">
+    <div class="container mx-auto px-6 lg:px-12 py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+        
+        <!-- Columna Izquierda: Título, Descripción y Newsletter -->
+        <div class="flex flex-col justify-start">
+          <h3 class="font-title text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+            {mainText}<br />{mainText2}
           </h3>
-          <p class="font-sans italic text-sm md:text-base leading-relaxed w-100%">
+          <p class="font-sans italic text-base md:text-lg leading-relaxed mb-8 max-w-lg">
             {description}
           </p>
-      </div>
-      <div class="w-full md:w-1/3 flex justify-start items-start flex-col">
-       <div class="md:flex flex-row items-center hidden ">
-        <h3 class="font-title text-3xl md:text-4xl lg:text-5xl font-bold mb-4 leading-tight mr-4 ">
-            {choose}
-          </h3>
-        <a href={`/${currentLang}/`} >
-            <LazyImage 
-              src={logos.principal.url} 
-              alt={logos.principal.alt || 'Zibas Logo'} 
-              class="h-16 md:h-20 lg:h-24 w-auto -mt-4"
+          
+          <!-- Formulario de Newsletter -->
+          <form class="flex flex-col sm:flex-row gap-3 max-w-xl">
+            <input 
+              type="email" 
+              placeholder={emailPlaceholder}
+              class="flex-1 px-5 py-4 rounded-[10px] text-gray-600 font-sans text-base focus:outline-none focus:ring-2 focus:ring-accent placeholder:text-gray-400"
+              required
             />
-        </a>
-       </div> 
-       <div class="flex justify-start items-start flex-row md:space-x-4 space-x-24">
-        <div class="text-center lg:text-right">
-            <h3 class="font-title text-lg md:text-xl font-bold mb-3">
+            <button 
+              type="submit"
+              class="bg-[#F99F33] hover:bg-[#F99F33]/90 text-white font-title font-bold px-12 py-4 rounded-full transition-all duration-200 text-lg whitespace-nowrap"
+            >
+              {subscribeButton}
+            </button>
+          </form>
+        </div>
+
+        <!-- Columna Derecha: Links de Navegación -->
+        <div class="grid grid-cols-3 gap-8 lg:gap-12">
+          
+          <!-- Redes Sociales -->
+          <div class="text-start">
+            <h3 class="font-title text-2xl font-bold mb-4 uppercase">
               {followUs}
             </h3>
-            <div class="flex flex-col space-y-1">
-              <div>
-                <a 
-                href={instagramUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="font-sans text-sm md:text-base hover:underline transition-all duration-200 hover:opacity-80 flex items-center justify-center lg:justify-end space-x-2"
-              >                
-                <LazyImage 
-                  src={instagramIconUrl} 
-                  alt={instagramText} 
-                    class="h-6 md:h-2 lg:h-8 w-auto"
-                    color="white"
-                />
-                <span>{instagramText}</span>
+            <div class="flex flex-col space-y-3">
+              <a href="#" class="font-sans text-xl hover:text-accent transition-colors duration-200">
+                {facebookText}
               </a>
-              </div>
-              <div class="flex items-center justify-start space-x-2">
-              <a 
-                href={facebookUrl} 
-                target="_blank" 
-                rel="noopener noreferrer"
-                class="font-sans text-sm md:text-base hover:underline transition-all duration-200 hover:opacity-80 flex items-center justify-center lg:justify-end space-x-2"
-              >
-                <LazyImage 
-                  src={facebookIconUrl} 
-                  alt={facebookText} 
-                  color="white"
-                  class="h-6 md:h-2 lg:h-8 w-auto"
-                />
-                <span>{facebookText}</span>
+              <a href="#" class="font-sans text-xl hover:text-accent transition-colors duration-200">
+                {instagramText}
               </a>
-              </div>
+              <a href="#" class="font-sans text-xl hover:text-accent transition-colors duration-200">
+                {tiktokText}
+              </a>
             </div>
           </div>
 
-          <!-- Contáctanos -->
+          <!-- Ranchitas -->
           <div class="text-start">
-            <h3 class="font-title text-lg md:text-xl font-bold mb-3">
-              {contactUs}
+            <h3 class="font-title text-2xl font-bold mb-4 uppercase">
+              {ranchitas}
             </h3>
-            <div class="flex flex-col space-y-1">
-              <a 
-                href={`mailto:${email}`}
-                class="font-sans text-sm md:text-base hover:underline transition-all duration-200 hover:opacity-80"
-              >
-                {email}
+            <div class="flex flex-col space-y-3">
+              <a href={`/${currentLang}/products`} class="font-sans text-xl hover:text-accent transition-colors duration-200">
+                {products}
+              </a>
+              <a href={`/${currentLang}/recipes`} class="font-sans text-xl hover:text-accent transition-colors duration-200">
+                {recipes}
+              </a>
+              <a href={`/${currentLang}/news`} class="font-sans text-xl hover:text-accent transition-colors duration-200">
+                {news}
+              </a>
+              <a href={`/${currentLang}/promotions`} class="font-sans text-xl hover:text-accent transition-colors duration-200">
+                {promos}
               </a>
             </div>
           </div>
-       </div>
-      </div>
-     
-    </div>
-    <div class="w-full text-center container mx-auto px-6 py-4 flex items-center justify-center flex-col">
-        <div class="flex items-center md:space-x-16 lg:space-x-24 flex-col md:flex-row">
-          <div class="hidden md:block"><LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-derecho 2.webp" alt="Ziba's papas" class="h-16 md:h-20 lg:h-24 w-auto -mt-4 transform rotate-180" /></div>
-          <div class="text-center text-2xl">{currentLang=='es' ? `Copyright ${new Date().getFullYear()} Zibas. Todos los derechos reservados.` : `Copyright ${new Date().getFullYear()} Zibas. All rights reserved.`}</div>
-          <div class="hidden md:block"><LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-derecho 2.webp" alt="Ziba's papas" class="h-16 md:h-20 lg:h-32 w-auto -mt-4 " /></div>
-        </div>
-      <div class="hidden md:block"><LazyImage src="https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-derecho 2.webp" alt="Ziba's papas" class="h-16 md:h-20 lg:h-24 w-auto -mt-4 transform -rotate-45" /></div>
-    </div>
-    <!-- Chips decorativos (sin línea separadora superior) -->
-    <div class="w-full border-t-0 mt-0 pt-0">
-        <div class="container mx-auto">
-          <div class="text-center mb-4">
-            <h3 class="text-white  font-sans text-xl font-medium">DINANT - Contacto</h3>
-          </div>
-          <div class="grid grid-cols-2 md:grid-cols-3 gap-4 justify-items-center">
-            <!-- Guatemala -->
-            <div class="flex items-center space-x-2">
-              <span class="text-2xl" role="img" aria-label="Guatemala">🇬🇹</span>
-              <span>(+502) 2502-7050</span>
-            </div>
-            <!-- El Salvador -->
-            <div class="flex items-center space-x-2">
-              <span class="text-2xl" role="img" aria-label="El Salvador">🇸🇻</span>
-              <span>(+503) 2510-8300</span>
-            </div>
-            <!-- Costa Rica -->
-            <div class="flex items-center space-x-2">
-              <span class="text-2xl" role="img" aria-label="Costa Rica">🇨🇷</span>
-              <span>(+506) 2234-7259</span>
-            </div>
-            <!-- República Dominicana -->
-            <div class="flex items-center space-x-2">
-              <span class="text-2xl" role="img" aria-label="República Dominicana">🇩🇴</span>
-              <span>01 809-273 1042</span>
-            </div>
-            <!-- Nicaragua -->
-            <div class="flex items-center space-x-2">
-              <span class="text-2xl" role="img" aria-label="Nicaragua">🇳🇮</span>
-              <span>2275-3370</span>
-            </div>
-            <!-- Honduras -->
-            <div class="flex items-center space-x-2">
-              <span class="text-2xl" role="img" aria-label="Honduras">🇭🇳</span>
-              <span>(+505) 2255-7480</span>
+
+          <!-- Ayuda -->
+          <div class="text-start">
+            <h3 class="font-title text-2xl font-bold mb-4 uppercase">
+              {help}
+            </h3>
+            <div class="flex flex-col space-y-3">
+              <a href={`/${currentLang}/contact`} class="font-sans text-xl hover:text-accent transition-colors duration-200">
+                {contactUs}
+              </a>
+              <a href={`/${currentLang}/brand`} class="font-sans text-xl hover:text-accent transition-colors duration-200">
+                {brand}
+              </a>
+              <a href={`/${currentLang}/shop`} class="font-sans text-xl hover:text-accent transition-colors duration-200">
+                {buy}
+              </a>
             </div>
           </div>
+
         </div>
       </div>
+    </div>
   </footer>
 )}
-

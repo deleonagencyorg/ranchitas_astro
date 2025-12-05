@@ -11,12 +11,12 @@
     "read_more": "Leer más"
   },
   "home": {
-    "title": "Descubre nuevos sabores con nuestras",
+    "title": "Recetas",
     "subtitle": "RECETAS",
     "related_recipes": "Recetas relacionadas",
     "recipes": "Ingredientes",
     "preparation" : "Preparación",
-    "view_more": "Ver Todas",
+    "view_more": "Descubrir más",
     "explore_more": {
       "title": "Explora más recetas aquí",
       "link": "/es/recetas"

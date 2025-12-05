@@ -19,20 +19,11 @@ module.exports = {
       colors: {
         primary: '#FD6600',
         secondary: '#0167F7',
-        tertiary: '#FDE820',
-        cuaternary: '#FF4DFF',
-        quinary: '#0167F7',
-        red: '#FC4238',
-        white: '#FFFFFF',
-        brown: '#5B3F2E',
-        blue: '#0167F7',
-        green: '#10b981',
-        orange: '#FD6600',
-        yellow: '#FDE820',
-        pink: '#FF4DFF',
-        lemon: '#BEDE89',
-        
-    
+        red: '#E92104',
+        redButton: '#D61F2C',
+        orange: '#F86509',
+        orangeButton: '#EC6503',
+        primaryCream: "#FAF0D5",
       },
       fontFamily: {
         sans: ['Rockeby regular', 'sans-serif'],

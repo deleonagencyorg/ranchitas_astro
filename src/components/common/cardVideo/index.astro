@@ -1,0 +1,134 @@
+---
+import { span } from 'framer-motion/m';
+
+interface CardHomeInterface {
+    badge?: string;
+    title?: string;
+    titleHighlight?: string;
+    description1?: string;
+    description2?: string;
+    videoSrc?: string;
+    videoPoster?: string;
+    backgroundColor?: string;
+}
+
+
+interface Props {
+    cardVideo: CardHomeInterface;
+}
+
+const {
+    cardVideo
+} = Astro.props;
+---
+
+<section class="hidden md:block lg:block w-full py-6 md:py-12 px-4 md:px-8 lg:mt-12 md:mt-6">
+    <div class="max-w-7xl mx-auto">
+        <div
+            class="bg-[#FEFEFE] rounded-[20px] md:rounded-[40px] shadow-xl p-6 md:p-8 lg:p-12"
+        >
+            <div
+                class="flex flex-col lg:flex-row items-center gap-6 md:gap-8 lg:gap-12"
+            >
+                <!-- Video Container -->
+                <div class="w-full lg:w-1/2">
+                    <div
+                        class="rounded-[20px] md:rounded-[40px] flex items-center justify-center shadow-lg overflow-hidden aspect-video"
+                        style={`background-color: ${cardVideo.backgroundColor}`}
+                    >
+                        <video
+                            class="w-full h-full object-cover"
+                            autoplay
+                            loop
+                            muted
+                            playsinline
+                            poster={cardVideo.videoPoster}
+                        >
+                            <source src={cardVideo.videoSrc} type="video/mp4" />
+                            Tu navegador no soporta el elemento de video.
+                        </video>
+                    </div>
+                </div>
+
+                <!-- Contenido de texto -->
+                <div class="w-full lg:w-1/2 space-y-4 md:space-y-6">
+                    <!-- Badge naranja -->
+                    <div class="inline-block mt-6 mb-6">
+                        <span
+                            class="bg-orangeButton text-white px-4 py-2 md:px-6 md:py-3 rounded-full font-bold text-sm md:text-[16px]"
+                        >
+                            {cardVideo.badge}
+                        </span>
+                    </div>
+
+                    <!-- Título con dos colores -->
+                    <h1
+                        class="text-[49px] font-bold"
+                    >
+                        <span class="text-black">{cardVideo.title} </span>
+                        <span class="text-[#FF8C00]">{cardVideo.titleHighlight}</span>
+                     </h1>
+
+                    <!-- Descripción párrafo 1 -->
+                    <p
+                        class="text-gray-700 text-sm md:text-base lg:text-lg leading-relaxed"
+                    >
+                        {cardVideo.description1}
+                    </p>
+
+                    <!-- Descripción párrafo 2 -->
+                    <p
+                        class="text-gray-700 text-sm md:text-base lg:text-lg leading-relaxed"
+                    >
+                        {cardVideo.description2}
+                    </p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="block md:hidden px-6 py-8 mx-auto max-w-[350px] mt-9">
+    <div class="bg-[#FFFFFF] rounded-3xl p-6 space-y-6">
+        
+        <div class="w-full">
+            <div
+            class="rounded-[20px] flex items-center justify-center shadow-lg overflow-hidden h-[320px]"
+                style={`background-color: ${cardVideo.backgroundColor}`}
+            >
+                <video
+                    class="w-full h-full object-cover"
+                    autoplay
+                    loop
+                    muted
+                    playsinline
+                    poster={cardVideo.videoPoster}
+                >
+                    <source src={cardVideo.videoSrc} type="video/mp4" />
+                    Tu navegador no soporta el elemento de video.
+                </video>
+            </div>
+        </div>
+      <div class="pt-9 pb-6">
+        <span class="bg-orangeButton text-white px-5 py-2 rounded-full font-bold text-sm">
+          {cardVideo.badge}
+        </span>
+      </div>
+  
+      <h2 class="text-4xl font-extrabold leading-tight mt-6">
+        <span class="text-black">{cardVideo.title} </span> <br />
+        <span class="text-orangeButton">{cardVideo.titleHighlight}</span>
+      </h2>
+  
+      <p class="text-gray-700 text-base leading-relaxed">
+        {cardVideo.description1}
+      </p>
+  
+      <p class="text-gray-700 text-base leading-relaxed">
+        {cardVideo.description2}
+      </p>
+  
+    </div>
+</section>
+  
+  

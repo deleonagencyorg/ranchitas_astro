@@ -97,35 +97,35 @@
     "explore": "Explorar"
   },
   "menu_items": [
-     {
-      "id": "zibas_creators",
-      "text": "Ziba's Creators",
-      "href": "/es/zibas-creators"
-    },
     {
       "id": "products",
       "text": "Productos",
       "href": "/es/#products"
     },
     {
-      "id": "gallery",
-      "text": "Galería",
-      "href": "/es/#gallery"
-    },
-    {
       "id": "recipes",
       "text": "Recetas",
-      "href": "/es/recetas"
+      "href": "/es/recipes"
     },
     {
-      "id": "blog",
-      "text": "Blog",
-      "href": "/es/blog"
+      "id": "news",
+      "text": "Noticias",
+      "href": "/es/news"
+    },
+    {
+      "id": "promotios",
+      "text": "Promos",
+      "href": "/es/promotios"
+    },
+    {
+      "id": "brand",
+      "text": "Marca",
+      "href": "/es/brand"
     },
     {
       "id": "contact",
-      "text": "Contacto",
-      "href": "/es/contacto"
+      "text": "Contáctanos",
+      "href": "/es/contact"
     }
    
   ],
@@ -164,20 +164,41 @@
           "url":"https://www.instagram.com/reel/DNEaatBuSfZ/?igsh=MTZuZjgzZnZ4dzg0dw=="
         }
       ]
+    },
+    "text_home": {
+      "since": "Desde 2000",
+      "title": "EL CRUNCH",
+      "subtitle": "MÁS HONESTO",
+      "description": "Ranchitas es el snack que nunca falla: crujiente, sabroso y perfecto para cualquier ocasión.",
+      "descrition2": "Disfrútalas solo, con amigos o en familia, porque siempre es buen momento para un crunch.",
+      "button": "Ver más",
+      "button2": "Contactárnos"
     }
   },
   "footer": {
-    "main_text": "Vibras sin filtro.",
-    "description": "Vive tu vida al máximo, expresa lo que sientes, explora el mundo y ve lo mejor de ti. Porque ¡Hoy Ziba's a ser tú! Disfruta tus Ziba's en todo momento.",
+    "main_text": "El sabor que ",
+    "main_text2": "conquista",
+    "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis mauris urna, lacinia a porttitor non, tristique congue lectus.",
     "choose": "Elige",
-    "follow_us": "Síguenos",
+    "follow_us": "REDES",
     "contact_us": "Contáctanos",
+    "ranchitas": "Ranchitas",
+    "help": "Ayuda",
     "instagram_text": "Instagram",
     "facebook_text": "Facebook",
+    "tiktok_text": "Tiktok",
     "email": "ayudacliente@zibas.com",
     "copyright": "Copyright 2025. Ziba's. Todos los derechos reservados.",
     "privacy_policy_text": "Política de Privacidad",
-    "privacy_policy_url": "/es/politica-privacidad"
+    "privacy_policy_url": "/es/politica-privacidad",
+    "products": "Productos",
+    "recipes": "Recetas",
+    "news": "Noticias",
+    "promotios": "Promos",
+    "brand": "Marca",
+    "buy": "Comprar",
+    "emailPlaceholder": "tucorreo@email.com",
+    "subscribe_button": "Suscribirse"
   },
   "messagetop":[
     {
@@ -199,5 +220,23 @@
   },
   "subscribe": {
     "success": "¡Gracias por suscribirte!"
+  },
+  "cardVideo": {
+    "badge" : "Nuestra Historia",
+    "title" : "¿Quiénes",
+    "titleHighlight" : "Somos?",
+    "description1" : "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.",
+    "description2" : "Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident.",
+    "videoSrc" : "/images/es/video/videoranchitas.mp4",
+    "backgroundColor" : "#B91C1C"
+  },
+  "cardQuiz": {
+    "badge" : "Nuestra Historia",
+    "title" : "¿Qué ranchita",
+    "titleHighlight" : "eres?",
+    "description1" : "Cronchea con actitud y deja que el sabor diga quién eres. ¿Listo para el reto? Descubre tu esencia Ranchitas en cada mordida.",
+    "titleButton": "Hacer Quiz",
+    "imageSrc" : "/images/es/video/videoranchitas.mp4",
+    "backgroundColor": "#0041CD"
   }
 }
