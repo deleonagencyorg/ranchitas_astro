@@ -1,5 +1,5 @@
 ---
-import { span } from 'framer-motion/m';
+import { button, span } from 'framer-motion/m';
 
 interface CardQuizInterface {
     badge?: string;
@@ -62,7 +62,7 @@ const {
                         {cardQuiz.description1}
                     </p>
 
-                    <button class="bg-white text-white text-[19px] px-5 py-2 rounded-full font-bold w-full bg-[#009DDA]">
+                    <button class="bg-white text-white text-[19px] px-5 py-2 rounded-full font-bold w-full !bg-[#009DDA]">
                         {cardQuiz.titleButton}
                     </button>
 
@@ -96,7 +96,7 @@ const {
         {cardQuiz.description1}
       </p>
 
-      <button class="bg-white text-white text-[19px] px-5 py-2 rounded-full font-bold w-full bg-[#009DDA]">
+      <button class="bg-white text-white text-[19px] px-5 py-2 rounded-full font-bold w-full !bg-[#009DDA]">
         {cardQuiz.titleButton}
     </button>
   
