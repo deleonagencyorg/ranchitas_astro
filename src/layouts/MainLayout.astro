@@ -28,9 +28,8 @@ const langFromUrl = pathSegments[1] as Locale;
 const validLocales: Locale[] = ['es', 'en'];
 const currentLang = validLocales.includes(langFromUrl) ? langFromUrl : 'es';
 
-// ✅ Verificar si la ruta es /es/productos/ o /en/productos/
 const { pathname } = Astro.url;
-const shouldHideHeader = pathname.startsWith('/es/productos') || pathname.startsWith('/en/productos');
+const shouldHideHeader = pathname.startsWith('/es/resultados') || pathname.startsWith('/en/results');
 
 const headerColorConfig = getHeaderColors(pathname);
 
