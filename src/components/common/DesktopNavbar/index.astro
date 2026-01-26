@@ -48,7 +48,7 @@ const productsMenuTitle = currentLang === 'es' ? 'Nuestros Productos' : 'Our Pro
   <div class="flex space-x-10" id="desktop-menu-items">
     {menuItems && menuItems.map((item: any) => (
       item?.id === 'products' ? (
-        <div class="relative group">
+        <div class="group">
           <a
             href={item.href}
             class="text-white font-title text-lg tracking-wide hover:opacity-80 transition inline-flex items-center"

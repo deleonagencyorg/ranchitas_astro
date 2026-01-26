@@ -41,12 +41,12 @@ const headerColors = {
 };
 ---
 
-<MainLayout title={title} class="bg-white" description={metaDescription} headerColorConfig={headerColors}>
-  <div class=" w-[100%] mx-auto ">
+<MainLayout title={title} class="bg-primaryCream" description={metaDescription} headerColorConfig={headerColors}>
+  <div class=" w-[100%] mx-auto text-center flex flex-col items-center ">
     
 
     <!-- Main Contact Section -->
-    <div class="flex flex-col justify-center px-4 items-center lg:items-start lg:flex-row gap-12 py-12 bg-primaryCream">
+    <div class="container flex flex-col justify-center px-4 items-center lg:items-start lg:flex-row gap-12 py-12 ">
       
       <!-- Left Column - Contact Info -->
    
@@ -91,17 +91,17 @@ const headerColors = {
         <div class="order-2 w-[95%] md:w-[90%] mx-auto">
           <div id="officeInfo" class="bg-blue rounded-2xl">
             <div class="flex flex-col lg:flex-row justify-between ">
-              <div class="space-y-0 px-2 md:px-0">
+              <div class="space-y-0 px-2 md:px-0 py-4">
                 <h3
                 id="officeName"
-                class="text-black font-sans text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl uppercase font-extrabold mb-3 md:mb-4 mt-3 md:mt-4 leading-tight break-words"
+                class="text-left text-black font-sans text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl uppercase font-extrabold mb-3 md:mb-4 mt-3 md:mt-4 leading-tight break-words"
               >
                 {contact.offices.locations["+504"].name}
               </h3>
               
                 
                 <div class="flex items-start space-x-2 md:space-x-3">
-                  <p id="officeAddress" class="text-black leading-relaxed font-semibold text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px] break-words">  {`+ ${contact.offices.locations["+504"].address}`}</p>
+                  <p id="officeAddress" class="mb-4 text-left text-black leading-relaxed font-semibold text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px] break-words">  {`+ ${contact.offices.locations["+504"].address}`}</p>
                 </div>
                 
                 <div class="flex items-center space-x-2 md:space-x-3">

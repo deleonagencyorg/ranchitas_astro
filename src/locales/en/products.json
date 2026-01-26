@@ -29,12 +29,12 @@
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-pizza-2.webp",
       "background_color": "#0041CD",
       "header_color": "#FDE820",
-      "text_color": "#FFFFFF",
+      "text_color":"#FFFFFF",
       "header_background": "#FDE820",
       "header_text_color": "#5B3F2E",
       "color_button": "#FFFFFF",
-      "description": "Crispy corn tortillas with a pizza flavor, perfect for sharing at parties. An explosion of flavor in every bite that will transport you straight to your favorite pizzeria.",
-      "short_description": "Crunchy corn tortillas with pizza flavor",
+      "description":  "Crispy corn nachos with pizza flavor, perfect for sharing at parties. An explosion of flavor in every bite that will transport you directly to your favorite pizzeria.",
+      "short_description": "Crispy corn nachos with pizza flavor.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -56,11 +56,11 @@
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-exitante-2.webp",
       "background_color": "#E82E30",  
       "header_color": "#FFFFFF",
-      "text_color": "#FFFFFF",
+      "text_color":"#FFFFFF",
       "header_background": "#E82E30",
       "color_button": "#FFFFFF",
-      "description": "Crunchy fried potato chips with spicy nacho flavor",
-      "short_description": "Crunchy fried potato chips with spicy nacho flavor",
+      "description": "Crispy fried nachos with spicy nacho flavor",
+      "short_description": "Crispy fried tortillas with spicy nacho flavor",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -71,8 +71,8 @@
       ],
       "weight": [
         "18g",
-        "23g",
         "25g",
+        "70g",
         "150g"
       ]
     },
@@ -82,12 +82,12 @@
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-queso-2.webp",
       "background_color": "#EE710A",
       "header_color": "#FFFFFF",
-      "text_color": "#FFFFFF",
+      "text_color":"#FFFFFF",
       "header_background": "#FE5A00",
       "header_text_color": "#FFFFFF",
       "color_button": "#FFFFFF",
-      "description": "Crispy fried corn tortillas with cheese flavor.",
-      "short_description": "Crispy fried corn tortillas with cheese flavor.",
+      "description": "Fried corn nachos with cheese flavor.",
+      "short_description": "Fried corn nachos with cheese flavor.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -98,9 +98,11 @@
       ],
       "weight": [
         "18g",
-        "23g",
         "25g",
-        "150g"
+        "70g",
+        "150g",
+        "250g",
+        "450g"
       ]
     },
     {
@@ -109,12 +111,12 @@
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-extremo-2.webp",
       "background_color": "#EFEFEF",
       "header_color": "#1C1C1C",
-      "text_color": "#0F0F0F",
+      "text_color":"#0F0F0F",
       "header_background": "#BEDE89",
       "header_text_color": "#1C1C1C",
       "color_button": "#F86509",
-      "description": "Corn tortillas with charred chili flavor.",
-      "short_description": "Corn tortillas with charred chili flavor.",
+      "description": "Corn nachos with chili toreado flavor.",
+      "short_description": "Corn nachos with chili toreado flavor.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -124,10 +126,7 @@
         }
       ],
       "weight": [
-        "18g",
-        "23g",
-        "25g",
-        "150g"
+        "19g"
       ]
     },
     {
@@ -136,12 +135,12 @@
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ranchitas-Naturales.webp",
       "background_color": "#8BC53F",
       "header_color": "#FFFFFF",
-      "text_color": "#FFFFFF",
+      "text_color":"#FFFFFF",
       "header_background": "#8BC53F",
       "header_text_color": "#FFFFFF",
       "color_button": "#FFFFFF",
-      "description": "Crispy corn tortillas with natural flavor.",
-      "short_description": "Crispy corn tortillas with natural flavor.",
+      "description": "Crispy corn nachos with natural flavor.",
+      "short_description": "Crispy corn nachos with natural flavor.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -151,10 +150,8 @@
         }
       ],
       "weight": [
-        "18g",
-        "23g",
-        "25g",
-        "150g"
+        "35g",
+        "300g"
       ]
     },
     {
@@ -167,8 +164,8 @@
       "header_background": "#8BC53F",
       "header_text_color": "#FFFFFF",
       "color_button": "#FFFFFF",
-      "description": "Crispy corn tortillas with guacamole flavor.",
-      "short_description": "Crispy corn tortillas with guacamole flavor.",
+      "description": "Crispy corn nachos with guacamole flavor.",
+      "short_description": "Crispy corn nachos with guacamole flavor.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -179,8 +176,8 @@
       ],
       "weight": [
         "18g",
-        "23g",
         "25g",
+        "70g",
         "150g"
       ]
     },
@@ -194,8 +191,8 @@
       "header_background": "#FFD700",
       "header_text_color": "#1C1C1C",
       "color_button": "#1C1C1C",
-      "description": "Crispy corn tortillas with butter flavor.",
-      "short_description": "Crispy corn tortillas with butter flavor.",
+      "description": "Crispy corn nachos with butter flavor.",
+      "short_description": "Crispy corn nachos with butter flavor.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -205,10 +202,8 @@
         }
       ],
       "weight": [
-        "18g",
-        "23g",
-        "25g",
-        "150g"
+        "35g",
+        "300g"
       ]
     },
     {
@@ -221,8 +216,8 @@
       "header_background": "##21A3D0",
       "header_text_color": "#FFFFFF",
       "color_button": "#FFFFFF",
-      "description": "Crispy corn tortillas with buffalo ranch flavor.",
-      "short_description": "Crispy corn tortillas with buffalo ranch flavor.",
+      "description": "Crispy corn nachos with buffalo ranch flavor.",
+      "short_description": "Crispy corn nachos with buffalo ranch flavor.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -248,8 +243,8 @@
       "header_background": "#087530",
       "header_text_color": "#1C1C1C",
       "color_button": "#1C1C1C",
-      "description": "Crispy corn tortillas with charred chili flavor.",
-      "short_description": "Crispy corn tortillas with charred chili flavor.",
+      "description": "Crispy corn nachos with chili toreado flavor.",
+      "short_description": "Crispy corn nachos with chili toreado flavor.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -259,8 +254,6 @@
         }
       ],
       "weight": [
-        "18g",
-        "23g",
         "25g",
         "150g"
       ]

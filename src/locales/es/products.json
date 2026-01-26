@@ -33,8 +33,8 @@
       "header_background": "#FDE820",
       "header_text_color": "#5B3F2E",
       "color_button": "#FFFFFF",
-      "description":  "Tortillas de maíz crujientes con sabor a pizza, perfectas para compartir en fiestas. Una explosión de sabor en cada mordida que te transportará directo a tu pizzería favorita.",
-      "short_description": "Tortillas de maíz crujientes con sabor a pizza.",
+      "description":  "Nachos de maíz crujientes con sabor a pizza, perfectas para compartir en fiestas. Una explosión de sabor en cada mordida que te transportará directo a tu pizzería favorita.",
+      "short_description": "Nachos de maíz crujientes con sabor a pizza.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -59,7 +59,7 @@
       "text_color":"#FFFFFF",
       "header_background": "#E82E30",
       "color_button": "#FFFFFF",
-      "description": "Tortillas fritas crujientes con sabor a nachos picante",
+      "description": "Nachos fritas crujientes con sabor a nachos picante",
       "short_description": "Toritillas fritas crujientes con sabor a nachos picante",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
@@ -71,8 +71,8 @@
       ],
       "weight": [
         "18g",
-        "23g",
         "25g",
+        "70g",
         "150g"
       ]
     },
@@ -86,8 +86,8 @@
       "header_background": "#FE5A00",
       "header_text_color": "#FFFFFF",
       "color_button": "#FFFFFF",
-      "description": "Tortillas fritas de maíz con sabor a queso.",
-      "short_description": "Tortillas fritas de maíz con sabor a queso.",
+      "description": "Nachos fritas de maíz con sabor a queso.",
+      "short_description": "Nachos fritas de maíz con sabor a queso.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -98,9 +98,11 @@
       ],
       "weight": [
         "18g",
-        "23g",
         "25g",
-        "150g"
+        "70g",
+        "150g",
+        "250g",
+        "450g"
       ]
     },
     {
@@ -113,8 +115,8 @@
       "header_background": "#BEDE89",
       "header_text_color": "#1C1C1C",
       "color_button": "#F86509",
-      "description": "Tortillas de maíz con sabor a chiles toreados.",
-      "short_description": "Tortillas de maíz con sabor a chiles toreados.",
+      "description": "Nachos de maíz con sabor a chiles toreados.",
+      "short_description": "Nachos de maíz con sabor a chiles toreados.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -124,10 +126,7 @@
         }
       ],
       "weight": [
-        "18g",
-        "23g",
-        "25g",
-        "150g"
+        "19g"
       ]
     },
     {
@@ -140,8 +139,8 @@
       "header_background": "#8BC53F",
       "header_text_color": "#FFFFFF",
       "color_button": "#FFFFFF",
-      "description": "Tortillas de maíz crujientes con sabor natural.",
-      "short_description": "Tortillas de maíz crujientes con sabor natural.",
+      "description": "Nachos de maíz crujientes con sabor natural.",
+      "short_description": "Nachos de maíz crujientes con sabor natural.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -151,10 +150,8 @@
         }
       ],
       "weight": [
-        "18g",
-        "23g",
-        "25g",
-        "150g"
+        "35g",
+        "300g"
       ]
     },
     {
@@ -167,8 +164,8 @@
       "header_background": "#8BC53F",
       "header_text_color": "#FFFFFF",
       "color_button": "#FFFFFF",
-      "description": "Tortillas de maíz crujientes con sabor a guacamole.",
-      "short_description": "Tortillas de maíz crujientes con sabor a guacamole.",
+      "description": "Nachos de maíz crujientes con sabor a guacamole.",
+      "short_description": "Nachos de maíz crujientes con sabor a guacamole.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -179,8 +176,8 @@
       ],
       "weight": [
         "18g",
-        "23g",
         "25g",
+        "70g",
         "150g"
       ]
     },
@@ -194,8 +191,8 @@
       "header_background": "#FFD700",
       "header_text_color": "#1C1C1C",
       "color_button": "#1C1C1C",
-      "description": "Tortillas de maíz crujientes con sabor a mantequilla.",
-      "short_description": "Tortillas de maíz crujientes con sabor a mantequilla.",
+      "description": "Nachos de maíz crujientes con sabor a mantequilla.",
+      "short_description": "Nachos de maíz crujientes con sabor a mantequilla.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -205,10 +202,8 @@
         }
       ],
       "weight": [
-        "18g",
-        "23g",
-        "25g",
-        "150g"
+        "35g",
+        "300g"
       ]
     },
     {
@@ -221,8 +216,8 @@
       "header_background": "##21A3D0",
       "header_text_color": "#FFFFFF",
       "color_button": "#FFFFFF",
-      "description": "Tortillas de maíz crujientes con sabor a buffalo ranch.",
-      "short_description": "Tortillas de maíz crujientes con sabor a buffalo ranch.",
+      "description": "Nachos de maíz crujientes con sabor a buffalo ranch.",
+      "short_description": "Nachos de maíz crujientes con sabor a buffalo ranch.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -248,8 +243,8 @@
       "header_background": "#087530",
       "header_text_color": "#1C1C1C",
       "color_button": "#1C1C1C",
-      "description": "Tortillas de maíz crujientes con sabor a chile toreado.",
-      "short_description": "Tortillas de maíz crujientes con sabor a chile toreado.",
+      "description": "Nachos de maíz crujientes con sabor a chile toreado.",
+      "short_description": "Nachos de maíz crujientes con sabor a chile toreado.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
@@ -259,8 +254,6 @@
         }
       ],
       "weight": [
-        "18g",
-        "23g",
         "25g",
         "150g"
       ]
