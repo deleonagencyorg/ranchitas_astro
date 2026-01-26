@@ -3,7 +3,6 @@
   "id": "ensalada-de-ranchitas-con-ranchitas-nacho-queso",
   "slug": "ensalada-de-ranchitas-con-ranchitas-nacho-queso",
   "title": "Ensalada de Ranchitas con Ranchitas Nacho Queso",
-  "people": "9",
   "difficulty": "Fácil",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ensalada-de-ranchitas.webp",
   "gallery": [
@@ -31,9 +30,10 @@
   "brand": [
     "ranchitas"
   ],
-
-  "product":[
+  "product": [
     "ranchitas-nacho-queso"
   ],
-  "category": "lunch"
+  "category": "lunch",
+  "servings": 6,
+  "description": "Una ensalada completa y nutritiva con carne molida, frijoles y el crunch especial de Ranchitas Nacho Queso."
 }

@@ -3,7 +3,6 @@
   "id": "choripan-with-ranchitas-nacho-queso",
   "slug": "choripan-with-ranchitas-nacho-queso",
   "title": "Choripan with Ranchitas Nacho Queso",
-  "people": "9",
   "difficulty": "Medium",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/choripan-con-ranchitas-nacho-queso.webp",
   "gallery": [
@@ -27,8 +26,10 @@
   "brand": [
     "ranchitas"
   ],
-  "product":[
+  "product": [
     "ranchitas-nacho-queso"
   ],
-  "category": "lunch"
+  "category": "lunch",
+  "servings": 4,
+  "description": "The classic Guatemalan choripan elevated with the special touch of Ranchitas Nacho Queso. An explosion of flavor in every bite."
 }

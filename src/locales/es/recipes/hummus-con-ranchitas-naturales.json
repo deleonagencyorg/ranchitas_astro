@@ -3,7 +3,6 @@
   "id": "hummus-con-ranchitas-naturales",
   "slug": "hummus-con-ranchitas-naturales",
   "title": "Hummus con Ranchitas Naturales",
-  "people": "7",
   "difficulty": "Fácil",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/hummus-con-ranchitas-naturales.webp",
   "gallery": [
@@ -30,8 +29,10 @@
   "brand": [
     "ranchitas"
   ],
-  "product":[
+  "product": [
     "ranchitas-naturales"
   ],
-  "category": "snack"
+  "category": "snack",
+  "servings": 6,
+  "description": "Hummus cremoso casero que se complementa perfectamente con el crunch de Ranchitas Naturales. Una opción saludable y deliciosa."
 }

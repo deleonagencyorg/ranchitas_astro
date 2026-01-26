@@ -29,7 +29,7 @@ const {
   difficulty = "Fácil",
   servings = 0,
   rating = 0,
-  product = "Ranchitas Naturales"
+  product = ""
 } = Astro.props;
 
 const currentLocale = getLocale();
@@ -49,41 +49,45 @@ const displayProduct = product ? formatProductName(product) : '';
 
 <a 
   href={recipeLink} 
-  class="block group overflow-hidden rounded-[2.5rem] bg-white shadow-lg hover:shadow-2xl transition-all duration-300"
-  transition:animate="fade"
+  class="block group overflow-hidden rounded-[2.5rem] bg-white shadow-lg hover:shadow-2xl transition-all duration-400 relative"
 >
-  <!-- Imagen principal -->
+  <!-- Imagen principal con efectos suaves -->
   <div class="relative h-[250px] overflow-hidden">
     <LazyImage
       src={image}
       alt={title}
-      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+      class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
       transition:name={`recipe-image-${id}`}
     />
+    <!-- Overlay con gradiente sutil -->
+    <div class="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
   </div>
   
   <!-- Contenido inferior -->
-  <div class="p-6 bg-white">
-    <!-- Título -->
-    <h3 class="text-2xl font-bold text-black mb-3 leading-tight">
+  <div class="p-6 bg-white relative overflow-hidden">
+    <!-- Título con animación sutil -->
+    <h3 class="text-2xl font-bold text-black mb-3 leading-tight group-hover:text-[#F04F00] transition-colors duration-300">
       {title}
     </h3>
     
-    <!-- Dificultad y Producto en línea horizontal -->
+    <!-- Dificultad y Producto -->
     <div class="flex items-center gap-3 mb-4">
       <span class="text-[#F04F00] font-bold text-base">
         {difficulty}
       </span>
       {displayProduct && (
-        <span class="text-gray-500 text-base font-normal">
+        <span class="text-gray-500 text-base font-normal group-hover:text-gray-700 transition-colors duration-300">
           {currentLocale === 'es' ? 'Con' : 'With'} {displayProduct}
         </span>
       )}
     </div>
     
-    <!-- Ver receta link -->
-    <div class="flex items-center text-[#F04F00] font-bold text-base group-hover:translate-x-2 transition-transform">
-      {viewRecipeText} →
+    <!-- Ver receta link con flecha -->
+    <div class="flex items-center text-[#F04F00] font-bold text-base gap-2 group-hover:gap-3 transition-all duration-300">
+      <span>{viewRecipeText}</span>
+      <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>
+      </svg>
     </div>
   </div>
 </a>

@@ -10,6 +10,7 @@ interface RecipeItem {
   difficulty?: string;
   servings?: number;
   rating?: number;
+  product?: string | string[];
 }
 
 export interface Props {
@@ -36,6 +37,7 @@ const currentLang = getLocale();
                 title={recipe.title}
                 time={`${recipe.preparation_time}MIN`}
                 id={recipe.id}
+                product={Array.isArray(recipe.product) ? recipe.product[0] : recipe.product}
               />
             </div>
           </div>

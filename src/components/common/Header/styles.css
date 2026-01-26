@@ -1,14 +1,16 @@
 /* Estilos para el Header */
 
-/* Estilo para asegurar que el menú desplegable ocupe toda la altura si es necesario */
-#mobile-menu > .container {
-  min-height: calc(100vh - 4rem); /* Ajustar 4rem si la altura del header es diferente */
-}
-
-/* Estilos para el header fijo */
+/* Estilo para asegurar que el header no oculte los dropdowns */
 #site-header {
   transition: background-color 0.3s ease;
   z-index: 50;
+  position: relative;
+  overflow: visible !important;
+}
+
+/* Estilo para asegurar que el menú desplegable ocupe toda la altura si es necesario */
+#mobile-menu > .container {
+  min-height: calc(100vh - 4rem); /* Ajustar 4rem si la altura del header es diferente */
 }
 
 /* Estilos para el header móvil */
@@ -81,4 +83,18 @@
 #mobile-menu.hidden {
   opacity: 0;
   visibility: hidden;
+}
+
+/* Estilos para el dropdown de productos en desktop */
+.group:hover > div {
+  pointer-events: auto;
+}
+
+.products-submenu-scroll::-webkit-scrollbar {
+  display: none;
+}
+
+.products-submenu-scroll {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
 }

@@ -3,7 +3,6 @@
   "id": "crispy-chicken-wings-with-ranchitas-nacho-excitante",
   "slug": "crispy-chicken-wings-with-ranchitas-nacho-excitante",
   "title": "Crispy Chicken Wings with Ranchitas Nacho Excitante",
-  "people": "9",
   "difficulty": "Medium",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/alitas-de-pollo-ranchitas.webp",
   "gallery": [
@@ -33,8 +32,10 @@
   "brand": [
     "ranchitas"
   ],
-  "product":[
+  "product": [
     "ranchitas-nacho-excitante"
   ],
-  "category": "lunch"
+  "category": "lunch",
+  "servings": 4,
+  "description": "Delicious crispy chicken wings breaded with Ranchitas Nacho Excitante. Perfect for sharing at gatherings or enjoying as a snack."
 }

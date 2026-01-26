@@ -3,7 +3,6 @@
   "id": "mini-enchiladas-rancheras-con-ranchitas-naturales",
   "slug": "mini-enchiladas-rancheras-con-ranchitas-naturales",
   "title": "Mini Enchiladas Rancheras con Ranchitas Naturales",
-  "people": "6",
   "difficulty": "Media",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/mini-enchiladas-rancheras.webp",
   "gallery": [
@@ -29,8 +28,10 @@
   "brand": [
     "ranchitas"
   ],
-  "product":[
+  "product": [
     "ranchitas-naturales"
   ],
-  "category": "lunch"
+  "category": "lunch",
+  "servings": 6,
+  "description": "Mini enchiladas servidas sobre Ranchitas Naturales, combinando los sabores tradicionales con un toque moderno y crujiente."
 }
