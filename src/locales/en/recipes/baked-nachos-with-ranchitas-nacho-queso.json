@@ -3,7 +3,6 @@
   "id": "baked-nachos-with-ranchitas-nacho-queso",
   "slug": "baked-nachos-with-ranchitas-nacho-queso",
   "title": "Baked Nachos with Ranchitas Nacho queso",
-  "people": "13",
   "difficulty": "Medium",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/nachos-horneados-rancheritas.webp",
   "gallery": [
@@ -32,8 +31,10 @@
   "brand": [
     "ranchitas"
   ],
-  "product":[
+  "product": [
     "ranchitas-nacho-queso"
   ],
-  "category": "dinner"
+  "category": "dinner",
+  "servings": 8,
+  "description": "Baked nachos with multiple layers of melted cheese and toppings. An irresistible recipe with Ranchitas Nacho Queso."
 }

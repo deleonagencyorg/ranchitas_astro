@@ -5,6 +5,7 @@ import { type Locale } from '../i18n/i18n';
 import Header from '../components/common/Header/index.astro';
 import Footer from '../components/common/Footer/index.astro';
 import MobileMenu from '../components/common/MobileMenu/index.astro';
+import WhereToBuyModal from '../components/common/WhereToBuyModal.astro';
 import I18nProvider from '../components/i18n/I18nProvider.astro';
 import { routesConfig } from '../config/routes';
 import { getHeaderColors } from '../config/headerColors';
@@ -62,7 +63,7 @@ if (headerColors) {
         </slot>
       )}
       
-      <main transition:animate="slide" class="flex-1 flex flex-col overflow-hidden">
+      <main class="flex-1 flex flex-col overflow-hidden">
         <slot />
       </main>
       {!shouldHideHeader && (
@@ -73,5 +74,6 @@ if (headerColors) {
     </I18nProvider>
     
     <MobileMenu currentLang={currentLang} headerColorConfig={customHeaderConfig} />
+    <WhereToBuyModal currentLang={currentLang} />
   </body>
 </html>

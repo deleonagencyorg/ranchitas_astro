@@ -3,42 +3,44 @@
 import { t } from '../../i18n/i18n';
 import type { Locale } from '../../i18n/i18n';
 import { getLocale } from '../../i18n/i18n';
+import './styles.css';
 
 const currentLang = getLocale();
 const products = t('items', { namespace: 'products', locale: currentLang }) || [];
 ---
 
-<div class="bg-white py-12">
+<div class="bg-white py-8 sm:py-12">
   
-  <div class="container mx-auto px-4">
+  <div class="container mx-auto px-3 sm:px-4">
     {products.length === 0 ? (
       <p class="text-center text-gray-500">No hay productos para mostrar.</p>
     ) : (
-      <div class="grid grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 lg:gap-8" id="products-grid">
+      <div class="grid grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4 md:gap-6 lg:gap-8" id="products-grid">
         {products.map((product: any) => (
           <a
-            href={`/${currentLang}/productos/${product.id}`}
-            class="product-card h-full rounded-[30px] p-6 md:p-7 lg:p-8 flex flex-col items-center justify-between transition-transform duration-300 hover:scale-[1.02] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F86509]"
+            href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}/${product.id}`}
+            class="product-card h-full rounded-[20px] sm:rounded-[30px] p-4 sm:p-6 md:p-7 lg:p-8 flex flex-col items-center justify-between focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F86509]"
             style={{ backgroundColor: product.background_color || '#FFFFFF' }}
-            transition:animate="fade"
+            data-product-id={product.id}
           >
-            <div class="w-full flex justify-center items-center flex-1 mb-4 md:mb-6">
+            <div class="w-full flex justify-center items-center flex-1 mb-3 sm:mb-4 md:mb-6 product-image-wrapper">
               <img
                 src={product.image || '/images/products/placeholder.jpg'}
                 alt={product.name}
-                class="w-full max-w-[408px] h-[180px] md:h-[210px] lg:h-[235px] object-contain"
+                class="w-full max-w-[408px] h-[120px] sm:h-[180px] md:h-[210px] lg:h-[235px] object-contain"
                 transition:name={`product-image-${product.id}`}
+                loading="lazy"
               />
             </div>
             <div class="w-full text-start">
               <h3
-                class="text-2xl md:text-3xl font-bold mb-2"
+                class="text-lg sm:text-2xl md:text-3xl font-bold mb-1 sm:mb-2"
                 style={{ color: product.text_color || '#0F0F0F' }}
               >
                 {product.name}
               </h3>
               <p
-                class="text-base md:text-lg italic mb-0"
+                class="text-sm sm:text-base md:text-lg italic mb-0"
                 style={{ color: product.text_color || '#0F0F0F' }}
               >
                 {product.short_description}
@@ -50,4 +52,29 @@ const products = t('items', { namespace: 'products', locale: currentLang }) || [
     )}
   </div>
 </div>
+
+<script>
+  // Mejorar la experiencia visual al navegar entre productos
+  document.addEventListener('astro:before-preparation', () => {
+    // Agregar clase para indicar que se está preparando la transición
+    document.documentElement.classList.add('preparing-transition');
+  });
+
+  document.addEventListener('astro:after-preparation', () => {
+    document.documentElement.classList.remove('preparing-transition');
+  });
+
+  document.addEventListener('astro:page-load', () => {
+    // Asegurar que las animaciones se apliquen correctamente después de la carga
+    const productCards = document.querySelectorAll('.product-card');
+    productCards.forEach((card, index) => {
+      // Remover animación previa
+      card.style.animation = 'none';
+      // Forzar reflow
+      void card.offsetHeight;
+      // Re-aplicar animación
+      card.style.animation = `fade-in-up 500ms cubic-bezier(0.4, 0, 0.2, 1) ${index * 100}ms backwards`;
+    });
+  });
+</script>
 

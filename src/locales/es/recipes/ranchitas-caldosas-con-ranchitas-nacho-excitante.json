@@ -3,7 +3,6 @@
   "id": "ranchitas-caldosas-con-ranchitas-nacho-excitante",
   "slug": "ranchitas-caldosas-con-ranchitas-nacho-excitante",
   "title": "Ranchitas Caldosas con Ranchitas Nacho Excitante",
-  "people": "9",
   "difficulty": "Fácil",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-caldosas-con-ranchitas-nacho-excitante.webp",
   "gallery": [
@@ -35,7 +34,9 @@
     "ranchitas"
   ],
   "category": "lunch",
-  "product":[
+  "product": [
     "ranchitas-nacho-excitante"
-  ]
+  ],
+  "servings": 4,
+  "description": "Pescado estilo ceviche con limón y especias, servido con Ranchitas Nacho Excitante. Refrescante y picante a la vez."
 }

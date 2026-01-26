@@ -3,7 +3,6 @@
   "id": "queso-panela-con-ranchitas-nacho-queso",
   "slug": "queso-panela-con-ranchitas-nacho-queso",
   "title": "Queso Panela con Ranchitas Nacho Queso",
-  "people": "11",
   "difficulty": "Fácil",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/queso-panela-con-ranchitas-nacho-queso.webp",
   "gallery": [
@@ -28,7 +27,9 @@
     "ranchitas"
   ],
   "category": "snack",
-  "product":[
+  "product": [
     "ranchitas-nacho-queso"
-  ]
+  ],
+  "servings": 6,
+  "description": "Queso panela frito hasta quedar dorado y crujiente, servido con Ranchitas Nacho Queso. Un aperitivo irresistible."
 }

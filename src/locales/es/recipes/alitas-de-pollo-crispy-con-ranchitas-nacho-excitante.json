@@ -3,7 +3,6 @@
   "id": "alitas-de-pollo-crispy-con-ranchitas-nacho-excitante",
   "slug": "alitas-de-pollo-crispy-con-ranchitas-nacho-excitante",
   "title": "Alitas de Pollo Crispy con Ranchitas Nacho Excitante",
-  "people": "9",
   "difficulty": "Media",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/alitas-de-pollo-ranchitas.webp",
   "gallery": [
@@ -33,9 +32,10 @@
   "brand": [
     "ranchitas"
   ],
-
-  "product":[
+  "product": [
     "ranchitas-nacho-excitante"
   ],
-  "category": "lunch"
+  "category": "lunch",
+  "servings": 4,
+  "description": "Deliciosas alitas de pollo crujientes empanizadas con Ranchitas Nacho Excitante. Perfectas para compartir en reuniones o disfrutar como snack."
 }

@@ -3,7 +3,6 @@
   "id": "chicken-fingers-con-ranchitas-nacho-excitante",
   "slug": "chicken-fingers-con-ranchitas-nacho-excitante",
   "title": "Chiken Fingers con Ranchitas Nacho Excitante",
-  "people": "12",
   "difficulty": "Media",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/chicken-fingers-con-ranchitas-nacho-excitante.webp",
   "gallery": [
@@ -31,9 +30,10 @@
   "brand": [
     "ranchitas"
   ],
-
-  "product":[
+  "product": [
     "ranchitas-nacho-excitante"
   ],
-  "category": "lunch"
+  "category": "lunch",
+  "servings": 4,
+  "description": "Tiras de pollo crujientes con el sabor único de Ranchitas Nacho Excitante. Una opción deliciosa para toda la familia."
 }

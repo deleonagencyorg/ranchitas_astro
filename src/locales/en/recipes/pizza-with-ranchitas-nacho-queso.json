@@ -3,7 +3,6 @@
   "id": "pizza-with-ranchitas-nacho-queso",
   "slug": "pizza-with-ranchitas-nacho-queso",
   "title": "Pizza with Ranchitas Nacho Queso",
-  "people": "29",
   "difficulty": "Medium",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/pizza-con-ranchitas-nacho-queso.webp",
   "gallery": [
@@ -36,8 +35,10 @@
   "brand": [
     "ranchitas"
   ],
-  "product":[
+  "product": [
     "ranchitas-nacho-queso"
   ],
-  "category": "dinner"
+  "category": "dinner",
+  "servings": 8,
+  "description": "Homemade pizza with a crispy base topped with cheese and the special touch of Ranchitas Nacho Queso. A delicious fusion!"
 }

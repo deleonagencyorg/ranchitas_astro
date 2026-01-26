@@ -3,7 +3,6 @@
   "id": "chicken-fingers-with-ranchitas-nacho-excitante",
   "slug": "chicken-fingers-with-ranchitas-nacho-excitante",
   "title": "Chicken Fingers with Ranchitas Nacho Excitante",
-  "people": "12",
   "difficulty": "Medium",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/chicken-fingers-con-ranchitas-nacho-excitante.webp",
   "gallery": [
@@ -31,8 +30,10 @@
   "brand": [
     "ranchitas"
   ],
-  "product":[
+  "product": [
     "ranchitas-nacho-excitante"
   ],
-  "category": "lunch"
+  "category": "lunch",
+  "servings": 4,
+  "description": "Crispy chicken tenders with the unique flavor of Ranchitas Nacho Excitante. A delicious option for the whole family."
 }

@@ -3,7 +3,6 @@
   "id": "guacamole-with-ranchitas-naturales",
   "slug": "guacamole-with-ranchitas-naturales",
   "title": "Guacamole with Ranchitas Naturales",
-  "people": "7",
   "difficulty": "Easy",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/guacamole-con-ranchitas-naturales.webp",
   "gallery": [
@@ -30,8 +29,10 @@
   "brand": [
     "ranchitas"
   ],
-  "product":[
+  "product": [
     "ranchitas-naturales"
   ],
-  "category": "snack"
+  "category": "snack",
+  "servings": 6,
+  "description": "The classic Mexican guacamole perfect for dipping with Ranchitas Naturales. Fresh, creamy and full of flavor."
 }

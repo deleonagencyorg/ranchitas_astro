@@ -151,8 +151,12 @@ export default function QuizGame({ lang, quizData, products, recipes, shareId })
       <div className="relative z-10 max-w-6xl mx-auto px-4 sm:px-6 pt-4 sm:pt-6 pb-16">
         <div className="grid grid-cols-3 items-center gap-2 sm:gap-3">
           <div className="flex justify-start">
-            <a href={goHomeHref} className="inline-flex items-center gap-2 bg-white/15 text-white font-bold rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm hover:bg-white/20 transition border border-white/20">
-              <span className="inline-flex w-5 h-5 items-center justify-center">
+            <a 
+              href={goHomeHref} 
+              className="inline-flex items-center gap-2 bg-white/15 text-white font-bold rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm hover:bg-white/20 active:bg-white/25 transition border border-white/20 touch-manipulation"
+              aria-label={ui.home}
+            >
+              <span className="inline-flex w-5 h-5 items-center justify-center pointer-events-none">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M3 9.5 12 3l9 6.5V21a1 1 0 0 1-1 1h-5v-7H9v7H4a1 1 0 0 1-1-1V9.5Z" />
               </svg>
@@ -171,8 +175,13 @@ export default function QuizGame({ lang, quizData, products, recipes, shareId })
           </div>
 
           <div className="flex justify-end">
-            <button type="button" onClick={onRestart} className="inline-flex items-center gap-2 bg-white/15 text-white font-bold rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm hover:bg-white/20 transition border border-white/20">
-              <span className="inline-flex w-5 h-5 items-center justify-center">
+            <button 
+              type="button" 
+              onClick={onRestart} 
+              className="inline-flex items-center gap-2 bg-white/15 text-white font-bold rounded-full px-3 sm:px-4 py-2 text-xs sm:text-sm hover:bg-white/20 active:bg-white/25 transition border border-white/20 touch-manipulation"
+              aria-label={ui.restart}
+            >
+              <span className="inline-flex w-5 h-5 items-center justify-center pointer-events-none">
               <svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M21 12a9 9 0 1 1-2.64-6.36" />
                 <path d="M21 3v6h-6" />
@@ -209,7 +218,8 @@ export default function QuizGame({ lang, quizData, products, recipes, shareId })
                         key={opt.id}
                         type="button"
                         onClick={() => onSelect(opt.id)}
-                        className={`text-left bg-white/10 border border-white/20 rounded-xl px-5 py-4 transition ${active ? 'ring-2 ring-white/60' : 'hover:bg-white/15'}`}
+                        className={`text-left bg-white/10 border border-white/20 rounded-xl px-5 py-4 transition touch-manipulation ${active ? 'ring-2 ring-white/60' : 'hover:bg-white/15 active:bg-white/20'}`}
+                        aria-pressed={active}
                       >
                         <div className="flex items-start gap-3">
                           <span className={`mt-1 w-2.5 h-2.5 rounded-full ${active ? 'bg-white' : 'bg-white/70'}`} />
@@ -225,7 +235,8 @@ export default function QuizGame({ lang, quizData, products, recipes, shareId })
                     type="button"
                     onClick={onPrev}
                     disabled={step === 0}
-                    className="w-40 sm:w-48 rounded-full bg-white/15 text-white font-bold py-3 disabled:opacity-50 hover:bg-white/20 transition border border-white/20"
+                    className="w-40 sm:w-48 rounded-full bg-white/15 text-white font-bold py-3 disabled:opacity-50 hover:bg-white/20 active:bg-white/25 transition border border-white/20 touch-manipulation"
+                    aria-label={ui.previous}
                   >
                     {ui.previous}
                   </button>
@@ -233,7 +244,8 @@ export default function QuizGame({ lang, quizData, products, recipes, shareId })
                     type="button"
                     onClick={onNext}
                     disabled={!canNext}
-                    className="w-40 sm:w-48 rounded-full bg-[#F86509] text-white font-bold py-3 disabled:opacity-50 hover:opacity-90 transition"
+                    className="w-40 sm:w-48 rounded-full bg-[#F86509] text-white font-bold py-3 disabled:opacity-50 hover:opacity-90 active:opacity-80 transition touch-manipulation"
+                    aria-label={ui.next}
                   >
                     {ui.next}
                   </button>

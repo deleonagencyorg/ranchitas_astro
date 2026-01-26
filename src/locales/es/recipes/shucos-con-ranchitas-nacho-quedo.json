@@ -3,7 +3,6 @@
   "id": "shucos-con-ranchitas-nacho-queso",
   "slug": "shucos-con-ranchitas-nacho-queso",
   "title": "Shucos con Ranchitas Nacho Queso",
-  "people": "19",
   "difficulty": "Fácil",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/shucos-con-ranchitas-nacho-quedo.webp",
   "gallery": [
@@ -31,7 +30,9 @@
     "ranchitas"
   ],
   "category": "lunch",
-  "product":[
+  "product": [
     "ranchitas-nacho-queso"
-  ]
+  ],
+  "servings": 4,
+  "description": "Los tradicionales shucos guatemaltecos con un twist moderno usando Ranchitas Nacho Queso. ¡Sabor callejero mejorado!"
 }

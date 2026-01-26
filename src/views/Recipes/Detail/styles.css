@@ -1,3 +1,73 @@
+/* ============================================
+   ANIMACIONES FLUIDAS Y LIMPIAS PARA RECETAS
+   ============================================ */
+
+/* Desactivar animación del root */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none !important;
+}
+
+/* Crossfade limpio para imágenes - SIN SUPERPOSICIÓN */
+::view-transition-old(recipe-image-*) {
+  animation: recipe-fade-out 450ms ease-out forwards;
+  z-index: 1;
+}
+
+::view-transition-new(recipe-image-*) {
+  animation: recipe-fade-in 450ms ease-out 150ms backwards;
+  z-index: 2;
+}
+
+/* Animación de salida suave */
+@keyframes recipe-fade-out {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(0.97);
+  }
+}
+
+/* Animación de entrada suave con delay para evitar superposición */
+@keyframes recipe-fade-in {
+  0% {
+    opacity: 0;
+    transform: scale(1.03);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Grupo de transición limpio */
+::view-transition-group(recipe-image-*) {
+  animation-duration: 600ms;
+  animation-timing-function: ease-in-out;
+}
+
+/* Asegurar que no haya superposición */
+::view-transition-image-pair(recipe-image-*) {
+  isolation: isolate;
+}
+
+/* Resto de grupos sin animación */
+::view-transition-group(*):not([style*="recipe-image"]) {
+  animation-duration: 0ms;
+}
+
+/* Prevenir problemas durante la transición */
+html.astro-transitioning {
+  overflow-x: hidden;
+}
+
+html.astro-transitioning .recipe-detail {
+  pointer-events: none;
+}
+
 /* Estilos para la página de detalle de recetas */
 .recipe-detail {
   margin-bottom: 2rem;
