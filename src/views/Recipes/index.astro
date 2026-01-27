@@ -39,6 +39,7 @@ const noRecipesText = currentLang === 'es'
 const noFilterResultsText = currentLang === 'es'
   ? 'No se encontraron resultados para la selección'
   : 'No results found for the selection';
+const loadMoreText = currentLang === 'es' ? 'Cargar más' : 'Load more';
 
 // Filter labels
 const filterLabels = currentLang === 'es'
@@ -232,7 +233,7 @@ const gridRecipes = allRecipes.slice(4);
   ) : (
     <div id="recipesGrid" class="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10 mt-12">
       {allRecipes.map((recipe: Recipe) => (
-        <div class="recipe-card" 
+        <div class="recipe-card recipe-grid-card h-full" 
              data-type={normalizeType(recipe)}
              data-products={(Array.isArray(recipe.product) ? recipe.product : (recipe.product ? [recipe.product] : [])).join(',')}
              data-title={recipe.title.toLowerCase()}>
@@ -247,6 +248,16 @@ const gridRecipes = allRecipes.slice(4);
           />
         </div>
       ))}
+    </div>
+
+    <div class="flex justify-center mt-10">
+      <button
+        id="recipesLoadMore"
+        type="button"
+        class="bg-orange hover:bg-orange/90 text-white font-bold py-3 px-10 rounded-full transition-all duration-200 text-lg"
+      >
+        {loadMoreText}
+      </button>
     </div>
     <!-- No results message for filters -->
     <div id="noResultsGrid" class="hidden mt-6 items-center justify-center h-48 md:h-64">
@@ -522,6 +533,83 @@ const gridRecipes = allRecipes.slice(4);
     
     // Re-inicializar después de navegaciones de Astro
     document.addEventListener('astro:page-load', init);
+  })();
+</script>
+
+<script is:inline>
+  (function() {
+    'use strict';
+
+    const INITIAL = 6;
+    const STEP = 6;
+
+    function getGridCards() {
+      return Array.from(document.querySelectorAll('.recipe-grid-card'));
+    }
+
+    function getVisibleGridCards(cards) {
+      return cards.filter((el) => {
+        if (!(el instanceof HTMLElement)) return false;
+        return el.style.display !== 'none';
+      });
+    }
+
+    function applyLoadMore(reset) {
+      const button = document.getElementById('recipesLoadMore');
+      const cards = getGridCards();
+      if (!button || cards.length === 0) return;
+
+      const visibleCards = getVisibleGridCards(cards);
+
+      let shown = Number(button.getAttribute('data-shown') || '0');
+      if (reset || shown === 0) shown = Math.min(INITIAL, visibleCards.length);
+
+      visibleCards.forEach((card, idx) => {
+        if (!(card instanceof HTMLElement)) return;
+        if (idx < shown) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      button.setAttribute('data-shown', String(shown));
+
+      if (visibleCards.length <= shown) {
+        button.classList.add('hidden');
+      } else {
+        button.classList.remove('hidden');
+      }
+    }
+
+    function initRecipesLoadMore() {
+      const button = document.getElementById('recipesLoadMore');
+      if (!button) return;
+
+      applyLoadMore(true);
+
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const cards = getVisibleGridCards(getGridCards());
+        const current = Number(button.getAttribute('data-shown') || String(INITIAL));
+        const next = Math.min(current + STEP, cards.length);
+        button.setAttribute('data-shown', String(next));
+        applyLoadMore(false);
+      });
+
+      const typeFilter = document.getElementById('typeFilter');
+      const productFilter = document.getElementById('productFilter');
+      const onFilterChange = () => setTimeout(() => applyLoadMore(true), 0);
+      if (typeFilter) typeFilter.addEventListener('change', onFilterChange);
+      if (productFilter) productFilter.addEventListener('change', onFilterChange);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initRecipesLoadMore);
+    } else {
+      initRecipesLoadMore();
+    }
+    document.addEventListener('astro:page-load', initRecipesLoadMore);
   })();
 </script>
 
