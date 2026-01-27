@@ -49,7 +49,7 @@ const displayProduct = product ? formatProductName(product) : '';
 
 <a 
   href={recipeLink} 
-  class="block group overflow-hidden rounded-[2.5rem] bg-white shadow-lg hover:shadow-2xl transition-all duration-400 relative"
+  class="block group overflow-hidden rounded-[2.5rem] bg-white shadow-lg hover:shadow-2xl transition-all duration-400 relative h-full"
 >
   <!-- Imagen principal con efectos suaves -->
   <div class="relative h-[250px] overflow-hidden">
@@ -64,9 +64,9 @@ const displayProduct = product ? formatProductName(product) : '';
   </div>
   
   <!-- Contenido inferior -->
-  <div class="p-6 bg-white relative overflow-hidden">
+  <div class="p-6 bg-white relative overflow-hidden flex flex-col flex-1">
     <!-- Título con animación sutil -->
-    <h3 class="text-2xl font-bold text-black mb-3 leading-tight group-hover:text-[#F04F00] transition-colors duration-300">
+    <h3 class="text-2xl font-bold text-black mb-3 leading-tight group-hover:text-[#F04F00] transition-colors duration-300 line-clamp-2">
       {title}
     </h3>
     
@@ -83,7 +83,7 @@ const displayProduct = product ? formatProductName(product) : '';
     </div>
     
     <!-- Ver receta link con flecha -->
-    <div class="flex items-center text-[#F04F00] font-bold text-base gap-2 group-hover:gap-3 transition-all duration-300">
+    <div class="mt-auto flex items-center text-[#F04F00] font-bold text-base gap-2 group-hover:gap-3 transition-all duration-300">
       <span>{viewRecipeText}</span>
       <svg class="w-5 h-5 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"/>

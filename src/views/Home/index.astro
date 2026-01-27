@@ -19,6 +19,7 @@ import './styles.css';
 // i18n and Data Imports
 import { t, getLocale } from '../../i18n/i18n';
 import { InstagramEmbed } from 'react-social-media-embed';
+import { main } from 'framer-motion/client';
 
 
 
@@ -126,14 +127,14 @@ const featuredLabel = currentLang==='es' ? 'DESTACADOS' : 'FEATURED';
       </section>
     )}
 
-    <section class="z-30">
+    <section class="z-30 shadow">
       <CardVideo 
         cardVideo={cardVideo}
       />
     </section>
     
     <!-- Sección de recetas con carrusel -->
-    <section id="recipes" class="w-full pt-12 pb-0 !bg-white" transition:animate="slide">
+    <section id="recipes" class="w-full pt-4 pb-0 !bg-white" transition:animate="slide">
       <div class="relative z-10 mx-auto px-2 sm:px-4 mb-0">
         <RecipesCarousel 
           title={recipesAssets.home?.title || 'DESCUBRE NUEVOS SABORES CON NUESTRAS'}
@@ -180,7 +181,7 @@ const featuredLabel = currentLang==='es' ? 'DESTACADOS' : 'FEATURED';
       </div>
     </section> -->
 
-    <section class="w-full xl:h-[480px] bg-primaryCream z-30">
+    <section class="w-full xl:h-[480px] bg-primaryCream z-30 -mt-12">
       <div class="relative z-30">
         <CardQuiz 
           cardQuiz={cardQuizAssets}

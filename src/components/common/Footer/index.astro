@@ -36,7 +36,7 @@ function getMenuHref(id: string) {
   return (menuItems || []).find((i: any) => i?.id === id)?.href;
 }
 
-const footerMenuItems = (menuItems || []).filter((i: any) => i && i.id !== 'brand');
+const footerMenuItems = (menuItems || []).filter((i: any) => i && i.id !== 'brand' && i.id !== 'contact');
 ---
 
 {loading ? (
@@ -48,7 +48,7 @@ const footerMenuItems = (menuItems || []).filter((i: any) => i && i.id !== 'bran
         
         <!-- Columna Izquierda: Título, Descripción y Newsletter -->
         <div class="flex flex-col justify-start">
-          <h3 class="font-title text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold mb-4 sm:mb-6 leading-tight">
+          <h3 class="font-title text-4xl sm:text-3xl md:text-6xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
             {mainText}<br />{mainText2}
           </h3>
           
