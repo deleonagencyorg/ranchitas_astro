@@ -36,19 +36,19 @@ function getMenuHref(id: string) {
   return (menuItems || []).find((i: any) => i?.id === id)?.href;
 }
 
-const footerMenuItems = (menuItems || []).filter((i: any) => i && i.id !== 'brand');
+const footerMenuItems = (menuItems || []).filter((i: any) => i && i.id !== 'brand' && i.id !== 'contact');
 ---
 
 {loading ? (
   <Skeleton />
 ) : (
   <footer class="bg-[#D61F2C] text-white relative overflow-hidden z-10">
-    <div class="container mx-auto px-6 lg:px-12 py-16">
-      <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-24">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16">
+      <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-24">
         
         <!-- Columna Izquierda: Título, Descripción y Newsletter -->
         <div class="flex flex-col justify-start">
-          <h3 class="font-title text-5xl md:text-6xl lg:text-7xl font-bold mb-6 leading-tight">
+          <h3 class="font-title text-4xl sm:text-3xl md:text-6xl lg:text-5xl font-bold mb-4 sm:mb-6 leading-tight">
             {mainText}<br />{mainText2}
           </h3>
           
@@ -59,7 +59,7 @@ const footerMenuItems = (menuItems || []).filter((i: any) => i && i.id !== 'bran
               href="https://www.snacksyummies.com/es/yummiesone" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="bg-[#F99F33] hover:bg-[#F99F33]/90 text-white font-title font-bold px-12 py-4 rounded-full transition-all duration-200 text-lg whitespace-nowrap inline-block"
+              class="bg-[#F99F33] hover:bg-[#F99F33]/90 text-white font-title font-bold px-8 sm:px-12 py-3 sm:py-4 rounded-full transition-all duration-200 text-base sm:text-lg whitespace-nowrap inline-block"
             >
               {currentLang === 'es' ? 'Regístrate en Yummies One' : 'Join Yummies One'}
             </a>
@@ -67,21 +67,21 @@ const footerMenuItems = (menuItems || []).filter((i: any) => i && i.id !== 'bran
         </div>
 
         <!-- Columna Derecha: Links de Navegación -->
-        <div class="grid grid-cols-3 gap-8 lg:gap-12">
+        <div class="grid grid-cols-3 gap-4 sm:gap-8 lg:gap-12">
           
           <!-- Redes Sociales -->
           <div class="text-start">
-            <h3 class="font-title text-2xl font-bold mb-4 uppercase">
+            <h3 class="font-title text-lg sm:text-2xl font-bold mb-3 sm:mb-4 uppercase">
               {followUs}
             </h3>
-            <div class="flex flex-col space-y-3">
-              <a href={socialMedia?.facebook?.url || '#'} target="_blank" rel="noopener noreferrer" class="font-sans text-xl hover:text-accent transition-colors duration-200">
+            <div class="flex flex-col space-y-2 sm:space-y-3">
+              <a href={socialMedia?.facebook?.url || '#'} target="_blank" rel="noopener noreferrer" class="font-sans text-sm sm:text-xl hover:text-accent transition-colors duration-200">
                 {facebookText}
               </a>
-              <a href={socialMedia?.instagram?.url || '#'} target="_blank" rel="noopener noreferrer" class="font-sans text-xl hover:text-accent transition-colors duration-200">
+              <a href={socialMedia?.instagram?.url || '#'} target="_blank" rel="noopener noreferrer" class="font-sans text-sm sm:text-xl hover:text-accent transition-colors duration-200">
                 {instagramText}
               </a>
-              <a href={socialMedia?.tiktok?.url || '#'} target="_blank" rel="noopener noreferrer" class="font-sans text-xl hover:text-accent transition-colors duration-200">
+              <a href={socialMedia?.tiktok?.url || '#'} target="_blank" rel="noopener noreferrer" class="font-sans text-sm sm:text-xl hover:text-accent transition-colors duration-200">
                 {tiktokText}
               </a>
             </div>
@@ -89,12 +89,12 @@ const footerMenuItems = (menuItems || []).filter((i: any) => i && i.id !== 'bran
 
           <!-- Ranchitas -->
           <div class="text-start">
-            <h3 class="font-title text-2xl font-bold mb-4 uppercase">
+            <h3 class="font-title text-lg sm:text-2xl font-bold mb-3 sm:mb-4 uppercase">
               {ranchitas}
             </h3>
-            <div class="flex flex-col space-y-3">
+            <div class="flex flex-col space-y-2 sm:space-y-3">
               {footerMenuItems.map((item: any) => (
-                <a href={item.href} class="font-sans text-xl hover:text-accent transition-colors duration-200">
+                <a href={item.href} class="font-sans text-sm sm:text-xl hover:text-accent transition-colors duration-200">
                   {item.text}
                 </a>
               ))}
@@ -103,11 +103,11 @@ const footerMenuItems = (menuItems || []).filter((i: any) => i && i.id !== 'bran
 
           <!-- Ayuda -->
           <div class="text-start">
-            <h3 class="font-title text-2xl font-bold mb-4 uppercase">
+            <h3 class="font-title text-lg sm:text-2xl font-bold mb-3 sm:mb-4 uppercase">
               {help}
             </h3>
-            <div class="flex flex-col space-y-3">
-              <a href={getMenuHref('contact') || `/${currentLang}/${currentLang === 'es' ? 'contacto' : 'contact'}`} class="font-sans text-xl hover:text-accent transition-colors duration-200">
+            <div class="flex flex-col space-y-2 sm:space-y-3">
+              <a href={getMenuHref('contact') || `/${currentLang}/${currentLang === 'es' ? 'contacto' : 'contact'}`} class="font-sans text-sm sm:text-xl hover:text-accent transition-colors duration-200">
                 {contactUs}
               </a>
             </div>

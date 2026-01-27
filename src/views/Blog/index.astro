@@ -1,6 +1,6 @@
 ---
 // src/views/Blog/index.astro
-import { type Locale } from '../../i18n/i18n';
+import { t, type Locale } from '../../i18n/i18n';
 import { ViewTransitions } from 'astro:transitions';
 import MainLayout from '../../layouts/MainLayout.astro';
 import './styles.css';
@@ -22,10 +22,8 @@ interface BlogPostFrontmatter {
 }
 
 const { currentLang } = Astro.props;
-const pageTitle = currentLang === 'es' ? 'Noticias' : 'News';
-const pageDescription = currentLang === 'es' 
-  ? 'Mantente al día con nuestras últimas noticias y artículos.' 
-  : 'Stay updated with our latest news and articles.';
+const pageTitle = t('meta.news.title', { namespace: 'common', locale: currentLang });
+const pageDescription = t('meta.news.description', { namespace: 'common', locale: currentLang });
 
 const sectionKicker = currentLang === 'es' ? 'Noticias Ranchitas' : 'Ranchitas News';
 const heroTitle = currentLang === 'es' ? 'Historias, novedades y todo sobre el ' : 'Stories, news and everything about the ';
@@ -35,6 +33,7 @@ const heroSubtitle = currentLang === 'es'
   : 'Discover the world behind your favorite snacks.';
 const emailPlaceholder = currentLang === 'es' ? 'Ingresa tu correo electrónico' : 'Enter your email address';
 const subscribeText = currentLang === 'es' ? 'Suscribirme' : 'Subscribe';
+const loadMoreText = currentLang === 'es' ? 'Cargar más' : 'Load more';
 
 // Load markdown posts for the current language
 const mdModules = import.meta.glob('../../locales/*/blog/*.md');
@@ -93,15 +92,15 @@ const restPosts = allPosts.slice(5);
 ---
 <MainLayout title={pageTitle} description={pageDescription} class="bg-primaryCream">
   <ViewTransitions />
-  <div class="container">
-    <div class="container ml-[40px] mt-[40px] mr-[40px] mb-20">
+  <div class="container mx-auto px-4">
+    <div class="max-w-7xl mx-auto mt-[20px] mb-20">
 
       <div class="pt-2">
         <Breadcrumb bgColor="bg-transparent" textColor="text-black" hoverColor="hover:text-black" />
       </div>
 
       <!-- Header (match Recipes style + provided design) -->
-      <div class="container text-center mb-12">
+      <div class="text-left md:text-center mb-4">
         <div class="text-orange font-bold mb-4">
           {sectionKicker}
         </div>
@@ -109,9 +108,20 @@ const restPosts = allPosts.slice(5);
           {heroTitle}
           <span class="text-orange font-heading ">{heroHighlight}</span>
         </h1>
-        <p class="text-black/70 mt-4 max-w-2xl mx-auto">
+       
+      </div>
+      <div class="text-left md:text-center my-8 flex flex-col gap-4 md:gap-6">
+         <p class="text-black/70 max-w-2xl mx-auto">
           {heroSubtitle}
         </p>
+          <a 
+            href="https://www.snacksyummies.com/es/yummiesone" 
+            target="_blank" 
+            rel="noopener noreferrer"
+            class="bg-orange hover:bg-orange/90 text-white font-bold rounded-full transition-all duration-200 text-lg w-full max-w-[341px] h-[54px] inline-flex items-center justify-center mx-auto md:w-[200px] md:max-w-none"
+          >
+            {currentLang === 'es' ? 'Suscribirme' : 'Subscribe'}
+          </a>
       </div>
 
       {allPosts.length === 0 ? (
@@ -120,23 +130,12 @@ const restPosts = allPosts.slice(5);
         </div>
       ) : (
         <>
-          <!-- Filter Buttons -->
-          <div id="blogFilters" class="flex flex-wrap gap-3 mb-8 justify-center max-w-5xl mx-auto">
-            <button type="button" class="filter-btn text-center px-6 py-2 rounded-full bg-orange text-white font-bold hover:text-white hover:bg-orange-400 transition-colors border border-white whitespace-nowrap" data-filter="all">{filterLabels.all}</button>
-            {categories.map((cat) => (
-              <button type="button" class="filter-btn text-center px-6 py-2 rounded-full bg-orange text-white font-bold hover:text-white hover:bg-orange-400 transition-colors border border-white whitespace-nowrap" data-filter={cat}>{getCategoryName(cat, currentLang).toUpperCase()}</button>
-            ))}
-          </div>
-
-          <!-- News Carousel listing 4 per slide -->
-          <div class="max-w-6xl mx-auto mb-16">
-            <NewsCarousel id="news-list" items={allPosts} currentLang={currentLang} />
-          </div>
+       
 
           <div class="max-w-7xl mx-auto">
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-10">
-              {allPosts.map((post) => (
-                <div class="news-card" data-category={(post.category || 'other').toLowerCase()}>
+              {allPosts.map((post, index) => (
+                <div class={`news-card ${index >= 6 ? 'hidden' : ''}`} data-category={(post.category || 'other').toLowerCase()} data-news-index={index}>
                   <BlogCard
                     image={post.image || '/images/blog/placeholder.jpg'}
                     title={post.title}
@@ -148,6 +147,17 @@ const restPosts = allPosts.slice(5);
                   />
                 </div>
               ))}
+            </div>
+
+            <div class="flex justify-center mt-10">
+              <button
+                id="blogLoadMore"
+                type="button"
+                class="bg-orange hover:bg-orange/90 text-white font-bold py-3 px-10 rounded-full transition-all duration-200 text-lg"
+                data-load-more
+              >
+                {loadMoreText}
+              </button>
             </div>
           </div>
         </>
@@ -163,63 +173,45 @@ const restPosts = allPosts.slice(5);
   }
 </style>
 
-<script define:vars={{ initialPosts: allPosts, currentLang }}>
-  function initBlogFilters(){
-    const filterButtons = Array.from(document.querySelectorAll('#blogFilters .filter-btn'));
-    const data = Array.isArray(initialPosts) ? initialPosts : [];
+<script>
+  function initBlogLoadMore() {
+    const INITIAL = 6;
+    const STEP = 6;
 
-    function getCarousel(){ return (window)._newsCarousels && (window)._newsCarousels['news-list']; }
+    const cards = Array.from(document.querySelectorAll('[data-news-index]'));
+    const button = document.getElementById('blogLoadMore');
 
-    function setActive(btn) {
-      filterButtons.forEach(b => { b.classList.remove('opacity-40'); b.classList.add('text-white'); });
-      filterButtons.forEach(b => { if (b!==btn) b.classList.add('opacity-40'); });
+    if (!button) return;
+
+    let visible = cards.filter((c) => !c.classList.contains('hidden')).length;
+    if (visible === 0 && cards.length > 0) {
+      cards.slice(0, INITIAL).forEach((c) => c.classList.remove('hidden'));
+      visible = Math.min(INITIAL, cards.length);
     }
-    function applyFilter(filter) {
-      const carousel = getCarousel();
-      if (!carousel) return; // will be re-applied on ready
-      const filtered = filter === 'all' 
-        ? data 
-        : data.filter(p => (p.category || 'other').toLowerCase() === filter);
-      carousel.setData(filtered);
-    }
-    filterButtons.forEach((btn) => {
-      btn.addEventListener('click', (e) => {
-        e.preventDefault();
-        const filter = btn.getAttribute('data-filter') || 'all';
-        setActive(btn);
-        applyFilter(filter);
-      });
-    });
-    // init
-    const defaultBtn = filterButtons.find(b => b.getAttribute('data-filter') === 'all');
-    if (defaultBtn) setActive(defaultBtn);
 
-    // Ensure carousel receives initial data when ready
-    const applyInitial = () => {
-      const c = getCarousel();
-      if (c) { 
-        c.setData(data); 
-        // Also apply the "all" filter to show all posts initially
-        const defaultBtn = filterButtons.find(b => b.getAttribute('data-filter') === 'all');
-        if (defaultBtn) setActive(defaultBtn);
-        return true; 
+    const update = () => {
+      if (visible >= cards.length) {
+        button.classList.add('hidden');
+      } else {
+        button.classList.remove('hidden');
       }
-      return false;
     };
-    
-    // Try immediate application
-    if (!applyInitial()) {
-      // If carousel not ready, retry with polling
-      const start = Date.now();
-      const timer = setInterval(() => {
-        if (applyInitial() || Date.now() - start > 3000) clearInterval(timer);
-      }, 100);
-    }
+
+    update();
+
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      const next = Math.min(visible + STEP, cards.length);
+      cards.slice(visible, next).forEach((c) => c.classList.remove('hidden'));
+      visible = next;
+      update();
+    });
   }
+
   if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', initBlogFilters);
+    document.addEventListener('DOMContentLoaded', initBlogLoadMore);
   } else {
-    initBlogFilters();
+    initBlogLoadMore();
   }
-  document.addEventListener('astro:page-load', initBlogFilters);
+  document.addEventListener('astro:page-load', initBlogLoadMore);
 </script>

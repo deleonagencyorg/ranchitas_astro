@@ -3,7 +3,6 @@
   "id": "chicken-nachos-with-ranchitas-naturales",
   "slug": "chicken-nachos-with-ranchitas-naturales",
   "title": "Chicken Nachos with Ranchitas Naturales",
-  "people": "6",
   "difficulty": "Advanced",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/nachos-de-pollo-con-ranchitas.webp",
   "gallery": [
@@ -34,8 +33,10 @@
   "brand": [
     "ranchitas"
   ],
-  "product":[
+  "product": [
     "ranchitas-naturales"
   ],
-  "category": "dinner"
+  "category": "dinner",
+  "servings": 5,
+  "description": "Nachos with juicy shredded chicken on a base of Ranchitas Naturales. Perfect for sharing on any occasion."
 }

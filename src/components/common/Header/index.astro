@@ -51,12 +51,12 @@ if (headerColors) {
 
 <header 
   id="site-header" 
-  class={`relative w-full transition-all duration-300 font-sans flex flex-col ${customHeaderConfig.textColor}`} 
-  style={'background-color: #FAF0D5'}
+  class={`relative w-full transition-all duration-300 font-sans flex flex-col pb-2 sm:pb-3 ${customHeaderConfig.textColor}`} 
+  style={'background-color: #FAF0D5; overflow: visible;'}
   data-header-config={JSON.stringify(customHeaderConfig)}
 >
 {headerColorConfig.showMessageCarousel && <MessageCarousel currentLang={currentLang} />}
-  <div>
+  <div class="relative" style="overflow: visible;">
     <!-- Navbar de Desktop (solo en pantallas lg y superiores) -->
     <div class="hidden xl:block">
       <DesktopNavbar currentLang={currentLang} headerColorConfig={customHeaderConfig} />
@@ -64,11 +64,11 @@ if (headerColors) {
 
     <!-- Navegación Móvil -->
     <nav 
-      class={`xl:hidden mobile-nav flex justify-between items-center bg-orange mt-6 py-4 px-6 rounded-[25px]`}
+      class={`xl:hidden mobile-nav flex justify-between items-center bg-orange mt-2 sm:mt-3 py-2 sm:py-3 px-4 sm:px-6 rounded-[20px] sm:rounded-[25px]`}
     >
       <!-- Logo para Móvil -->
       <!-- src={logosData.principal.url} -->
-      
+
       <div class="logo-container">
         <a href={`/${currentLang}/`} class="flex-shrink-0">
           <LocalizedImage

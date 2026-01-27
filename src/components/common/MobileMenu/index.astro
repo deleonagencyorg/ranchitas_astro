@@ -95,6 +95,17 @@ const closeMenuLabel = t('menu_labels.close_main_menu', { namespace: 'common', l
       ))}
     </nav>
 
+    <div class="mt-6 flex justify-center px-4">
+      <button 
+        type="button"
+        onclick="window.openWhereToBuyModal && window.openWhereToBuyModal()"
+        class="bg-red text-white px-[50px] py-3 rounded-full font-semibold 
+               shadow-md hover:opacity-90 transition w-full max-w-sm"
+      >
+        {currentLang === 'es' ? '¿Dónde comprar?' : 'Where to buy?'}
+      </button>
+    </div>
+
     <div class="mt-10 flex justify-center">
       <LanguageSwitcher activeLocale={currentLang} headerColorConfig={headerColorConfig} />
     </div>
@@ -123,136 +134,142 @@ const closeMenuLabel = t('menu_labels.close_main_menu', { namespace: 'common', l
   </div>
 </div>
 
-<script>
-// Función para alternar la visibilidad del submenú
-function toggleSubmenu(submenuContainer: Element, toggleButton: Element): void {
-  submenuContainer.classList.toggle('hidden');
-  const svg = toggleButton.querySelector('svg');
-  if (svg) {
-    if (submenuContainer.classList.contains('hidden')) {
-      // Show down arrow
-      svg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>';
-    } else {
-      // Show up arrow
-      svg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>';
+<script is:inline>
+(function() {
+  // Función para alternar la visibilidad del submenú
+  function toggleSubmenu(submenuContainer, toggleButton) {
+    submenuContainer.classList.toggle('hidden');
+    const svg = toggleButton.querySelector('svg');
+    if (svg) {
+      if (submenuContainer.classList.contains('hidden')) {
+        // Show down arrow
+        svg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path>';
+      } else {
+        // Show up arrow
+        svg.innerHTML = '<path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 15l7-7 7 7"></path>';
+      }
     }
   }
-}
 
-// Función para manejar el clic en el botón de cierre del menú móvil
-function handleCloseButtonClick() {
-  const mobileMenu = document.getElementById('mobile-menu');
-  if (mobileMenu) {
-    mobileMenu.classList.add('hidden');
-    document.body.style.overflow = '';
+  // Función para manejar el clic en el botón de cierre del menú móvil
+  function handleCloseButtonClick() {
+    const mobileMenu = document.getElementById('mobile-menu');
+    if (mobileMenu) {
+      mobileMenu.classList.add('hidden');
+      document.body.style.overflow = '';
+      
+      // Actualizar el botón del header
+      const menuButton = document.getElementById('mobile-menu-button');
+      const menuIconContainer = document.getElementById('menu-icon-container');
+      if (menuButton && menuIconContainer) {
+        menuButton.setAttribute('aria-expanded', 'false');
+        // Restaurar icono de menú
+        menuIconContainer.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+        </svg>`;
+      }
+    }
+  }
+
+  // Función para manejar el clic en los toggles del menú (primer nivel)
+  function handleMenuToggleClick(e) {
+    e.preventDefault();
+    const toggle = e.currentTarget;
+    const parentDiv = toggle.closest('.w-full');
+    const submenuContainer = parentDiv?.querySelector('.submenu-container');
     
-    // Actualizar el botón del header
-    const menuButton = document.getElementById('mobile-menu-button');
-    const menuIconContainer = document.getElementById('menu-icon-container');
-    if (menuButton && menuIconContainer) {
-      menuButton.setAttribute('aria-expanded', 'false');
-      // Restaurar icono de menú
-      menuIconContainer.innerHTML = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-      </svg>`;
+    if (submenuContainer) {
+      toggleSubmenu(submenuContainer, toggle);
     }
   }
-}
 
-// Función para manejar el clic en los toggles del menú (primer nivel)
-function handleMenuToggleClick(e: Event): void {
-  e.preventDefault();
-  const toggle = e.currentTarget as Element;
-  const parentDiv = toggle.closest('.w-full');
-  const submenuContainer = parentDiv?.querySelector('.submenu-container');
-  
-  if (submenuContainer) {
-    toggleSubmenu(submenuContainer, toggle);
+  // Función para manejar el clic en los elementos padre del menú (primer nivel)
+  function handleMenuParentClick(e) {
+    const parent = e.currentTarget;
+    const href = parent?.getAttribute('href');
+    if (href && href !== '#') return;
+    e.preventDefault();
+    const parentDiv = parent.closest('.w-full');
+    const submenuContainer = parentDiv?.querySelector('.submenu-container');
+    const toggle = parentDiv?.querySelector('.menu-toggle');
+    
+    if (submenuContainer && toggle) {
+      toggleSubmenu(submenuContainer, toggle);
+    }
   }
-}
 
-// Función para manejar el clic en los elementos padre del menú (primer nivel)
-function handleMenuParentClick(e: Event): void {
-  const parent = e.currentTarget as HTMLAnchorElement;
-  const href = parent?.getAttribute('href');
-  if (href && href !== '#') return;
-  e.preventDefault();
-  const parentDiv = parent.closest('.w-full');
-  const submenuContainer = parentDiv?.querySelector('.submenu-container');
-  const toggle = parentDiv?.querySelector('.menu-toggle');
-  
-  if (submenuContainer && toggle) {
-    toggleSubmenu(submenuContainer, toggle);
+  // Función para manejar el clic en los toggles del submenú (segundo nivel)
+  function handleSubmenuToggleClick(e) {
+    e.preventDefault();
+    const toggle = e.currentTarget;
+    const parentDiv = toggle.closest('div');
+    const thirdLevelSubmenu = parentDiv?.nextElementSibling;
+    
+    if (thirdLevelSubmenu && thirdLevelSubmenu.classList.contains('third-level-submenu')) {
+      toggleSubmenu(thirdLevelSubmenu, toggle);
+    }
   }
-}
 
-// Función para manejar el clic en los toggles del submenú (segundo nivel)
-function handleSubmenuToggleClick(e: Event): void {
-  e.preventDefault();
-  const toggle = e.currentTarget as Element;
-  const parentDiv = toggle.closest('div');
-  const thirdLevelSubmenu = parentDiv?.nextElementSibling;
-  
-  if (thirdLevelSubmenu && thirdLevelSubmenu.classList.contains('third-level-submenu')) {
-    toggleSubmenu(thirdLevelSubmenu, toggle);
+  // Función para manejar el clic en los elementos padre del submenú (segundo nivel)
+  function handleSubmenuParentClick(e) {
+    e.preventDefault();
+    const parent = e.currentTarget;
+    const parentDiv = parent.closest('div');
+    const thirdLevelSubmenu = parentDiv?.nextElementSibling;
+    const toggle = parentDiv?.querySelector('.submenu-toggle');
+    
+    if (thirdLevelSubmenu && thirdLevelSubmenu.classList.contains('third-level-submenu') && toggle) {
+      toggleSubmenu(thirdLevelSubmenu, toggle);
+    }
   }
-}
 
-// Función para manejar el clic en los elementos padre del submenú (segundo nivel)
-function handleSubmenuParentClick(e: Event): void {
-  e.preventDefault();
-  const parent = e.currentTarget as Element;
-  const parentDiv = parent.closest('div');
-  const thirdLevelSubmenu = parentDiv?.nextElementSibling;
-  const toggle = parentDiv?.querySelector('.submenu-toggle');
-  
-  if (thirdLevelSubmenu && thirdLevelSubmenu.classList.contains('third-level-submenu') && toggle) {
-    toggleSubmenu(thirdLevelSubmenu, toggle);
+  // Función para inicializar el menú móvil
+  function initMobileMenu() {
+    // Botón de cierre
+    const closeButton = document.getElementById('mobile-menu-close');
+    if (closeButton) {
+      closeButton.removeEventListener('click', handleCloseButtonClick);
+      closeButton.addEventListener('click', handleCloseButtonClick);
+    }
+    
+    // Toggles del menú (primer nivel)
+    const menuToggles = document.querySelectorAll('.menu-toggle');
+    menuToggles.forEach(toggle => {
+      toggle.removeEventListener('click', handleMenuToggleClick);
+      toggle.addEventListener('click', handleMenuToggleClick);
+    });
+    
+    // Elementos padre del menú (primer nivel)
+    const menuParents = document.querySelectorAll('.menu-parent');
+    menuParents.forEach(parent => {
+      parent.removeEventListener('click', handleMenuParentClick);
+      parent.addEventListener('click', handleMenuParentClick);
+    });
+    
+    // Toggles del submenú (segundo nivel)
+    const submenuToggles = document.querySelectorAll('.submenu-toggle');
+    submenuToggles.forEach(toggle => {
+      toggle.removeEventListener('click', handleSubmenuToggleClick);
+      toggle.addEventListener('click', handleSubmenuToggleClick);
+    });
+    
+    // Elementos padre del submenú (segundo nivel)
+    const submenuParents = document.querySelectorAll('.submenu-parent');
+    submenuParents.forEach(parent => {
+      parent.removeEventListener('click', handleSubmenuParentClick);
+      parent.addEventListener('click', handleSubmenuParentClick);
+    });
   }
-}
 
-// Función para inicializar el menú móvil
-function initMobileMenu() {
-  // Botón de cierre
-  const closeButton = document.getElementById('mobile-menu-close');
-  if (closeButton) {
-    closeButton.removeEventListener('click', handleCloseButtonClick);
-    closeButton.addEventListener('click', handleCloseButtonClick);
+  // Ejecutar cuando se carga la página
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMobileMenu);
+  } else {
+    initMobileMenu();
   }
-  
-  // Toggles del menú (primer nivel)
-  const menuToggles = document.querySelectorAll('.menu-toggle');
-  menuToggles.forEach(toggle => {
-    toggle.removeEventListener('click', handleMenuToggleClick);
-    toggle.addEventListener('click', handleMenuToggleClick);
-  });
-  
-  // Elementos padre del menú (primer nivel)
-  const menuParents = document.querySelectorAll('.menu-parent');
-  menuParents.forEach(parent => {
-    parent.removeEventListener('click', handleMenuParentClick);
-    parent.addEventListener('click', handleMenuParentClick);
-  });
-  
-  // Toggles del submenú (segundo nivel)
-  const submenuToggles = document.querySelectorAll('.submenu-toggle');
-  submenuToggles.forEach(toggle => {
-    toggle.removeEventListener('click', handleSubmenuToggleClick);
-    toggle.addEventListener('click', handleSubmenuToggleClick);
-  });
-  
-  // Elementos padre del submenú (segundo nivel)
-  const submenuParents = document.querySelectorAll('.submenu-parent');
-  submenuParents.forEach(parent => {
-    parent.removeEventListener('click', handleSubmenuParentClick);
-    parent.addEventListener('click', handleSubmenuParentClick);
-  });
-}
 
-// Ejecutar cuando se carga la página
-document.addEventListener('DOMContentLoaded', initMobileMenu);
-
-// Ejecutar cuando Astro navega a una nueva página
-document.addEventListener('astro:page-load', initMobileMenu);
-document.addEventListener('astro:after-swap', initMobileMenu);
+  // Ejecutar cuando Astro navega a una nueva página
+  document.addEventListener('astro:page-load', initMobileMenu);
+  document.addEventListener('astro:after-swap', initMobileMenu);
+})();
 </script>

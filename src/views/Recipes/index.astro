@@ -39,6 +39,7 @@ const noRecipesText = currentLang === 'es'
 const noFilterResultsText = currentLang === 'es'
   ? 'No se encontraron resultados para la selección'
   : 'No results found for the selection';
+const loadMoreText = currentLang === 'es' ? 'Cargar más' : 'Load more';
 
 // Filter labels
 const filterLabels = currentLang === 'es'
@@ -110,18 +111,18 @@ const gridRecipes = allRecipes.slice(4);
 
 <div class="overflow-hidden bg-primaryCream">
   
-  <div class="container ml-[40px] mt-[40px] mr-[40px] mb-20 ">
+  <div class="container ml-4 sm:ml-6 md:ml-[40px] mt-6 sm:mt-8 md:mt-[40px] mr-4 sm:mr-6 md:mr-[40px] mb-12 sm:mb-16 md:mb-20">
 
     <!-- Header -->
-    <div class="mb-4">
-      <h1 class="text-[64px] font-bold leading-tight">
+    <div class="mb-3 sm:mb-4">
+      <h1 class="text-[36px] sm:text-[48px] md:text-[64px] font-bold leading-tight">
         {currentLang==='es' ? 'Recetas' : 'Recipes'}
         <span class="text-orange">{currentLang==='es' ? 'Ranchitas' : 'Ranchitas'}</span>
       </h1>
     </div>
     
-    <div class="mb-8">
-      <p class="text-[18px]">
+    <div class="mb-6 sm:mb-8">
+      <p class="text-sm sm:text-base md:text-[18px]">
         {currentLang==='es' 
           ? 'Descubre formas deliciosas y creativas de disfrutar tus Ranchitas favoritas. Desde snacks rápidos hasta platos principales.' 
           : 'Discover delicious and creative ways to enjoy your favorite Ranchitas. From quick snacks to main dishes.'}
@@ -129,12 +130,12 @@ const gridRecipes = allRecipes.slice(4);
     </div>
 
     <!-- Filter Section -->
-    <div class="flex flex-col md:flex-row gap-4 mb-12">
+    <div class="flex flex-col md:flex-row gap-3 sm:gap-4 mb-8 sm:mb-12">
       <!-- Tipo Filter -->
       <div class="relative">
         <select 
           id="typeFilter" 
-          class="appearance-none bg-white rounded-full px-6 py-3 pr-10 text-base font-medium border-0 shadow-sm cursor-pointer hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-orange"
+          class="appearance-none bg-white rounded-full w-full px-4 sm:px-6 py-2 sm:py-3 pr-10 text-sm sm:text-base font-medium border-0 shadow-sm cursor-pointer hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-orange"
         >
           <option value="all">{filterLabels.typeLabel}: {filterLabels.all}</option>
           {uniqueCategories.includes('breakfast') && <option value="breakfast">{filterLabels.typeLabel}: {filterLabels.breakfast}</option>}
@@ -152,7 +153,7 @@ const gridRecipes = allRecipes.slice(4);
       <div class="relative">
         <select 
           id="productFilter" 
-          class="appearance-none bg-white rounded-full px-6 py-3 pr-10 text-base font-medium border-0 shadow-sm cursor-pointer hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-orange"
+          class="appearance-none bg-white rounded-full w-full px-4 sm:px-6 py-2 sm:py-3 pr-10 text-sm sm:text-base font-medium border-0 shadow-sm cursor-pointer hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-orange"
         >
           <option value="all">{filterLabels.productLabel}: {filterLabels.all}</option>
           {uniqueProducts.map(productId => (
@@ -165,14 +166,14 @@ const gridRecipes = allRecipes.slice(4);
       </div>
 
       <!-- Product info (shown when a product is selected) -->
-      <div id="productInfo" class="hidden flex-1 bg-white rounded-xl px-6 py-4 border border-gray-100 shadow-sm">
+      <div id="productInfo" class="hidden flex-1 bg-white rounded-xl px-4 sm:px-6 py-3 sm:py-4 border border-gray-100 shadow-sm">
         <!-- content set by script based on selected product -->
       </div>
 
       
     </div>
 
-    <h2 id="featuredTitle" class="text-[42px] font-bold mb-8">
+    <h2 id="featuredTitle" class="text-[28px] sm:text-[36px] md:text-[42px] font-bold mb-6 sm:mb-8">
       {currentLang==='es' ? 'Las más populares del momento' : 'The most popular ones right now'}
     </h2>
 
@@ -180,7 +181,7 @@ const gridRecipes = allRecipes.slice(4);
       <p class="text-center text-gray-500">{noRecipesText}</p>
     ) : (
       <>
-        <div id="featuredSection" class="grid grid-cols-1 lg:grid-cols-12 gap-6 mb-16">
+        <div id="featuredSection" class="grid grid-cols-1 lg:grid-cols-12 gap-4 sm:gap-6 mb-12 sm:mb-16">
           {featuredRecipe && (
             <div 
               class="lg:col-span-8 recipe-card" 
@@ -230,9 +231,9 @@ const gridRecipes = allRecipes.slice(4);
   {allRecipes.length === 0 ? (
     <p class="text-center text-gray-500">{noRecipesText}</p>
   ) : (
-    <div id="recipesGrid" class="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10 mt-12" transition:animate="slide">
+    <div id="recipesGrid" class="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10 mt-12">
       {allRecipes.map((recipe: Recipe) => (
-        <div class="recipe-card" 
+        <div class="recipe-card recipe-grid-card h-full" 
              data-type={normalizeType(recipe)}
              data-products={(Array.isArray(recipe.product) ? recipe.product : (recipe.product ? [recipe.product] : [])).join(',')}
              data-title={recipe.title.toLowerCase()}>
@@ -243,9 +244,20 @@ const gridRecipes = allRecipes.slice(4);
             id={recipe.id}
             textColor="text-white"
             iconColor="text-white"
+            product={Array.isArray(recipe.product) ? recipe.product[0] : recipe.product}
           />
         </div>
       ))}
+    </div>
+
+    <div class="flex justify-center mt-10">
+      <button
+        id="recipesLoadMore"
+        type="button"
+        class="bg-orange hover:bg-orange/90 text-white font-bold py-3 px-10 rounded-full transition-all duration-200 text-lg"
+      >
+        {loadMoreText}
+      </button>
     </div>
     <!-- No results message for filters -->
     <div id="noResultsGrid" class="hidden mt-6 items-center justify-center h-48 md:h-64">
@@ -262,10 +274,11 @@ const gridRecipes = allRecipes.slice(4);
 <script type="application/json" id="product-map">{JSON.stringify(productMap)}</script>
 
 <script is:inline>
-  // REINGENIERÍA DEL SISTEMA DE FILTRADO
-  // Ejecutar inmediatamente sin esperar eventos del DOM
+  // REINGENIERÍA DEL SISTEMA DE FILTRADO CON ANIMACIONES FLUIDAS Y PERSISTENCIA
   (function() {
     'use strict';
+    
+    const STORAGE_KEY = 'recipeFilters';
     
     // Parse product map
     let PRODUCT_MAP = {};
@@ -276,6 +289,52 @@ const gridRecipes = allRecipes.slice(4);
       }
     } catch(e) {
       console.error('Error parsing product map:', e);
+    }
+
+    // Guardar filtros en sessionStorage
+    function saveFilters(typeValue, productValue) {
+      try {
+        sessionStorage.setItem(STORAGE_KEY, JSON.stringify({
+          type: typeValue,
+          product: productValue
+        }));
+      } catch(e) {
+        console.error('Error saving filters:', e);
+      }
+    }
+
+    // Cargar filtros desde sessionStorage
+    function loadFilters() {
+      try {
+        const saved = sessionStorage.getItem(STORAGE_KEY);
+        if (saved) {
+          return JSON.parse(saved);
+        }
+      } catch(e) {
+        console.error('Error loading filters:', e);
+      }
+      return null;
+    }
+
+    // Restaurar valores de los filtros
+    function restoreFilters() {
+      const saved = loadFilters();
+      if (saved) {
+        const typeFilter = document.getElementById('typeFilter');
+        const productFilter = document.getElementById('productFilter');
+        
+        if (typeFilter && saved.type) {
+          typeFilter.value = saved.type;
+        }
+        if (productFilter && saved.product) {
+          productFilter.value = saved.product;
+        }
+        
+        // Aplicar filtros si hay valores guardados
+        if (saved.type !== 'all' || saved.product !== 'all') {
+          setTimeout(() => applyFilters(), 100);
+        }
+      }
     }
 
     function applyFilters() {
@@ -298,12 +357,16 @@ const gridRecipes = allRecipes.slice(4);
       const typeValue = typeFilter.value || 'all';
       const productValue = productFilter.value || 'all';
 
+      // Guardar filtros en sessionStorage
+      saveFilters(typeValue, productValue);
+
       // Detectar si hay filtros activos
       const hasActiveFilters = typeValue !== 'all' || productValue !== 'all';
 
       // Get all recipe cards
       const recipeCards = document.querySelectorAll('.recipe-card');
-      let visibleCount = 0;
+      const visibleCards = [];
+      const hiddenCards = [];
 
       // Apply filters to each card
       recipeCards.forEach(function(card) {
@@ -316,71 +379,124 @@ const gridRecipes = allRecipes.slice(4);
         const matchesProduct = productValue === 'all' || cardProducts.indexOf(productValue) !== -1;
         const isVisible = matchesType && matchesProduct;
 
-        // Show/hide card
-        card.style.display = isVisible ? '' : 'none';
-        if (isVisible) visibleCount++;
+        if (isVisible) {
+          visibleCards.push(card);
+        } else {
+          hiddenCards.push(card);
+        }
       });
 
+      // Aplicar animaciones fluidas usando la función global
+      if (typeof window.animateRecipeFilters === 'function') {
+        window.animateRecipeFilters(visibleCards, hiddenCards);
+      } else {
+        // Fallback sin animaciones
+        visibleCards.forEach(card => {
+          card.style.display = '';
+          card.classList.add('visible');
+        });
+        hiddenCards.forEach(card => {
+          card.style.display = 'none';
+        });
+      }
+
       // Show/hide sections based on filters and results
-      const hasResults = visibleCount > 0;
+      const hasResults = visibleCards.length > 0;
       
-      // Si hay filtros activos, ocultar la sección "Las más populares" y su título
+      // Si hay filtros activos, ocultar la sección "Las más populares" y su título con transición
       if (featuredTitle) {
         if (hasActiveFilters) {
-          featuredTitle.style.display = 'none';
+          featuredTitle.style.opacity = '0';
+          featuredTitle.style.transform = 'translateY(-10px)';
+          setTimeout(() => {
+            featuredTitle.style.display = 'none';
+          }, 300);
         } else {
           featuredTitle.style.display = '';
+          requestAnimationFrame(() => {
+            featuredTitle.style.opacity = '1';
+            featuredTitle.style.transform = 'translateY(0)';
+          });
         }
       }
       
       if (featuredSection) {
         if (hasActiveFilters) {
-          featuredSection.style.display = 'none';
+          featuredSection.classList.add('section-hide');
+          setTimeout(() => {
+            featuredSection.style.display = 'none';
+          }, 400);
         } else {
-          featuredSection.style.display = hasResults ? '' : 'none';
+          featuredSection.style.display = '';
+          requestAnimationFrame(() => {
+            featuredSection.classList.remove('section-hide');
+          });
         }
       }
       
-      // El grid siempre se muestra si hay resultados
+      // El grid con transición suave
       if (recipesGrid) {
-        recipesGrid.style.display = hasResults ? '' : 'none';
+        if (hasResults) {
+          recipesGrid.style.display = '';
+          requestAnimationFrame(() => {
+            recipesGrid.classList.remove('section-hide');
+          });
+        } else {
+          recipesGrid.classList.add('section-hide');
+          setTimeout(() => {
+            recipesGrid.style.display = 'none';
+          }, 400);
+        }
       }
       
-      // Handle no results messages
+      // Handle no results messages con animaciones
       if (noResults) {
-        // Solo mostrar mensaje en featured si NO hay filtros activos y no hay resultados
         if (!hasActiveFilters && !hasResults) {
           noResults.classList.remove('hidden');
-          noResults.classList.add('flex');
+          noResults.classList.add('flex', 'show');
         } else {
-          noResults.classList.add('hidden');
-          noResults.classList.remove('flex');
+          noResults.classList.remove('show');
+          setTimeout(() => {
+            noResults.classList.add('hidden');
+            noResults.classList.remove('flex');
+          }, 300);
         }
       }
       
       if (noResultsGrid) {
-        if (hasResults) {
-          noResultsGrid.classList.add('hidden');
-          noResultsGrid.classList.remove('flex');
-        } else {
+        if (!hasResults) {
           noResultsGrid.classList.remove('hidden');
-          noResultsGrid.classList.add('flex');
+          noResultsGrid.classList.add('flex', 'show');
+        } else {
+          noResultsGrid.classList.remove('show');
+          setTimeout(() => {
+            noResultsGrid.classList.add('hidden');
+            noResultsGrid.classList.remove('flex');
+          }, 300);
         }
       }
 
-      // Update product info panel
+      // Update product info panel con transición
       if (productInfo) {
         const selected = productValue !== 'all' ? PRODUCT_MAP[productValue] : null;
         if (selected) {
           const title = selected.name || productValue;
           const desc = selected.description || '';
           productInfo.innerHTML = '<div class="flex flex-col gap-1"><div class="text-base font-semibold text-gray-900">' + title + '</div>' + (desc ? '<div class="text-sm text-gray-600">' + desc + '</div>' : '') + '</div>';
+          productInfo.style.opacity = '0';
           productInfo.classList.remove('hidden');
           productInfo.classList.add('flex');
+          requestAnimationFrame(() => {
+            productInfo.style.transition = 'opacity 0.3s ease';
+            productInfo.style.opacity = '1';
+          });
         } else {
-          productInfo.classList.add('hidden');
-          productInfo.classList.remove('flex');
-          productInfo.innerHTML = '';
+          productInfo.style.opacity = '0';
+          setTimeout(() => {
+            productInfo.classList.add('hidden');
+            productInfo.classList.remove('flex');
+            productInfo.innerHTML = '';
+          }, 300);
         }
       }
     }
@@ -390,18 +506,22 @@ const gridRecipes = allRecipes.slice(4);
       const typeFilter = document.getElementById('typeFilter');
       const productFilter = document.getElementById('productFilter');
       
-      if (typeFilter) {
+      if (typeFilter && productFilter) {
+        // Remover listeners previos para evitar duplicados
+        typeFilter.removeEventListener('change', applyFilters);
+        productFilter.removeEventListener('change', applyFilters);
+        
+        // Agregar nuevos listeners
         typeFilter.addEventListener('change', applyFilters);
-      }
-      if (productFilter) {
         productFilter.addEventListener('change', applyFilters);
       }
     }
 
-    // Initialize: try immediately, then on DOMContentLoaded, then on load
+    // Initialize
     function init() {
       attachListeners();
-      applyFilters();
+      // Restaurar filtros guardados
+      restoreFilters();
     }
 
     // Try to run immediately
@@ -411,8 +531,85 @@ const gridRecipes = allRecipes.slice(4);
       init();
     }
     
-    // Fallback for late-loading content
-    window.addEventListener('load', applyFilters);
+    // Re-inicializar después de navegaciones de Astro
+    document.addEventListener('astro:page-load', init);
+  })();
+</script>
+
+<script is:inline>
+  (function() {
+    'use strict';
+
+    const INITIAL = 6;
+    const STEP = 6;
+
+    function getGridCards() {
+      return Array.from(document.querySelectorAll('.recipe-grid-card'));
+    }
+
+    function getVisibleGridCards(cards) {
+      return cards.filter((el) => {
+        if (!(el instanceof HTMLElement)) return false;
+        return el.style.display !== 'none';
+      });
+    }
+
+    function applyLoadMore(reset) {
+      const button = document.getElementById('recipesLoadMore');
+      const cards = getGridCards();
+      if (!button || cards.length === 0) return;
+
+      const visibleCards = getVisibleGridCards(cards);
+
+      let shown = Number(button.getAttribute('data-shown') || '0');
+      if (reset || shown === 0) shown = Math.min(INITIAL, visibleCards.length);
+
+      visibleCards.forEach((card, idx) => {
+        if (!(card instanceof HTMLElement)) return;
+        if (idx < shown) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+
+      button.setAttribute('data-shown', String(shown));
+
+      if (visibleCards.length <= shown) {
+        button.classList.add('hidden');
+      } else {
+        button.classList.remove('hidden');
+      }
+    }
+
+    function initRecipesLoadMore() {
+      const button = document.getElementById('recipesLoadMore');
+      if (!button) return;
+
+      applyLoadMore(true);
+
+      button.addEventListener('click', (e) => {
+        e.preventDefault();
+        const cards = getVisibleGridCards(getGridCards());
+        const current = Number(button.getAttribute('data-shown') || String(INITIAL));
+        const next = Math.min(current + STEP, cards.length);
+        button.setAttribute('data-shown', String(next));
+        applyLoadMore(false);
+      });
+
+      const typeFilter = document.getElementById('typeFilter');
+      const productFilter = document.getElementById('productFilter');
+      const onFilterChange = () => setTimeout(() => applyLoadMore(true), 0);
+      if (typeFilter) typeFilter.addEventListener('change', onFilterChange);
+      if (productFilter) productFilter.addEventListener('change', onFilterChange);
+    }
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initRecipesLoadMore);
+    } else {
+      initRecipesLoadMore();
+    }
+    document.addEventListener('astro:page-load', initRecipesLoadMore);
   })();
 </script>
 
@@ -430,5 +627,14 @@ const gridRecipes = allRecipes.slice(4);
     -webkit-line-clamp: 2;
     -webkit-box-orient: vertical;
     overflow: hidden;
+  }
+
+  /* Transiciones suaves para títulos y secciones */
+  #featuredTitle {
+    transition: opacity 0.3s ease, transform 0.3s ease;
+  }
+
+  #productInfo {
+    transition: opacity 0.3s ease;
   }
 </style>

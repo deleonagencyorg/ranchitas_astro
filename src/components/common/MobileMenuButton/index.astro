@@ -41,50 +41,66 @@ const hoverBackgroundColor = headerColorConfig?.hoverBackgroundColor || 'hover:b
   </button>
 </div>
 
-<script define:vars={{ astroMenuIconSvg: menuIconSvg, astroCloseIconSvg: closeIconSvg }}>
-// Función para manejar el clic en el botón del menú móvil
-function handleMobileMenuButtonClick(event) {
-  const menuButton = event.currentTarget;
-  const menuIconContainer = document.getElementById('menu-icon-container');
-  const mobileMenu = document.getElementById('mobile-menu');
-  
-  if (mobileMenu && menuIconContainer) {
-    mobileMenu.classList.toggle('hidden');
-    if (!mobileMenu.classList.contains('hidden')) {
-      document.body.style.overflow = 'hidden';
-    } else {
-      document.body.style.overflow = '';
+<script is:inline>
+  (function() {
+    const menuIconSvg = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+</svg>`;
+
+    const closeIconSvg = `<svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+</svg>`;
+
+    function initMobileMenuButton() {
+      const menuButton = document.getElementById('mobile-menu-button');
+      const menuIconContainer = document.getElementById('menu-icon-container');
+      const mobileMenu = document.getElementById('mobile-menu');
+      
+      if (!menuButton || !menuIconContainer || !mobileMenu) {
+        return;
+      }
+
+      // Evitar inicialización múltiple
+      if (menuButton.dataset.initialized === 'true') {
+        return;
+      }
+      menuButton.dataset.initialized = 'true';
+
+      function handleClick(e) {
+        e.preventDefault();
+        e.stopPropagation();
+        
+        const isHidden = mobileMenu.classList.contains('hidden');
+        
+        if (isHidden) {
+          // Abrir menú
+          mobileMenu.classList.remove('hidden');
+          document.body.style.overflow = 'hidden';
+          menuButton.setAttribute('aria-expanded', 'true');
+          menuIconContainer.innerHTML = closeIconSvg;
+        } else {
+          // Cerrar menú
+          mobileMenu.classList.add('hidden');
+          document.body.style.overflow = '';
+          menuButton.setAttribute('aria-expanded', 'false');
+          menuIconContainer.innerHTML = menuIconSvg;
+        }
+      }
+
+      menuButton.addEventListener('click', handleClick);
     }
-    const isExpanded = menuButton.getAttribute('aria-expanded') === 'true';
-    menuButton.setAttribute('aria-expanded', (!isExpanded).toString());
-    menuIconContainer.innerHTML = isExpanded ? astroMenuIconSvg : astroCloseIconSvg;
-  }
-}
 
-// Función para inicializar el botón del menú móvil
-function initMobileMenuButton() {
-  const menuButton = document.getElementById('mobile-menu-button');
-  
-  if (menuButton) {
-    // Eliminar cualquier event listener existente para evitar duplicados
-    menuButton.removeEventListener('click', handleMobileMenuButtonClick);
-    menuButton.removeEventListener('touchstart', handleMobileMenuButtonClick);
-    
-    // Agregar event listeners para clic y toque
-    menuButton.addEventListener('click', handleMobileMenuButtonClick);
-    menuButton.addEventListener('touchstart', handleMobileMenuButtonClick, { passive: true });
-  }
-}
+    // Ejecutar inmediatamente si el DOM ya está cargado
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initMobileMenuButton);
+    } else {
+      initMobileMenuButton();
+    }
 
-// Inicializar cuando el DOM esté listo
-document.addEventListener('DOMContentLoaded', initMobileMenuButton);
-
-// Volver a inicializar cuando cambie el contenido de la página (navegación entre secciones)
-document.addEventListener('astro:page-load', initMobileMenuButton);
-document.addEventListener('astro:after-swap', initMobileMenuButton);
-
-// Asegurarse de que el botón funcione incluso si se carga dinámicamente
-if (document.readyState === 'complete' || document.readyState === 'interactive') {
-  setTimeout(initMobileMenuButton, 100);
-}
+    // Reinicializar en navegación de Astro
+    document.addEventListener('astro:page-load', initMobileMenuButton);
+    document.addEventListener('astro:after-swap', () => {
+      setTimeout(initMobileMenuButton, 50);
+    });
+  })();
 </script>

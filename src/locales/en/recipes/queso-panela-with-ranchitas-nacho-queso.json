@@ -3,7 +3,6 @@
   "id": "queso-panela-with-ranchitas-nacho-queso",
   "slug": "queso-panela-with-ranchitas-nacho-queso",
   "title": "Queso Panela with Ranchitas Nacho Queso",
-  "people": "11",
   "difficulty": "Easy",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/queso-panela-con-ranchitas-nacho-queso.webp",
   "gallery": [
@@ -24,11 +23,13 @@
     "Step 3. Fry it in the oil for a few minutes.",
     "Step 4. Remove from the oil and let it drain on a plate lined with paper towels."
   ],
-  "product":[
+  "product": [
     "ranchitas-nacho-queso"
   ],
   "brand": [
     "ranchitas"
   ],
-  "category": "snack"
+  "category": "snack",
+  "servings": 6,
+  "description": "Panela cheese fried until golden and crispy, served with Ranchitas Nacho Queso. An irresistible appetizer."
 }

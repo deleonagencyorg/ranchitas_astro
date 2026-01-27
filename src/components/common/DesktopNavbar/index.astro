@@ -29,8 +29,9 @@ const productsMenuTitle = currentLang === 'es' ? 'Nuestros Productos' : 'Our Pro
 
 <!-- Desktop Navigation -->
 <nav 
-  class="hidden md:flex items-center justify-between w-full py-[28px] px-6 bg-orange rounded-[25px] mt-6 mx-auto max-w-[1400px]"
+  class="hidden md:flex items-center justify-between w-full py-[20px] px-6 bg-orange rounded-[25px] mt-3 mx-auto max-w-[1400px] relative"
   data-current-lang={currentLang}
+  style="overflow: visible;"
 >
   <!-- Logo -->
   <div class="flex-shrink-0">
@@ -44,7 +45,7 @@ const productsMenuTitle = currentLang === 'es' ? 'Nuestros Productos' : 'Our Pro
   </div>
 
   <!-- Menu -->
-  <div class="flex space-x-10 relative" id="desktop-menu-items">
+  <div class="flex space-x-10" id="desktop-menu-items">
     {menuItems && menuItems.map((item: any) => (
       item?.id === 'products' ? (
         <div class="group">
@@ -55,7 +56,7 @@ const productsMenuTitle = currentLang === 'es' ? 'Nuestros Productos' : 'Our Pro
             {item.text}
           </a>
 
-          <div class="hidden group-hover:block group-focus-within:block absolute left-1/2 -translate-x-1/2 top-full pt-6 z-50">
+          <div class="opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 absolute left-1/2 -translate-x-1/2 top-full mt-6 z-[100]">
             <div class="bg-white rounded-[25px] shadow-xl w-[1100px] max-w-[calc(100vw-40px)] p-8">
               <div class="flex items-center justify-between mb-6">
                 <h3 class="text-black font-title text-2xl italic font-bold">
@@ -72,7 +73,7 @@ const productsMenuTitle = currentLang === 'es' ? 'Nuestros Productos' : 'Our Pro
               <div class="relative">
                 <button
                   type="button"
-                  class="products-submenu-prev absolute -left-4 top-1/2 -translate-y-1/2 bg-orange text-white w-10 h-10 rounded-full shadow-md hover:opacity-90 transition flex items-center justify-center"
+                  class="products-submenu-prev absolute -left-4 top-1/2 -translate-y-1/2 bg-orange text-white w-10 h-10 rounded-full shadow-md hover:opacity-90 transition flex items-center justify-center z-10"
                   aria-label={currentLang === 'es' ? 'Anterior' : 'Previous'}
                 >
                   <span class="text-2xl leading-none">‹</span>
@@ -80,13 +81,13 @@ const productsMenuTitle = currentLang === 'es' ? 'Nuestros Productos' : 'Our Pro
 
                 <div
                   class="products-submenu-scroll overflow-x-auto scroll-smooth"
-                  style="scrollbar-width: none;"
+                  style="scrollbar-width: none; -webkit-overflow-scrolling: touch;"
                 >
                   <div class="flex gap-6 pr-2" style="scroll-snap-type: x mandatory;">
                     {productsItems.map((product: any) => (
                       <a
                         href={`${productsBasePath}/${product.id}`}
-                        class="bg-primaryCream rounded-2xl p-6 min-w-[260px] max-w-[260px] hover:opacity-90 transition"
+                        class="bg-primaryCream rounded-2xl p-6 min-w-[260px] max-w-[260px] hover:opacity-90 transition flex-shrink-0"
                         style="scroll-snap-align: start;"
                       >
                         <div class="bg-[#F3E6C7] rounded-2xl flex items-center justify-center h-[160px] mb-4">
@@ -110,7 +111,7 @@ const productsMenuTitle = currentLang === 'es' ? 'Nuestros Productos' : 'Our Pro
 
                 <button
                   type="button"
-                  class="products-submenu-next absolute -right-4 top-1/2 -translate-y-1/2 bg-orange text-white w-10 h-10 rounded-full shadow-md hover:opacity-90 transition flex items-center justify-center"
+                  class="products-submenu-next absolute -right-4 top-1/2 -translate-y-1/2 bg-orange text-white w-10 h-10 rounded-full shadow-md hover:opacity-90 transition flex items-center justify-center z-10"
                   aria-label={currentLang === 'es' ? 'Siguiente' : 'Next'}
                 >
                   <span class="text-2xl leading-none">›</span>
@@ -133,13 +134,14 @@ const productsMenuTitle = currentLang === 'es' ? 'Nuestros Productos' : 'Our Pro
   <!-- Right section: Button + User -->
   <div class="flex items-center space-x-4">
     <LanguageSwitcher activeLocale={currentLang} headerColorConfig={headerColorConfig} />
-    <a 
-      href="/donde-comprar"
+    <button 
+      type="button"
+      onclick="window.openWhereToBuyModal && window.openWhereToBuyModal()"
       class="bg-red text-white px-[50px] py-3 rounded-full font-semibold 
              shadow-md hover:opacity-90 transition"
     >
-      ¿Dónde comprar?
-    </a>
+      {currentLang === 'es' ? '¿Dónde comprar?' : 'Where to buy?'}
+    </button>
   </div>
 </nav>
 

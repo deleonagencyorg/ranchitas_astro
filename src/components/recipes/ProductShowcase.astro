@@ -25,7 +25,7 @@ const defaultDescription = currentLang === 'es'
   : 'The perfect flavor for this recipe. With its unmistakable crunch and authentic taste, Ranchitas Nacho Queso is the star ingredient that makes the difference. Available in different sizes so you can enjoy on any occasion.';
 
 const finalDescription = productDescription || defaultDescription;
-const finalLink = productLink || `/${currentLang}/productos`;
+const finalLink = productLink || `/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}`;
 ---
 
 <section class="py-16 px-8 bg-primaryCream rounded-[40px]">

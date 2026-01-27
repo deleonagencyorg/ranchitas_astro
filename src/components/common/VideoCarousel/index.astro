@@ -19,17 +19,17 @@ const { textHome } = Astro.props;
 ---
 
 <div class="home-container bg-primaryCream flex items-center">
-  <div class="max-w-[1400px] mx-auto w-full flex items-center justify-between px-10 flex flex-col sm:flex-row ">
+  <div class="max-w-[1400px] mx-auto w-full flex items-center justify-between px-4 sm:px-6 md:px-10 flex flex-col sm:flex-row ">
 
     <!-- TEXT CONTENT -->
-    <div class="md:w-1/2 xl:w-1/2 xl:mb-0 md:mb-0 mb-16">
-      <p class="text-[#D99D3C] text-lg font-semibold">{textHome.since}</p>
+    <div class="md:w-1/2 xl:w-1/2 xl:mb-0 md:mb-0 mb-12 sm:mb-16">
+      <p class="text-[#D99D3C] text-base sm:text-lg font-semibold">{textHome.since}</p>
 
-      <h1 class="text-[40px] md:text-[60px] xl:text-[80px] font-black uppercase  leading-none">
+      <h1 class="text-[36px] sm:text-[40px] md:text-[60px] xl:text-[80px] font-black uppercase  leading-none">
         {textHome.title} <br/>
         {textHome.subtitle}
       </h1>
-      <p class="text-lg text-black w-[320px] md:max-w-[310px] md:w-full xl:w-full xl:max-w-[600px] mt-6  leading-[22px]">
+      <p class="text-base sm:text-lg text-black w-full max-w-[340px] sm:w-[320px] md:max-w-[310px] md:w-full xl:w-full xl:max-w-[600px] mt-4 sm:mt-6  leading-[22px]">
         {textHome.description} <br class="md:hidden xl:block hidden"/> {textHome.descrition2}
       </p>
 

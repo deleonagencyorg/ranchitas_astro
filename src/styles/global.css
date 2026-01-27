@@ -10,3 +10,59 @@ html, body {
   max-width: 100vw;
   background-color: white;
 }
+
+* {
+  box-sizing: border-box;
+}
+
+
+
+/* Prevenir scroll horizontal en todos los elementos */
+body > * {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+/* Mejoras responsive para m\u00f3vil */
+@media (max-width: 640px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}
+
+/* ============================================
+   TRANSICIONES GLOBALES PARA VIEW TRANSITIONS
+   ============================================ */
+
+/* Desactivar transición del root para evitar efecto de cambio de página */
+::view-transition-old(root),
+::view-transition-new(root) {
+  animation: none !important;
+}
+
+/* Solo mantener transiciones suaves para elementos específicos */
+::view-transition-group(root) {
+  animation-duration: 0ms !important;
+}
+
+/* Desactivar también transiciones de slide */
+::view-transition-old(slide),
+::view-transition-new(slide) {
+  animation: none !important;
+}
+
+/* Prevenir layout shifts durante transiciones */
+html.astro-transitioning {
+  overflow-x: hidden;
+}
+
+/* Preferencia de movimiento reducido */
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-old(*),
+  ::view-transition-new(*) {
+    animation: none !important;
+  }
+}
+
+

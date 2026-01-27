@@ -42,51 +42,69 @@ const texts = {
 const currentTexts = texts[currentLang as keyof typeof texts];
 const productsItems = Array.isArray(products) ? products : [];
 
+const hasNoProducts = productsItems.length === 0;
+const carouselProducts = hasNoProducts
+  ? [
+      {
+        id: 'placeholder',
+        slug: 'placeholder',
+        name: '',
+        description: '',
+        short_description: '',
+        image: `/images/${currentLang}/placeholder.jpg`,
+        imageMobile: `/images/${currentLang}/placeholder.jpg`,
+      }
+    ]
+  : productsItems;
+const showPagination = carouselProducts.length > 1;
+
 import LazyImage from '../LazyImage.astro';
 ---
 
-<div class="bg-orange py-9 px-0 rounded-l-[50px] overflow-hidden xl:ml-[80px] ml-[20px]">
+<div class="bg-orange py-6 sm:py-9 px-0 rounded-l-[30px] sm:rounded-l-[50px] overflow-hidden ml-2 sm:ml-4 md:ml-8 xl:ml-[80px]">
   <div class="products-carousel">
     <div class="swiper-container">
       <div class="swiper-wrapper">
-        {productsItems.map((product) => (
+        {carouselProducts.map((product) => (
           <div class="swiper-slide">
             <div class="product-card-container flex items-center gap-0 w-full max-w-[900px]">
 
               <!-- Imagen -->
-              <div class="product-image-wrapper flex-shrink-0 -mr-16 z-10">
+              <div class="product-image-wrapper flex-shrink-0 -mr-12 sm:-mr-16 z-10">
                 <LazyImage 
                   src={product.imageMobile || product.image} 
                   alt={product.name}
-                  class="product-image xl:w-[200px] md:w-[150px] xl:h-[198.46px] md:h-[130px] w-[120px] h-[120px] object-contain"
+                  class="product-image w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] md:w-[150px] md:h-[130px] xl:w-[200px] xl:h-[198.46px] object-contain"
                 />
               </div>
 
               <!-- Tarjeta más ancha -->
-              <div class="bg-white rounded-[10px] pt-3 pb-3 md:pb-4 xl:pb-5 xl:pl-12 md:pl-12 pl-16 pr-4 flex-1 min-w-[305px] xl:h-[150px] md:h-[110px] h-[105px] flex flex-col justify-between">
-                <h3 class="text-[15px] xl:text-[20px] md:text-[15px] font-bold text-black leading-tight">
+              <div class="bg-white rounded-[10px] pt-2 pb-2 sm:pt-3 sm:pb-3 md:pb-4 xl:pb-5 pl-12 sm:pl-16 md:pl-12 xl:pl-12 pr-3 sm:pr-4 flex-1 min-w-[240px] sm:min-w-[280px] md:min-w-[305px] h-[90px] sm:h-[105px] md:h-[110px] xl:h-[150px] flex flex-col justify-between">
+                <h3 class="text-[13px] sm:text-[15px] md:text-[15px] xl:text-[20px] font-bold text-black leading-tight">
                   {product.name}
                 </h3>
 
-                <p class="text-gray-600 text-[12px] xl:text-[13px] leading-snug line-clamp-2 pr-2">
+                <p class="text-gray-600 text-[11px] sm:text-[12px] xl:text-[13px] leading-snug line-clamp-2 pr-2">
                   {product.short_description}
                 </p>
 
-                <a 
-                  href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}/${product.id}`}
-                  class="inline-flex items-center text-[#F86509] font-bold text-[14px] xl:text-[16px] hover:underline"
-                  data-no-swipe="true"
-                  data-no-animation="true"
-                >
-                  {currentTexts.viewMore}
-                </a>
+                {!hasNoProducts && (
+                  <a 
+                    href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}/${product.id}`}
+                    class="inline-flex items-center text-[#F86509] font-bold text-[12px] sm:text-[14px] xl:text-[16px] hover:underline"
+                    data-no-swipe="true"
+                    data-no-animation="true"
+                  >
+                    {currentTexts.viewMore}
+                  </a>
+                )}
               </div>
 
             </div>
           </div>
         ))}
       </div>
-      <div class="swiper-pagination"></div>
+      {showPagination && <div class="swiper-pagination"></div>}
     </div>
   </div>
 </div>
@@ -162,6 +180,9 @@ import LazyImage from '../LazyImage.astro';
       
       if (!swiperContainer) return;
 
+      const slidesCount = swiperContainer.querySelectorAll('.swiper-slide').length;
+      const enableControls = slidesCount > 1;
+
       const paginationEl = this.container.querySelector('.swiper-pagination') as HTMLElement | null;
 
       const productLinks = swiperContainer.querySelectorAll('a[data-no-swipe]');
@@ -175,24 +196,28 @@ import LazyImage from '../LazyImage.astro';
         modules: [Autoplay, Pagination],
         slidesPerView: this.options.slidesPerView || 3,
         spaceBetween: this.options.spaceBetween || 50,
-        loop: this.options.loop !== false,
-        autoplay: this.options.autoplay ? {
+        loop: enableControls && this.options.loop !== false,
+        autoplay: enableControls && this.options.autoplay ? {
           delay: this.options.speed || 5000,
           disableOnInteraction: false,
         } : false,
-        pagination: paginationEl ? { el: paginationEl, clickable: true } : undefined,
+        pagination: enableControls && paginationEl ? { el: paginationEl, clickable: true } : undefined,
         breakpoints: {
           320: {
             slidesPerView: 1,
-            spaceBetween: 350,
+            spaceBetween: 20,
+          },
+          640: {
+            slidesPerView: 1,
+            spaceBetween: 20,
           },
           768: {
             slidesPerView: 2,
-            spaceBetween: 100,
+            spaceBetween: 30,
           },
           1024: {
             slidesPerView: this.options.slidesPerView || 3,
-            spaceBetween: 100,
+            spaceBetween: 50,
           },
         },
         preventClicksPropagation: true,

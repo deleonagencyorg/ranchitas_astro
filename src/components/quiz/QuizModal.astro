@@ -54,10 +54,11 @@ const shareId = `quiz-share-${currentLang}`;
       <button
         id="quiz-modal-close"
         type="button"
-        class="absolute top-6 right-6 z-10 w-12 h-12 rounded-full bg-white/15 hover:bg-white/20 flex items-center justify-center transition border border-white/20"
-        aria-label="Cerrar"
+        class="absolute top-3 right-3 sm:top-6 sm:right-6 z-[9999] w-11 h-11 sm:w-12 sm:h-12 rounded-full bg-white/15 hover:bg-white/20 active:bg-white/25 flex items-center justify-center transition border border-white/20 cursor-pointer touch-manipulation"
+        aria-label={currentLang === 'es' ? 'Cerrar' : 'Close'}
+        data-quiz-close-btn
       >
-        <svg class="w-6 h-6 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+        <svg class="w-5 h-5 sm:w-6 sm:h-6 text-white pointer-events-none" fill="none" stroke="currentColor" viewBox="0 0 24 24">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2.5" d="M6 18L18 6M6 6l12 12"/>
         </svg>
       </button>
@@ -87,6 +88,8 @@ const shareId = `quiz-share-${currentLang}`;
     }
 
     let scrollY = 0;
+    let closeButtonHandler = null;
+    let modalBackdropHandler = null;
 
     function lockScroll() {
       scrollY = window.scrollY || 0;
@@ -110,40 +113,132 @@ const shareId = `quiz-share-${currentLang}`;
 
     function openQuizModal() {
       portalModalToBody();
+      setupEventListeners();
       const modal = document.getElementById('quiz-modal');
       if (!modal) return;
       modal.classList.remove('hidden');
       lockScroll();
     }
 
-    function closeQuizModal() {
+    function closeQuizModal(e) {
+      // Prevenir propagación para evitar conflictos
+      if (e) {
+        e.preventDefault();
+        e.stopPropagation();
+      }
+      
       const modal = document.getElementById('quiz-modal');
       if (!modal) return;
       modal.classList.add('hidden');
       unlockScroll();
     }
 
-    const closeBtn = document.getElementById('quiz-modal-close');
-    if (closeBtn) {
-      closeBtn.addEventListener('click', closeQuizModal);
+    function removeEventListeners() {
+      const closeBtn = document.getElementById('quiz-modal-close');
+      if (closeBtn && closeButtonHandler) {
+        // Remover todos los event listeners anteriores
+        closeBtn.removeEventListener('click', closeButtonHandler);
+        closeBtn.removeEventListener('touchend', closeButtonHandler);
+        closeBtn.removeEventListener('touchstart', function(e) { e.preventDefault(); });
+      }
+
+      const modal = document.getElementById('quiz-modal');
+      if (modal && modalBackdropHandler) {
+        modal.removeEventListener('click', modalBackdropHandler);
+        modal.removeEventListener('touchend', modalBackdropHandler);
+      }
+      
+      closeButtonHandler = null;
+      modalBackdropHandler = null;
     }
 
-    const modal = document.getElementById('quiz-modal');
-    if (modal) {
-      modal.addEventListener('click', function(e) {
-        if (e.target === modal) {
-          closeQuizModal();
-        }
-      });
+    function setupEventListeners() {
+      // Remover listeners anteriores primero
+      removeEventListeners();
+
+      const closeBtn = document.getElementById('quiz-modal-close');
+      if (closeBtn) {
+        // Crear handler que funcione para click y touch
+        closeButtonHandler = function(e) {
+          e.preventDefault();
+          e.stopPropagation();
+          closeQuizModal(e);
+        };
+
+        // Agregar múltiples eventos para mejor compatibilidad móvil
+        closeBtn.addEventListener('click', closeButtonHandler, { passive: false });
+        closeBtn.addEventListener('touchend', closeButtonHandler, { passive: false });
+        
+        // Prevenir comportamiento por defecto en touchstart
+        closeBtn.addEventListener('touchstart', function(e) {
+          e.stopPropagation();
+        }, { passive: true });
+      }
+
+      const modal = document.getElementById('quiz-modal');
+      if (modal) {
+        modalBackdropHandler = function(e) {
+          // Solo cerrar si se hace click en el backdrop, no en el contenido
+          if (e.target === modal) {
+            e.preventDefault();
+            closeQuizModal(e);
+          }
+        };
+        
+        modal.addEventListener('click', modalBackdropHandler);
+        modal.addEventListener('touchend', modalBackdropHandler, { passive: false });
+      }
     }
 
-    portalModalToBody();
+    function initialize() {
+      portalModalToBody();
+      setupEventListeners();
+    }
+
+    // Initialize on load
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initialize);
+    } else {
+      initialize();
+    }
+
+    // Re-initialize after Astro page transitions
+    document.addEventListener('astro:page-load', function() {
+      removeEventListeners();
+      initialize();
+    });
+
+    // Cleanup on page unload
+    document.addEventListener('astro:before-swap', function() {
+      removeEventListeners();
+    });
+
     window.openQuizModal = openQuizModal;
     window.closeQuizModal = closeQuizModal;
   })();
 </script>
 
 <style>
+  /* Botón de cerrar optimizado para móvil */
+  #quiz-modal-close {
+    -webkit-tap-highlight-color: transparent;
+    user-select: none;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    position: fixed; /* Cambiar a fixed para que siempre sea accesible */
+  }
+
+  #quiz-modal-close:active {
+    transform: scale(0.95);
+  }
+
+  /* Asegurar que el modal sea scrolleable en móvil */
+  #quiz-modal {
+    -webkit-overflow-scrolling: touch;
+    overscroll-behavior: contain;
+  }
+
   .quiz-bg {
     position: absolute;
     inset: 0;

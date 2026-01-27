@@ -3,7 +3,6 @@
   "id": "nachos-rancheros-con-ranchitas-nacho-excitante",
   "slug": "nachos-rancheros-con-ranchitas-nacho-excitante",
   "title": "Nachos Rancheros con Ranchitas Nacho Excitante",
-  "people": "21",
   "difficulty": "Media",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/nachos-rancheros-con-ranchitas.webp",
   "gallery": [
@@ -32,8 +31,10 @@
   "brand": [
     "ranchitas"
   ],
-  "product":[
+  "product": [
     "ranchitas-nacho-excitante"
   ],
-  "category": "dinner"
+  "category": "dinner",
+  "servings": 6,
+  "description": "Nachos estilo ranchero con chorizo y frijoles refritos. El sabor picante de Ranchitas Nacho Excitante los hace inolvidables."
 }

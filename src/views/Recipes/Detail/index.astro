@@ -98,7 +98,7 @@ const relatedRecipesTitle = currentLang === 'es' ? 'Recetas recomendadas' : 'Rec
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <!-- Back button -->
     <div class="pt-8">
-    <a href={`/${currentLang}/recetas`} class="inline-flex items-center gap-2 text-[#F86509] hover:text-[#d55507] transition-colors">
+    <a href={`/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}`} class="inline-flex items-center gap-2 text-[#F86509] hover:text-[#d55507] transition-colors">
       <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M10.0003 15.8333L4.16699 10L10.0003 4.16667" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
         <path d="M15.8337 10H4.16699" stroke="currentColor" stroke-width="1.66667" stroke-linecap="round" stroke-linejoin="round"/>
@@ -247,7 +247,7 @@ const relatedRecipesTitle = currentLang === 'es' ? 'Recetas recomendadas' : 'Rec
           <ol class="space-y-4 text-gray-800 list-decimal list-inside">
             {recipe.instructions.map((instruction: string, index: number) => (
               <li class="text-base leading-relaxed">
-                <span class="font-bold">{currentLang === 'es' ? 'Paso' : 'Step'} {index + 1}:</span> {instruction}
+                {instruction}
               </li>
             ))}
           </ol>

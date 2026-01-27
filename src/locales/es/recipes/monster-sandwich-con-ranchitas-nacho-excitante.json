@@ -3,7 +3,6 @@
   "id": "monster-sandwich-con-ranchitas-nacho-excitante",
   "slug": "monster-sandwich-con-ranchitas-nacho-excitante",
   "title": "Monater Sandwitch con Ranchitas Nacho Excitente",
-  "people": "11",
   "difficulty": "Fácil",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/monster-sandwich-con-ranchitas.webp",
   "gallery": [
@@ -31,9 +30,10 @@
   "brand": [
     "ranchitas"
   ],
-
-  "product":[
+  "product": [
     "ranchitas-nacho-excitante"
   ],
-  "category": "lunch"
+  "category": "lunch",
+  "servings": 1,
+  "description": "Un sandwich gigante cargado de sabor con el toque picante de Ranchitas Nacho Excitante. ¡Una experiencia única!"
 }
