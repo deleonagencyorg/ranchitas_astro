@@ -1,6 +1,6 @@
 ---
-import { t, type Locale } from '../../i18n/i18n';
-import config from '../../i18n/config';
+import { t, type Locale } from '../i18n/i18n';
+import config from '../i18n/config';
 
 export interface Props {
   currentLang: Locale;
@@ -8,9 +8,10 @@ export interface Props {
   description?: string;
   canonicalUrl?: string;
   imageUrl?: string;
+  pathname?: string;
 }
 
-const { currentLang, title, description, canonicalUrl, imageUrl } = Astro.props;
+const { currentLang, title, description, canonicalUrl, imageUrl, pathname = '' } = Astro.props;
 
 // Get translations for meta tags
 const meta = t('meta', { namespace: 'common', locale: currentLang }) as any;
@@ -19,13 +20,134 @@ const socialMedia = t('social_media', { namespace: 'common', locale: currentLang
 // Default values
 const pageTitle = title || meta.home.title;
 const pageDescription = description || meta.home.description;
-const pageImage = imageUrl || 'https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-logo-3.webp';
+const pageImage = imageUrl || 'https://snack.yummiespromociones.com/snacksyummies/ranchitas-logo.webp';
 const pageUrl = canonicalUrl || `https://ranchitas.com/${currentLang}`;
+
+const OG_LOCALE_MAP: Record<string, string> = {
+  es: 'es_ES',
+  en: 'en_US'
+};
+const ogLocale = OG_LOCALE_MAP[currentLang] || currentLang;
+
+const baseUrl = 'https://ranchitas.com';
+function stripLang(p: string) {
+  const parts = (p || '').split('/').filter(Boolean);
+  if (parts.length > 0 && config.supportedLocales.includes(parts[0])) {
+    return '/' + parts.slice(1).join('/');
+  }
+  return '/' + parts.join('/');
+}
+function buildLangUrl(lang: string) {
+  const rest = stripLang(pathname);
+  const normalizedRest = rest === '/' ? '' : rest;
+  return `${baseUrl}/${lang}${normalizedRest}`;
+}
+
+const restPath = stripLang(pathname);
+const pageKey = (() => {
+  if (restPath === '/' || restPath === '') return 'home';
+  const p = restPath.replace(/^\//, '');
+  if (p.startsWith('productos') || p.startsWith('products')) return 'products';
+  if (p.startsWith('recetas') || p.startsWith('recipes')) return 'recipes';
+  if (p.startsWith('contacto') || p.startsWith('contact')) return 'contact';
+  if (p.startsWith('blog')) return 'news';
+  return 'other';
+})();
+
+const schemaJson = (() => {
+  if (pageKey === 'home') {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Brand',
+      name: 'Ranchitas',
+      alternateName: 'Ranchitas Snacks',
+      url: buildLangUrl(currentLang) + '/',
+      logo: `${baseUrl}/logo.png`,
+      description: pageDescription,
+      slogan: currentLang === 'es' ? 'Cronchea Tu Mundo' : 'CRONCH Your World',
+      parentOrganization: {
+        '@type': 'Organization',
+        name: 'Snacks Yummies',
+        url: 'https://www.snacksyummies.com'
+      },
+      sameAs: [
+        'https://www.facebook.com/ranchitaslatam',
+        'https://www.instagram.com/snacksyummies',
+        'https://www.tiktok.com/@snacksyummies'
+      ]
+    };
+  }
+
+  if (pageKey === 'products') {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: currentLang === 'es' ? 'Productos Ranchitas' : 'Ranchitas Products',
+      description:
+        currentLang === 'es'
+          ? 'Catálogo completo de sabores y presentaciones de Ranchitas.'
+          : 'Complete catalog of Ranchitas flavors and presentations.',
+      url: buildLangUrl(currentLang) + '/'
+    };
+  }
+
+  if (pageKey === 'recipes') {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'CollectionPage',
+      name: currentLang === 'es' ? 'Recetas con Ranchitas' : 'Ranchitas Recipes',
+      description:
+        currentLang === 'es'
+          ? 'Colección de recetas creativas para añadir el CRONCH de Ranchitas a tus comidas.'
+          : 'Collection of creative recipes to add the CRONCH of Ranchitas to your meals.',
+      url: buildLangUrl(currentLang) + '/'
+    };
+  }
+
+  if (pageKey === 'contact') {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'ContactPage',
+      name: currentLang === 'es' ? 'Contacto Ranchitas' : 'Contact Ranchitas',
+      description: pageDescription,
+      url: buildLangUrl(currentLang) + '/',
+      mainEntity: {
+        '@type': 'Organization',
+        name: 'Ranchitas',
+        parentOrganization: { name: 'Snacks Yummies' },
+        contactPoint: {
+          '@type': 'ContactPoint',
+          contactType: 'Customer Service',
+          telephone: '+504-2275-3370',
+          areaServed: ['HN', 'GT', 'SV', 'CR', 'NI', 'DO']
+        }
+      }
+    };
+  }
+
+  if (pageKey === 'news') {
+    return {
+      '@context': 'https://schema.org',
+      '@type': 'Blog',
+      name: currentLang === 'es' ? 'Noticias y Promociones Ranchitas' : 'Ranchitas News & Promotions',
+      description: pageDescription,
+      url: buildLangUrl(currentLang) + '/',
+      publisher: {
+        '@type': 'Organization',
+        name: 'Ranchitas'
+      }
+    };
+  }
+
+  return null;
+})();
 
 // Social media URLs
 const facebookUrl = socialMedia?.facebook?.url || '';
 const instagramUrl = socialMedia?.instagram?.url || '';
 const twitterUrl = socialMedia?.twitter?.url || '';
+
+---
 
 <!-- Primary Meta Tags -->
 <meta charset="UTF-8" />
@@ -41,10 +163,15 @@ const twitterUrl = socialMedia?.twitter?.url || '';
 <meta property="og:title" content={pageTitle} />
 <meta property="og:description" content={pageDescription} />
 <meta property="og:image" content={pageImage} />
-<meta property="og:locale" content={currentLang} />
-{config.supportedLocales.map(lang => (
-  <meta property="og:locale:alternate" content={lang} />
+<meta property="og:locale" content={ogLocale} />
+{config.supportedLocales.map((lang: string) => (
+  <meta property="og:locale:alternate" content={OG_LOCALE_MAP[lang] || lang} />
 ))}
+
+{config.supportedLocales.map((lang: string) => (
+  <link rel="alternate" hreflang={lang} href={buildLangUrl(lang)} />
+))}
+<link rel="alternate" hreflang="x-default" href={`${baseUrl}/es${stripLang(pathname) === '/' ? '' : stripLang(pathname)}`} />
 
 <!-- Image Optimization -->
 <meta name="og:image:width" content="1200" />
@@ -64,18 +191,9 @@ const twitterUrl = socialMedia?.twitter?.url || '';
 {twitterUrl && <link rel="me" href={twitterUrl} />}
 
 <!-- Structured Data -->
-<script type="application/ld+json" set:html={JSON.stringify({
-  "@context": "https://schema.org",
-  "@type": "Organization",
-  "name": "Ranchitas",
-  "url": "https://ranchitas.com",
-  "logo": "https://snack.yummiespromociones.com/snacksyummies/ranchitas-logo.webp",
-  "sameAs": [
-    socialMedia.facebook?.url,
-    socialMedia.instagram?.url,
-    socialMedia.tiktok?.url
-  ].filter(Boolean)
-})}></script>
+{schemaJson && (
+  <script type="application/ld+json" set:html={JSON.stringify(schemaJson)}></script>
+)}
 
 <!-- Breadcrumbs Structured Data -->
 <script type="application/ld+json" set:html={JSON.stringify({

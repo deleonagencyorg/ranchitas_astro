@@ -72,19 +72,25 @@ const currentLang = getLocale();
   document.addEventListener('DOMContentLoaded', () => {
     const relatedSwiper = document.querySelector('.related-recipes-swiper');
     if (relatedSwiper) {
+      const slidesCount = relatedSwiper.querySelectorAll('.swiper-slide').length;
+      const enableControls = slidesCount > 1;
       new Swiper('.related-recipes-swiper', {
         modules: [Navigation, Autoplay],
         slidesPerView: 1,
         spaceBetween: 20,
         loop: false,
-        autoplay: {
-          delay: 4000,
-          disableOnInteraction: false,
-        },
-        navigation: {
-          nextEl: '.swiper-button-next-related',
-          prevEl: '.swiper-button-prev-related',
-        },
+        autoplay: enableControls
+          ? {
+              delay: 4000,
+              disableOnInteraction: false,
+            }
+          : false,
+        navigation: enableControls
+          ? {
+              nextEl: '.swiper-button-next-related',
+              prevEl: '.swiper-button-prev-related',
+            }
+          : undefined,
         breakpoints: {
           768: {
             slidesPerView: 2,
@@ -102,19 +108,25 @@ const currentLang = getLocale();
   document.addEventListener('astro:page-load', () => {
     const relatedSwiper = document.querySelector('.related-recipes-swiper');
     if (relatedSwiper) {
+      const slidesCount = relatedSwiper.querySelectorAll('.swiper-slide').length;
+      const enableControls = slidesCount > 1;
       new Swiper('.related-recipes-swiper', {
         modules: [Navigation, Autoplay],
         slidesPerView: 1,
         spaceBetween: 20,
         loop: false,
-        autoplay: {
-          delay: 4000,
-          disableOnInteraction: false,
-        },
-        navigation: {
-          nextEl: '.swiper-button-next-related',
-          prevEl: '.swiper-button-prev-related',
-        },
+        autoplay: enableControls
+          ? {
+              delay: 4000,
+              disableOnInteraction: false,
+            }
+          : false,
+        navigation: enableControls
+          ? {
+              nextEl: '.swiper-button-next-related',
+              prevEl: '.swiper-button-prev-related',
+            }
+          : undefined,
         breakpoints: {
           768: {
             slidesPerView: 2,

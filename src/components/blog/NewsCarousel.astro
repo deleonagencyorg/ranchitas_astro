@@ -22,31 +22,25 @@ const noContent = currentLang === 'es' ? 'No hay contenido disponible' : 'No con
 ---
 
 <div id={id} data-news-carousel data-lang={currentLang} class="w-full">
-  {items.length === 0 ? (
-    <div class="w-full py-10 flex items-center justify-center">
-      <p class="text-white text-center text-lg md:text-xl font-semibold">{noContent}</p>
-    </div>
-  ) : (
-    <div class="w-full">
-      <div class="relative overflow-hidden">
-        <div class="flex transition-transform duration-300 will-change-transform" data-track>
-          <!-- Slides will be built by script -->
-        </div>
-        <!-- Nav Buttons overlaid, centered vertically -->
-        <button data-prev class="absolute left-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center bg-white/90 hover:bg-white text-brown w-10 h-10 rounded-full shadow" aria-label="Prev">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-        </button>
-        <button data-next class="absolute right-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center bg-white/90 hover:bg-white text-brown w-10 h-10 rounded-full shadow" aria-label="Next">
-          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-        </button>
+  <div class="w-full">
+    <div class="relative overflow-hidden">
+      <div class="flex transition-transform duration-300 will-change-transform" data-track>
+        <!-- Slides will be built by script -->
       </div>
-      <div class="mt-4 hidden items-center justify-center" data-empty>
-        <span class="text-white text-lg md:text-xl font-semibold">{noContent}</span>
-      </div>
-      <!-- Provide initial items as JSON for reliable init -->
-      <script type="application/json" data-items>{JSON.stringify(items)}</script>
+      <!-- Nav Buttons overlaid, centered vertically -->
+      <button data-prev class="absolute left-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center bg-white/90 hover:bg-white text-brown w-10 h-10 rounded-full shadow" aria-label="Prev">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+      </button>
+      <button data-next class="absolute right-2 top-1/2 -translate-y-1/2 z-10 flex items-center justify-center bg-white/90 hover:bg-white text-brown w-10 h-10 rounded-full shadow" aria-label="Next">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+      </button>
     </div>
-  )}
+    <div class="mt-4 hidden items-center justify-center" data-empty>
+      <span class="text-white text-lg md:text-xl font-semibold">{noContent}</span>
+    </div>
+    <!-- Provide initial items as JSON for reliable init -->
+    <script type="application/json" data-items>{JSON.stringify(items)}</script>
+  </div>
 </div>
 
 <script>
@@ -93,6 +87,11 @@ const noContent = currentLang === 'es' ? 'No hay contenido disponible' : 'No con
       const out = []; for (let i=0;i<arr.length;i+=size) out.push(arr.slice(i,i+size)); return out;
     }
 
+    function setControlsVisible(visible) {
+      if (prev) prev.style.display = visible ? '' : 'none';
+      if (next) next.style.display = visible ? '' : 'none';
+    }
+
     function buildSlides() {
       if (!track) return;
       track.innerHTML = '';
@@ -101,6 +100,19 @@ const noContent = currentLang === 'es' ? 'No hay contenido disponible' : 'No con
         track.style.transform = 'translateX(0)';
         index = 0;
         if (empty) { empty.classList.remove('hidden'); empty.classList.add('flex'); }
+
+        const noContentText = lang === 'es' ? 'No hay contenido disponible' : 'No content available';
+
+        const slide = document.createElement('div');
+        slide.className = 'w-full flex-shrink-0 px-2 md:px-1';
+        slide.innerHTML = `
+          <div class="w-full py-10 flex items-center justify-center">
+            <p class="text-white text-center text-lg md:text-xl font-semibold">${noContentText}</p>
+          </div>
+        `;
+        track.appendChild(slide);
+        track.style.width = '100%';
+        setControlsVisible(false);
         return;
       }
       if (empty) { empty.classList.add('hidden'); empty.classList.remove('flex'); }
@@ -145,6 +157,7 @@ const noContent = currentLang === 'es' ? 'No hay contenido disponible' : 'No con
         (/** @type {HTMLElement} */(slide)).style.width = (100/groups.length) + '%';
       });
       index = Math.min(index, Math.max(0, groups.length - 1));
+      setControlsVisible(groups.length > 1);
       update();
     }
 
