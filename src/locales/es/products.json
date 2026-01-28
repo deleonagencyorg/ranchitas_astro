@@ -105,30 +105,7 @@
         "450g"
       ]
     },
-    {
-      "id": "ranchitas-nacho-extremo",
-      "name": "Ranchitas Nacho Extremo",
-      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-extremo-2.webp",
-      "background_color": "#EFEFEF",
-      "header_color": "#1C1C1C",
-      "text_color":"#0F0F0F",
-      "header_background": "#BEDE89",
-      "header_text_color": "#1C1C1C",
-      "color_button": "#F86509",
-      "description": "Nachos de maíz con sabor a chiles toreados.",
-      "short_description": "Nachos de maíz con sabor a chiles toreados.",
-      "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
-      "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
-      "sizes": [
-        {
-          "value": "150",
-          "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp"
-        }
-      ],
-      "weight": [
-        "19g"
-      ]
-    },
+
     {
       "id": "ranchitas-naturales",
       "name": "Ranchitas Naturales",
@@ -152,6 +129,30 @@
       "weight": [
         "35g",
         "300g"
+      ]
+    },
+    {
+      "id": "ranchitas-nacho-extremo",
+      "name": "Ranchitas Nacho Extremo",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-extremo-2.webp",
+      "background_color": "#EFEFEF",
+      "header_color": "#1C1C1C",
+      "text_color":"#0F0F0F",
+      "header_background": "#BEDE89",
+      "header_text_color": "#1C1C1C",
+      "color_button": "#F86509",
+      "description": "Nachos de maíz con sabor a chiles toreados.",
+      "short_description": "Nachos de maíz con sabor a chiles toreados.",
+      "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
+      "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
+      "sizes": [
+        {
+          "value": "150",
+          "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp"
+        }
+      ],
+      "weight": [
+        "19g"
       ]
     },
     {
