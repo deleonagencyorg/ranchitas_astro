@@ -46,6 +46,11 @@
     margin: 0 auto;
   }
 
+  /* Asegurar que todas las slides estiren a la misma altura */
+  .related-products-swiper .swiper-wrapper {
+    align-items: stretch;
+  }
+
   .related-products-swiper .swiper-slide {
     height: auto;
     display: flex;
@@ -55,6 +60,7 @@
   .related-products-swiper .swiper-slide > a {
     display: flex;
     width: 100%;
+    height: 100%;
   }
 
   .related-products-swiper .swiper-pagination-products {
@@ -181,14 +187,100 @@ html.astro-transitioning {
   box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.15), 0 10px 10px -5px rgba(0, 0, 0, 0.08);
 }
 
-/* Asegurar que todas las cards tengan la misma altura */
-.related-products-swiper .swiper-slide {
-  display: flex;
-}
+  /* Asegurar que todas las cards tengan la misma altura */
+  .related-products-swiper .swiper-slide {
+    display: flex;
+  }
 
-.related-products-swiper .swiper-slide > a {
-  width: 100%;
-}
+  .related-products-swiper .swiper-slide > a {
+    width: 100%;
+  }
+
+  /* Grid layout para alineación perfecta de cards */
+  .related-product-card {
+    display: grid;
+    grid-template-rows: 220px 1fr;
+    gap: 1rem;
+    width: 100%;
+    height: 480px; /* altura fija para uniformidad en desktop */
+  }
+
+  @media (max-width: 768px) {
+    .related-product-card {
+      grid-template-rows: 180px 1fr;
+      height: 420px; /* altura fija para uniformidad en mobile */
+    }
+  }
+
+  /* Contenedor de imagen con altura fija */
+  .related-product-image {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: flex-start;
+    justify-content: center;
+    overflow: hidden;
+  }
+
+  .related-product-image img {
+    width: 100%;
+    height: 100%;
+    max-width: 320px;
+    object-fit: contain;
+    object-position: top center;
+  }
+
+  @media (max-width: 768px) {
+    .related-product-image img {
+      max-width: 280px;
+    }
+  }
+
+  /* Contenedor de contenido con alturas mínimas */
+  .related-product-content {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: flex-start;
+    text-align: left;
+  }
+
+  .related-product-title {
+    font-size: 1.875rem;
+    font-weight: 700;
+    line-height: 1.2;
+    min-height: 64px;
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+  }
+
+  @media (max-width: 768px) {
+    .related-product-title {
+      font-size: 1.5rem;
+      min-height: 56px;
+    }
+  }
+
+  .related-product-description {
+    font-size: 1.125rem;
+    font-style: italic;
+    line-height: 1.4;
+    min-height: 72px;
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+  }
+
+  @media (max-width: 768px) {
+    .related-product-description {
+      font-size: 1rem;
+      min-height: 66px;
+    }
+  }
 
 /* Animación muy sutil de la imagen del producto al cargar */
 #product-image {

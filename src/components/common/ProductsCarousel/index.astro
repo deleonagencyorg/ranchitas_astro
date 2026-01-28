@@ -79,7 +79,7 @@ import LazyImage from '../LazyImage.astro';
               </div>
 
               <!-- Tarjeta más ancha -->
-              <div class="bg-white rounded-[10px] pt-2 pb-2 sm:pt-3 sm:pb-3 md:pb-4 xl:pb-5 pl-12 sm:pl-16 md:pl-12 xl:pl-12 pr-3 sm:pr-4 flex-1 min-w-[240px] sm:min-w-[280px] md:min-w-[305px] h-[90px] sm:h-[105px] md:h-[110px] xl:h-[150px] flex flex-col justify-between">
+              <div class="product-card bg-white rounded-[10px] pt-2 pb-2 sm:pt-3 sm:pb-3 md:pb-4 xl:pb-5 pl-12 sm:pl-16 md:pl-12 xl:pl-12 pr-3 sm:pr-4 flex-1 min-w-[240px] sm:min-w-[280px] md:min-w-[305px] h-[90px] sm:h-[105px] md:h-[110px] xl:h-[150px] flex flex-col justify-between">
                 <h3 class="text-[13px] sm:text-[15px] md:text-[15px] xl:text-[20px] font-bold text-black leading-tight">
                   {product.name}
                 </h3>
@@ -148,6 +148,28 @@ import LazyImage from '../LazyImage.astro';
     -webkit-box-orient: vertical;
     overflow: hidden;
   }
+
+  @media (max-width: 640px) {
+    .products-carousel .swiper-slide {
+      display: flex;
+      justify-content: center;
+      padding: 0 8px;
+    }
+
+    .products-carousel .product-card-container {
+      max-width: 100%;
+    }
+
+    .products-carousel .product-image-wrapper {
+      margin-right: -48px !important;
+    }
+
+    .products-carousel .product-card {
+      min-width: 0 !important;
+      width: 100%;
+      padding-left: 56px !important;
+    }
+  }
 </style>
 
 <script>
@@ -203,6 +225,10 @@ import LazyImage from '../LazyImage.astro';
         } : false,
         pagination: enableControls && paginationEl ? { el: paginationEl, clickable: true } : undefined,
         breakpoints: {
+          0: {
+            slidesPerView: 1,
+            spaceBetween: 10,
+          },
           320: {
             slidesPerView: 1,
             spaceBetween: 20,

@@ -54,12 +54,12 @@ const footerMenuItems = (menuItems || []).filter((i: any) => i && i.id !== 'bran
           
           
           <!-- Formulario de Newsletter -->
-          <div class="flex">
+          <div class="flex justify-center sm:justify-start">
             <a 
               href="https://www.snacksyummies.com/es/yummiesone" 
               target="_blank" 
               rel="noopener noreferrer"
-              class="bg-[#F99F33] hover:bg-[#F99F33]/90 text-white font-title font-bold px-8 sm:px-12 py-3 sm:py-4 rounded-full transition-all duration-200 text-base sm:text-lg whitespace-nowrap inline-block"
+              class="bg-[#F99F33] hover:bg-[#F99F33]/90 text-white font-title font-bold px-6 sm:px-12 py-3 sm:py-4 rounded-full transition-all duration-200 text-sm sm:text-lg whitespace-nowrap inline-block"
             >
               {currentLang === 'es' ? 'Regístrate en Yummies One' : 'Join Yummies One'}
             </a>
@@ -67,7 +67,7 @@ const footerMenuItems = (menuItems || []).filter((i: any) => i && i.id !== 'bran
         </div>
 
         <!-- Columna Derecha: Links de Navegación -->
-        <div class="grid grid-cols-3 gap-4 sm:gap-8 lg:gap-12">
+        <div class="grid grid-cols-1 min-[320px]:grid-cols-2 sm:grid-cols-3 gap-4 sm:gap-8 lg:gap-12">
           
           <!-- Redes Sociales -->
           <div class="text-start">
