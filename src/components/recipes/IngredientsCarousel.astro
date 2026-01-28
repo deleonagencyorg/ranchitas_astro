@@ -44,29 +44,28 @@ const { items = [] } = Astro.props as Props;
     </div>
 
     <!-- Bottom controls (both breakpoints) -->
-    <div class="mt-4 flex items-center justify-center gap-3">
-      <button id="ingPrev" class="flex items-center justify-center bg-white/90 hover:bg-white text-brown w-10 h-10 rounded-full shadow" aria-label="Prev">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
-      </button>
-      <button id="ingNext" class="flex items-center justify-center bg-white/90 hover:bg-white text-brown w-10 h-10 rounded-full shadow" aria-label="Next">
-        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
-      </button>
-    </div>
+    {items.length > 1 && (
+      <div class="mt-4 flex items-center justify-center gap-3">
+        <button id="ingPrev" class="flex items-center justify-center bg-white/90 hover:bg-white text-brown w-10 h-10 rounded-full shadow" aria-label="Prev">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" /></svg>
+        </button>
+        <button id="ingNext" class="flex items-center justify-center bg-white/90 hover:bg-white text-brown w-10 h-10 rounded-full shadow" aria-label="Next">
+          <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" /></svg>
+        </button>
+      </div>
+    )}
   </div>
 )}
 
 <script>
-  /**
-   * @param {HTMLElement} root
-   */
-  function initIngredientsCarousel(root) {
-    if (!root || root._ingInit) return;
-    root._ingInit = true;
+  function initIngredientsCarousel(root: HTMLElement) {
+    if (!root || root.dataset.ingInit === 'true') return;
+    root.dataset.ingInit = 'true';
 
     // Desktop
-    const trackD = root.querySelector('#ingTrackDesktop');
-    const prevBtn = root.querySelector('#ingPrev');
-    const nextBtn = root.querySelector('#ingNext');
+    const trackD = root.querySelector('#ingTrackDesktop') as HTMLElement | null;
+    const prevBtn = root.querySelector('#ingPrev') as HTMLElement | null;
+    const nextBtn = root.querySelector('#ingNext') as HTMLElement | null;
 
     let indexD = 0;
     const stepD = 276; // 260 card + ~16 gap
@@ -89,7 +88,7 @@ const { items = [] } = Astro.props as Props;
     }
 
     // Mobile
-    const trackM = root.querySelector('#ingTrackMobile');
+    const trackM = root.querySelector('#ingTrackMobile') as HTMLElement | null;
     // Reuse bottom buttons on mobile
 
     let indexM = 0;
@@ -107,13 +106,13 @@ const { items = [] } = Astro.props as Props;
       let isTouching = false;
       const threshold = 40; // px
 
-      const onTouchStart = (e) => {
+      const onTouchStart = (e: TouchEvent | MouseEvent) => {
         isTouching = true;
-        startX = e.touches ? e.touches[0].clientX : e.clientX;
+        startX = 'touches' in e ? e.touches[0].clientX : e.clientX;
       };
-      const onTouchMove = (e) => {
+      const onTouchMove = (e: TouchEvent | MouseEvent) => {
         if (!isTouching) return;
-        currentX = e.touches ? e.touches[0].clientX : e.clientX;
+        currentX = 'touches' in e ? e.touches[0].clientX : e.clientX;
       };
       const onTouchEnd = () => {
         if (!isTouching) return;
@@ -152,7 +151,9 @@ const { items = [] } = Astro.props as Props;
   }
 
   function initAll() {
-    document.querySelectorAll('[data-ingredients-carousel]').forEach((el) => initIngredientsCarousel(el));
+    document.querySelectorAll('[data-ingredients-carousel]').forEach((el) => {
+      if (el instanceof HTMLElement) initIngredientsCarousel(el as HTMLElement);
+    });
   }
 
   if (document.readyState === 'loading') {

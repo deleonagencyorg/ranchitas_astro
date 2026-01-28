@@ -32,8 +32,8 @@ const locale = currentLang || getLocale();
 const contact = locale === 'es' ? contactEs : contactEn;
 
 // Meta information
-const title = contact.title;
-const metaDescription = contact.description;
+const title = t('meta.contact.title', { namespace: 'common', locale });
+const metaDescription = t('meta.contact.description', { namespace: 'common', locale });
 console.log('headerColorConfig in Contact:', headerColorConfig);
 const headerColors = {
   backgroundColor: '#FAF0D5',
@@ -41,7 +41,7 @@ const headerColors = {
 };
 ---
 
-<MainLayout title={title} class="bg-primaryCream" description={metaDescription} headerColorConfig={headerColors}>
+<MainLayout title={title} class="bg-primaryCream" description={metaDescription} headerColors={headerColors}>
   <div class=" w-[100%] mx-auto text-center flex flex-col items-center ">
     
 

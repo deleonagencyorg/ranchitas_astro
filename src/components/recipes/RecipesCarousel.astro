@@ -154,7 +154,7 @@ if (!recipeItems.length) {
       if (!track) return;
       
       const slides = Array.from(track.querySelectorAll('.recipe-slide'));
-      if (slides.length === 0) return;
+      if (slides.length <= 1) return;
       
       let currentIndex = 0;
       let autoScrollInterval: NodeJS.Timeout | null = null;

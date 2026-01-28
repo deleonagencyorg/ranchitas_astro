@@ -34,12 +34,24 @@ const recipeProducts = productSlugs
   .map(slug => allProducts.find(p => p.id === slug))
   .filter((p): p is ProductItem => p !== undefined);
 
+const hasNoProducts = recipeProducts.length === 0;
+const carouselProducts = hasNoProducts
+  ? [
+      {
+        id: 'placeholder',
+        name: '',
+        image: `/images/${currentLang}/placeholder.jpg`,
+        description: '',
+        short_description: ''
+      }
+    ]
+  : recipeProducts;
+
 const sectionTitle = currentLang === 'es' ? 'El secreto está en' : 'The secret is in';
 const viewProductText = currentLang === 'es' ? 'Ver producto' : 'View product';
 ---
 
-{recipeProducts.length > 0 && (
-  <section class="py-16 px-8 bg-primaryCream rounded-[40px]">
+<section class="py-16 px-8 bg-primaryCream rounded-[40px]">
     <div class="max-w-7xl mx-auto">
       <!-- Title -->
       <div class="text-center mb-12">
@@ -53,7 +65,7 @@ const viewProductText = currentLang === 'es' ? 'Ver producto' : 'View product';
       <div class="relative">
         <div class="swiper-container product-carousel">
           <div class="swiper-wrapper">
-            {recipeProducts.map((product) => (
+            {carouselProducts.map((product) => (
               <div class="swiper-slide">
                 <div class="bg-white rounded-[3rem] shadow-xl p-8 md:p-12 max-w-5xl mx-auto">
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
@@ -79,12 +91,14 @@ const viewProductText = currentLang === 'es' ? 'Ver producto' : 'View product';
                       </p>
 
                       <div class="mt-2">
-                        <a 
-                          href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}/${product.id}`}
-                          class="inline-flex items-center gap-2 bg-[#F86509] text-white font-bold px-8 py-4 rounded-full hover:bg-[#d54500] transition-all hover:shadow-lg transform hover:-translate-y-1"
-                        >
-                          {viewProductText} →
-                        </a>
+                        {!hasNoProducts && (
+                          <a 
+                            href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}/${product.id}`}
+                            class="inline-flex items-center gap-2 bg-[#F86509] text-white font-bold px-8 py-4 rounded-full hover:bg-[#d54500] transition-all hover:shadow-lg transform hover:-translate-y-1"
+                          >
+                            {viewProductText} →
+                          </a>
+                        )}
                       </div>
                     </div>
                   </div>
@@ -95,7 +109,7 @@ const viewProductText = currentLang === 'es' ? 'Ver producto' : 'View product';
         </div>
 
         <!-- Navigation Arrows -->
-        {recipeProducts.length > 1 && (
+        {carouselProducts.length > 1 && !hasNoProducts && (
           <>
             <button class="swiper-button-prev-custom absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-white shadow-lg flex items-center justify-center text-[#F86509] hover:bg-[#F86509] hover:text-white transition-colors z-10">
               <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -112,7 +126,6 @@ const viewProductText = currentLang === 'es' ? 'Ver producto' : 'View product';
       </div>
     </div>
   </section>
-)}
 
 <script>
   import Swiper from 'swiper';
@@ -123,19 +136,25 @@ const viewProductText = currentLang === 'es' ? 'Ver producto' : 'View product';
   document.addEventListener('DOMContentLoaded', () => {
     const productCarousel = document.querySelector('.product-carousel');
     if (productCarousel) {
+      const slidesCount = productCarousel.querySelectorAll('.swiper-slide').length;
+      const enableControls = slidesCount > 1;
       new Swiper('.product-carousel', {
         modules: [Navigation, Autoplay],
         slidesPerView: 1,
         spaceBetween: 30,
-        loop: true,
-        autoplay: {
-          delay: 5000,
-          disableOnInteraction: false,
-        },
-        navigation: {
-          nextEl: '.swiper-button-next-custom',
-          prevEl: '.swiper-button-prev-custom',
-        },
+        loop: enableControls,
+        autoplay: enableControls
+          ? {
+              delay: 5000,
+              disableOnInteraction: false,
+            }
+          : false,
+        navigation: enableControls
+          ? {
+              nextEl: '.swiper-button-next-custom',
+              prevEl: '.swiper-button-prev-custom',
+            }
+          : undefined,
       });
     }
   });

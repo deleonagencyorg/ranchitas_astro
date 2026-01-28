@@ -103,7 +103,7 @@ if (allProductsArray.length > 1) {
     class="product-detail pt-12 md:pt-29 pb-32 bg-cover bg-center relative bg-primaryCream"
   >
     <div class="md:mt-[0] container mx-auto px-6 py-5 flex flex-col xl:flex-row gap-24">
-      <div class="relative flex justify-center items-center w-full xl:w-[605px] p-4 xl:px-28 xl:py-8 rounded-[30px] gap-2 overflow-hidden bg-white xl:h-[593px] md:h-[593px] lg:h-[593px] h-[450px] product-image-container">
+      <div class="relative flex justify-center items-center w-full xl:w-[605px] p-4 xl:px-28 xl:py-8 rounded-[30px] gap-2 overflow-hidden bg-white xl:h-[593px] md:h-[593px] lg:h-[593px] h-[350px] product-image-container">
         <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-[30px] pointer-events-none"></div>
         <img id="product-image" 
           class="relative z-10 xl:max-w-full xl:h-auto lg:max-w-[400px] md:max-w-[400px] will-change-transform" 
@@ -113,7 +113,7 @@ if (allProductsArray.length > 1) {
       </div>
       
       {/* Contenido del lado derecho */}
-      <div class="w-full xl:w-1/2  h-auto">
+      <div class="w-full xl:w-1/2  h-auto lg:mt-0 -mt-[90px]">
         <h1 
           class="font-title  text-[18px] font-medium py-4 text-[#F86509]"
         >
@@ -189,7 +189,7 @@ if (allProductsArray.length > 1) {
 
   </article>
 
-  <section class="z-30 mb-32 mt-8">
+  <section class="z-30 mb-32 -mt-[90px] lg:mt-8">
     <div class="container mx-auto px-6">
       {/* Título y subtítulo */}
       <div class="mb-12">
@@ -211,28 +211,27 @@ if (allProductsArray.length > 1) {
                   <div class="swiper-slide h-auto">
                     <a 
                       href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}/${product.id}`}
-                      class="block h-full rounded-[30px] p-6 md:p-8 flex flex-col items-center justify-between transition-all duration-300 hover:scale-[1.03] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F86509] min-h-[400px] md:min-h-[450px]"
+                      class="related-product-card h-full rounded-[30px] p-6 md:p-8 transition-all duration-300 hover:scale-[1.03] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F86509]"
                       style={{ backgroundColor: product.background_color }}
                     >
                       {/* Imagen del producto */}
-                      <div class="w-full flex justify-center items-center flex-1 mb-4 md:mb-6">
+                      <div class="related-product-image">
                         <img 
                           src={product.image} 
                           alt={product.name}
-                          class="w-full max-w-[280px] md:max-w-[320px] h-[180px] md:h-[220px] object-contain"
                           loading="lazy"
                         />
                       </div>
                       {/* Información del producto */}
-                      <div class="w-full text-start">
+                      <div class="related-product-content">
                         <h3 
-                          class="text-2xl md:text-3xl font-bold mb-2 line-clamp-2"
+                          class="related-product-title"
                           style={{ color: product.text_color }}
                         >
                           {product.name}
                         </h3>
                         <p 
-                          class="text-base md:text-lg italic line-clamp-2"
+                          class="related-product-description"
                           style={{ color: product.text_color }}
                         >
                           {product.short_description}

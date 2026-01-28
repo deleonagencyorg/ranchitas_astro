@@ -17,6 +17,20 @@ const {
 
 const categoryItems = Array.isArray(categories) ? categories : [];
 
+const hasNoCategories = categoryItems.length === 0;
+const carouselCategories = hasNoCategories
+  ? [
+      {
+        id: 'placeholder',
+        title: '',
+        description: '',
+        image: '/images/es/placeholder.jpg',
+        gradient: 'from-gray-200 to-gray-300',
+        url: '#'
+      }
+    ]
+  : categoryItems;
+
 // Helper to get a consistent key for category types if needed in the future
 function getCategoryType(category: any): string {
   return String(category?.id || 'general').trim().toLowerCase();
@@ -31,7 +45,7 @@ function getCategoryType(category: any): string {
     <div class="categories-carousel relative">
       <div class="categories-carousel-container overflow-hidden px-4 md:px-0">
         <div class="categories-carousel-track flex items-start gap-4 md:gap-6 transition-transform duration-300" id="categoriesTrackDesktop" style="transform: translateX(0px); width: max-content;">
-          {categoryItems.map((category, index) => (
+          {carouselCategories.map((category, index) => (
             <div class="category-slide flex-shrink-0 w-[calc(100vw-2rem)] md:w-auto" data-index={index} data-category={getCategoryType(category)}>
               <CategoryCard
                 id={category.id}
@@ -40,7 +54,7 @@ function getCategoryType(category: any): string {
                 image={category.image}
                 gradient={category.gradient}
                 url={category.url}
-                clickable={!disableLinks}
+                clickable={!disableLinks && !hasNoCategories}
               />
             </div>
           ))}
@@ -66,21 +80,21 @@ function getCategoryType(category: any): string {
 </div>
 
 <script>
-  function initCategoriesCarousel(root) {
+  function initCategoriesCarousel(root: HTMLElement) {
     if (!root || root.dataset.ccInitialized === 'true') return;
     root.dataset.ccInitialized = 'true';
 
     setupDesktopCarousel();
 
     function setupDesktopCarousel() {
-      const track = root.querySelector('#categoriesTrackDesktop');
-      const prevBtn = root.querySelector('#prevBtnDesktop');
-      const nextBtn = root.querySelector('#nextBtnDesktop');
-      const dotsContainer = root.querySelector('.carousel-dots-desktop');
+      const track = root.querySelector('#categoriesTrackDesktop') as HTMLElement | null;
+      const prevBtn = root.querySelector('#prevBtnDesktop') as HTMLElement | null;
+      const nextBtn = root.querySelector('#nextBtnDesktop') as HTMLElement | null;
+      const dotsContainer = root.querySelector('.carousel-dots-desktop') as HTMLElement | null;
 
       if (!track || !prevBtn || !nextBtn || !dotsContainer) return;
 
-      const slides = Array.from(track.querySelectorAll('.category-slide'));
+      const slides = Array.from(track.querySelectorAll('.category-slide')) as HTMLElement[];
       // Inicializar en 0 para mostrar la primera categoría
       let currentSlide = 0;
       
@@ -112,6 +126,9 @@ function getCategoryType(category: any): string {
       prevBtn.parentNode.replaceChild(prevClone, prevBtn);
       nextBtn.parentNode.replaceChild(nextClone, nextBtn);
 
+      const prevButton = prevClone as HTMLButtonElement;
+      const nextButton = nextClone as HTMLButtonElement;
+
       // Llamar a createDots primero para que los puntos estén listos
       createDots();
       
@@ -126,14 +143,14 @@ function getCategoryType(category: any): string {
         updateButtons();
       }, 100);
 
-      prevClone.addEventListener('click', () => {
+      prevButton.addEventListener('click', () => {
         if (currentSlide > 0) {
           currentSlide--;
           updateCarousel();
         }
       });
 
-      nextClone.addEventListener('click', () => {
+      nextButton.addEventListener('click', () => {
         if (currentSlide < slides.length - slidesPerView) {
           currentSlide++;
           updateCarousel();
@@ -174,15 +191,15 @@ function getCategoryType(category: any): string {
         
         track.style.transform = `translateX(-${offset}px)`;
 
-        slides.forEach((slide) => {
-            const card = slide.querySelector('a');
+        slides.forEach((slideEl: HTMLElement) => {
+            const card = slideEl.querySelector('a');
             if (!card) return;
 
             // Clone to remove old listeners
             const newCard = card.cloneNode(true);
             card.parentNode.replaceChild(newCard, card);
 
-            const slideContainer = newCard.parentElement;
+            const slideContainer = newCard.parentElement as HTMLElement;
             const cardContainer = newCard.querySelector('div');
             const gradientBg = cardContainer.querySelector('div:first-child');
             const contentBg = cardContainer.querySelector('div:last-child');
@@ -205,8 +222,8 @@ function getCategoryType(category: any): string {
                 if(gradientBg) gradientBg.style.width = `${expandedWidth}px`;
                 if(contentBg) contentBg.style.width = `${expandedWidth}px`;
 
-                slides.forEach(s => {
-                    const otherCard = s.querySelector('a');
+                slides.forEach((s: HTMLElement) => {
+                    const otherCard = s.querySelector('a') as HTMLElement | null;
                     if (otherCard !== newCard) {
                         otherCard.style.opacity = '0.6';
                     }
@@ -221,8 +238,9 @@ function getCategoryType(category: any): string {
                 if(gradientBg) gradientBg.style.width = `${originalWidth}px`;
                 if(contentBg) contentBg.style.width = `${originalWidth}px`;
 
-                slides.forEach(s => {
-                    s.querySelector('a').style.opacity = '1';
+                slides.forEach((s: HTMLElement) => {
+                    const anchor = s.querySelector('a') as HTMLElement | null;
+                    if (anchor) anchor.style.opacity = '1';
                 });
             });
         });
@@ -232,8 +250,8 @@ function getCategoryType(category: any): string {
       }
 
       function updateDots() {
-        const dots = dotsContainer.querySelectorAll('button');
-        dots.forEach((dot, i) => {
+        const dots = dotsContainer.querySelectorAll<HTMLButtonElement>('button');
+        dots.forEach((dot: HTMLButtonElement, i: number) => {
           dot.classList.toggle('bg-brown', i === currentSlide);
           dot.classList.toggle('bg-gray-300', i !== currentSlide);
         });
@@ -241,14 +259,14 @@ function getCategoryType(category: any): string {
 
       function updateButtons() {
         slidesPerView = getSlidesPerView();
-        prevClone.disabled = currentSlide === 0;
-        nextClone.disabled = currentSlide >= slides.length - slidesPerView;
-        prevClone.classList.toggle('opacity-50', prevClone.disabled);
-        nextClone.classList.toggle('opacity-50', nextClone.disabled);
+        prevButton.disabled = currentSlide === 0;
+        nextButton.disabled = currentSlide >= slides.length - slidesPerView;
+        prevButton.classList.toggle('opacity-50', prevButton.disabled);
+        nextButton.classList.toggle('opacity-50', nextButton.disabled);
       }
       
       // Agregar listener para resize para actualizar el carousel cuando cambie el tamaño de la ventana
-      let resizeTimeout;
+      let resizeTimeout: number;
       window.addEventListener('resize', () => {
         clearTimeout(resizeTimeout);
         resizeTimeout = setTimeout(() => {

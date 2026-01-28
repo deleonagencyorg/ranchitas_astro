@@ -1,6 +1,6 @@
 ---
 // src/views/Blog/index.astro
-import { type Locale } from '../../i18n/i18n';
+import { t, type Locale } from '../../i18n/i18n';
 import { ViewTransitions } from 'astro:transitions';
 import MainLayout from '../../layouts/MainLayout.astro';
 import './styles.css';
@@ -22,10 +22,8 @@ interface BlogPostFrontmatter {
 }
 
 const { currentLang } = Astro.props;
-const pageTitle = currentLang === 'es' ? 'Noticias' : 'News';
-const pageDescription = currentLang === 'es' 
-  ? 'Mantente al día con nuestras últimas noticias y artículos.' 
-  : 'Stay updated with our latest news and articles.';
+const pageTitle = t('meta.news.title', { namespace: 'common', locale: currentLang });
+const pageDescription = t('meta.news.description', { namespace: 'common', locale: currentLang });
 
 const sectionKicker = currentLang === 'es' ? 'Noticias Ranchitas' : 'Ranchitas News';
 const heroTitle = currentLang === 'es' ? 'Historias, novedades y todo sobre el ' : 'Stories, news and everything about the ';

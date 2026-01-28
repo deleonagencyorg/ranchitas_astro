@@ -9,6 +9,7 @@ import WhereToBuyModal from '../components/common/WhereToBuyModal.astro';
 import I18nProvider from '../components/i18n/I18nProvider.astro';
 import { routesConfig } from '../config/routes';
 import { getHeaderColors } from '../config/headerColors';
+import SEO from '../components/SEO.astro';
 import { ViewTransitions } from 'astro:transitions';
 import "../styles/global.css";
 
@@ -29,6 +30,8 @@ const langFromUrl = pathSegments[1] as Locale;
 const validLocales: Locale[] = ['es', 'en'];
 const currentLang = validLocales.includes(langFromUrl) ? langFromUrl : 'es';
 
+const canonicalUrl = `https://ranchitas.com${Astro.url.pathname}`;
+
 const { pathname } = Astro.url;
 const shouldHideHeader = pathname.startsWith('/es/resultados') || pathname.startsWith('/en/results');
 
@@ -47,11 +50,14 @@ if (headerColors) {
   <head>
     <GoogleTagManager />
     <Favicon />
-    
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    {title && <title> Ranchitas -  {title}</title>}
-    {description && <meta name="description" content={description} />}
+
+    <SEO
+      currentLang={currentLang}
+      title={title}
+      description={description}
+      canonicalUrl={canonicalUrl}
+      pathname={Astro.url.pathname}
+    />
     <ViewTransitions />
     <slot name="head" />
   </head>
