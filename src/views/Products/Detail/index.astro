@@ -100,80 +100,78 @@ if (allProductsArray.length > 1) {
 {safeProduct.background_color && (
   <article
     id="product-detail"
-    class="product-detail pt-12 md:pt-29 pb-32 bg-cover bg-center relative bg-primaryCream"
+    class="product-detail pt-12 md:pt-29 pb-20 sm:pb-24 lg:pb-32 bg-cover bg-center relative bg-primaryCream"
   >
-    <div class="md:mt-[0] container mx-auto px-6 py-5 flex flex-col xl:flex-row gap-24">
-      <div class="relative flex justify-center items-center w-full xl:w-[605px] p-4 xl:px-28 xl:py-8 rounded-[30px] gap-2 overflow-hidden bg-white xl:h-[593px] md:h-[593px] lg:h-[593px] h-[350px] product-image-container">
+    <div class="md:mt-[0] mx-auto w-[95%] sm:w-[95%] max-w-[1400px] px-0 sm:px-6 py-5 flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-24">
+      <div class="relative flex justify-center items-center w-full lg:w-[605px] p-4 sm:p-6 md:p-8 lg:px-20 lg:py-8 xl:px-28 xl:py-8 rounded-[20px] sm:rounded-[30px] gap-2 overflow-hidden bg-white h-[280px] sm:h-[350px] md:h-[500px] lg:h-[593px] product-image-container">
         <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-[30px] pointer-events-none"></div>
         <img id="product-image" 
-          class="relative z-10 xl:max-w-full xl:h-auto lg:max-w-[400px] md:max-w-[400px] will-change-transform" 
+          class="relative z-10 w-full h-full object-contain max-w-[200px] sm:max-w-[280px] md:max-w-[350px] lg:max-w-[400px] xl:max-w-full will-change-transform" 
             src={safeProduct.image} alt={safeProduct.name} 
             transition:name={`product-image-${safeProduct.id}`}
             loading="eager" />
       </div>
       
       {/* Contenido del lado derecho */}
-      <div class="w-full xl:w-1/2  h-auto lg:mt-0 -mt-[90px]">
+      <div class="w-full lg:w-1/2 h-auto mt-0 sm:mt-0 md:mt-0 lg:mt-0">
         <h1 
-          class="font-title  text-[18px] font-medium py-4 text-[#F86509]"
+          class="font-title text-sm sm:text-base md:text-lg font-medium py-2 sm:py-3 md:py-4 text-[#F86509]"
         >
          {currentLang === 'es' ? 'Sabor Intenso' : 'Intense flavor'}
         </h1>
-        <div class="flex justify-between items-center mb-8">
-          <h1 class="lg:text-6xl text-6xl font-bold italic">{safeProduct.name}</h1>
+        <div class="flex justify-between items-center mb-4 sm:mb-6 md:mb-8">
+          <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold italic">{safeProduct.name}</h1>
         </div>
         <h1 
-          class="font-title text-[24px] font-medium py-0"
+          class="font-title text-base sm:text-lg md:text-xl lg:text-2xl font-medium py-0"
         >
           {currentLang === 'es' ? 'Tamaños disponibles:' : 'Available sizes:'}
         </h1>
         {safeProduct.weight && safeProduct.weight.length > 0 && (
-          <div class="my-4 max-w-full">
-            <div class="grid grid-cols-2 gap-2 md:grid-cols-6 lg:grid-cols-5 xl:grid-cols-5">
-              {safeProduct.weight.map((weight, index) => (
-                <div class="w-full min-w-0">
-                  <button 
-                    class="weight-option block w-[90.7px] h-[52px] px-4 lg:px-5 text-center rounded-[50px] border-2 border-[#F86509] text-base md:text-xl font-bold bg-white hover:bg-[#F86509] hover:text-white cursor-pointer transition-all duration-300"
-                    data-weight={weight}
-                    data-index={index}
-                  >
-                    {weight}
-                  </button>
-                </div>
-              ))}
-            </div>
+          <div class="my-3 sm:my-4 max-w-full flex flex-row flex-wrap justify-start items-center gap-2 sm:gap-3 md:gap-4">
+            {safeProduct.weight.map((weight, index) => (
+              <div class="shrink-0">
+                <button 
+                  class="weight-option block w-[90px] h-[44px] sm:h-[48px] md:h-[52px] px-2 sm:px-3 md:px-4 lg:px-5 text-center rounded-[50px] border-2 border-[#F86509] text-sm sm:text-base md:text-lg lg:text-xl font-bold bg-white hover:bg-[#F86509] hover:text-white cursor-pointer transition-all duration-300"
+                  data-weight={weight}
+                  data-index={index}
+                >
+                  {weight}
+                </button>
+              </div>
+            ))}
           </div>
         )}
-        <div class="w-full h-[58px] bg-white rounded-[15px] p-1 flex gap-1 my-8" id="product-tabs">
+        <div class="w-full h-auto  bg-white rounded-[15px] p-1 flex flex-col sm:flex-row gap-1 my-4 sm:my-6 md:my-8" id="product-tabs">
           <button 
-            class="tab-button flex-1 h-[49px] rounded-[12px] flex items-center justify-center px-2 transition-all duration-300"
+            class="tab-button flex-1 bg-orange rounded-[12px] flex items-center justify-center px-16 py-3 sm:py-2 transition-all duration-300"
             data-tab="description"
           >
-            <span class="text-[16px] font-medium leading-6">
+            <span class="text-white text-sm sm:text-base font-medium leading-6">
               {currentLang === 'es' ? 'Descripción General' : 'General Description'}
             </span>
           </button>
           
           {hasNutrition && (
             <button 
-              class="tab-button flex-1 h-[49px] rounded-[12px] flex items-center justify-center px-2 transition-all duration-300"
+              class="tab-button flex-1 bg-orange rounded-[12px] flex items-center justify-center px-16 py-3 sm:py-2 transition-all duration-300"
               data-tab="nutrition"
             >
-              <span class="text-[16px] font-medium leading-6">
+              <span class="text-white text-sm sm:text-base font-medium leading-6">
                 {currentLang === 'es' ? 'Tabla de Nutrición' : 'Nutrition Table'}
               </span>
             </button>
           )}
         </div>
 
-        <div class="bg-white rounded-[20px] w-full">
-          <p class="text-black pt-[33px] pb-[33px] pl-[33px] pr-[33px]">{safeProduct.description}</p>
+        <div class="bg-white rounded-[15px] sm:rounded-[20px] w-full">
+          <p class="text-black text-sm sm:text-base p-4 sm:p-6 md:p-8">{safeProduct.description}</p>
         </div>
 
         <button
           type="button"
           onclick="window.openWhereToBuyModal && window.openWhereToBuyModal()"
-          class="bg-[#D61F2C] text-white rounded-[50px] w-full h-[52px] mt-[20px] text-start pl-[20px]"
+          class="bg-[#D61F2C] text-white rounded-[50px] w-full h-[44px] sm:h-[48px] md:h-[52px] mt-4 sm:mt-5 md:mt-[20px] text-sm sm:text-base text-start pl-4 sm:pl-5 md:pl-[20px] font-medium"
         >
           {currentLang === 'es' ? '¿Dónde comprar?' : 'Where to buy?'}
         </button>
@@ -189,14 +187,14 @@ if (allProductsArray.length > 1) {
 
   </article>
 
-  <section class="z-30 mb-32 -mt-[90px] lg:mt-8">
-    <div class="container mx-auto px-6">
+  <section class="z-30 mb-16 sm:mb-20 md:mb-24 lg:mb-32 mt-8 sm:mt-8 md:mt-8 lg:mt-8">
+    <div class="mx-auto w-[95%] sm:w-[95%] max-w-[1400px] px-4 sm:px-6">
       {/* Título y subtítulo */}
-      <div class="mb-12">
-        <h2 class="text-5xl md:text-6xl font-bold italic mb-4">
+      <div class="mb-8 sm:mb-10 md:mb-12">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold italic mb-3 sm:mb-4">
           {currentLang === 'es' ? 'Sabores que te encantarán' : 'Flavors you will love'}
         </h2>
-        <p class="text-xl md:text-2xl italic">
+        <p class="text-base sm:text-lg md:text-xl lg:text-2xl italic">
           {currentLang === 'es' ? 'Descubre otros sabores que también te encantarán' : 'Discover other flavors that you will also love'}
         </p>
       </div>
@@ -211,7 +209,7 @@ if (allProductsArray.length > 1) {
                   <div class="swiper-slide h-auto">
                     <a 
                       href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}/${product.id}`}
-                      class="related-product-card h-full rounded-[30px] p-6 md:p-8 transition-all duration-300 hover:scale-[1.03] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F86509]"
+                      class="related-product-card h-full rounded-[20px] sm:rounded-[25px] md:rounded-[30px] p-3 sm:p-4 md:p-5 lg:p-6 transition-all duration-300 hover:scale-[1.03] hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#F86509]"
                       style={{ backgroundColor: product.background_color }}
                     >
                       {/* Imagen del producto */}
@@ -225,7 +223,7 @@ if (allProductsArray.length > 1) {
                       {/* Información del producto */}
                       <div class="related-product-content">
                         <h3 
-                          class="related-product-title"
+                          class="text-xl md:text-2xl lg:text-3xl font-bold mb-2 sm:mb-3 md:mb-4"
                           style={{ color: product.text_color }}
                         >
                           {product.name}

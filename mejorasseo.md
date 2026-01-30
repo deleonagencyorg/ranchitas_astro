@@ -117,7 +117,7 @@ Explora la variedad de sabores de Ranchitas: Nacho Excitante, Queso, Pizza, Guac
         "@type": "Product",
         "position": 1,
         "name": "Ranchitas Nacho Excitante",
-        "description": "Tortillas de maíz con queso y jalapeño para un CRONCH picante.",
+        "description": Nachos de maíz con queso y jalapeño para un CRONCH picante.",
         "image": "https://www.ranchitas.com/images/nacho-excitante.png",
         "brand": {
           "@type": "Brand",
@@ -182,7 +182,7 @@ Explore the variety of Ranchitas flavors: Nacho Excitante, Cheese, Pizza, Guacam
         "@type": "Product",
         "position": 1,
         "name": "Ranchitas Nacho Excitante",
-        "description": "Corn tortillas with cheese and jalapeño for a spicy CRONCH.",
+        "description": "Corn nachos with cheese and jalapeño for a spicy CRONCH.",
         "image": "https://www.ranchitas.com/images/nacho-excitante.png",
         "brand": {
           "@type": "Brand",

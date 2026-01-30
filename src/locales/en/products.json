@@ -13,13 +13,13 @@
       "id": "sompopopoapp",
       "name": "Sompopop App",
       "link": "https://sompopo.app.link/yummies",
-      "icon": "https://snack.yummiespromociones.com/SnacksyummiesAssets/sompopocolor.png"
+      "icon": "https://snack.yummiespromociones.com/SnacksyummiesAssets/cropped-Logo-Landing-Page.webp"
     },
     {
       "id": "latorreapp",
       "name": "La Torre",
       "link": "https://www.latorre.com.gt/458?map=productClusterIds",
-      "icon": "https://snack.yummiespromociones.com/SnacksyummiesAssets/latorrecolor.png"
+      "icon": "https://snack.yummiespromociones.com/SnacksyummiesAssets/latorre.webp"
     }
   ],
   "items": [
@@ -60,7 +60,7 @@
       "header_background": "#E82E30",
       "color_button": "#FFFFFF",
       "description": "Crispy fried nachos with spicy nacho flavor",
-      "short_description": "Crispy fried tortillas with spicy nacho flavor",
+      "short_description": "Crispy fried nachos with spicy nacho flavor",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
       "sizes": [
