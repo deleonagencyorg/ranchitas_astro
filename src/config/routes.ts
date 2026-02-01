@@ -85,6 +85,13 @@ export const routesConfig: RouteConfig[] = [
     metaTitleKey: 'meta.jurados.title',
     metaDescriptionKey: 'meta.jurados.description',
   },
+  {
+    id: 'promotions',
+    slugs: { es: 'promociones', en: 'promotions' },
+    contentComponent: '@/views/Promotions/index.astro',
+    metaTitleKey: 'meta.promotions.title',
+    metaDescriptionKey: 'meta.promotions.description',
+  },
   // ... Agrega más rutas aquí
 ];
 

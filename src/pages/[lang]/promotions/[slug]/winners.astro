@@ -1,0 +1,35 @@
+---
+import MainLayout from '../../../../layouts/MainLayout.astro';
+import WinnersView from '../../../../views/Promotions/Winners/index.astro';
+import { setLocale } from '../../../../i18n/i18n';
+
+export async function getStaticPaths() {
+  const promotionsEN = await import('../../../../locales/en/promotions.json');
+  
+  const paths = promotionsEN.items
+    .filter((promo: any) => promo.winners && Object.keys(promo.winners).length > 0)
+    .map((promo: any) => ({
+      params: { 
+        lang: 'en',
+        slug: promo.slug
+      },
+      props: { 
+        promotionSlug: promo.slug
+      }
+    }));
+
+  return paths;
+}
+
+const { lang, slug } = Astro.params;
+const { promotionSlug } = Astro.props;
+
+setLocale(lang as 'es' | 'en');
+---
+
+<MainLayout 
+  title={`Winners - ${promotionSlug}`}
+  description="Meet the winners of our promotion"
+>
+  <WinnersView currentLang={lang as 'es' | 'en'} promotionSlug={promotionSlug} />
+</MainLayout>

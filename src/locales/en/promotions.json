@@ -1,0 +1,200 @@
+{
+  "page": {
+    "title": "Promotions",
+    "description": "Discover our exclusive promotions and participate to win amazing prizes",
+    "view_details": "View details",
+    "no_promotions": "No promotions available at this time",
+    "active": "Active",
+    "expired": "Ended",
+    "coming_soon": "Coming Soon"
+  },
+  "items": [
+    {
+      "id": "promo-ranchitas-2025",
+      "slug": "promo-ranchitas-2025",
+      "title": "Ranchitas Promotion 2025",
+      "short_description": "Participate and win amazing prizes with your favorite snacks",
+      "description": "Buy your favorite Ranchitas, register your code and participate for incredible prizes. Every week we will raffle special prizes for our most loyal fans.",
+      "image": "https://snack.yummiespromociones.com/ranchitas/promo-2025.jpg",
+      "banner_desktop": "https://snack.yummiespromociones.com/ranchitas/banner-promo-desktop.jpg",
+      "banner_mobile": "https://snack.yummiespromociones.com/ranchitas/banner-promo-mobile.jpg",
+      "start_date": "2025-01-01",
+      "end_date": "2025-12-31",
+      "status": "active",
+      "terms_and_conditions": [
+        "Promotion valid from January 1 to December 31, 2025",
+        "All Ranchitas products participate",
+        "You must be 18 years or older to participate",
+        "One code per person per day",
+        "Winners will be notified by email"
+      ],
+      "prizes": [
+        {
+          "name": "Grand Prize",
+          "description": "All-expenses-paid trip for 2 people",
+          "quantity": 1
+        },
+        {
+          "name": "Second Prize",
+          "description": "Video game console",
+          "quantity": 5
+        },
+        {
+          "name": "Third Prize",
+          "description": "Ranchitas product kit",
+          "quantity": 100
+        }
+      ],
+      "how_to_participate": [
+        "Buy any participating Ranchitas product",
+        "Find the unique code inside the package",
+        "Register on our website",
+        "Enter your code in the participation section",
+        "Wait for the raffle results!"
+      ],
+      "faqs": [
+        {
+          "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in velit malesuada, pulvinar neque vel, lacinia dolor. Aenean eget velit.",
+          "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Curabitur et velit at neque consequat adipiscing elit."
+        },
+        {
+          "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in velit malesuada, pulvinar neque vel, lacinia dolor. Aenean eget velit.",
+          "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Curabitur et velit at neque consequat adipiscing elit."
+        },
+        {
+          "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in velit malesuada, pulvinar neque vel, lacinia dolor. Aenean eget velit.",
+          "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Curabitur et velit at neque consequat adipiscing elit."
+        }
+      ],
+      "cta_text": "Participate now",
+      "cta_link": "/en/participacion",
+      "winners": {
+        "GT": [
+          {
+            "name": "Play Station 5 Winner",
+            "description": "Juan Pérez won a PlayStation 5 console in the January raffle",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-1.jpg"
+          },
+          {
+            "name": "Laptop Winner",
+            "description": "María González won a latest generation laptop",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-2.jpg"
+          },
+          {
+            "name": "Tablet Winner",
+            "description": "Carlos Ramírez won a tablet in the weekly raffle",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-3.jpg"
+          },
+          {
+            "name": "Ranchitas Kit Winner",
+            "description": "Ana López won the complete Ranchitas product kit",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-4.jpg"
+          }
+        ],
+        "SV": [
+          {
+            "name": "Xbox Series X Winner",
+            "description": "Roberto Martínez won an Xbox Series X console",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-5.jpg"
+          },
+          {
+            "name": "Smart TV Winner",
+            "description": "Sofía Hernández won a 55-inch Smart TV",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-6.jpg"
+          }
+        ],
+        "CR": [
+          {
+            "name": "iPhone 15 Winner",
+            "description": "Diego Castro won the latest iPhone model",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-7.jpg"
+          },
+          {
+            "name": "AirPods Pro Winner",
+            "description": "Laura Jiménez won AirPods Pro",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-8.jpg"
+          }
+        ],
+        "NI": [
+          {
+            "name": "Bicycle Winner",
+            "description": "Miguel Ortiz won a mountain bike",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-9.jpg"
+          },
+          {
+            "name": "Camera Winner",
+            "description": "Patricia Ruiz won a professional camera",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-10.jpg"
+          }
+        ],
+        "HN": [
+          {
+            "name": "Nintendo Switch Winner",
+            "description": "Fernando Díaz won a Nintendo Switch with games",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-11.jpg"
+          },
+          {
+            "name": "Gaming Headphones Winner",
+            "description": "Gabriela Torres won premium gaming headphones",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-12.jpg"
+          }
+        ]
+      }
+    },
+    {
+      "id": "promo-verano-2025",
+      "slug": "promo-verano-2025",
+      "title": "Ranchitas Summer",
+      "short_description": "Enjoy summer with Ranchitas and win unique experiences",
+      "description": "This summer, Ranchitas takes you to live unforgettable experiences. Participate by buying your favorite products and you could win concert tickets, water park passes and much more.",
+      "image": "https://snack.yummiespromociones.com/ranchitas/promo-verano.jpg",
+      "banner_desktop": "https://snack.yummiespromociones.com/ranchitas/banner-verano-desktop.jpg",
+      "banner_mobile": "https://snack.yummiespromociones.com/ranchitas/banner-verano-mobile.jpg",
+      "start_date": "2024-06-01",
+      "end_date": "2024-08-31",
+      "status": "expired",
+      "terms_and_conditions": [
+        "Promotion valid from June 1 to August 31, 2025",
+        "Selected products from the Ranchitas line participate",
+        "You must be 18 years or older to participate",
+        "Prizes are not transferable or exchangeable for cash"
+      ],
+      "prizes": [
+        {
+          "name": "Concert tickets",
+          "description": "VIP passes to the best summer concerts",
+          "quantity": 10
+        },
+        {
+          "name": "Water park passes",
+          "description": "Family tickets to the best parks",
+          "quantity": 50
+        },
+        {
+          "name": "Ranchitas beach kit",
+          "description": "Includes cooler, towel and products",
+          "quantity": 200
+        }
+      ],
+      "how_to_participate": [
+        "Buy participating Ranchitas products",
+        "Register your code on the website",
+        "Accumulate points with each code",
+        "Redeem your points for raffle tickets",
+        "Cross your fingers and wait to win!"
+      ],
+      "faqs": [
+        {
+          "question": "Which products participate?",
+          "answer": "All products from the Ranchitas Nacho Excitante, Cheese and Pizza line participate in this promotion."
+        },
+        {
+          "question": "How do I accumulate points?",
+          "answer": "Each valid code gives you 10 points. You need 50 points to get one raffle ticket."
+        }
+      ],
+      "cta_text": "More information",
+      "cta_link": "/en/contact"
+    }
+  ]
+}

@@ -1,0 +1,21 @@
+---
+import { setLocale, type Locale } from '../../../i18n/i18n';
+import MainLayout from '../../../layouts/MainLayout.astro';
+import PromotionsPage from '../../../views/Promotions/index.astro';
+
+export async function getStaticPaths() {
+  return [
+    { params: { lang: 'en' } }
+  ];
+}
+
+const { lang } = Astro.params as { lang: Locale };
+setLocale(lang);
+
+const pageTitle = 'Promotions | Ranchitas';
+const pageDescription = 'Discover our exclusive promotions and participate to win amazing prizes';
+---
+
+<MainLayout title={pageTitle} description={pageDescription}>
+  <PromotionsPage />
+</MainLayout>

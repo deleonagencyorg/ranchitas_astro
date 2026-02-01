@@ -1,0 +1,36 @@
+---
+import { t, setLocale, type Locale } from '../../../i18n/i18n';
+import MainLayout from '../../../layouts/MainLayout.astro';
+import PromotionDetail from '../../../views/Promotions/Detail/index.astro';
+
+export function getStaticPaths() {
+  const locales = ['en'];
+  const paths = [];
+
+  for (const locale of locales) {
+    const promotions = t('items', { namespace: 'promotions', locale: locale as Locale }) || [];
+    console.log(`Found ${promotions.length} promotions for language ${locale}`);
+    
+    for (const promotion of promotions) {
+      paths.push({
+        params: { lang: locale, slug: promotion.slug },
+        props: { promotion, currentLang: locale as Locale }
+      });
+    }
+  }
+
+  console.log(`Generated ${paths.length} promotion routes in English`);
+  return paths;
+}
+
+const { promotion, currentLang } = Astro.props;
+const { lang, slug } = Astro.params;
+
+setLocale(currentLang);
+
+console.log(`Rendering promotion: ${slug} in language: ${lang}`);
+---
+
+<MainLayout title={promotion.title}>
+  <PromotionDetail currentLang={currentLang} promotionSlug={slug} />
+</MainLayout>

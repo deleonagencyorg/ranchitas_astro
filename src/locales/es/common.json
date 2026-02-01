@@ -20,6 +20,10 @@
       "title": "Productos Ranchitas | Nacho Excitante, Queso, Pizza y Más",
       "description": "Explora la variedad de sabores de Ranchitas: Nacho Excitante, Queso, Pizza, Guacamole, Chile Toreado y Naturales. ¡Encuentra tu CRONCH perfecto!"
     },
+    "promotions": {
+      "title": "Promociones Ranchitas | Participa y Gana",
+      "description": "Descubre nuestras promociones exclusivas y participa para ganar increíbles premios con Ranchitas"
+    },
     "brands": {
       "title": "Nuestras Marcas de Snacks",
       "description": "Descubre Ranchitas, Zambos, Ranchitas. Cada marca con sabores únicos y auténticos que conquistan Centroamérica."
@@ -111,6 +115,11 @@
       "id": "news",
       "text": "Noticias",
       "href": "/es/blog"
+    },
+    {
+      "id": "promotions",
+      "text": "Promociones",
+      "href": "/es/promociones"
     },
     {
       "id": "contact",
