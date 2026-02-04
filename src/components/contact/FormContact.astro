@@ -36,16 +36,16 @@ const contactFormPath = import.meta.env.PUBLIC_CONTACT_FORM_PATH || '/api/v1/aut
 // Dynamic field labels based on language
 const dynamicLabels = {
   es: {
-    clientCode: 'Código de Cliente',
-    areaOfInterest: 'Área de Interés',
-    message: 'Mensaje',
-    requestType: 'Tipo de Solicitud',
-    interest: 'Interés',
-    question: 'Pregunta o Solicitud',
-    comments: 'Comentarios',
-    file: 'Adjuntar Archivo',
+    clientCode: 'CÓDIGO DE CLIENTE',
+    areaOfInterest: 'ÁREA DE INTERÉS',
+    message: 'MENSAJE',
+    requestType: 'TIPO DE SOLICITUD',
+    interest: 'INTERÉS',
+    question: 'PREGUNTA O SOLICITUD',
+    comments: 'COMENTARIOS',
+    file: 'ADJUNTAR ARCHIVO',
     fileHelp: 'PDF, JPG, PNG (máx. 10MB)',
-    areaOfInterestSupplier: 'Área de Interés',
+    areaOfInterestSupplier: 'ÁREA DE INTERÉS',
     commentsEthics: 'Escribe tus comentarios. Si eres empleado Dinant especifica tu cargo'
   },
   en: {
@@ -221,21 +221,7 @@ const options = dynamicOptions[locale];
     </div>
   </div>
 
-  <!-- Fila para comentario -->
-  <div class="flex flex-col md:flex-row gap-6">
-    <div class="flex-1">
-      <label class="block text-white uppercase font-semibold  mb-2">
-        {contact.form.message.label} *
-      </label>
-      <textarea 
-        name="message" 
-        required
-        rows="4"
-        placeholder={contact.form.message.placeholder}
-        class="w-full px-4 py-3 border-[1.5px] border-white rounded-2xl bg-orange text-white placeholder:text-white focus:text-black focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"
-      ></textarea>
-    </div>
-  </div>
+  
 
   <!-- Dynamic Fields Container -->
   <div id="dynamicFields" class="space-y-6">
@@ -275,16 +261,16 @@ const options = dynamicOptions[locale];
     
     // Dynamic labels based on language
     const labels = locale === 'es' ? {
-      clientCode: 'Código de Cliente',
-      areaOfInterest: 'Área de Interés',
-      message: 'Mensaje',
-      requestType: 'Tipo de Solicitud',
-      interest: 'Interés',
-      question: 'Pregunta o Solicitud',
-      comments: 'Comentarios',
-      file: 'Adjuntar Archivo',
+      clientCode: 'CÓDIGO DE CLIENTE',
+      areaOfInterest: 'ÁREA DE INTERÉS',
+      message: 'MENSAJE',
+      requestType: 'TIPO DE SOLICITUD',
+      interest: 'INTERÉS',
+      question: 'PREGUNTA O SOLICITUD',
+      comments: 'COMENTARIOS',
+      file: 'ADJUNTAR ARCHIVO',
       fileHelp: 'PDF, JPG, PNG (máx. 10MB)',
-      areaOfInterestSupplier: 'Área de Interés',
+      areaOfInterestSupplier: 'ÁREA DE INTERÉS',
       commentsEthics: 'Escribe tus comentarios. Si eres empleado Dinant especifica tu cargo'
     } : {
       clientCode: 'Client Code',
