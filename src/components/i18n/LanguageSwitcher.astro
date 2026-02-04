@@ -25,11 +25,6 @@ const routeTranslations = {
   // Agregar más rutas según sea necesario
 };
 
-// Extraer la ruta actual y el idioma
-const pathParts = currentPath.split('/').filter(Boolean);
-const currentLocale = pathParts[0] || 'es';
-const currentRoute = pathParts.slice(1).join('/');
-
 // Función para obtener la ruta traducida
 const getTranslatedPath = (targetLocale: Locale) => {
   const pathParts = currentPath.split('/').filter(Boolean);
@@ -38,18 +33,44 @@ const getTranslatedPath = (targetLocale: Locale) => {
   // Para la ruta raíz (/es o /en)
   if (pathParts.length <= 1) return `/${targetLocale}`;
   
+  const currentLocale = pathParts[0];
+  
+  if (currentLocale === targetLocale) return currentPath;
+  
+  const routeWithoutLocale = pathParts.slice(1).join('/');
+  
   // Si estamos en una ruta mapeada, traducirla
   const translatedRoute = Object.entries(routeTranslations).reduce(
     (acc, [esRoute, enRoute]) => {
-      if (currentLocale === 'es' && currentRoute.startsWith(esRoute)) {
-        return currentRoute.replace(esRoute, enRoute);
+      if (currentLocale === 'es' && routeWithoutLocale.includes(esRoute)) {
+        // Caso especial para rutas con /ganadores
+        if (routeWithoutLocale.includes('/ganadores')) {
+          const baseRoute = routeWithoutLocale.replace('/ganadores', '');
+          if (baseRoute.startsWith(esRoute)) {
+            return baseRoute.replace(esRoute, enRoute) + '/winners';
+          }
+        }
+        return acc.replace(new RegExp(`^${esRoute}/`, 'g'), `${enRoute}/`)
+                  .replace(new RegExp(`/${esRoute}/`, 'g'), `/${enRoute}/`)
+                  .replace(new RegExp(`^${esRoute}$`, 'g'), enRoute)
+                  .replace(new RegExp(`/${esRoute}$`, 'g'), `/${enRoute}`);
       }
-      if (currentLocale === 'en' && currentRoute.startsWith(enRoute)) {
-        return currentRoute.replace(enRoute, esRoute);
+      if (currentLocale === 'en' && routeWithoutLocale.includes(enRoute)) {
+        // Caso especial para rutas con /winners
+        if (routeWithoutLocale.includes('/winners')) {
+          const baseRoute = routeWithoutLocale.replace('/winners', '');
+          if (baseRoute.startsWith(enRoute)) {
+            return baseRoute.replace(enRoute, esRoute) + '/ganadores';
+          }
+        }
+        return acc.replace(new RegExp(`^${enRoute}/`, 'g'), `${esRoute}/`)
+                  .replace(new RegExp(`/${enRoute}/`, 'g'), `/${esRoute}/`)
+                  .replace(new RegExp(`^${enRoute}$`, 'g'), esRoute)
+                  .replace(new RegExp(`/${enRoute}$`, 'g'), `/${esRoute}`);
       }
       return acc;
     },
-    currentRoute
+    routeWithoutLocale
   );
   
   return `/${targetLocale}/${translatedRoute}`;
@@ -131,4 +152,4 @@ const textColorValue = headerColorConfig?.isSpecialBackground ? 'black' : (heade
     font-size: 1.2em;
     line-height: 1;
   }
-</style>
+</style>∫

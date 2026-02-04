@@ -54,7 +54,7 @@
       ],
       "faqs": [
         {
-          "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in velit malesuada, pulvinar neque vel, lacinia dolor. Aenean eget velit.",
+          "question": "¿Como se encuentran?",
           "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Curabitur et velit at neque consequat adipiscing elit."
         },
         {
@@ -143,7 +143,7 @@
     },
     {
       "id": "promo-verano-2025",
-      "slug": "promo-verano-2025",
+      "slug": "promo-ranchitas-2025/ganadores",
       "title": "Verano Ranchitas",
       "short_description": "Disfruta el verano con Ranchitas y gana experiencias únicas",
       "description": "Este verano, Ranchitas te lleva a vivir experiencias inolvidables. Participa comprando tus productos favoritos y podrías ganar entradas a conciertos, parques acuáticos y mucho más.",
@@ -183,16 +183,7 @@
         "Canjea tus puntos por boletos para el sorteo",
         "¡Cruza los dedos y espera ganar!"
       ],
-      "faqs": [
-        {
-          "question": "¿Qué productos participan?",
-          "answer": "Todos los productos de la línea Ranchitas Nacho Excitante, Queso y Pizza participan en esta promoción."
-        },
-        {
-          "question": "¿Cómo acumulo puntos?",
-          "answer": "Cada código válido te da 10 puntos. Necesitas 50 puntos para obtener un boleto para el sorteo."
-        }
-      ],
+      
       "cta_text": "Más información",
       "cta_link": "/es/contacto"
     }
