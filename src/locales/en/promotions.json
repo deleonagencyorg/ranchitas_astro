@@ -54,7 +54,7 @@
       ],
       "faqs": [
         {
-          "question": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Ut in velit malesuada, pulvinar neque vel, lacinia dolor. Aenean eget velit.",
+          "question": "Hiiii?",
           "answer": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Suspendisse malesuada lacus ex, sit amet blandit leo lobortis eget. Curabitur et velit at neque consequat adipiscing elit."
         },
         {
@@ -183,16 +183,7 @@
         "Redeem your points for raffle tickets",
         "Cross your fingers and wait to win!"
       ],
-      "faqs": [
-        {
-          "question": "Which products participate?",
-          "answer": "All products from the Ranchitas Nacho Excitante, Cheese and Pizza line participate in this promotion."
-        },
-        {
-          "question": "How do I accumulate points?",
-          "answer": "Each valid code gives you 10 points. You need 50 points to get one raffle ticket."
-        }
-      ],
+      
       "cta_text": "More information",
       "cta_link": "/en/contact"
     }

@@ -196,30 +196,38 @@ const winnersHighlight = currentLang === 'es' ? 'ganadores' : 'winners';
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
+  // Manejo de imágenes rotas (una sola vez)
+  document.addEventListener('DOMContentLoaded', function() {
     const images = document.querySelectorAll('img');
     images.forEach(img => {
       img.addEventListener('error', function() {
-        this.src = '/images/promotions/placeholder.jpg';
-      });
-    });
-
-    // FAQ Accordion functionality
-    const faqButtons = document.querySelectorAll('.faq-button');
-    faqButtons.forEach(button => {
-      button.addEventListener('click', () => {
-        const content = button.nextElementSibling as HTMLElement;
-        const icon = button.querySelector('.faq-icon') as HTMLElement;
-        const isOpen = !content.classList.contains('hidden');
-
-        if (isOpen) {
-          content.classList.add('hidden');
-          icon.style.transform = 'rotate(0deg)';
-        } else {
-          content.classList.remove('hidden');
-          icon.style.transform = 'rotate(45deg)';
+        if (!this.src.includes('placeholder.jpg')) {
+          this.src = '/placeholder.jpg';
         }
       });
     });
+  });
+
+  // Manejo de clics en FAQs 
+  document.addEventListener('click', function(event) {
+    const faqButton = event.target.closest('.faq-button');
+    
+    if (faqButton) {
+      const faqItem = faqButton.closest('.faq-item');
+      const faqContent = faqItem.querySelector('.faq-content');
+      const faqIcon = faqButton.querySelector('.faq-icon');
+      
+      // Alternar visibilidad
+      faqContent.classList.toggle('hidden');
+      
+      // Rotación del icono
+      if (faqIcon) {
+        faqIcon.style.transform = faqContent.classList.contains('hidden') 
+          ? 'rotate(0deg)' 
+          : 'rotate(45deg)';
+      }
+      
+      event.preventDefault();
+    }
   });
 </script>
