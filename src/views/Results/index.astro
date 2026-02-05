@@ -39,7 +39,7 @@ const uniqueCategories = Object.keys(categories);
           <div class="product-card bg-white rounded-lg overflow-hidden shadow-md hover:shadow-lg transition-shadow duration-300" data-category={product.category} transition:animate="fade">
             <div class="relative h-48 overflow-hidden">
               <img 
-                src={product.image || '/images/products/placeholder.jpg'} 
+                src={product.image || '/images/placeholder.jpg'} 
                 alt={product.title} 
                 class="w-full h-full object-cover"
                 transition:name={`product-image-${product.id}`}

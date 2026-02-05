@@ -41,14 +41,14 @@ function initRecipeImages() {
     
     // Si la imagen ya falló, aplicar placeholder inmediatamente
     if (img.complete && img.naturalHeight === 0) {
-      img.src = '/images/recipes/placeholder.jpg';
+      img.src = '/images/placeholder.jpg';
     }
   });
 }
 
 function handleImageError(e) {
-  if (e.target.src !== '/images/recipes/placeholder.jpg') {
-    e.target.src = '/images/recipes/placeholder.jpg';
+  if (e.target.src !== '/images/placeholder.jpg') {
+    e.target.src = '/images/placeholder.jpg';
   }
 }
 

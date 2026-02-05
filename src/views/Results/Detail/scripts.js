@@ -7,7 +7,7 @@ export function initProductDetail() {
     if (!img.hasAttribute('onerror')) {
       img.addEventListener('error', function() {
         this.onerror = null;
-        this.src = '/images/products/placeholder.jpg';
+        this.src = '/images/placeholder.jpg';
       });
     }
   });

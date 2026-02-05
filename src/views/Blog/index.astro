@@ -50,7 +50,7 @@ for (const path in mdModules) {
         slug: String(fm.slug),
         title: String(fm.title),
         summary: fm.summary ? String(fm.summary) : '',
-        image: fm.image ? String(fm.image) : '/images/blog/placeholder.jpg',
+        image: fm.image ? String(fm.image) : '/images/placeholder.jpg',
         published_date: fm.published_date ? String(fm.published_date) : '',
         category: fm.category ? String(fm.category).toLowerCase() : 'other'
       });
@@ -137,7 +137,7 @@ const restPosts = allPosts.slice(5);
               {allPosts.map((post, index) => (
                 <div class={`news-card ${index >= 6 ? 'hidden' : ''}`} data-category={(post.category || 'other').toLowerCase()} data-news-index={index}>
                   <BlogCard
-                    image={post.image || '/images/blog/placeholder.jpg'}
+                    image={post.image || '/images/placeholder.jpg'}
                     title={post.title}
                     summary={post.summary || ''}
                     published_date={post.published_date || ''}
