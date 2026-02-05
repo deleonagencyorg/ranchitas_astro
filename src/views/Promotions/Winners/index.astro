@@ -86,7 +86,7 @@ const countries = [
               <div class="bg-white rounded-3xl overflow-hidden shadow-lg winner-card" data-country={firstCountryWithWinners.code}>
                 <div class="h-64 bg-gray-200 flex items-center justify-center border-4 border-blue-400">
                   <img 
-                    src={winner.image || '/images/promotions/placeholder.jpg'}
+                    src={winner.image || '/images/placeholder.jpg'}
                     alt={winner.name}
                     class="w-full h-full object-cover"
                     loading="lazy"
@@ -131,94 +131,110 @@ const countries = [
 </div>
 
 <script>
-  document.addEventListener('DOMContentLoaded', () => {
-    const images = document.querySelectorAll('img');
-    images.forEach(img => {
-      img.addEventListener('error', function() {
-        this.src = '/images/promotions/placeholder.jpg';
-      });
-    });
-
-    // Country tabs functionality
-    const tabs = document.querySelectorAll('.country-tab');
-    const winnersGrid = document.getElementById('winners-grid');
-    const winnersDataEl = document.getElementById('winners-data');
-    
-    // Parse winners data from hidden div
-    const winnersData: Record<string, any[]> = {};
-    if (winnersDataEl) {
-      winnersDataEl.querySelectorAll('[data-country]').forEach(countryDiv => {
-        const countryCode = countryDiv.getAttribute('data-country');
-        if (!countryCode) return;
-        
-        const winners: any[] = [];
-        countryDiv.querySelectorAll('[data-winner]').forEach(winnerDiv => {
-          const winnerData = winnerDiv.getAttribute('data-winner');
-          if (winnerData) {
-            try {
-              winners.push(JSON.parse(winnerData));
-            } catch (e) {
-              console.error('Error parsing winner data:', e);
-            }
-          }
-        });
-        winnersData[countryCode] = winners;
-      });
+function configurarFiltros() {
+  document.querySelectorAll('img').forEach(img => {
+    if (!img.hasAttribute('data-fixed')) {
+      img.setAttribute('data-fixed', 'true');
+      img.onerror = function() {
+        this.src = '/images/placeholder.jpg';
+      };
+    }
+  });
+  
+  const botones = document.querySelectorAll('.country-tab');
+  
+  if (botones.length === 0) {
+    return false;
+  }
+  
+  botones.forEach(boton => {
+    if (boton.hasAttribute('data-configured')) {
+      return;
     }
     
-    function renderWinners(countryCode: string) {
-      if (!winnersGrid) return;
-      
-      const winners = winnersData[countryCode] || [];
-      
-      winnersGrid.innerHTML = winners.map(winner => `
-        <div class="bg-white rounded-3xl overflow-hidden shadow-lg winner-card">
-          <div class="h-64 bg-gray-200 flex items-center justify-center border-4 border-blue-400">
-            <img 
-              src="${winner.image || '/images/promotions/placeholder.jpg'}"
-              alt="${winner.name}"
-              class="w-full h-full object-cover"
-              loading="lazy"
-              onerror="this.src='/images/promotions/placeholder.jpg'"
-            />
-          </div>
-          <div class="bg-[#F97316] p-6">
-            <h3 class="text-xl font-bold text-white mb-2">
-              ${winner.name}
-            </h3>
-            <p class="text-white/90 text-sm">
-              ${winner.description}
-            </p>
-          </div>
-        </div>
-      `).join('');
-    }
+    boton.setAttribute('data-configured', 'true');
     
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        // Remove active state from all tabs
-        tabs.forEach(t => {
-          t.classList.remove('text-orange-500', 'border-b-4', 'border-orange-500');
-          t.classList.add('text-gray-600');
-        });
-        
-        // Add active state to clicked tab
-        tab.classList.remove('text-gray-600');
-        tab.classList.add('text-orange-500', 'border-b-4', 'border-orange-500');
-        
-        // Load winners for selected country
-        const countryCode = tab.getAttribute('data-country');
-        if (countryCode) {
-          renderWinners(countryCode);
-        }
+    boton.addEventListener('click', function() {
+      const pais = this.getAttribute('data-country');
+      
+      if (!pais) {
+        return;
+      }
+      
+      botones.forEach(b => {
+        b.classList.remove('text-orange-500', 'border-b-4', 'border-orange-500');
+        b.classList.add('text-gray-600');
       });
+      this.classList.remove('text-gray-600');
+      this.classList.add('text-orange-500', 'border-b-4', 'border-orange-500');
+      
+      filtrarGanadores(pais);
     });
   });
-</script>
+  
+  return true;
+}
 
-<style>
-  .country-tab {
-    position: relative;
-    padding-bottom: 0.5rem;
+function filtrarGanadores(codigoPais) {
+  const contenedor = document.getElementById('winners-grid');
+  const datosOcultos = document.getElementById('winners-data');
+  
+  if (!contenedor || !datosOcultos) {
+    return;
   }
-</style>
+  
+  const paisDiv = datosOcultos.querySelector(`[data-country="${codigoPais}"]`);
+  
+  if (!paisDiv) {
+    contenedor.innerHTML = '<p class="text-center py-8">No hay ganadores para este país</p>';
+    return;
+  }
+  
+  let html = '';
+  const elementosGanador = paisDiv.querySelectorAll('[data-winner]');
+  
+  elementosGanador.forEach(elemento => {
+    const datos = elemento.getAttribute('data-winner');
+    if (datos) {
+      try {
+        const ganador = JSON.parse(datos);
+        html += `
+          <div class="bg-white rounded-3xl overflow-hidden shadow-lg">
+            <div class="h-64 bg-gray-200 border-4 border-blue-400">
+              <img 
+                src="${ganador.image || '/images/placeholder.jpg'}"
+                alt="${ganador.name}"
+                class="w-full h-full object-cover"
+                onerror="this.src='/images/placeholder.jpg'"
+              />
+            </div>
+            <div class="bg-[#F97316] p-6">
+              <h3 class="text-xl font-bold text-white">${ganador.name}</h3>
+              <p class="text-white/90 text-sm">${ganador.description}</p>
+            </div>
+          </div>
+        `;
+      } catch (error) {
+        console.error('Error procesando ganador:', error);
+      }
+    }
+  });
+  
+  contenedor.innerHTML = html || '<p class="text-center py-8">No hay ganadores para este país</p>';
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', configurarFiltros);
+} else {
+  configurarFiltros();
+}
+
+document.addEventListener('astro:page-load', function() {
+  setTimeout(configurarFiltros, 50);
+});
+
+document.addEventListener('astro:after-swap', configurarFiltros);
+
+setTimeout(configurarFiltros, 100);
+setTimeout(configurarFiltros, 500);
+</script>

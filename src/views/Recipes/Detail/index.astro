@@ -119,7 +119,7 @@ const relatedRecipesTitle = currentLang === 'es' ? 'Recetas recomendadas' : 'Rec
               src={recipe.image} 
               alt={recipe.title}
               class="w-full h-full object-cover"
-              onerror="this.onerror=null;this.src='/images/recipes/placeholder.jpg';"
+              onerror="this.onerror=null;this.src='/images/placeholder.jpg';"
               transition:name={`recipe-image-${recipe.id}`}
             />
           </div>
@@ -314,7 +314,7 @@ const relatedRecipesTitle = currentLang === 'es' ? 'Recetas recomendadas' : 'Rec
       if (!img.hasAttribute('onerror')) {
         img.addEventListener('error', function(this: HTMLImageElement) {
           this.onerror = null;
-          this.src = '/images/recipes/placeholder.jpg';
+          this.src = '/images/placeholder.jpg';
         });
       }
     });

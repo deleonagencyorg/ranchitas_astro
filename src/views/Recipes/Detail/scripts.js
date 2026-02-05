@@ -7,7 +7,7 @@ export function initRecipeDetailScripts() {
     if (!img.hasAttribute('onerror')) {
       img.addEventListener('error', function() {
         this.onerror = null;
-        this.src = '/images/recipes/placeholder.jpg';
+        this.src = '/images/placeholder.jpg';
       });
     }
   });

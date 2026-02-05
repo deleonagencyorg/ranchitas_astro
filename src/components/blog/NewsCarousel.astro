@@ -128,7 +128,7 @@ const noContent = currentLang === 'es' ? 'No hay contenido disponible' : 'No con
         slide.innerHTML = `
           <div class="grid grid-cols-1 md:grid-cols-4 gap-4 md:gap-4">
             ${group.map((item) => {
-              const imageSrc = item.image && item.image.trim() !== '' ? item.image : '/images//placeholder.jpg';
+              const imageSrc = item.image && item.image.trim() !== '' ? item.image : '/images/placeholder.jpg';
               return `
               <div class=\"news-card\" data-category=\"${(item.category||'other').toLowerCase()}\">\
                 <article class=\"bg-white rounded-2xl shadow-md overflow-hidden h-full flex flex-col\">\

@@ -3,7 +3,7 @@ document.addEventListener('DOMContentLoaded', () => {
   const images = document.querySelectorAll('img');
   images.forEach(img => {
     img.addEventListener('error', function() {
-      this.src = '/images/brands/placeholder.jpg';
+      this.src = '/images/placeholder.jpg';
     });
   });
   

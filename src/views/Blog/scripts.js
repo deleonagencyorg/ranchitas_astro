@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
   images.forEach(img => {
     img.addEventListener('error', function() {
       // Ensure this placeholder path is correct and accessible
-      this.src = '/images/news/placeholder.jpg'; 
+      this.src = '/images/placeholder.jpg'; 
     });
   });
 });

@@ -7,7 +7,7 @@ export function initNewsDetail() {
     if (!img.hasAttribute('onerror')) {
       img.addEventListener('error', function() {
         this.onerror = null;
-        this.src = '/images/news/placeholder.jpg';
+        this.src = '/images/placeholder.jpg';
       });
     }
   });
