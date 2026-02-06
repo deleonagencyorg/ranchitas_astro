@@ -7,10 +7,40 @@ const currentLang = getLocale();
 const promotions = t('items', { namespace: 'promotions', locale: currentLang }) || [];
 const pageData = t('page', { namespace: 'promotions', locale: currentLang }) || {};
 
-const activePromotions = promotions.filter((p: any) => p.status === 'active');
-const expiredPromotions = promotions.filter((p: any) => p.status === 'expired');
+interface Promotion {
+  cta_link?: string;
+  status: string;
+  title: string;
+  short_description: string;
+  image: string;
+  banner_desktop?: string;
+  cta_text?: string;
+  prizes?: any[];
+  slug: string;
+}
+
+const getCorrectedUrl = (promo: Promotion) => {
+  if (promo.cta_link) {
+    if (currentLang === 'es' && promo.cta_link === 'https://ranchitas.com/en/home/') {
+      return 'https://ranchitas.com/';
+    }
+    if (currentLang === 'en' && promo.cta_link === 'https://ranchitas.com/') {
+      return 'https://ranchitas.com/en/home/';
+    }
+    return promo.cta_link;
+  }
+  
+  return currentLang === 'es' 
+    ? 'https://ranchitas.com/' 
+    : 'https://ranchitas.com/en/home/';
+};
+
+const activePromotions = promotions.filter((p: Promotion) => p.status === 'active');
+const expiredPromotions = promotions.filter((p: Promotion) => p.status === 'expired');
 const featuredPromotion = activePromotions[0] || promotions[0];
 const otherActivePromotions = activePromotions.slice(1);
+
+const featuredPromotionUrl = featuredPromotion ? getCorrectedUrl(featuredPromotion) : '';
 
 const heroTitle = currentLang === 'es' 
   ? 'Gana premios increíbles participando hoy'
@@ -26,7 +56,6 @@ const viewMoreButton = currentLang === 'es' ? 'Ver ganadores' : 'View winners';
 ---
 
 <div class="bg-primaryCream min-h-screen">
-  <!-- Hero Section -->
   {featuredPromotion && (
     <section class="w-full px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
       <div class="max-w-7xl mx-auto">
@@ -41,7 +70,7 @@ const viewMoreButton = currentLang === 'es' ? 'Ver ganadores' : 'View winners';
               {heroSubtitle}
             </p>
             <a 
-              href={featuredPromotion.cta_link || `/${currentLang}/${currentLang === 'es' ? 'promociones' : 'promotions'}/${featuredPromotion.slug}`}
+              href={featuredPromotionUrl}
               class="bg-[#D61F2C] hover:bg-[#B91C1C] text-white font-bold px-8 sm:px-12 py-3 sm:py-4 rounded-full transition-all duration-300 text-base sm:text-lg shadow-lg hover:shadow-xl transform hover:scale-105"
             >
               {heroButton}
@@ -52,7 +81,6 @@ const viewMoreButton = currentLang === 'es' ? 'Ver ganadores' : 'View winners';
     </section>
   )}
 
-  <!-- Active Promotions Section -->
   {activePromotions.length > 0 && (
     <section class="w-full px-4 sm:px-6 lg:px-8 py-8 lg:py-12">
       <div class="max-w-7xl mx-auto">
@@ -61,65 +89,68 @@ const viewMoreButton = currentLang === 'es' ? 'Ver ganadores' : 'View winners';
         </h2>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 lg:gap-8">
-          {activePromotions.map((promo: any, index: number) => (
-            <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
-              <div class="relative h-48 sm:h-56 lg:h-64 bg-gray-200">
-                <img 
-                  src={promo.image || '/images/placeholder.jpg'} 
-                  alt={promo.title}
-                  class="w-full h-full object-cover"
-                  loading="lazy"
-                />
-                {index === 0 && (
-                  <div class="absolute top-4 left-4 bg-white text-black px-4 py-2 rounded-full text-sm font-bold">
-                    {featuredLabel}
-                  </div>
-                )}
-              </div>
-              
-              <div class={`p-6 ${index === 0 ? 'bg-white' : promo.prizes?.length > 0 ? 'bg-[#7CB342]' : 'bg-[#7CB342]'}`}>
-                {index === 0 ? (
-                  <>
-                    <div class="mb-3">
-                      <span class="text-xs font-semibold text-gray-500 uppercase">{featuredLabel}</span>
+          {activePromotions.map((promo: Promotion, index: number) => {
+            const promoUrl = getCorrectedUrl(promo);
+            
+            return (
+              <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300 transform hover:-translate-y-1">
+                <div class="relative h-48 sm:h-56 lg:h-64 bg-gray-200">
+                  <img 
+                    src={promo.image || '/images/placeholder.jpg'} 
+                    alt={promo.title}
+                    class="w-full h-full object-cover"
+                    loading="lazy"
+                  />
+                  {index === 0 && (
+                    <div class="absolute top-4 left-4 bg-white text-black px-4 py-2 rounded-full text-sm font-bold">
+                      {featuredLabel}
                     </div>
-                    <h3 class="text-xl font-bold mb-3 text-black">{promo.title}</h3>
-                    <p class="text-gray-600 text-sm mb-4 line-clamp-2">
-                      {promo.short_description}
-                    </p>
-                    <a 
-                      href={`/${currentLang}/${currentLang === 'es' ? 'promociones' : 'promotions'}/${promo.slug}`}
-                      class="inline-block bg-[#7CB342] hover:bg-[#689F38] text-white font-bold px-6 py-2 rounded-full transition-colors duration-300 text-sm"
-                    >
-                      {pageData.view_details || 'Ver más'}
-                    </a>
-                  </>
-                ) : (
-                  <>
-                    <div class="flex items-start mb-4">
-                      <svg class="w-8 h-8 text-white mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                        <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                      </svg>
-                      <div>
-                        <h3 class="text-lg font-bold text-white mb-2">{promo.title}</h3>
-                        <p class="text-white/90 text-sm line-clamp-2">
-                          {promo.short_description}
-                        </p>
+                  )}
+                </div>
+                
+                <div class={`p-6 ${index === 0 ? 'bg-white' : 'bg-[#7CB342]'}`}>
+                  {index === 0 ? (
+                    <>
+                      <div class="mb-3">
+                        <span class="text-xs font-semibold text-gray-500 uppercase">{featuredLabel}</span>
                       </div>
-                    </div>
-                    <a 
-                      href={`/${currentLang}/${currentLang === 'es' ? 'promociones' : 'promotions'}/${promo.slug}`}
-                      class="inline-block bg-white hover:bg-gray-100 text-[#7CB342] font-bold px-6 py-2 rounded-full transition-colors duration-300 text-sm"
-                    >
-                      {pageData.view_details || 'Ver más'}
-                    </a>
-                  </>
-                )}
+                      <h3 class="text-xl font-bold mb-3 text-black">{promo.title}</h3>
+                      <p class="text-gray-600 text-sm mb-4 line-clamp-2">
+                        {promo.short_description}
+                      </p>
+                      <a 
+                        href={promoUrl}
+                        class="inline-block bg-[#7CB342] hover:bg-[#689F38] text-white font-bold px-6 py-2 rounded-full transition-colors duration-300 text-sm"
+                      >
+                        {promo.cta_text || pageData.view_details || 'Ver más'}
+                      </a>
+                    </>
+                  ) : (
+                    <>
+                      <div class="flex items-start mb-4">
+                        <svg class="w-8 h-8 text-white mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                          <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                        </svg>
+                        <div>
+                          <h3 class="text-lg font-bold text-white mb-2">{promo.title}</h3>
+                          <p class="text-white/90 text-sm line-clamp-2">
+                            {promo.short_description}
+                          </p>
+                        </div>
+                      </div>
+                      <a 
+                        href={promoUrl}
+                        class="inline-block bg-white hover:bg-gray-100 text-[#7CB342] font-bold px-6 py-2 rounded-full transition-colors duration-300 text-sm"
+                      >
+                        {promo.cta_text || pageData.view_details || 'Ver más'}
+                      </a>
+                    </>
+                  )}
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
           
-          <!-- Info Cards Verdes -->
           <div class="bg-[#7CB342] rounded-3xl p-8 shadow-lg flex flex-col justify-center min-h-[280px]">
             <svg class="w-12 h-12 text-white mb-4" fill="currentColor" viewBox="0 0 20 20">
               <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
@@ -152,7 +183,6 @@ const viewMoreButton = currentLang === 'es' ? 'Ver ganadores' : 'View winners';
     </section>
   )}
 
-  <!-- Expired Promotions Section -->
   {expiredPromotions.length > 0 && (
     <section class="w-full px-4 sm:px-6 lg:px-8 py-8 lg:py-12 pb-16">
       <div class="max-w-7xl mx-auto">
@@ -161,38 +191,42 @@ const viewMoreButton = currentLang === 'es' ? 'Ver ganadores' : 'View winners';
         </h2>
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
-          {expiredPromotions.map((promo: any) => (
-            <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
-              <div class="relative h-40 sm:h-48 bg-gray-200">
-                <img 
-                  src={promo.image || '/images/placeholder.jpg'} 
-                  alt={promo.title}
-                  class="w-full h-full object-cover opacity-75"
-                  loading="lazy"
-                />
-              </div>
-              
-              <div class="bg-[#D61F2C] p-6">
-                <div class="flex items-start mb-4">
-                  <svg class="w-8 h-8 text-white mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
-                    <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
-                  </svg>
-                  <div>
-                    <h3 class="text-lg font-bold text-white mb-2">{promo.title}</h3>
-                    <p class="text-white/90 text-sm line-clamp-2">
-                      {promo.short_description}
-                    </p>
-                  </div>
+          {expiredPromotions.map((promo: Promotion) => {
+            const promoUrl = getCorrectedUrl(promo);
+            
+            return (
+              <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
+                <div class="relative h-40 sm:h-48 bg-gray-200">
+                  <img 
+                    src={promo.image || '/images/placeholder.jpg'} 
+                    alt={promo.title}
+                    class="w-full h-full object-cover opacity-75"
+                    loading="lazy"
+                  />
                 </div>
-                <a 
-                  href={`/${currentLang}/${currentLang === 'es' ? 'promociones' : 'promotions'}/${promo.slug}`}
-                  class="inline-block bg-white hover:bg-gray-100 text-[#D61F2C] font-bold px-6 py-2 rounded-full transition-colors duration-300 text-sm"
-                >
-                  {viewMoreButton}
-                </a>
+                
+                <div class="bg-[#D61F2C] p-6">
+                  <div class="flex items-start mb-4">
+                    <svg class="w-8 h-8 text-white mr-3 flex-shrink-0" fill="currentColor" viewBox="0 0 20 20">
+                      <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z"></path>
+                    </svg>
+                    <div>
+                      <h3 class="text-lg font-bold text-white mb-2">{promo.title}</h3>
+                      <p class="text-white/90 text-sm line-clamp-2">
+                        {promo.short_description}
+                      </p>
+                    </div>
+                  </div>
+                  <a 
+                    href={promoUrl}
+                    class="inline-block bg-white hover:bg-gray-100 text-[#D61F2C] font-bold px-6 py-2 rounded-full transition-colors duration-300 text-sm"
+                  >
+                    {promo.cta_text || viewMoreButton}
+                  </a>
+                </div>
               </div>
-            </div>
-          ))}
+            );
+          })}
         </div>
       </div>
     </section>
