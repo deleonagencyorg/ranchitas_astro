@@ -143,7 +143,7 @@
     },
     {
       "id": "promo-verano-2025",
-      "slug": "promo-ranchitas-2025/ganadores",
+      "slug": "promo-verano-2025",
       "title": "Verano Ranchitas",
       "short_description": "Disfruta el verano con Ranchitas y gana experiencias únicas",
       "description": "Este verano, Ranchitas te lleva a vivir experiencias inolvidables. Participa comprando tus productos favoritos y podrías ganar entradas a conciertos, parques acuáticos y mucho más.",
@@ -183,9 +183,81 @@
         "Canjea tus puntos por boletos para el sorteo",
         "¡Cruza los dedos y espera ganar!"
       ],
-      
+      "faqs": [],
       "cta_text": "Más información",
-      "cta_link": "/es/contacto"
+      "cta_link": "/es/contacto",
+      "winners": {
+         "GT": [
+          {
+            "name": "Ganador Play Station 5",
+            "description": "Juan Pérez ganó una consola PlayStation 5 en el sorteo de enero",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-1.jpg"
+          },
+          {
+            "name": "Ganadora Laptop",
+            "description": "María González se llevó una laptop de última generación",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-2.jpg"
+          },
+          {
+            "name": "Ganador Tablet",
+            "description": "Carlos Ramírez ganó una tablet en el sorteo semanal",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-3.jpg"
+          },
+          {
+            "name": "Ganadora Kit Ranchitas",
+            "description": "Ana López se llevó el kit completo de productos Ranchitas",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-4.jpg"
+          }
+        ],
+        "SV": [
+          {
+            "name": "Ganador Xbox Series X",
+            "description": "Roberto Martínez ganó una consola Xbox Series X",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-5.jpg"
+          },
+          {
+            "name": "Ganadora Smart TV",
+            "description": "Sofía Hernández se llevó un Smart TV de 55 pulgadas",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-6.jpg"
+          }
+        ],
+        "CR": [
+          {
+            "name": "Ganador iPhone 15",
+            "description": "Diego Castro ganó el último modelo de iPhone",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-7.jpg"
+          },
+          {
+            "name": "Ganadora AirPods Pro",
+            "description": "Laura Jiménez se llevó unos AirPods Pro",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-8.jpg"
+          }
+        ],
+        "NI": [
+          {
+            "name": "Ganador Bicicleta",
+            "description": "Miguel Ortiz ganó una bicicleta de montaña",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-9.jpg"
+          },
+          {
+            "name": "Ganadora Cámara",
+            "description": "Patricia Ruiz se llevó una cámara profesional",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-10.jpg"
+          }
+        ],
+        "HN": [
+          {
+            "name": "Ganador Consola Nintendo Switch",
+            "description": "Fernando Díaz ganó una Nintendo Switch con juegos",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-11.jpg"
+          },
+          {
+            "name": "Ganadora Auriculares Gaming",
+            "description": "Gabriela Torres se llevó auriculares gaming premium",
+            "image": "https://snack.yummiespromociones.com/ranchitas/winner-12.jpg"
+          }
+        ]
+      }
     }
   ]
 }
