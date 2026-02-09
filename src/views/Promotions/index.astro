@@ -192,7 +192,9 @@ const viewMoreButton = currentLang === 'es' ? 'Ver ganadores' : 'View winners';
         
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
           {expiredPromotions.map((promo: Promotion) => {
-            const promoUrl = getCorrectedUrl(promo);
+            const winnersUrl = currentLang === 'es' 
+              ? `/es/promociones/${promo.slug}/ganadores`
+              : `/en/promotions/${promo.slug}/winners`;
             
             return (
               <div class="bg-white rounded-3xl overflow-hidden shadow-lg hover:shadow-xl transition-all duration-300">
@@ -218,10 +220,10 @@ const viewMoreButton = currentLang === 'es' ? 'Ver ganadores' : 'View winners';
                     </div>
                   </div>
                   <a 
-                    href={promoUrl}
+                    href={winnersUrl}
                     class="inline-block bg-white hover:bg-gray-100 text-[#D61F2C] font-bold px-6 py-2 rounded-full transition-colors duration-300 text-sm"
                   >
-                    {promo.cta_text || viewMoreButton}
+                    {viewMoreButton}
                   </a>
                 </div>
               </div>
