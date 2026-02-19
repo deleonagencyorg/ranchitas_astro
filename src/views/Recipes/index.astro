@@ -77,11 +77,11 @@ function normalizeType(r: Recipe): string {
     'lunch': 'lunch',
     'dinner': 'dinner',
     'snack': 'snack',
-    'desayuno': 'desayuno',
-    'almuerzo': 'almuerzo', 
+    'desayuno': 'breakfast',
+    'almuerzo': 'lunch',
     'todos': 'todos',
-    'cena': 'cena',
-    'snack': 'snack'
+    'cena': 'dinner',
+    'merienda': 'snack'
   };
   
   return categoryMap[rawCategory] || 'other';
@@ -140,8 +140,7 @@ const gridRecipes = allRecipes.slice(4);
       <div class="relative">
         <select 
           id="typeFilter" 
-          class="appearance-none bg-white rounded-full w-full px-4 sm:px-6 py-2 sm:py-3 pr-10 text-sm sm:text-base font-medium border-0 shadow-sm cursor-pointer hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-orange"
-        >
+          class="appearance-none bg-white rounded-full w-full px-4 sm:px-6 py-2 sm:py-3 pr-10 text-sm sm:text-base font-medium border-0 shadow-sm cursor-pointer hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-orange">
           <option value="all">{filterLabels.typeLabel}: {filterLabels.all}</option>
           {uniqueCategories.includes('breakfast') && <option value="breakfast">{filterLabels.typeLabel}: {filterLabels.breakfast}</option>}
           {uniqueCategories.includes('brunch') && <option value="brunch">{filterLabels.typeLabel}: {filterLabels.brunch}</option>}
@@ -238,7 +237,7 @@ const gridRecipes = allRecipes.slice(4);
   ) : (
     <div id="recipesGrid" class="w-full mx-auto grid grid-cols-1 sm:grid-cols-2 gap-6 md:gap-10 mt-12">
       {allRecipes.map((recipe: Recipe) => (
-        <div class="recipe-card recipe-grid-card h-full" 
+        <div class="recipe-card recipe-grid-card h-full rounded-[2.5rem]" 
              data-type={normalizeType(recipe)}
              data-products={(Array.isArray(recipe.product) ? recipe.product : (recipe.product ? [recipe.product] : [])).join(',')}
              data-title={recipe.title.toLowerCase()}>
@@ -279,7 +278,6 @@ const gridRecipes = allRecipes.slice(4);
 <script type="application/json" id="product-map">{JSON.stringify(productMap)}</script>
 
 <script is:inline>
-  // REINGENIERÍA DEL SISTEMA DE FILTRADO CON ANIMACIONES FLUIDAS Y PERSISTENCIA
   (function() {
     'use strict';
     
@@ -336,8 +334,8 @@ const gridRecipes = allRecipes.slice(4);
         }
         
         // Aplicar filtros si hay valores guardados
-        if (saved.type !== 'all' || saved.product !== 'all') {
-          setTimeout(() => applyFilters(), 100);
+        if (saved.type || saved.product) {
+          setTimeout(() => applyFilters(), 50);
         }
       }
     }
@@ -538,6 +536,15 @@ const gridRecipes = allRecipes.slice(4);
     
     // Re-inicializar después de navegaciones de Astro
     document.addEventListener('astro:page-load', init);
+    
+    // Manejar navegación de regreso desde cache
+    window.addEventListener('pageshow', function(event) {
+      if (event.persisted) {
+        setTimeout(() => {
+          restoreFilters();
+        }, 100);
+      }
+    });
   })();
 </script>
 
