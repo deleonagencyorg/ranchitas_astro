@@ -5,10 +5,17 @@
   --swiper-pagination-color: #ffffff;
   --swiper-navigation-sides-offset: 30px;
 }
+.related-products-swiper {
+  overflow: visible !important;
+}
+
+.related-products-swiper .swiper-wrapper {
+  overflow: visible !important;
+}
 
 .swiper-container.main-carousel {
   width: 100%;
-  overflow: hidden;
+  overflow: visible;
   position: relative;
   margin: 0;
   padding: 0;

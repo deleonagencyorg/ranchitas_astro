@@ -49,7 +49,7 @@ const displayProduct = product ? formatProductName(product) : '';
 
 <a 
   href={recipeLink} 
-  class="block group overflow-hidden rounded-[2.5rem] bg-white shadow-lg hover:shadow-2xl transition-all duration-400 relative h-full"
+  class="block group overflow-hidden rounded-[2.5rem] bg-white shadow-transparent hover:shadow-2xl transition-all duration-400 relative h-full" 
 >
   <!-- Imagen principal con efectos suaves -->
   <div class="relative h-[250px] overflow-hidden">
@@ -64,7 +64,7 @@ const displayProduct = product ? formatProductName(product) : '';
   </div>
   
   <!-- Contenido inferior -->
-  <div class="p-6 bg-white relative overflow-hidden flex flex-col flex-1">
+  <div class="p-8 bg-white relative overflow-hidden flex flex-col flex-1">
     <!-- Título con animación sutil -->
     <h3 class="text-2xl font-bold text-black mb-3 leading-tight group-hover:text-[#F04F00] transition-colors duration-300 line-clamp-2">
       {title}
