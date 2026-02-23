@@ -24,6 +24,33 @@
   ],
   "items": [
     {
+      "id": "ranchitas-buffalo-ranch",
+      "name": "Ranchitas Buffalo Ranch",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
+      "background_color": "#21A3D0",
+      "header_color": "#FFFFFF",
+      "text_color": "#FFFFFF",
+      "header_background": "##21A3D0",
+      "header_text_color": "#FFFFFF",
+      "color_button": "#FFFFFF",
+      "description": "Nachos de maíz crujientes con sabor a buffalo ranch.",
+      "short_description": "Nachos de maíz crujientes con sabor a buffalo ranch.",
+      "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
+      "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
+      "sizes": [
+        {
+          "value": "150",
+          "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp"
+        }
+      ],
+      "weight": [
+        "18g",
+        "23g",
+        "25g",
+        "150g"
+      ]
+    },
+    {
       "id": "ranchitas-nacho-pizza",
       "name": "Ranchitas Nacho Pizza",
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-pizza-2.webp",
@@ -109,7 +136,7 @@
     {
       "id": "ranchitas-naturales",
       "name": "Ranchitas Naturales",
-      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ranchitas-Naturales.webp",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-naturales.webp",
       "background_color": "#8BC53F",
       "header_color": "#FFFFFF",
       "text_color":"#FFFFFF",
@@ -185,7 +212,7 @@
     {
       "id": "ranchitas-nacho-cinema",
       "name": "Ranchitas Nacho Cinema",
-      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/rachitas-nacho-cinema-2.webp",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-cinema.webp",
       "background_color": "#FFD700",
       "header_color": "#1C1C1C",
       "text_color": "#1C1C1C",
@@ -205,33 +232,6 @@
       "weight": [
         "35g",
         "300g"
-      ]
-    },
-    {
-      "id": "ranchitas-buffalo-ranch",
-      "name": "Ranchitas Buffalo Ranch",
-      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
-      "background_color": "#21A3D0",
-      "header_color": "#FFFFFF",
-      "text_color": "#FFFFFF",
-      "header_background": "##21A3D0",
-      "header_text_color": "#FFFFFF",
-      "color_button": "#FFFFFF",
-      "description": "Nachos de maíz crujientes con sabor a buffalo ranch.",
-      "short_description": "Nachos de maíz crujientes con sabor a buffalo ranch.",
-      "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
-      "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
-      "sizes": [
-        {
-          "value": "150",
-          "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp"
-        }
-      ],
-      "weight": [
-        "18g",
-        "23g",
-        "25g",
-        "150g"
       ]
     },
     {
