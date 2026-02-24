@@ -23,7 +23,7 @@ const products = t('items', { namespace: 'products', locale: currentLang }) || [
             style={{ backgroundColor: product.background_color || '#FFFFFF' }}
             data-product-id={product.id}
           >
-            <div class="w-full flex justify-center items-center flex-1 mb-3 sm:mb-4 md:mb-6 product-image-wrapper">
+            <div class="w-full flex justify-center items-center flex-1 mb-3 sm:mb-4 md:mb-6 product-image-wrapper relative">
               <img
                 src={product.image || '/images/placeholder.jpg'}
                 alt={product.name}
@@ -31,6 +31,15 @@ const products = t('items', { namespace: 'products', locale: currentLang }) || [
                 transition:name={`product-image-${product.id}`}
                 loading="lazy"
               />
+              {product && product.is_new && (
+                <img
+                  src="https://snack.yummiespromociones.com/SnacksyummiesAssets/NUEVO.webp"
+                  alt="Nuevo"
+                  class="absolute top-0 right-0 w-24 sm:w-28 z-10"
+                />
+               )
+
+              }
             </div>
             <div class="w-full text-center sm:text-start">
               <h3

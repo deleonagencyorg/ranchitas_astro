@@ -70,12 +70,19 @@ import LazyImage from '../LazyImage.astro';
             <div class="product-card-container flex items-center gap-0 w-full max-w-[900px]">
 
               <!-- Imagen -->
-              <div class="product-image-wrapper flex-shrink-0 -mr-12 sm:-mr-16 z-10">
+              <div class="product-image-wrapper relative flex-shrink-0 -mr-12 sm:-mr-16 z-10">
                 <LazyImage 
                   src={product.imageMobile || product.image} 
                   alt={product.name}
                   class="product-image w-[100px] h-[100px] sm:w-[120px] sm:h-[120px] md:w-[150px] md:h-[130px] xl:w-[200px] xl:h-[198.46px] object-contain"
                 />
+                {product.is_new && (
+                  <img
+                    src="https://snack.yummiespromociones.com/SnacksyummiesAssets/NUEVO.webp"
+                    alt="Nuevo"
+                    class="absolute top-0 right-0 w-14 sm:w-16 z-20"
+                  />
+                )}
               </div>
 
               <!-- Tarjeta más ancha -->

@@ -26,6 +26,7 @@
     {
       "id": "ranchitas-buffalo-ranch",
       "name": "Ranchitas Buffalo Ranch",
+      "is_new": true,
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-2.webp",
       "background_color": "#21A3D0",
       "header_color": "#FFFFFF",

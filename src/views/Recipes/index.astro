@@ -278,220 +278,166 @@ const gridRecipes = allRecipes.slice(4);
 <script type="application/json" id="product-map">{JSON.stringify(productMap)}</script>
 
 <script is:inline>
-  (function() {
+  (function () {
     'use strict';
-    
-    const STORAGE_KEY = 'recipeFilters';
-    
+
+    const STORAGE_KEY  = 'recipeFilters';
+    const INITIAL_SHOW = 6;
+    const STEP_SHOW    = 6;
+
     // Parse product map
     let PRODUCT_MAP = {};
     try {
-      const mapEl = document.getElementById('product-map');
-      if (mapEl && mapEl.textContent) {
-        PRODUCT_MAP = JSON.parse(mapEl.textContent);
-      }
-    } catch(e) {
-      console.error('Error parsing product map:', e);
+      const el = document.getElementById('product-map');
+      if (el?.textContent) PRODUCT_MAP = JSON.parse(el.textContent);
+    } catch (e) { console.error('Error parsing product map:', e); }
+
+    /* ── SessionStorage ──────────────────────────────────────────────────── */
+    function saveFilters(type, product) {
+      try { sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ type, product })); }
+      catch (_) {}
     }
 
-    // Guardar filtros en sessionStorage
-    function saveFilters(typeValue, productValue) {
-      try {
-        sessionStorage.setItem(STORAGE_KEY, JSON.stringify({
-          type: typeValue,
-          product: productValue
-        }));
-      } catch(e) {
-        console.error('Error saving filters:', e);
-      }
-    }
-
-    // Cargar filtros desde sessionStorage
     function loadFilters() {
       try {
-        const saved = sessionStorage.getItem(STORAGE_KEY);
-        if (saved) {
-          return JSON.parse(saved);
-        }
-      } catch(e) {
-        console.error('Error loading filters:', e);
-      }
-      return null;
+        const raw = sessionStorage.getItem(STORAGE_KEY);
+        return raw ? JSON.parse(raw) : null;
+      } catch (_) { return null; }
     }
 
-    // Restaurar valores de los filtros
-    function restoreFilters() {
-      const saved = loadFilters();
-      if (saved) {
-        const typeFilter = document.getElementById('typeFilter');
-        const productFilter = document.getElementById('productFilter');
-        
-        if (typeFilter && saved.type) {
-          typeFilter.value = saved.type;
-        }
-        if (productFilter && saved.product) {
-          productFilter.value = saved.product;
-        }
-        
-        // Aplicar filtros si hay valores guardados
-        if (saved.type || saved.product) {
-          setTimeout(() => applyFilters(), 50);
-        }
-      }
-    }
+    function getEl(id) { return document.getElementById(id); }
+    function getAllCards() { return Array.from(document.querySelectorAll('.recipe-card')); }
+    function getGridCards() { return Array.from(document.querySelectorAll('.recipe-grid-card')); }
 
-    function applyFilters() {
-      // Get filter elements
-      const typeFilter = document.getElementById('typeFilter');
-      const productFilter = document.getElementById('productFilter');
-      const productInfo = document.getElementById('productInfo');
-      const featuredTitle = document.getElementById('featuredTitle');
-      const featuredSection = document.getElementById('featuredSection');
-      const recipesGrid = document.getElementById('recipesGrid');
-      const noResults = document.getElementById('noResults');
-      const noResultsGrid = document.getElementById('noResultsGrid');
-      
-      if (!typeFilter || !productFilter) {
-        console.warn('Filters not found, retrying...');
-        return;
-      }
+    function applyLoadMore(reset) {
+      const btn = getEl('recipesLoadMore');
+      if (!btn) return;
 
-      // Get current filter values
-      const typeValue = typeFilter.value || 'all';
-      const productValue = productFilter.value || 'all';
+      const visible = getGridCards().filter(el => el.style.display !== 'none');
+      let shown = Number(btn.getAttribute('data-shown') || '0');
+      if (reset || shown === 0) shown = Math.min(INITIAL_SHOW, visible.length);
 
-      // Guardar filtros en sessionStorage
-      saveFilters(typeValue, productValue);
-
-      // Detectar si hay filtros activos
-      const hasActiveFilters = typeValue !== 'all' || productValue !== 'all';
-
-      // Get all recipe cards
-      const recipeCards = document.querySelectorAll('.recipe-card');
-      const visibleCards = [];
-      const hiddenCards = [];
-
-      // Apply filters to each card
-      recipeCards.forEach(function(card) {
-        const cardType = card.getAttribute('data-type') || '';
-        const cardProductsStr = card.getAttribute('data-products') || '';
-        const cardProducts = cardProductsStr.split(',').filter(function(p) { return p.trim() !== ''; });
-
-        // Check if card matches filters
-        const matchesType = typeValue === 'all' || cardType === typeValue;
-        const matchesProduct = productValue === 'all' || cardProducts.indexOf(productValue) !== -1;
-        const isVisible = matchesType && matchesProduct;
-
-        if (isVisible) {
-          visibleCards.push(card);
-        } else {
-          hiddenCards.push(card);
-        }
+      visible.forEach((card, i) => {
+        if (i < shown) card.classList.remove('hidden');
+        else           card.classList.add('hidden');
       });
 
-      // Aplicar animaciones fluidas usando la función global
-      if (typeof window.animateRecipeFilters === 'function') {
-        window.animateRecipeFilters(visibleCards, hiddenCards);
-      } else {
-        // Fallback sin animaciones
-        visibleCards.forEach(card => {
-          card.style.display = '';
-          card.classList.add('visible');
-        });
-        hiddenCards.forEach(card => {
-          card.style.display = 'none';
-        });
-      }
+      btn.setAttribute('data-shown', String(shown));
+      if (visible.length <= shown) btn.classList.add('hidden');
+      else                         btn.classList.remove('hidden');
+    }
 
-      // Show/hide sections based on filters and results
-      const hasResults = visibleCards.length > 0;
-      
-      // Si hay filtros activos, ocultar la sección "Las más populares" y su título con transición
+    //apply filers
+    function applyFilters() {
+      const typeFilter    = getEl('typeFilter');
+      const productFilter = getEl('productFilter');
+      if (!typeFilter || !productFilter) return;
+
+      const typeVal    = typeFilter.value    || 'all';
+      const productVal = productFilter.value || 'all';
+
+      saveFilters(typeVal, productVal);
+
+      const hasFilters = typeVal !== 'all' || productVal !== 'all';
+
+      //Get all recipe cards
+      const visible = [];
+      const hidden  = [];
+
+      getAllCards().forEach(card => {
+        const matchType    = typeVal    === 'all' || card.getAttribute('data-type') === typeVal;
+        const cardProducts = (card.getAttribute('data-products') || '').split(',').filter(Boolean);
+        const matchProduct = productVal === 'all' || cardProducts.includes(productVal);
+
+        if (matchType && matchProduct) visible.push(card);
+        else                           hidden.push(card);
+      });
+
+      visible.forEach(c => { c.style.display = ''; });
+      hidden.forEach(c  => { c.style.display = 'none'; });
+
+      //Sección destacados
+      const featuredTitle   = getEl('featuredTitle');
+      const featuredSection = getEl('featuredSection');
+
       if (featuredTitle) {
-        if (hasActiveFilters) {
-          featuredTitle.style.opacity = '0';
+        if (hasFilters) {
+          featuredTitle.style.opacity   = '0';
           featuredTitle.style.transform = 'translateY(-10px)';
-          setTimeout(() => {
-            featuredTitle.style.display = 'none';
-          }, 300);
+          setTimeout(() => { featuredTitle.style.display = 'none'; }, 300);
         } else {
           featuredTitle.style.display = '';
           requestAnimationFrame(() => {
-            featuredTitle.style.opacity = '1';
+            featuredTitle.style.opacity   = '1';
             featuredTitle.style.transform = 'translateY(0)';
           });
         }
       }
-      
+
       if (featuredSection) {
-        if (hasActiveFilters) {
+        if (hasFilters) {
           featuredSection.classList.add('section-hide');
-          setTimeout(() => {
-            featuredSection.style.display = 'none';
-          }, 400);
+          setTimeout(() => { featuredSection.style.display = 'none'; }, 400);
         } else {
           featuredSection.style.display = '';
-          requestAnimationFrame(() => {
-            featuredSection.classList.remove('section-hide');
-          });
+          requestAnimationFrame(() => featuredSection.classList.remove('section-hide'));
         }
       }
-      
-      // El grid con transición suave
+
+      //Grid de recetas
+      const hasResults  = visible.length > 0;
+      const recipesGrid = getEl('recipesGrid');
+
       if (recipesGrid) {
         if (hasResults) {
           recipesGrid.style.display = '';
-          requestAnimationFrame(() => {
-            recipesGrid.classList.remove('section-hide');
-          });
+          requestAnimationFrame(() => recipesGrid.classList.remove('section-hide'));
         } else {
           recipesGrid.classList.add('section-hide');
-          setTimeout(() => {
-            recipesGrid.style.display = 'none';
-          }, 400);
+          setTimeout(() => { recipesGrid.style.display = 'none'; }, 400);
         }
       }
-      
-      // Handle no results messages con animaciones
+
+      //Sin resultados
+      const noResults     = getEl('noResults');
+      const noResultsGrid = getEl('noResultsGrid');
+
       if (noResults) {
-        if (!hasActiveFilters && !hasResults) {
+        if (!hasFilters && !hasResults) {
           noResults.classList.remove('hidden');
           noResults.classList.add('flex', 'show');
         } else {
           noResults.classList.remove('show');
-          setTimeout(() => {
-            noResults.classList.add('hidden');
-            noResults.classList.remove('flex');
-          }, 300);
+          setTimeout(() => { noResults.classList.add('hidden'); noResults.classList.remove('flex'); }, 300);
         }
       }
-      
+
       if (noResultsGrid) {
         if (!hasResults) {
           noResultsGrid.classList.remove('hidden');
           noResultsGrid.classList.add('flex', 'show');
         } else {
           noResultsGrid.classList.remove('show');
-          setTimeout(() => {
-            noResultsGrid.classList.add('hidden');
-            noResultsGrid.classList.remove('flex');
-          }, 300);
+          setTimeout(() => { noResultsGrid.classList.add('hidden'); noResultsGrid.classList.remove('flex'); }, 300);
         }
       }
 
-      // Update product info panel con transición
+      const productInfo = getEl('productInfo');
       if (productInfo) {
-        const selected = productValue !== 'all' ? PRODUCT_MAP[productValue] : null;
+        const selected = productVal !== 'all' ? PRODUCT_MAP[productVal] : null;
         if (selected) {
-          const title = selected.name || productValue;
           const desc = selected.description || '';
-          productInfo.innerHTML = '<div class="flex flex-col gap-1"><div class="text-base font-semibold text-gray-900">' + title + '</div>' + (desc ? '<div class="text-sm text-gray-600">' + desc + '</div>' : '') + '</div>';
+          productInfo.innerHTML =
+            `<div class="flex flex-col gap-1">
+               <div class="text-base font-semibold text-gray-900">${selected.name || productVal}</div>
+               ${desc ? `<div class="text-sm text-gray-600">${desc}</div>` : ''}
+             </div>`;
           productInfo.style.opacity = '0';
           productInfo.classList.remove('hidden');
           productInfo.classList.add('flex');
           requestAnimationFrame(() => {
             productInfo.style.transition = 'opacity 0.3s ease';
-            productInfo.style.opacity = '1';
+            productInfo.style.opacity    = '1';
           });
         } else {
           productInfo.style.opacity = '0';
@@ -502,126 +448,77 @@ const gridRecipes = allRecipes.slice(4);
           }, 300);
         }
       }
+
+      //load despues de aplicar filtros
+      setTimeout(() => applyLoadMore(true), 60);
     }
 
-    // Attach event listeners
-    function attachListeners() {
-      const typeFilter = document.getElementById('typeFilter');
-      const productFilter = document.getElementById('productFilter');
-      
-      if (typeFilter && productFilter) {
-        // Remover listeners previos para evitar duplicados
-        typeFilter.removeEventListener('change', applyFilters);
-        productFilter.removeEventListener('change', applyFilters);
-        
-        // Agregar nuevos listeners
-        typeFilter.addEventListener('change', applyFilters);
-        productFilter.addEventListener('change', applyFilters);
+    //restore filters on back/forward navigation
+    function restoreFilters() {
+      const saved = loadFilters();
+      if (!saved) return;
+
+      const typeFilter    = getEl('typeFilter');
+      const productFilter = getEl('productFilter');
+
+      if (typeFilter    && saved.type)    typeFilter.value    = saved.type;
+      if (productFilter && saved.product) productFilter.value = saved.product;
+
+      if (saved.type !== 'all' || saved.product !== 'all') {
+        setTimeout(applyFilters, 50);
       }
     }
 
-    // Initialize
+    function attachListeners() {
+      const typeFilter    = getEl('typeFilter');
+      const productFilter = getEl('productFilter');
+      const loadMoreBtn   = getEl('recipesLoadMore');
+
+      if (typeFilter) {
+        typeFilter.removeEventListener('change', applyFilters);
+        typeFilter.addEventListener('change', applyFilters);
+      }
+
+      if (productFilter) {
+        productFilter.removeEventListener('change', applyFilters);
+        productFilter.addEventListener('change', applyFilters);
+      }
+
+      if (loadMoreBtn) {
+        // Clonar limpia listeners previos de navegaciones Astro
+        const fresh = loadMoreBtn.cloneNode(true);
+        loadMoreBtn.parentNode?.replaceChild(fresh, loadMoreBtn);
+
+        fresh.addEventListener('click', e => {
+          e.preventDefault();
+          const btn     = getEl('recipesLoadMore');
+          const visible = getGridCards().filter(el => el.style.display !== 'none');
+          const current = Number(btn?.getAttribute('data-shown') || String(INITIAL_SHOW));
+          const next    = Math.min(current + STEP_SHOW, visible.length);
+          btn?.setAttribute('data-shown', String(next));
+          applyLoadMore(false);
+        });
+      }
+    }
+
     function init() {
       attachListeners();
-      // Restaurar filtros guardados
+      applyLoadMore(true);
       restoreFilters();
     }
 
-    // Try to run immediately
     if (document.readyState === 'loading') {
       document.addEventListener('DOMContentLoaded', init);
     } else {
       init();
     }
-    
-    // Re-inicializar después de navegaciones de Astro
+
     document.addEventListener('astro:page-load', init);
-    
-    // Manejar navegación de regreso desde cache
-    window.addEventListener('pageshow', function(event) {
-      if (event.persisted) {
-        setTimeout(() => {
-          restoreFilters();
-        }, 100);
-      }
+
+    window.addEventListener('pageshow', e => {
+      if (e.persisted) setTimeout(restoreFilters, 100);
     });
-  })();
-</script>
 
-<script is:inline>
-  (function() {
-    'use strict';
-
-    const INITIAL = 6;
-    const STEP = 6;
-
-    function getGridCards() {
-      return Array.from(document.querySelectorAll('.recipe-grid-card'));
-    }
-
-    function getVisibleGridCards(cards) {
-      return cards.filter((el) => {
-        if (!(el instanceof HTMLElement)) return false;
-        return el.style.display !== 'none';
-      });
-    }
-
-    function applyLoadMore(reset) {
-      const button = document.getElementById('recipesLoadMore');
-      const cards = getGridCards();
-      if (!button || cards.length === 0) return;
-
-      const visibleCards = getVisibleGridCards(cards);
-
-      let shown = Number(button.getAttribute('data-shown') || '0');
-      if (reset || shown === 0) shown = Math.min(INITIAL, visibleCards.length);
-
-      visibleCards.forEach((card, idx) => {
-        if (!(card instanceof HTMLElement)) return;
-        if (idx < shown) {
-          card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
-      });
-
-      button.setAttribute('data-shown', String(shown));
-
-      if (visibleCards.length <= shown) {
-        button.classList.add('hidden');
-      } else {
-        button.classList.remove('hidden');
-      }
-    }
-
-    function initRecipesLoadMore() {
-      const button = document.getElementById('recipesLoadMore');
-      if (!button) return;
-
-      applyLoadMore(true);
-
-      button.addEventListener('click', (e) => {
-        e.preventDefault();
-        const cards = getVisibleGridCards(getGridCards());
-        const current = Number(button.getAttribute('data-shown') || String(INITIAL));
-        const next = Math.min(current + STEP, cards.length);
-        button.setAttribute('data-shown', String(next));
-        applyLoadMore(false);
-      });
-
-      const typeFilter = document.getElementById('typeFilter');
-      const productFilter = document.getElementById('productFilter');
-      const onFilterChange = () => setTimeout(() => applyLoadMore(true), 0);
-      if (typeFilter) typeFilter.addEventListener('change', onFilterChange);
-      if (productFilter) productFilter.addEventListener('change', onFilterChange);
-    }
-
-    if (document.readyState === 'loading') {
-      document.addEventListener('DOMContentLoaded', initRecipesLoadMore);
-    } else {
-      initRecipesLoadMore();
-    }
-    document.addEventListener('astro:page-load', initRecipesLoadMore);
   })();
 </script>
 

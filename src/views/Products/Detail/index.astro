@@ -110,6 +110,13 @@ if (allProductsArray.length > 1) {
             src={safeProduct.image} alt={safeProduct.name} 
             transition:name={`product-image-${safeProduct.id}`}
             loading="eager" />
+            {product.is_new && (
+              <img
+                src="https://snack.yummiespromociones.com/SnacksyummiesAssets/NUEVO.webp"
+                alt="Nuevo"
+                class="absolute top-4 right-4 w-20 sm:w-24 md:w-28 z-20"
+              />
+            )}
       </div>
       
       {/* Contenido del lado derecho */}
@@ -213,12 +220,17 @@ if (allProductsArray.length > 1) {
                       style={{ backgroundColor: product.background_color }}
                     >
                       {/* Imagen del producto */}
-                      <div class="related-product-image">
-                        <img 
-                          src={product.image} 
-                          alt={product.name}
-                          loading="lazy"
-                        />
+                      <div class="relative"> {/* Wrapper nuevo */}
+                        <div class="related-product-image">
+                          <img src={product.image} alt={product.name} loading="lazy" />
+                        </div>
+                        {product.is_new && (
+                          <img
+                            src="https://snack.yummiespromociones.com/SnacksyummiesAssets/NUEVO.webp"
+                            alt="Nuevo"
+                            class="absolute top-4 right-4 w-14 z-20"
+                          />
+                        )}
                       </div>
                       {/* Información del producto */}
                       <div class="related-product-content">
