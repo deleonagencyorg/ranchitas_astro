@@ -140,7 +140,7 @@ const gridRecipes = allRecipes.slice(4);
       <div class="relative">
         <select 
           id="typeFilter" 
-          class="appearance-none bg-white rounded-full w-full px-4 sm:px-6 py-2 sm:py-3 pr-10 text-sm sm:text-base font-medium border-0 shadow-sm cursor-pointer hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-orange">
+          class="appearance-none bg-white rounded-full w-full px-4 sm:px-9 py-2 sm:py-3 pr-10 text-sm sm:text-base font-medium border-0 shadow-sm cursor-pointer hover:shadow-md transition-shadow focus:outline-none focus:ring-2 focus:ring-orange">
           <option value="all">{filterLabels.typeLabel}: {filterLabels.all}</option>
           {uniqueCategories.includes('breakfast') && <option value="breakfast">{filterLabels.typeLabel}: {filterLabels.breakfast}</option>}
           {uniqueCategories.includes('brunch') && <option value="brunch">{filterLabels.typeLabel}: {filterLabels.brunch}</option>}
