@@ -336,28 +336,56 @@ const gridRecipes = allRecipes.slice(4);
     }
 
     function getEl(id) { return document.getElementById(id); }
-    function getAllCards() { return Array.from(document.querySelectorAll('.recipe-card')); }
+
+    // Solo tarjetas del grid
     function getGridCards() { return Array.from(document.querySelectorAll('.recipe-grid-card')); }
 
+    // grid-cards que coinciden con los filtros activos
+    function getMatchingGridCards(typeVal, productVal) {
+      return getGridCards().filter(card => {
+        const matchType    = typeVal    === 'all' || card.getAttribute('data-type') === typeVal;
+        const cardProducts = (card.getAttribute('data-products') || '').split(',').filter(Boolean);
+        const matchProduct = productVal === 'all' || cardProducts.includes(productVal);
+        return matchType && matchProduct;
+      });
+    }
+
+    // Ocultar todas las grid-cards!!
+    function hideAllGridCards() {
+      getGridCards().forEach(c => { c.style.display = 'none'; });
+    }
+
+    // Aplica paginación al conjunto de tarjetas visibles del grid
     function applyLoadMore(reset) {
       const btn = getEl('recipesLoadMore');
       if (!btn) return;
 
-      const visible = getGridCards().filter(el => el.style.display !== 'none');
-      let shown = Number(btn.getAttribute('data-shown') || '0');
-      if (reset || shown === 0) shown = Math.min(INITIAL_SHOW, visible.length);
+      const typeFilter    = getEl('typeFilter');
+      const productFilter = getEl('productFilter');
+      const typeVal    = typeFilter    ? (typeFilter.value    || 'all') : 'all';
+      const productVal = productFilter ? (productFilter.value || 'all') : 'all';
 
-      visible.forEach((card, i) => {
-        if (i < shown) card.classList.remove('hidden');
-        else           card.classList.add('hidden');
+      const matching = getMatchingGridCards(typeVal, productVal);
+      let shown = Number(btn.getAttribute('data-shown') || '0');
+      if (reset || shown === 0) shown = Math.min(INITIAL_SHOW, matching.length);
+
+      getGridCards().forEach(c => { c.style.display = 'none'; });
+
+      // Mostrar solo las matching 
+      matching.forEach((card, i) => {
+        if (i < shown) {
+          card.style.display = '';
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
       });
 
       btn.setAttribute('data-shown', String(shown));
-      if (visible.length <= shown) btn.classList.add('hidden');
-      else                         btn.classList.remove('hidden');
+      if (matching.length <= shown) btn.classList.add('hidden');
+      else                          btn.classList.remove('hidden');
     }
 
-    //apply filers
     function applyFilters() {
       const typeFilter    = getEl('typeFilter');
       const productFilter = getEl('productFilter');
@@ -370,23 +398,7 @@ const gridRecipes = allRecipes.slice(4);
 
       const hasFilters = typeVal !== 'all' || productVal !== 'all';
 
-      //Get all recipe cards
-      const visible = [];
-      const hidden  = [];
-
-      getAllCards().forEach(card => {
-        const matchType    = typeVal    === 'all' || card.getAttribute('data-type') === typeVal;
-        const cardProducts = (card.getAttribute('data-products') || '').split(',').filter(Boolean);
-        const matchProduct = productVal === 'all' || cardProducts.includes(productVal);
-
-        if (matchType && matchProduct) visible.push(card);
-        else                           hidden.push(card);
-      });
-
-      visible.forEach(c => { c.style.display = ''; });
-      hidden.forEach(c  => { c.style.display = 'none'; });
-
-      //Sección destacados
+      // Sección destacados
       const featuredTitle   = getEl('featuredTitle');
       const featuredSection = getEl('featuredSection');
 
@@ -394,8 +406,7 @@ const gridRecipes = allRecipes.slice(4);
         if (hasFilters) {
           featuredTitle.style.opacity   = '0';
           featuredTitle.style.transform = 'translateY(-10px)';
-          // hide immediately to avoid visual flash when filtering
-          featuredTitle.style.display = 'none';
+          featuredTitle.style.display   = 'none';
         } else {
           featuredTitle.style.display = '';
           requestAnimationFrame(() => {
@@ -407,7 +418,6 @@ const gridRecipes = allRecipes.slice(4);
 
       if (featuredSection) {
         if (hasFilters) {
-          // hide immediately to avoid flash (we don't need the leave animation here)
           featuredSection.classList.add('section-hide');
           featuredSection.style.display = 'none';
         } else {
@@ -416,8 +426,9 @@ const gridRecipes = allRecipes.slice(4);
         }
       }
 
-      //Grid de recetas
-      const hasResults  = visible.length > 0;
+      // el grid filtra solo recipe-grid-card por data-type y data-products
+      const matching    = getMatchingGridCards(typeVal, productVal);
+      const hasResults  = matching.length > 0;
       const recipesGrid = getEl('recipesGrid');
 
       if (recipesGrid) {
@@ -430,7 +441,7 @@ const gridRecipes = allRecipes.slice(4);
         }
       }
 
-      //Sin resultados
+      //Mensajes sin resultados
       const noResults     = getEl('noResults');
       const noResultsGrid = getEl('noResultsGrid');
 
@@ -454,6 +465,7 @@ const gridRecipes = allRecipes.slice(4);
         }
       }
 
+      // Product info 
       const productInfo = getEl('productInfo');
       if (productInfo) {
         const selected = productVal !== 'all' ? PRODUCT_MAP[productVal] : null;
@@ -481,11 +493,10 @@ const gridRecipes = allRecipes.slice(4);
         }
       }
 
-      //load despues de aplicar filtros
+      // Resetear paginación y revelar primera página del grid filtrado
       setTimeout(() => applyLoadMore(true), 60);
     }
 
-    //restore filters on back/forward navigation
     function restoreFilters() {
       const saved = loadFilters();
       if (!saved) return;
@@ -523,10 +534,14 @@ const gridRecipes = allRecipes.slice(4);
 
         fresh.addEventListener('click', e => {
           e.preventDefault();
-          const btn     = getEl('recipesLoadMore');
-          const visible = getGridCards().filter(el => el.style.display !== 'none');
-          const current = Number(btn?.getAttribute('data-shown') || String(INITIAL_SHOW));
-          const next    = Math.min(current + STEP_SHOW, visible.length);
+          const btn        = getEl('recipesLoadMore');
+          const typeFilter    = getEl('typeFilter');
+          const productFilter = getEl('productFilter');
+          const typeVal    = typeFilter    ? (typeFilter.value    || 'all') : 'all';
+          const productVal = productFilter ? (productFilter.value || 'all') : 'all';
+          const matching   = getMatchingGridCards(typeVal, productVal);
+          const current    = Number(btn?.getAttribute('data-shown') || String(INITIAL_SHOW));
+          const next       = Math.min(current + STEP_SHOW, matching.length);
           btn?.setAttribute('data-shown', String(next));
           applyLoadMore(false);
         });
