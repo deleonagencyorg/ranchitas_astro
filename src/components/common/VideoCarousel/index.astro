@@ -2,7 +2,6 @@
 import { Image } from 'astro:assets';
 
 interface textHome {
-  since: string;
   title: string;
   subtitle: string;
   description: string;
@@ -23,7 +22,6 @@ const { textHome } = Astro.props;
 
     <!-- TEXT CONTENT -->
     <div class="md:w-1/2 xl:w-1/2 xl:mb-0 md:mb-0 mb-12 sm:mb-16">
-      <p class="text-[#D99D3C] text-base sm:text-lg font-semibold">{textHome.since}</p>
 
       <h1 class="text-[36px] sm:text-[40px] md:text-[60px] xl:text-[80px] font-black uppercase  leading-none">
         {textHome.title} <br/>
