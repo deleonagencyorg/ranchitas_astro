@@ -70,11 +70,11 @@ const viewProductText = currentLang === 'es' ? 'Ver producto' : 'View product';
                 <div class="bg-white rounded-[3rem] shadow-xl p-8 md:p-12 max-w-5xl mx-auto">
                   <div class="grid grid-cols-1 md:grid-cols-2 gap-8 md:gap-12 items-center">
                     <!-- Product Image -->
-                    <div class="flex justify-center">
+                    <div class="flex justify-center rounded-[2rem]" style={{ backgroundColor: product.background_color || '#FFFFFF' }}>
                       <img 
                         src={product.image}
                         alt={product.name}
-                        class="w-full max-w-[400px] h-[300px] object-contain hover:scale-105 transition-transform duration-300"
+                        class="w-full max-w-[400px] h-[300px] object-contain hover:scale-105 transition-transform duration-300 mt-4 mb-4 pl-2 pr-2"
                       />
                     </div>
 

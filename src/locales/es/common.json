@@ -117,11 +117,6 @@
       "href": "/es/blog"
     },
     {
-      "id": "promotions",
-      "text": "Promociones",
-      "href": "/es/promociones"
-    },
-    {
       "id": "contact",
       "text": "Contáctanos",
       "href": "/es/contacto"
@@ -181,6 +176,7 @@
     "contact_us": "Contáctanos",
     "ranchitas": "Ranchitas",
     "help": "Ayuda",
+    "contact": "Contacto",
     "instagram_text": "Instagram",
     "facebook_text": "Facebook",
     "tiktok_text": "Tiktok",

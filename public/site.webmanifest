@@ -1,0 +1,10 @@
+{
+  "name": "Ranchitas",
+  "short_name": "Ranchitas",
+  "description": "El crunch más honesto",
+  "start_url": "/",
+  "display": "browser",
+  "background_color": "#FF0000",
+  "theme_color": "#FF0000",
+  "icons": []
+}

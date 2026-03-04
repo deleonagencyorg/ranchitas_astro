@@ -147,7 +147,7 @@ const gridRecipes = allRecipes.slice(4);
     })();
   </script>
 
-  <div class="container ml-4 sm:ml-6 md:ml-[40px] mt-6 sm:mt-8 md:mt-[40px] mr-4 sm:mr-6 md:mr-[40px] mb-12 sm:mb-16 md:mb-20">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-12 mt-6 sm:mt-8 md:mt-[40px] mb-12 sm:mb-16 md:mb-20">
 
     <!-- Header -->
     <div class="mb-3 sm:mb-4">
@@ -236,7 +236,7 @@ const gridRecipes = allRecipes.slice(4);
             </div>
           )}
           
-          <div class="lg:col-span-4 flex flex-col gap-4 justify-between">
+          <div class="lg:col-span-4 flex flex-col gap-4">
             {sidebarRecipes.map((recipe: Recipe) => (
               <div 
                 class="recipe-card" 
@@ -285,15 +285,6 @@ const gridRecipes = allRecipes.slice(4);
       ))}
     </div>
 
-    <div class="flex justify-center mt-10">
-      <button
-        id="recipesLoadMore"
-        type="button"
-        class="bg-orange hover:bg-orange/90 text-white font-bold py-3 px-10 rounded-full transition-all duration-200 text-lg"
-      >
-        {loadMoreText}
-      </button>
-    </div>
     <!-- No results message for filters -->
     <div id="noResultsGrid" class="hidden mt-6 items-center justify-center h-48 md:h-64">
       <span class="text-[#D61F2C] text-lg md:text-xl font-semibold">{noFilterResultsText}</span>
@@ -312,8 +303,8 @@ const gridRecipes = allRecipes.slice(4);
     'use strict';
 
     const STORAGE_KEY  = 'recipeFilters';
-    const INITIAL_SHOW = 6;
-    const STEP_SHOW    = 6;
+    const INITIAL_SHOW = 9999;
+    const STEP_SHOW    = 9999;
 
     // Parse product map
     let PRODUCT_MAP = {};
@@ -357,8 +348,6 @@ const gridRecipes = allRecipes.slice(4);
 
     // Aplica paginación al conjunto de tarjetas visibles del grid
     function applyLoadMore(reset) {
-      const btn = getEl('recipesLoadMore');
-      if (!btn) return;
 
       const typeFilter    = getEl('typeFilter');
       const productFilter = getEl('productFilter');
@@ -366,24 +355,13 @@ const gridRecipes = allRecipes.slice(4);
       const productVal = productFilter ? (productFilter.value || 'all') : 'all';
 
       const matching = getMatchingGridCards(typeVal, productVal);
-      let shown = Number(btn.getAttribute('data-shown') || '0');
-      if (reset || shown === 0) shown = Math.min(INITIAL_SHOW, matching.length);
-
       getGridCards().forEach(c => { c.style.display = 'none'; });
 
       // Mostrar solo las matching 
-      matching.forEach((card, i) => {
-        if (i < shown) {
+      matching.forEach(card => {
           card.style.display = '';
           card.classList.remove('hidden');
-        } else {
-          card.classList.add('hidden');
-        }
       });
-
-      btn.setAttribute('data-shown', String(shown));
-      if (matching.length <= shown) btn.classList.add('hidden');
-      else                          btn.classList.remove('hidden');
     }
 
     function applyFilters() {

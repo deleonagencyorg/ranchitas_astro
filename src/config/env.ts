@@ -11,3 +11,6 @@ export const API_TOKEN = (import.meta as any).env.API_TOKEN || '';
 export const LOG_LEVEL = (import.meta as any).env.LOG_LEVEL || 'info';
 
 export const isDev = (import.meta as any).env.DEV;
+
+export const PUBLIC_META_PIXEL_ID = (import.meta as any).env.PUBLIC_META_PIXEL_ID || '';
+export const PUBLIC_TIKTOK_PIXEL_ID = (import.meta as any).env.PUBLIC_TIKTOK_PIXEL_ID || '';
