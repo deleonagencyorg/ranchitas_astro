@@ -16,7 +16,7 @@ if (!brandData) {
 
 <div class="brand-detail-container">
   <div class="brand-hero" style={`background-color: ${brandData.bgColor || '#ffffff'}`}>
-    <div class="container mx-auto px-4 py-12">
+    <div class="container mx-auto px-4 sm:px-6 lg:px-12 py-12">
       <div class="flex flex-col md:flex-row items-center">
         <div class="md:w-1/2 mb-8 md:mb-0">
           <img 
@@ -42,7 +42,7 @@ if (!brandData) {
     </div>
   </div>
 
-  <div class="container mx-auto px-4 py-12">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-12 py-12">
     <div class="brand-chips-showcase mb-12">
       <h2 class="text-3xl font-bold mb-6 text-center">{t('detail.product_showcase', { namespace: 'brands' })}</h2>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-6">

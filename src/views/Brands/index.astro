@@ -48,7 +48,7 @@ const skeletonCount = 3;
 ---
 
 <div class="brands-container bg-white" transition:name="brands-container" transition:animate={fade({ duration: '0.5s' })}>
-  <div class="container mx-auto px-4 md:py-8 py-0">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-12 md:py-8 py-0">
     <Breadcrumb bgColor="bg-primary" textColor="text-gray-900" hoverColor="hover:text-gray-900" />
   </div>
   <header class="brands-header text-center md:py-8 py-0" transition:name="brands-header" transition:animate={fade({ duration: '0.7s' })}>
@@ -102,7 +102,7 @@ const skeletonCount = 3;
   </header>
 </div>
 
-<div class="container mx-auto px-4 mt-[-2rem]">
+<div class="container mx-auto px-4 sm:px-6 lg:px-12 mt-[-2rem]">
   <div class="brands-list" transition:name="brands-list" transition:animate={fade({ duration: '0.6s' })}>
     {isLoading ? (
       // Mostrar skeletons durante la carga
@@ -168,7 +168,7 @@ const skeletonCount = 3;
             />
           )}
           
-          <div class="container mx-auto px-4 py-8 relative">
+          <div class="container mx-auto px-4 sm:px-6 lg:px-12 py-8 relative">
             <div class="flex flex-col md:flex-row items-center justify-between">
               <div id="info-brand" class={`md:w-1/2 order-2 md:order-${index % 2 === 0 ? '1' : '2'} flex items-center justify-center`}>
                 <div class="brand-logo-container relative">

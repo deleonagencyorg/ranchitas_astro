@@ -107,6 +107,16 @@ const featuredLabel = currentLang==='es' ? 'DESTACADOS' : 'FEATURED';
         style="background: linear-gradient(to bottom, #FAF0D5 0%, #FAF0D5 25%, white 25%, white 100%);"
       >
         <div class="relative z-30">
+          <div class="text-center mb-4 mt-24 md:mt-36 relative z-20" >
+            <h2 class="text-2xl md:text-4xl font-bold mb-3" style={`color: black`}>
+              {brandsAssets.home?.title}
+            </h2>
+            {brandsAssets.home?.subtitle && (
+              <h1 class="text-4xl md:text-7xl font-bold " style={`color: black`}>
+                {brandsAssets.home?.subtitle}
+              </h1>
+            )}
+          </div>
           <ProductsCarousel 
             products={products}
             color={'white'}
@@ -169,7 +179,7 @@ const featuredLabel = currentLang==='es' ? 'DESTACADOS' : 'FEATURED';
 
     <!-- Sección Gallery -->
     <!-- <section id="gallery" class="bg-pink w-full py-12" transition:animate="slide">
-      <div class="container mx-auto px-4">
+      <div class="container mx-auto px-4 sm:px-6 lg:px-12">
         {Array.isArray(galleryAssets.images) && galleryAssets.images.length > 0 && (
           <MasonryGallery 
             items={galleryAssets.images}

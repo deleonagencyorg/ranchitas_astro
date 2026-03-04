@@ -103,10 +103,10 @@ if (allProductsArray.length > 1) {
     class="product-detail pt-12 md:pt-29 pb-20 sm:pb-24 lg:pb-32 bg-cover bg-center relative bg-primaryCream"
   >
     <div class="md:mt-[0] mx-auto w-[95%] sm:w-[95%] max-w-[1400px] px-0 sm:px-6 py-5 flex flex-col lg:flex-row gap-6 sm:gap-8 md:gap-12 lg:gap-16 xl:gap-24">
-      <div class="relative flex justify-center items-center w-full lg:w-[605px] p-4 sm:p-6 md:p-8 lg:px-20 lg:py-8 xl:px-28 xl:py-8 rounded-[20px] sm:rounded-[30px] gap-2 overflow-hidden bg-white h-[280px] sm:h-[350px] md:h-[500px] lg:h-[593px] product-image-container">
-        <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-[30px] pointer-events-none"></div>
-        <img id="product-image" 
-          class="relative z-10 w-full h-full object-contain max-w-[200px] sm:max-w-[280px] md:max-w-[350px] lg:max-w-[400px] xl:max-w-full will-change-transform" 
+      <div class="relative flex justify-center items-center w-full lg:w-[605px] p-4 sm:p-6 md:p-8 lg:px-20 lg:py-8 xl:px-28 xl:py-8 rounded-[20px] sm:rounded-[30px] gap-2 overflow-hidden h-[280px] sm:h-[350px] md:h-[500px] lg:h-[593px] product-image-container"
+        style={{ backgroundColor: safeProduct.background_color || '#FFFFFF' }}>
+          <img id="product-image" 
+            class="relative z-10 w-full h-full object-contain scale-120 sm:scale-115 md:scale-110 will-change-transform"
             src={safeProduct.image} alt={safeProduct.name} 
             transition:name={`product-image-${safeProduct.id}`}
             loading="eager" />
@@ -117,6 +117,7 @@ if (allProductsArray.length > 1) {
                 class="absolute top-4 right-4 w-20 sm:w-24 md:w-28 z-20"
               />
             )}
+            <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-[30px] pointer-events-none"></div>
       </div>
       
       {/* Contenido del lado derecho */}

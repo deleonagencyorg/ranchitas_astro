@@ -112,11 +112,6 @@
       "href": "/en/blog"
     },
     {
-      "id": "promotions",
-      "text": "Promotions",
-      "href": "/en/promotions"
-    },
-    {
       "id": "contact",
       "text": "Contact Us",
       "href": "/en/contact"
@@ -159,7 +154,6 @@
       ]
     },
     "text_home": {
-      "since": "Since 2000",
       "title": "THE CRUNCH",
       "subtitle": "YOU CAN TRUST",
       "description": "Ranchitas is the snack that never fails: crispy, tasty, and perfect for any occasion.",
@@ -177,6 +171,7 @@
     "contact_us": "Contact Us",
     "ranchitas": "Ranchitas",
     "help": "Help",
+    "contact": "Contact",
     "instagram_text": "Instagram",
     "facebook_text": "Facebook",
     "tiktok_text": "Tiktok",

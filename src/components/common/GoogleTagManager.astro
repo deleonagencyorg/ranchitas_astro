@@ -1,9 +1,9 @@
 ---
 // Replace with your actual GTM ID
-const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-XXXXXX';
+const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-XXXXXXX';
 
 // Validar que el GTM ID esté configurado
-if (!gtmId || gtmId === 'GTM-XXXXXX') {
+if (!gtmId || gtmId === 'GTM-XXXXXXX') {
   console.warn('GTM ID no está configurado correctamente. Verifica tu archivo .env');
 }
 ---
@@ -20,7 +20,7 @@ if (!gtmId || gtmId === 'GTM-XXXXXX') {
 
 <!-- Google Tag Manager -->
 <script is:inline define:vars={{ gtmId }}>
-  if (gtmId && gtmId !== 'GTM-XXXXXX') {
+  if (gtmId && gtmId !== 'GTM-XXXXXXX') {
     (function(w,d,s,l,i){
       w[l]=w[l]||[];
       w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});

@@ -11,7 +11,7 @@ const products = t('items', { namespace: 'products', locale: currentLang }) || [
 
 <div class="bg-primaryCream py-8 sm:py-12 overflow-visible">
   
-  <div class="container mx-auto px-3 sm:px-4">
+  <div class="container mx-auto px-4 sm:px-6 lg:px-12">
     {products.length === 0 ? (
       <p class="text-center text-gray-500">No hay productos para mostrar.</p>
     ) : (
@@ -23,8 +23,9 @@ const products = t('items', { namespace: 'products', locale: currentLang }) || [
             style={{ backgroundColor: product.background_color || '#FFFFFF' }}
             data-product-id={product.id}
           >
-            <div class="w-full flex justify-center items-center flex-1 mb-3 sm:mb-4 md:mb-6 product-image-wrapper relative">
-              <img
+            <div class="w-full flex justify-center items-center flex-1 mb-3 sm:mb-4 md:mb-6 product-image-wrapper">
+              <div class="relative w-full">
+                <img
                 src={product.image || '/images/placeholder.jpg'}
                 alt={product.name}
                 class="w-full max-w-[408px] h-[120px] sm:h-[180px] md:h-[210px] lg:h-[235px] object-contain"
@@ -35,11 +36,11 @@ const products = t('items', { namespace: 'products', locale: currentLang }) || [
                 <img
                   src="https://snack.yummiespromociones.com/SnacksyummiesAssets/NUEVO.webp"
                   alt="Nuevo"
-                  class="absolute top-0 right-0 w-24 sm:w-28 z-10"
+                  class="absolute -top-6 -right-5 sm:-right-1 w-16 sm:w-20 z-10" 
                 />
                )
-
               }
+              </div>
             </div>
             <div class="w-full text-center sm:text-start">
               <h3

@@ -117,11 +117,6 @@
       "href": "/es/blog"
     },
     {
-      "id": "promotions",
-      "text": "Promociones",
-      "href": "/es/promociones"
-    },
-    {
       "id": "contact",
       "text": "Contáctanos",
       "href": "/es/contacto"
@@ -164,7 +159,6 @@
       ]
     },
     "text_home": {
-      "since": "Desde 2000",
       "title": "EL CRUNCH",
       "subtitle": "MÁS HONESTO",
       "description": "Ranchitas es el snack que nunca falla: crujiente, sabroso y perfecto para cualquier ocasión.",
@@ -182,6 +176,7 @@
     "contact_us": "Contáctanos",
     "ranchitas": "Ranchitas",
     "help": "Ayuda",
+    "contact": "Contacto",
     "instagram_text": "Instagram",
     "facebook_text": "Facebook",
     "tiktok_text": "Tiktok",

@@ -31,6 +31,7 @@ const menuItems = t('menu_items', { namespace: 'common', locale: currentLang }) 
 const mainText2 = t('footer.main_text2', { namespace: 'common', locale: currentLang });
 const emailPlaceholder = t('footer.email_placeholder', { namespace: 'common', locale: currentLang });
 const subscribeButton = t('footer.subscribe_button', { namespace: 'common', locale: currentLang });
+const contact = t('footer.contact', { namespace: 'common', locale: currentLang });
 
 function getMenuHref(id: string) {
   return (menuItems || []).find((i: any) => i?.id === id)?.href;
@@ -43,15 +44,37 @@ const footerMenuItems = (menuItems || []).filter((i: any) => i && i.id !== 'bran
   <Skeleton />
 ) : (
   <footer class="bg-[#D61F2C] text-white relative overflow-hidden z-10">
-    <div class="container mx-auto px-4 sm:px-6 lg:px-12 py-12 sm:py-16">
+    <div class="w-full px-6 sm:px-10 lg:px-16 py-12 sm:py-16">
       <div class="grid grid-cols-1 lg:grid-cols-2 gap-8 sm:gap-12 lg:gap-24">
         
         <!-- Columna Izquierda: Título, Descripción y Newsletter -->
-        <div class="flex flex-col justify-center md:justify-start  md:text-left ">
+        <div class="flex flex-col items-center  md:text-left gap-4">
+          <div class="flex flex-col gap-4 mb-12">
+            <!-- logo -->
+            <div class="">
+              <img 
+                src="http://localhost:4321/images/es/logo/logobanner.png" 
+                alt="Ranchitas" 
+                class="w-32 sm:w-40"
+              />
+            </div>
+            <!-- Footer Policy -->
+            <div class="flex flex-col gap-2 mt-4 text-sm sm:text-base opacity-80">
+              <a 
+                href={`/${currentLang}/${currentLang === 'es' ? 'politica-de-privacidad' : 'privacy-policy'}`}
+                class="hover:underline "
+              >
+                {currentLang === 'es' ? 'Política de Privacidad' : 'Privacy Policy'}
+              </a>
+              <span>
+                {currentLang === 'es' ? 'Ranchitas 2026. Todos los Derechos Reservados' : 'Ranchitas 2026. All Rights Reserved'}
+              </span>
+            </div>
+          </div>
+
           <h3 class="text-4xl sm:text-6xl font-bold mb-4 sm:mb-6 ">
             {mainText}<br />{mainText2}
           </h3>
-          
           
           <!-- Formulario de Newsletter -->
           <div class="flex justify-center sm:justify-start">
@@ -69,24 +92,6 @@ const footerMenuItems = (menuItems || []).filter((i: any) => i && i.id !== 'bran
         <!-- Columna Derecha: Links de Navegación -->
         <div class="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-8 lg:gap-12 w-full">
           
-          <!-- Redes Sociales -->
-          <div class="text-start">
-            <h3 class="font-title text-lg sm:text-2xl font-bold mb-3 sm:mb-4 uppercase">
-              {followUs}
-            </h3>
-            <div class="flex flex-col space-y-2 sm:space-y-3">
-              <a href={socialMedia?.facebook?.url || '#'} target="_blank" rel="noopener noreferrer" class="font-sans text-sm sm:text-xl hover:text-accent transition-colors duration-200">
-                {facebookText}
-              </a>
-              <a href={socialMedia?.instagram?.url || '#'} target="_blank" rel="noopener noreferrer" class="font-sans text-sm sm:text-xl hover:text-accent transition-colors duration-200">
-                {instagramText}
-              </a>
-              <a href={socialMedia?.tiktok?.url || '#'} target="_blank" rel="noopener noreferrer" class="font-sans text-sm sm:text-xl hover:text-accent transition-colors duration-200">
-                {tiktokText}
-              </a>
-            </div>
-          </div>
-
           <!-- Ranchitas -->
           <div class="text-start">
             <h3 class="font-title text-lg sm:text-2xl font-bold mb-3 sm:mb-4 uppercase">
@@ -112,7 +117,67 @@ const footerMenuItems = (menuItems || []).filter((i: any) => i && i.id !== 'bran
               </a>
             </div>
           </div>
+          
+          <!-- Redes Sociales -->
+          <div class="text-start">
+            <h3 class="font-title text-lg sm:text-2xl font-bold mb-3 sm:mb-4 uppercase">
+              {followUs}
+            </h3>
+            <div class="flex flex-col space-y-2 sm:space-y-3">
+              <a href={socialMedia?.facebook?.url || '#'} target="_blank" rel="noopener noreferrer" class="font-sans text-sm sm:text-xl hover:text-accent transition-colors duration-200">
+                {facebookText}
+              </a>
+              <a href={socialMedia?.instagram?.url || '#'} target="_blank" rel="noopener noreferrer" class="font-sans text-sm sm:text-xl hover:text-accent transition-colors duration-200">
+                {instagramText}
+              </a>
+              <a href={socialMedia?.tiktok?.url || '#'} target="_blank" rel="noopener noreferrer" class="font-sans text-sm sm:text-xl hover:text-accent transition-colors duration-200">
+                {tiktokText}
+              </a>
+            </div>
+          </div>
 
+          <!-- Contacto -->
+          <div class="w-full border-t-0 mt-0 pt-0">
+            <div class="">
+              <div class="mb-4">
+                <h3 class="font-title text-lg sm:text-2xl font-bold mb-3 sm:mb-4 uppercase">
+              {contact}
+            </h3>
+              </div>
+              <div class="grid grid-cols-1 gap-4">
+                <!-- Guatemala -->
+                <div class="flex items-center space-x-2">
+                  <span class="text-2xl" role="img" aria-label="Guatemala">🇬🇹</span>
+                  <span>(+502) 2502-7050</span>
+                </div>
+                <!-- El Salvador -->
+                <div class="flex items-center space-x-2">
+                  <span class="text-2xl" role="img" aria-label="El Salvador">🇸🇻</span>
+                  <span>(+503) 2510-8300</span>
+                </div>
+                <!-- Costa Rica -->
+                <div class="flex items-center space-x-2">
+                  <span class="text-2xl" role="img" aria-label="Costa Rica">🇨🇷</span>
+                  <span>(+506) 2271-0665</span>
+                </div>
+                <!-- República Dominicana -->
+                <div class="flex items-center space-x-2">
+                  <span class="text-2xl" role="img" aria-label="República Dominicana">🇩🇴</span>
+                  <span>(+001) 809-2731042</span>
+                </div>
+                <!-- Nicaragua -->
+                <div class="flex items-center space-x-2">
+                  <span class="text-2xl" role="img" aria-label="Nicaragua">🇳🇮</span>
+                  <span>(+505) 2255-7480</span>
+                </div>
+                <!-- Honduras -->
+                <div class="flex items-center space-x-2">
+                  <span class="text-2xl" role="img" aria-label="Honduras">🇭🇳</span>
+                  <span>(+504) 2275-3370</span>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </div>
