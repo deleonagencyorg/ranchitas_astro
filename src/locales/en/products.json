@@ -44,12 +44,29 @@
           "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp"
         }
       ],
-      "weight": [
-        "18g",
-        "23g",
-        "25g",
-        "150g"
-      ]
+      "weight": ["18g", "23g", "25g", "150g"],
+      "nutrition": {
+        "title": "Nutrition Facts",
+        "serving": "Serving Size: 1oz (28g). Servings per container: 0.84",
+        "rows": [
+          { "label": "Energy", "value": "650 kJ (150 kcal)" },
+          { "label": "Energy from Fat", "value": "300 kJ (70 kcal)" },
+          { "label": "Total Fat", "value": "8g (10% DV)" },
+          { "label": "Saturated Fat", "value": "3.5g (18% DV)" },
+          { "label": "Trans Fat", "value": "0g (0% DV)" },
+          { "label": "Cholesterol", "value": "0mg (0% DV)" },
+          { "label": "Sodium", "value": "240mg (10% DV)" },
+          { "label": "Total Carbohydrates", "value": "17g (6% DV)" },
+          { "label": "Dietary Fiber", "value": "1g (4% DV)" },
+          { "label": "Total Sugars", "value": "less than 1g" },
+          { "label": "Protein", "value": "2g" },
+          { "label": "Vitamin D", "value": "0% DV" },
+          { "label": "Calcium", "value": "2% DV" },
+          { "label": "Iron", "value": "2% DV" },
+          { "label": "Potassium", "value": "1% DV" }
+        ],
+        "disclaimer": "Percent Daily Values are based on a 8,378 kJ (2,000 cal) diet. Your daily values may be higher or lower depending on your caloric needs.   "
+      }
     },
     {
       "id": "ranchitas-nacho-pizza",
@@ -57,11 +74,11 @@
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-pizza-2.webp",
       "background_color": "#0041CD",
       "header_color": "#FDE820",
-      "text_color":"#FFFFFF",
+      "text_color": "#FFFFFF",
       "header_background": "#FDE820",
       "header_text_color": "#5B3F2E",
       "color_button": "#FFFFFF",
-      "description":  "Crispy corn nachos with pizza flavor, perfect for sharing at parties. An explosion of flavor in every bite that will transport you directly to your favorite pizzeria.",
+      "description": "Crispy corn nachos with pizza flavor, perfect for sharing at parties. An explosion of flavor in every bite that will transport you directly to your favorite pizzeria.",
       "short_description": "Crispy corn nachos with pizza flavor.",
       "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
       "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
@@ -71,20 +88,37 @@
           "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp"
         }
       ],
-      "weight": [
-        "18g",
-        "23g",
-        "25g",
-        "150g"
-      ]
+      "weight": ["18g", "23g", "25g", "150g"],
+      "nutrition": {
+        "title": "Nutrition Facts",
+        "serving": "Serving Size: 1oz (28g). Servings per container: 0.84",
+        "rows": [
+          { "label": "Energy", "value": "650 kJ (150 kcal)" },
+          { "label": "Energy from Fat", "value": "350 kJ (70 kcal)" },
+          { "label": "Total Fat", "value": "9g (10% DV)" },
+          { "label": "Saturated Fat", "value": "4g (20% DV)" },
+          { "label": "Trans Fat", "value": "0g" },
+          { "label": "Cholesterol", "value": "0mg (0% DV)" },
+          { "label": "Sodium", "value": "340mg (15% DV)" },
+          { "label": "Total Carbohydrates", "value": "17g (6% DV)" },
+          { "label": "Dietary Fiber", "value": "1g (4% DV)" },
+          { "label": "Total Sugars", "value": "less than 1g" },
+          { "label": "Protein", "value": "2g (7% DV)" },
+          { "label": "Vitamin D", "value": "0% DV" },
+          { "label": "Calcium", "value": "2% DV" },
+          { "label": "Iron", "value": "2% DV" },
+          { "label": "Potassium", "value": "0% DV" }
+        ],
+        "disclaimer": "Percent Daily Values are based on a 8,378 kJ (2,000 cal) diet. Your daily values may be higher or lower depending on your caloric needs.   "
+      }
     },
     {
       "id": "ranchitas-nacho-excitante",
       "name": "Ranchitas Nacho Excitante",
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-exitante-2.webp",
-      "background_color": "#E82E30",  
+      "background_color": "#E82E30",
       "header_color": "#FFFFFF",
-      "text_color":"#FFFFFF",
+      "text_color": "#FFFFFF",
       "header_background": "#E82E30",
       "color_button": "#FFFFFF",
       "description": "Spicy fried corn nachos.",
@@ -97,12 +131,29 @@
           "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp"
         }
       ],
-      "weight": [
-        "18g",
-        "25g",
-        "70g",
-        "150g"
-      ]
+      "weight": ["18g", "25g", "70g", "150g"],
+      "nutrition": {
+        "title": "Nutrition Facts",
+        "serving": "Serving Size: 1oz (28g). Servings per container: 0.64",
+        "rows": [
+          { "label": "Energy", "value": "650 kJ (150 kcal)" },
+          { "label": "Energy from Fat", "value": "300 kJ (70 kcal)" },
+          { "label": "Total Fat", "value": "8g (10% DV)" },
+          { "label": "Saturated Fat", "value": "3.5g (18% DV)" },
+          { "label": "Trans Fat", "value": "0g (0% DV)" },
+          { "label": "Cholesterol", "value": "0mg (0% DV)" },
+          { "label": "Sodium", "value": "180mg (8% DV)" },
+          { "label": "Total Carbohydrates", "value": "17g (6% DV)" },
+          { "label": "Dietary Fiber", "value": "1g (4% DV)" },
+          { "label": "Total Sugars", "value": "less than 1g" },
+          { "label": "Protein", "value": "2g" },
+          { "label": "Vitamin D", "value": "0% DV" },
+          { "label": "Calcium", "value": "2% DV" },
+          { "label": "Iron", "value": "2% DV" },
+          { "label": "Potassium", "value": "0% DV" }
+        ],
+        "disclaimer": "Percent Daily Values are based on a 8,378 kJ (2,000 cal) diet. Your daily values may be higher or lower depending on your caloric needs.   "
+      }
     },
     {
       "id": "ranchitas-nacho-queso",
@@ -110,7 +161,7 @@
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-queso-2.webp",
       "background_color": "#EE710A",
       "header_color": "#FFFFFF",
-      "text_color":"#FFFFFF",
+      "text_color": "#FFFFFF",
       "header_background": "#FE5A00",
       "header_text_color": "#FFFFFF",
       "color_button": "#FFFFFF",
@@ -124,14 +175,29 @@
           "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp"
         }
       ],
-      "weight": [
-        "18g",
-        "25g",
-        "70g",
-        "150g",
-        "250g",
-        "450g"
-      ]
+      "weight": ["18g", "25g", "70g", "150g", "250g", "450g"],
+      "nutrition": {
+        "title": "Nutrition Facts",
+        "serving": "Serving Size: 1oz (28g). Servings per container: 0.64",
+        "rows": [
+          { "label": "Energy", "value": "650 kJ (150 kcal)" },
+          { "label": "Energy from Fat", "value": "350 kJ (80 kcal)" },
+          { "label": "Total Fat", "value": "9g (12% DV)" },
+          { "label": "Saturated Fat", "value": "4g (20% DV)" },
+          { "label": "Trans Fat", "value": "0g (0% DV)" },
+          { "label": "Cholesterol", "value": "0mg (0% DV)" },
+          { "label": "Sodium", "value": "160mg (7% DV)" },
+          { "label": "Total Carbohydrates", "value": "17g (6% DV)" },
+          { "label": "Dietary Fiber", "value": "1g (4% DV)" },
+          { "label": "Total Sugars", "value": "less than 1g" },
+          { "label": "Protein", "value": "2g" },
+          { "label": "Vitamin D", "value": "0% DV" },
+          { "label": "Calcium", "value": "4% DV" },
+          { "label": "Iron", "value": "2% DV" },
+          { "label": "Potassium", "value": "0% DV" }
+        ],
+        "disclaimer": "Percent Daily Values are based on a 8,378 kJ (2,000 cal) diet. Your daily values may be higher or lower depending on your caloric needs.   "
+      }
     },
     {
       "id": "ranchitas-nacho-extremo",
@@ -139,7 +205,7 @@
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-nacho-extremo-2.webp",
       "background_color": "#EFEFEF",
       "header_color": "#1C1C1C",
-      "text_color":"#0F0F0F",
+      "text_color": "#0F0F0F",
       "header_background": "#BEDE89",
       "header_text_color": "#1C1C1C",
       "color_button": "#F86509",
@@ -153,9 +219,29 @@
           "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp"
         }
       ],
-      "weight": [
-        "19g"
-      ]
+      "weight": ["19g"],
+      "nutrition": {
+        "title": "Nutrition Facts",
+        "serving": "Serving Size: 1oz (28g). Servings per container: 0.64",
+        "rows": [
+          { "label": "Energy", "value": "650 kJ (150 kcal)" },
+          { "label": "Energy from Fat", "value": "300 kJ (70 kcal)" },
+          { "label": "Total Fat", "value": "7g (9% DV)" },
+          { "label": "Saturated Fat", "value": "3g (15% DV)" },
+          { "label": "Trans Fat", "value": "0g (0% DV)" },
+          { "label": "Cholesterol", "value": "0mg (0% DV)" },
+          { "label": "Sodium", "value": "280mg (12% DV)" },
+          { "label": "Total Carbohydrates", "value": "18g (7% DV)" },
+          { "label": "Dietary Fiber", "value": "2g (6% DV)" },
+          { "label": "Total Sugars", "value": "less than 1g" },
+          { "label": "Protein", "value": "2g" },
+          { "label": "Vitamin D", "value": "0% DV" },
+          { "label": "Calcium", "value": "2% DV" },
+          { "label": "Iron", "value": "2% DV" },
+          { "label": "Potassium", "value": "0% DV" }
+        ],
+        "disclaimer": "Percent Daily Values are based on a 8,378 kJ (2,000 cal) diet. Your daily values may be higher or lower depending on your caloric needs.   "
+      }
     },
     {
       "id": "ranchitas-naturales",
@@ -163,7 +249,7 @@
       "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-naturales.webp",
       "background_color": "#8BC53F",
       "header_color": "#FFFFFF",
-      "text_color":"#FFFFFF",
+      "text_color": "#FFFFFF",
       "header_background": "#8BC53F",
       "header_text_color": "#FFFFFF",
       "color_button": "#FFFFFF",
@@ -177,10 +263,28 @@
           "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp"
         }
       ],
-      "weight": [
-        "35g",
-        "300g"
-      ]
+      "weight": ["35g", "300g"],
+      "nutrition": {
+        "title": "Nutrition Facts",
+        "serving": "Serving Size: 28g. Servings per container: 6.25",
+        "rows": [
+          { "label": "Energy", "value": "600 kJ (140 kcal)" },
+          { "label": "Energy from Fat", "value": "250 kJ (60 kcal)" },
+          { "label": "Total Fat", "value": "6g (10% DV)" },
+          { "label": "Saturated Fat", "value": "3g (15% DV)" },
+          { "label": "Trans Fat", "value": "0g" },
+          { "label": "Cholesterol", "value": "0mg (0% DV)" },
+          { "label": "Sodium", "value": "110mg (5% DV)" },
+          { "label": "Total Carbohydrates", "value": "20g (7% DV)" },
+          { "label": "Dietary Fiber", "value": "2g (8% DV)" },
+          { "label": "Total Sugars", "value": "0g" },
+          { "label": "Protein", "value": "2g" },
+          { "label": "Vitamin A", "value": "0% DV" },
+          { "label": "Calcium", "value": "3% DV" },
+          { "label": "Iron", "value": "2% DV" }
+        ],
+        "disclaimer": "Percent Daily Values are based on a 8,378 kJ (2,000 cal) diet. Your daily values may be higher or lower depending on your caloric needs.   "
+      }
     },
     {
       "id": "ranchitas-nacho-guacamole",
@@ -202,12 +306,29 @@
           "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp"
         }
       ],
-      "weight": [
-        "18g",
-        "25g",
-        "70g",
-        "150g"
-      ]
+      "weight": ["18g", "25g", "70g", "150g"],
+      "nutrition": {
+        "title": "Nutrition Facts",
+        "serving": "Serving Size: 1oz (28g). Servings per container: 0.64",
+        "rows": [
+          { "label": "Energy", "value": "650 kJ (150 kcal)" },
+          { "label": "Energy from Fat", "value": "300 kJ (70 kcal)" },
+          { "label": "Total Fat", "value": "8g (10% DV)" },
+          { "label": "Saturated Fat", "value": "3.5g (18% DV)" },
+          { "label": "Trans Fat", "value": "0g (0% DV)" },
+          { "label": "Cholesterol", "value": "0mg (0% DV)" },
+          { "label": "Sodium", "value": "170mg (7% DV)" },
+          { "label": "Total Carbohydrates", "value": "17g (6% DV)" },
+          { "label": "Dietary Fiber", "value": "1g (4% DV)" },
+          { "label": "Total Sugars", "value": "less than 1g" },
+          { "label": "Protein", "value": "2g" },
+          { "label": "Vitamin D", "value": "0% DV" },
+          { "label": "Calcium", "value": "2% DV" },
+          { "label": "Iron", "value": "2% DV" },
+          { "label": "Potassium", "value": "0% DV" }
+        ],
+        "disclaimer": "Percent Daily Values are based on a 8,378 kJ (2,000 cal) diet. Your daily values may be higher or lower depending on your caloric needs.   "
+      }
     },
     {
       "id": "ranchitas-nacho-cinema",
@@ -229,15 +350,34 @@
           "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp"
         }
       ],
-      "weight": [
-        "35g",
-        "300g"
-      ]
+      "weight": ["35g", "300g"],
+      "nutrition": {
+        "title": "Nutrition Facts",
+        "serving": "Serving Size: 28g. Servings per container: 1.25",
+        "rows": [
+          { "label": "Energy", "value": "650 kJ (150 kcal)" },
+          { "label": "Energy from Fat", "value": "350 kJ (80 kcal)" },
+          { "label": "Total Fat", "value": "8g (10% DV)" },
+          { "label": "Saturated Fat", "value": "4g (20% DV)" },
+          { "label": "Trans Fat", "value": "0g" },
+          { "label": "Cholesterol", "value": "0mg (0% DV)" },
+          { "label": "Sodium", "value": "170mg (7% DV)" },
+          { "label": "Total Carbohydrates", "value": "17g (6% DV)" },
+          { "label": "Dietary Fiber", "value": "1g (4% DV)" },
+          { "label": "Total Sugars", "value": "less than 1g" },
+          { "label": "Protein", "value": "2g" },
+          { "label": "Vitamin D", "value": "0% DV" },
+          { "label": "Calcium", "value": "2% DV" },
+          { "label": "Iron", "value": "2% DV" },
+          { "label": "Potassium", "value": "0% DV" }
+        ],
+        "disclaimer": "Percent Daily Values are based on a 8,378 kJ (2,000 cal) diet. Your daily values may be higher or lower depending on your caloric needs.   "
+      }
     },
     {
       "id": "ranchitas-chile-toreado",
       "name": "Ranchitas Chile Toreado",
-      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ranchita_Chile_Toreano.webp",
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ranchita_Chile_Toreado.webp",
       "background_color": "#087530",
       "header_color": "#1C1C1C",
       "text_color": "#FFFFFF",
@@ -254,10 +394,29 @@
           "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp"
         }
       ],
-      "weight": [
-        "25g",
-        "150g"
-      ]
+      "weight": ["25g", "150g"],
+      "nutrition": {
+        "title": "Nutrition Facts",
+        "serving": "Serving Size: 1oz (28g). Servings per container: 0.86",
+        "rows": [
+          { "label": "Energy", "value": "650 kJ (150 kcal)" },
+          { "label": "Energy from Fat", "value": "300 kJ (70 kcal)" },
+          { "label": "Total Fat", "value": "9g (12% DV)" },
+          { "label": "Saturated Fat", "value": "4g (20% DV)" },
+          { "label": "Trans Fat", "value": "0g" },
+          { "label": "Cholesterol", "value": "0mg (0% DV)" },
+          { "label": "Sodium", "value": "340mg (15% DV)" },
+          { "label": "Total Carbohydrates", "value": "16g (6% DV)" },
+          { "label": "Dietary Fiber", "value": "1g (4% DV)" },
+          { "label": "Total Sugars", "value": "less than 1g" },
+          { "label": "Protein", "value": "2g" },
+          { "label": "Vitamin D", "value": "0% DV" },
+          { "label": "Calcium", "value": "2% DV" },
+          { "label": "Iron", "value": "2% DV" },
+          { "label": "Potassium", "value": "0% DV" }
+        ],
+        "disclaimer": "Percent Daily Values are based on a 8,378 kJ (2,000 cal) diet. Your daily values may be higher or lower depending on your caloric needs.   "
+      }
     }
   ]
 }
