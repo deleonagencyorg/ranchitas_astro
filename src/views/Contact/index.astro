@@ -42,11 +42,11 @@ const headerColors = {
 ---
 
 <MainLayout title={title} class="bg-primaryCream" description={metaDescription} headerColors={headerColors}>
-  <div class="container mx-auto px-4 sm:px-6 lg:px-12 text-center flex flex-col items-center">
+  <div class="w-full sm:container mx-auto px-2 sm:px-6 lg:px-12 text-center flex flex-col items-center">
     
 
     <!-- Main Contact Section -->
-    <div class="w-full flex flex-col justify-center px-4 sm:px-6 lg:px-12 items-center lg:items-start lg:flex-row gap-10 sm:gap-12 py-12">
+    <div class="w-full flex flex-col justify-center px-0 sm:px-6 lg:px-12 items-center lg:items-start lg:flex-row gap-10 sm:gap-12 py-12">
       
       <!-- Left Column - Contact Info -->
    
@@ -101,7 +101,7 @@ const headerColors = {
               
                 
                 <div class="flex items-start space-x-2 md:space-x-3">
-                  <p id="officeAddress" class="mb-4 text-left text-black leading-relaxed font-semibold text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px] break-words">  {`+ ${contact.offices.locations["+504"].address}`}</p>
+                  <p id="officeAddress" class="mb-4 text-left text-black leading-relaxed font-semibold text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px] break-words">  {` ${contact.offices.locations["+504"].address}`}</p>
                 </div>
                 
                 <div class="flex items-center space-x-2 md:space-x-3">
