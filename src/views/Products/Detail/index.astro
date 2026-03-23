@@ -217,12 +217,12 @@ if (allProductsArray.length > 1) {
         </button>
       </div>
     </div>
-
-    <div class="hidden  xl:block absolute bottom-0 top-[809px] right-0 pointer-events-none z-20">
+      {/* problematico svg */}
+    <!--div class="hidden  xl:block absolute bottom-0 top-[809px] right-0 pointer-events-none z-0">
       <svg width="427" height="375" viewBox="0 0 427 375" fill="none" xmlns="http://www.w3.org/2000/svg">
         <path d="M427 0L427 374.5C416.5 322 394 261 364 243C334 225 329 219.5 312.5 209.5C285.26 188.395 254 143 239 105.5C224 68 218.5 65 205 55.5C191.5 46 94.8911 48.0193 0 0L427 0Z" fill="#FAF0D5"/>
       </svg>
-    </div>
+    < /div -->
     {/* Sección de Productos Relacionados */}
 
   </article>
@@ -411,53 +411,86 @@ if (allProductsArray.length > 1) {
   <QuizModal currentLang={currentLang} />
 )}
 
-<script>
-  import { initProductDetail } from './scripts.js';
+<script is:inline>
+  (function () {
+    function initPage() {
+      var weightOptions = Array.from(document.querySelectorAll('.weight-option'));
 
-  document.addEventListener('astro:page-load', () => {
-    // Inicializar producto
-    initProductDetail();
-
-    // Weight options
-    const weightOptions = document.querySelectorAll<HTMLButtonElement>('.weight-option');
-    weightOptions.forEach(option => {
-      option.addEventListener('click', () => {
-        weightOptions.forEach(opt => {
-          opt.classList.remove('bg-[#F86509]', 'text-white');
-          opt.classList.add('bg-white');
-        });
-        option.classList.add('bg-[#F86509]', 'text-white');
-        option.classList.remove('bg-white');
+      weightOptions.forEach(function (option) {
+        var fresh = option.cloneNode(true);
+        option.parentNode.replaceChild(fresh, option);
       });
-    });
-    weightOptions[0]?.click();
 
-    // Tabs — conectados a los divs de contenido
-    const tabs = document.querySelectorAll<HTMLElement>('.tab-button');
-    tabs.forEach(tab => {
-      tab.addEventListener('click', () => {
-        tabs.forEach(t => {
+      var freshWeights = Array.from(document.querySelectorAll('.weight-option'));
+      freshWeights.forEach(function (option) {
+        option.addEventListener('click', function () {
+          freshWeights.forEach(function (opt) {
+            opt.classList.remove('bg-[#F86509]', 'text-white');
+            opt.classList.add('bg-white');
+          });
+          option.classList.add('bg-[#F86509]', 'text-white');
+          option.classList.remove('bg-white');
+        });
+      });
+
+      if (freshWeights[0]) freshWeights[0].click();
+
+      
+      var tabs = Array.from(document.querySelectorAll('.tab-button'));
+
+      tabs.forEach(function (tab) {
+        var fresh = tab.cloneNode(true);
+        tab.parentNode.replaceChild(fresh, tab);
+      });
+
+      var freshTabs = Array.from(document.querySelectorAll('.tab-button'));
+
+      function activateTab(tab) {
+        freshTabs.forEach(function (t) {
           t.classList.remove('bg-[#F86509]');
           t.classList.add('bg-white');
-          t.querySelector('span')?.classList.remove('text-white');
-          t.querySelector('span')?.classList.add('text-[#0A0A0A]');
+          var span = t.querySelector('span');
+          if (span) {
+            span.classList.remove('text-white');
+            span.classList.add('text-[#0A0A0A]');
+          }
         });
+
         tab.classList.add('bg-[#F86509]');
         tab.classList.remove('bg-white');
-        tab.querySelector('span')?.classList.add('text-white');
-        tab.querySelector('span')?.classList.remove('text-[#0A0A0A]');
+        var span = tab.querySelector('span');
+        if (span) {
+          span.classList.add('text-white');
+          span.classList.remove('text-[#0A0A0A]');
+        }
 
-        // Ocultar todos los contenidos
-        document.getElementById('tab-description')?.classList.add('hidden');
-        document.getElementById('tab-nutrition')?.classList.add('hidden');
+        var descEl = document.getElementById('tab-description');
+        var nutrEl = document.getElementById('tab-nutrition');
+        if (descEl) descEl.classList.add('hidden');
+        if (nutrEl) nutrEl.classList.add('hidden');
 
-        // Mostrar el contenido del tab clickeado
-        const tabName = tab.dataset.tab;
-        document.getElementById(`tab-${tabName}`)?.classList.remove('hidden');
+        var target = document.getElementById('tab-' + tab.dataset.tab);
+        if (target) target.classList.remove('hidden');
+      }
+
+      freshTabs.forEach(function (tab) {
+        tab.addEventListener('click', function () {
+          activateTab(tab);
+        });
       });
-    });
 
-    // Activar el primer tab por defecto
-    tabs[0]?.click();
-  });
+      // Primera pestaña activa
+      if (freshTabs[0]) activateTab(freshTabs[0]);
+    }
+
+    // Primera carga directa////
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', initPage);
+    } else {
+      initPage();
+    }
+
+    // Navegación interna
+    document.addEventListener('astro:page-load', initPage);
+  })();
 </script>
