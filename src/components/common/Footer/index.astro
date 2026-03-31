@@ -137,46 +137,36 @@ const footerMenuItems = (menuItems || []).filter((i: any) => i && i.id !== 'bran
           </div>
 
           <!-- Contacto -->
-          <div class="w-full border-t-0 mt-0 pt-0">
-            <div class="">
-              <div class="mb-4">
-                <h3 class="font-title text-lg sm:text-2xl font-bold mb-3 sm:mb-4 uppercase">
-              {contact}
-            </h3>
-              </div>
-              <div class="grid grid-cols-1 gap-4">
-                <!-- Guatemala -->
-                <div class="flex items-center space-x-2">
-                  <span class="text-2xl" role="img" aria-label="Guatemala">🇬🇹</span>
-                  <span>(+502) 2502-7050</span>
-                </div>
-                <!-- El Salvador -->
-                <div class="flex items-center space-x-2">
-                  <span class="text-2xl" role="img" aria-label="El Salvador">🇸🇻</span>
-                  <span>(+503) 2510-8300</span>
-                </div>
-                <!-- Costa Rica -->
-                <div class="flex items-center space-x-2">
-                  <span class="text-2xl" role="img" aria-label="Costa Rica">🇨🇷</span>
-                  <span>(+506) 2271-0665</span>
-                </div>
-                <!-- República Dominicana -->
-                <div class="flex items-center space-x-2">
-                  <span class="text-2xl" role="img" aria-label="República Dominicana">🇩🇴</span>
-                  <span>(+001) 809-2731042</span>
-                </div>
-                <!-- Nicaragua -->
-                <div class="flex items-center space-x-2">
-                  <span class="text-2xl" role="img" aria-label="Nicaragua">🇳🇮</span>
-                  <span>(+505) 2255-7480</span>
-                </div>
-                <!-- Honduras -->
-                <div class="flex items-center space-x-2">
-                  <span class="text-2xl" role="img" aria-label="Honduras">🇭🇳</span>
-                  <span>(+504) 2275-3370</span>
-                </div>
-              </div>
+          <div class="col-span-2 w-[100%] mx-auto flex flex-col items-center gap-6 md:gap-8 md:items-start md:w-auto md:mx-0">
+            <div class="font-title text-lg sm:text-2xl font-bold text-center md:text-left uppercase">
+              {currentLang === 'es' ? 'Contacto' : 'Contact'}
             </div>
+            <ul class="grid grid-cols-2 font-sans gap-3 md:gap-4 text-sm md:text-lg justify-items-center md:flex md:flex-col md:items-start md:justify-items-start [&>li]:whitespace-nowrap">
+              <li class="flex items-center gap-2">
+                <span class="text-2xl" role="img" aria-label="Guatemala">🇬🇹</span>
+                <span>(+502) 2502-7050</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-2xl" role="img" aria-label="El Salvador">🇸🇻</span>
+                <span>(+503) 2510-8300</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-2xl" role="img" aria-label="Honduras">🇭🇳</span>
+                <span>(+504) 2275-3370</span>
+              </li>
+              <li class="flex items-center gap-4">
+                <span class="text-2xl" role="img" aria-label="Nicaragua">🇳🇮</span>
+                <span>(+505) 2255-7480</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-2xl" role="img" aria-label="Costa Rica">🇨🇷</span>
+                <span>(+506) 2271-0665</span>
+              </li>
+              <li class="flex items-center gap-2">
+                <span class="text-2xl" role="img" aria-label="República Dominicana">🇩🇴</span>
+                <span>(+1) 809-273-1042</span>
+              </li>
+            </ul>
           </div>
         </div>
       </div>
