@@ -221,6 +221,20 @@ const options = dynamicOptions[locale];
     </div>
   </div>
 
+  <!-- Fila para comentario -->
+      <div class="flex flex-col gap-2.5">
+        <label class="block text-white uppercase font-semibold  mb-2">
+          {contact.form.message.label} *
+        </label>
+        <textarea 
+          name="message" 
+          required
+          rows="4"
+          placeholder={contact.form.message.placeholder}
+          class="w-full px-4 py-3 border-[1.5px] border-white rounded-lg bg-orange text-white focus:text-black focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none uppercase placeholder:text-white placeholder:opacity-100"
+        ></textarea>
+      </div>
+
   
 
   <!-- Dynamic Fields Container -->
@@ -702,10 +716,6 @@ const options = dynamicOptions[locale];
           <option value="">${locale === 'es' ? 'Selecciona una opción' : 'Select an option'}</option>
           ${options.clientAreaOfInterest.map(option => `<option value="${option}">${option}</option>`).join('')}
         </select>
-      </div>
-      <div>
-        <label class="block text-white font-medium mb-2">${labels.message}</label>
-        <textarea name="message" rows="4" class="w-full px-4 py-3 border-[1.5px] border-white rounded-lg bg-[#F04F00] text-white focus:text-black focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all resize-none"></textarea>
       </div>
       <div>
         <label class="block text-white font-medium mb-2">${labels.file}</label>

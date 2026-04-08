@@ -126,7 +126,7 @@ if (allProductsArray.length > 1) {
       </div>
 
       {/* Contenido del lado derecho */}
-      <div class="w-full lg:w-1/2 h-auto mt-0 sm:mt-0 md:mt-0 lg:mt-0">
+      <div class="w-full lg:w-1/2 h-auto mt-0 sm:mt-0 md:mt-0 lg:mt-0 z-10">
         <h1 
           class="font-title text-sm sm:text-base md:text-lg font-medium py-2 sm:py-3 md:py-4 text-[#F86509]"
         >
@@ -145,7 +145,7 @@ if (allProductsArray.length > 1) {
             {safeProduct.weight.map((weight, index) => (
               <div class="shrink-0">
                 <button
-                  class="weight-option block w-[90px] h-[44px] sm:h-[48px] md:h-[52px] px-2 sm:px-3 md:px-4 lg:px-5 text-center rounded-[50px] border-2 border-[#F86509] text-sm sm:text-base md:text-lg lg:text-xl font-bold bg-white hover:bg-[#F86509] hover:text-white cursor-pointer transition-all duration-300"
+                  class="weight-option block w-[90px] h-[44px] sm:h-[48px] md:h-[52px] px-2 sm:px-3 md:px-4 lg:px-5 text-center rounded-[50px] border-2 border-[#F86509] text-sm sm:text-base md:text-lg lg:text-xl font-bold bg-white cursor-default"
                   data-weight={weight}
                   data-index={index}
                 >
@@ -217,12 +217,13 @@ if (allProductsArray.length > 1) {
         </button>
       </div>
     </div>
-      {/* problematico svg */}
-    <!--div class="hidden  xl:block absolute bottom-0 top-[809px] right-0 pointer-events-none z-0">
-      <svg width="427" height="375" viewBox="0 0 427 375" fill="none" xmlns="http://www.w3.org/2000/svg">
+      {/* svg */}
+    <div class="absolute bottom-0 top-[809px] right-0 pointer-events-none z-0 w-[30%] min-w-[200px]">
+      <svg viewBox="0 0 427 375" fill="none" xmlns="http://www.w3.org/2000/svg"
+        class="w-ful">
         <path d="M427 0L427 374.5C416.5 322 394 261 364 243C334 225 329 219.5 312.5 209.5C285.26 188.395 254 143 239 105.5C224 68 218.5 65 205 55.5C191.5 46 94.8911 48.0193 0 0L427 0Z" fill="#FAF0D5"/>
       </svg>
-    < /div -->
+    </div>
     {/* Sección de Productos Relacionados */}
 
   </article>
@@ -414,28 +415,6 @@ if (allProductsArray.length > 1) {
 <script is:inline>
   (function () {
     function initPage() {
-      var weightOptions = Array.from(document.querySelectorAll('.weight-option'));
-
-      weightOptions.forEach(function (option) {
-        var fresh = option.cloneNode(true);
-        option.parentNode.replaceChild(fresh, option);
-      });
-
-      var freshWeights = Array.from(document.querySelectorAll('.weight-option'));
-      freshWeights.forEach(function (option) {
-        option.addEventListener('click', function () {
-          freshWeights.forEach(function (opt) {
-            opt.classList.remove('bg-[#F86509]', 'text-white');
-            opt.classList.add('bg-white');
-          });
-          option.classList.add('bg-[#F86509]', 'text-white');
-          option.classList.remove('bg-white');
-        });
-      });
-
-      if (freshWeights[0]) freshWeights[0].click();
-
-      
       var tabs = Array.from(document.querySelectorAll('.tab-button'));
 
       tabs.forEach(function (tab) {
