@@ -6,6 +6,7 @@ import type { HeaderColorConfig } from '../../../config/headerColors';
 import SocialMediaIcons from '../SocialMediaIcons/index.astro';
 import productsEs from '../../../locales/es/products.json';
 import productsEn from '../../../locales/en/products.json';
+import { getNewBadge } from '../../../i18n/badges';
 
 export interface Props {
   currentLang: Locale;
@@ -25,6 +26,7 @@ const productsData = currentLang === 'es' ? productsEs : productsEn;
 const productsItems = (productsData as any)?.items ?? [];
 const productsBasePath = `/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}`;
 const productsMenuTitle = currentLang === 'es' ? 'Nuestros Productos' : 'Our Products';
+const newBadge = getNewBadge(currentLang);
 ---
 
 <!-- Desktop Navigation -->
@@ -98,9 +100,8 @@ const productsMenuTitle = currentLang === 'es' ? 'Nuestros Productos' : 'Our Pro
                             loading="lazy"
                           />
                           {product.is_new && (
-                            <img
-                              src="https://snack.yummiespromociones.com/SnacksyummiesAssets/NUEVO.webp"
-                              alt="Nuevo"
+                              <img src={newBadge.src} 
+                              alt={newBadge.alt} 
                               class="absolute top-0 right-0 w-14 z-20"
                             />
                           )}

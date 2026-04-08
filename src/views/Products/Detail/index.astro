@@ -6,7 +6,7 @@ import './styles.css';
 import { initProductDetail } from './scripts.js';
 import CardQuiz from '../../../components/common/cardQuiz/index.astro';
 import QuizModal from '../../../components/quiz/QuizModal.astro';
-
+import { getNewBadge } from '../../../i18n/badges';
 
 
 // Interfaces locales
@@ -98,6 +98,7 @@ if (allProductsArray.length > 1) {
     .filter((p: any) => p.id !== productId);
 }
 
+const newBadge = getNewBadge(currentLang);
 ---
 
 {safeProduct.background_color && (
@@ -115,13 +116,11 @@ if (allProductsArray.length > 1) {
             src={safeProduct.image} alt={safeProduct.name} 
             transition:name={`product-image-${safeProduct.id}`}
             loading="eager" />
-        {(product as any).is_new && (
-          <img
-            src="https://snack.yummiespromociones.com/SnacksyummiesAssets/NUEVO.webp"
-            alt="Nuevo"
-            class="absolute top-4 right-4 w-20 sm:w-24 md:w-28 z-20"
-          />
-        )}
+            {product.is_new && (
+                <img src={newBadge.src} 
+                alt={newBadge.alt} 
+                class="absolute top-4 right-4 w-20 sm:w-24 md:w-28 z-20" />
+              )}
         <div class="absolute inset-0 bg-gradient-to-br from-white/10 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300 rounded-[30px] pointer-events-none"></div>
       </div>
 
@@ -218,9 +217,9 @@ if (allProductsArray.length > 1) {
       </div>
     </div>
       {/* svg */}
-    <div class="absolute bottom-0 top-[809px] right-0 pointer-events-none z-0 w-[30%] min-w-[200px]">
+    <div class="absolute bottom-0 top-[600px] sm:top-[700px] md:top-[750px] lg:top-[809px] right-0 pointer-events-none z-0 w-[30%] min-w-[200px]">
       <svg viewBox="0 0 427 375" fill="none" xmlns="http://www.w3.org/2000/svg"
-        class="w-ful">
+        class="w-full">
         <path d="M427 0L427 374.5C416.5 322 394 261 364 243C334 225 329 219.5 312.5 209.5C285.26 188.395 254 143 239 105.5C224 68 218.5 65 205 55.5C191.5 46 94.8911 48.0193 0 0L427 0Z" fill="#FAF0D5"/>
       </svg>
     </div>
@@ -258,11 +257,9 @@ if (allProductsArray.length > 1) {
                           <img src={product.image} alt={product.name} loading="lazy" />
                         </div>
                         {product.is_new && (
-                          <img
-                            src="https://snack.yummiespromociones.com/SnacksyummiesAssets/NUEVO.webp"
-                            alt="Nuevo"
-                            class="absolute top-4 right-4 w-14 z-20"
-                          />
+                          <img src={newBadge.src} 
+                          alt={newBadge.alt} 
+                          class="absolute top-4 right-4 w-14 z-20" /> 
                         )}
                       </div>
                       {/* Información del producto */}
