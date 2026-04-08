@@ -41,85 +41,97 @@ const headerColors = {
 };
 ---
 
-<MainLayout title={title} class="bg-primaryCream" description={metaDescription} headerColors={headerColors}>
-  <div class="w-full sm:container mx-auto px-2 sm:px-6 lg:px-12 text-center flex flex-col items-center">
+<MainLayout title={title} class="bg-white" description={metaDescription} headerColors={headerColors}>
+  
+  <!-- Fondo general blanco -->
+  <div class="w-full bg-white">
     
-
-    <!-- Main Contact Section -->
-    <div class="w-full flex flex-col justify-center px-0 sm:px-6 lg:px-12 items-center lg:items-start lg:flex-row gap-10 sm:gap-12 py-12">
+    <!-- Sección de contacto con fondo crema -->
+    <div class="w-full bg-primaryCream relative overflow-hidden">
+      <div class="w-full sm:container mx-auto px-2 sm:px-6 lg:px-12 text-center flex flex-col items-center py-12">
       
-      <!-- Left Column - Contact Info -->
-   
-    <div class="w-[100%] lg:w-[50%] px-4 lg:pl-2 flex flex-col justify-center items-center lg:items-start text-center lg:text-left h-[100%] lg:h-[600px] ">
-        <div class="text-[#F99F33] pb-4 text-base md:text-lg lg:text-[20px]">
-          {contact.title}
+        <!-- Main Contact Section -->
+        <div class="w-full flex flex-col justify-center px-0 sm:px-6 lg:px-12 items-center lg:items-start lg:flex-row gap-10 sm:gap-12 relative z-10">
+          
+          <!-- Left Column - Contact Info -->
+          <div class="w-[100%] lg:w-[50%] px-4 lg:pl-2 flex flex-col justify-center items-center lg:items-start text-center lg:text-left h-[100%] lg:h-[600px]">
+            <div class="text-[#F99F33] pb-4 text-base md:text-lg lg:text-[20px]">
+              {contact.title}
+            </div>
+            <h1 class="text-black font-title text-4xl sm:text-5xl md:text-6xl lg:text-[85px] font-bold mb-4 md:mb-6 italic leading-tight">
+              {contact.subtitle}
+              {contact.subtitleTwo}
+            </h1>
+            
+            <p class="text-black font-bold text-base sm:text-lg md:text-xl lg:text-xl mb-6 md:mb-8 leading-relaxed">
+              {contact.description}
+            </p>
+          </div>
+          
+          <!-- Right Column - Contact Form -->
+          <div class="w-[100%] lg:w-[40%]">
+            <FormContact currentLang={locale} />
+          </div>
         </div>
-        <h1 class="text-black font-title text-4xl sm:text-5xl md:text-6xl lg:text-[85px] font-bold mb-4 md:mb-6 italic leading-tight">
-          {contact.subtitle}
-          {contact.subtitleTwo}
-        </h1>
-        
-        <p class="text-black font-bold text-base sm:text-lg md:text-xl lg:text-xl mb-6 md:mb-8 leading-relaxed ">
-          {contact.description}
-        </p>
-     
-      </div>
-      
-      <!-- Right Column - Contact Form -->
-      <div class="w-[100%] lg:w-[40%]">
-        <FormContact currentLang={locale} />
       </div>
     </div>
-    <div class="relative z-0">
-      <svg class=" md:block lg:block absolute md:top-[0px] lg:top-[0px] right-[0px]" width="427" height="375" viewBox="0 0 427 375" fill="none" xmlns="http://www.w3.org/2000/svg">
+     {/* problematico svg */}
+    <div class="absolute bottom-0 top-[910px] right-0 pointer-events-none z-0 w-[30%] min-w-[200px]">
+      <svg viewBox="0 0 427 375" fill="none" xmlns="http://www.w3.org/2000/svg"
+        class="w-ful">
         <path d="M427 0L427 374.5C416.5 322 394 261 364 243C334 225 329 219.5 312.5 209.5C285.26 188.395 254 143 239 105.5C224 68 218.5 65 205 55.5C191.5 46 94.8911 48.0193 0 0L427 0Z" fill="#FAF0D5"/>
       </svg>
     </div>
-    <!-- Offices Section -->
-    <div class="mx-auto w-[95%] max-w-[1400px] bg-blue p-4 md:p-6 lg:p-8 z-30 relative">
+    
 
-      <h3 class="text-black text-2xl sm:text-3xl md:text-4xl lg:text-[45px] italic font-title uppercase font-bold mb-2 md:mb-4 gap-1 text-center">
-        <span class="font-title">{contact.offices.title.split(' ')[0]} {contact.offices.title.split(' ')[1]}</span>
-      </h3>
-      <h1 class="text-black text-2xl sm:text-3xl md:text-4xl lg:text-[45px] italic font-title uppercase font-bold mb-4 md:mb-6 gap-1 text-center">
-        <span class="font-title">{contact.offices.title.split(' ').slice(2).join(' ')}</span>
-      </h1>
-      
-      <!-- Tabs and Office Info -->
-      <div class="flex flex-col mb-4">
-        <!-- Office Details -->
-        <div class="order-2 w-[95%] md:w-[90%] mx-auto">
-          <div id="officeInfo" class="bg-blue rounded-2xl">
+    <!-- Sección de Oficinas con fondo blanco -->
+    <div class="w-full bg-white">
+      <div class="mx-auto w-[95%] max-w-[1400px] p-4 md:p-6 lg:p-8 z-30 relative">
+        
+        <h3 class="text-black text-2xl sm:text-3xl md:text-4xl lg:text-[45px] italic font-title uppercase font-bold mb-2 md:mb-4 gap-1 text-center">
+          <span class="font-title">{contact.offices.title.split(' ')[0]} {contact.offices.title.split(' ')[1]}</span>
+        </h3>
+        <h1 class="text-black text-2xl sm:text-3xl md:text-4xl lg:text-[45px] italic font-title uppercase font-bold mb-4 md:mb-6 gap-1 text-center">
+          <span class="font-title">{contact.offices.title.split(' ').slice(2).join(' ')}</span>
+        </h1>
+        
+        <!-- Tabs and Office Info -->
+        <div class="flex flex-col mb-4">
+          <!-- Office Details -->
+          <div class="order-2 w-[95%] md:w-[90%] mx-auto">
+            <div id="officeInfo" class="bg-blue rounded-2xl">
             <div class="flex flex-col lg:flex-row justify-between ">
-              <div class="space-y-0 px-2 md:px-0 py-4">
-                <h3
-                id="officeName"
-                class="text-left text-black font-sans text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl uppercase font-extrabold mb-3 md:mb-4 mt-3 md:mt-4 leading-tight break-words"
-              >
-                {contact.offices.locations["+504"].name}
-              </h3>
+                <div class="space-y-0 px-2 md:px-0 py-4">
+                  <h3
+                    id="officeName"
+                    class="text-left text-black font-sans text-2xl sm:text-2xl md:text-3xl lg:text-4xl xl:text-4xl uppercase font-extrabold mb-3 md:mb-4 mt-3 md:mt-4 leading-tight break-words"
+                  >
+                    {contact.offices.locations["+504"].name}
+                  </h3>
               
-                
-                <div class="flex items-start space-x-2 md:space-x-3">
-                  <p id="officeAddress" class="mb-4 text-left text-black leading-relaxed font-semibold text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px] break-words">  {` ${contact.offices.locations["+504"].address}`}</p>
-                </div>
-                
-                <div class="flex items-center space-x-2 md:space-x-3">
-                  <div id="officePhones" class="flex flex-col">
-                    {contact.offices.locations["+504"].phones.map((phone: string) => (
-                      <div >
-                        <a
-                          href={`tel:${phone}`}
-                          class="text-black text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[24px] hover:text-primary transition-colors"
-                        >
-                          {phone}
-                        </a>
-                      </div>
-                    ))}
+                  
+                  <div class="flex items-start space-x-2 md:space-x-3">
+                    <p id="officeAddress" class="mb-4 text-left text-black leading-relaxed font-semibold text-sm sm:text-base md:text-lg lg:text-xl xl:text-[24px] break-words">  
+                      {` ${contact.offices.locations["+504"].address}`}
+                    </p>
                   </div>
-                </div>
+                  
+                  <div class="flex items-center space-x-2 md:space-x-3">
+                    <div id="officePhones" class="flex flex-col">
+                      {contact.offices.locations["+504"].phones.map((phone: string) => (
+                      <div >
+                          <a
+                            href={`tel:${phone}`}
+                            class="text-black text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[24px] hover:text-primary transition-colors"
+                          >
+                            {phone}
+                          </a>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
                 
-              </div>
+                </div>
           
                 <!--div class="mt-2 lg:mt-0">
                   <LazyImage 
@@ -129,231 +141,232 @@ const headerColors = {
                     class="w-full h-48 object-cover rounded-xl"
                   />
                 </div -->
+              </div>
             </div>
           </div>
-        </div>
-        
-        <!-- Map and Tabs -->
-        <div class="order-1 mt-4 z-30">
-          <!-- Country Tabs -->
-          <div class="mb-4 md:mb-6 flex flex-wrap justify-center gap-2">
-          {Object.entries(contact.offices.locations).map(([countryCode, location]: [string, any], index: number) => (
-            <button 
-              data-country-code={countryCode}
-              data-office-name={location.name}
-              data-office-address={location.address}
-              data-office-phones={JSON.stringify(location.phones)}
-              data-office-image={location.image}
-              class={`country-tab px-4 sm:px-8 md:px-12 lg:px-16 py-2 sm:py-3 md:py-4 text-white uppercase text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2.5
-                ${index === 0 
-                  ? 'h-[42px] sm:h-[48px] md:h-[54px] bg-orange opacity-100 border border-white' 
-                  : 'h-[42px] sm:h-[48px] md:h-[54px] bg-[#DAD9D9] opacity-75 hover:opacity-100 !text-black'
-                } rounded-[47px]`}
-            >
-              {location.tab}
-            </button>
-          ))}
-        </div>
           
-          <!-- Map -->
-          <div class="bg-gradient-to-br w-[95%] md:w-[90%] mx-auto bg-white rounded-2xl border-[2px] border-orange p-3 md:p-4 lg:p-6 shadow-lg mb-4">
-            <div class="w-full overflow-hidden rounded-xl" style="height: 300px; min-height: 250px;" class="h-[300px] sm:h-[400px] md:h-[500px]">
-              <!-- Container for all map iframes -->
-              <div id="maps-container" style="width: 100%; height: 100%;">
-                {Object.entries(contact.offices.locations).map(([countryCode, location]: [string, any], index: number) => (
-                  <div 
-                    data-map-country={countryCode}
-                    style={`width: 100%; height: 100%; ${index === 0 ? 'display: block;' : 'display: none;'}`}
-                  >
-                    <iframe
-                      src={location.mapEmbed}
-                      width="100%"
-                      height="100%"
-                      frameborder="0"
-                      allowfullscreen="allowfullscreen"
-                      aria-hidden="false"
-                      style="width: 100%; height: 100%; border: 0;"
-                      title={`${location.name} Map`}
-                    ></iframe>
-                  </div>
-                ))}
+          <!-- Map and Tabs -->
+          <div class="order-1 mt-4 z-30">
+            <!-- Country Tabs -->
+            <div class="mb-4 md:mb-6 flex flex-wrap justify-center gap-2">
+              {Object.entries(contact.offices.locations).map(([countryCode, location]: [string, any], index: number) => (
+                <button 
+                  data-country-code={countryCode}
+                  data-office-name={location.name}
+                  data-office-address={location.address}
+                  data-office-phones={JSON.stringify(location.phones)}
+                  data-office-image={location.image}
+                  class={`country-tab px-4 sm:px-8 md:px-12 lg:px-16 py-2 sm:py-3 md:py-4 text-white uppercase text-xs sm:text-sm font-semibold transition-all duration-300 flex items-center justify-center gap-2.5
+                    ${index === 0 
+                      ? 'h-[42px] sm:h-[48px] md:h-[54px] bg-orange opacity-100 border border-white' 
+                      : 'h-[42px] sm:h-[48px] md:h-[54px] bg-[#DAD9D9] opacity-75 hover:opacity-100 !text-black'
+                    } rounded-[47px]`}
+                >
+                  {location.tab}
+                </button>
+              ))}
+            </div>
+            
+            <!-- Map -->
+            <div class="bg-gradient-to-br w-[95%] md:w-[90%] mx-auto bg-white rounded-2xl border-[2px] border-orange p-3 md:p-4 lg:p-6 shadow-lg mb-4">
+              <div class="w-full overflow-hidden rounded-xl" style="height: 300px; min-height: 250px;">
+                <!-- Container for all map iframes -->
+                <div id="maps-container" style="width: 100%; height: 100%;">
+                  {Object.entries(contact.offices.locations).map(([countryCode, location]: [string, any], index: number) => (
+                    <div 
+                      data-map-country={countryCode}
+                      style={`width: 100%; height: 100%; ${index === 0 ? 'display: block;' : 'display: none;'}`}
+                    >
+                      <iframe
+                        src={location.mapEmbed}
+                        width="100%"
+                        height="100%"
+                        frameborder="0"
+                        allowfullscreen="allowfullscreen"
+                        aria-hidden="false"
+                        style="width: 100%; height: 100%; border: 0;"
+                        title={`${location.name} Map`}
+                      ></iframe>
+                    </div>
+                  ))}
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-
-    <script is:inline>
-      (function() {
-        'use strict';
-        
-        // Variable global para evitar múltiples inicializaciones
-        if (window.countryTabsInitialized) {
-          console.log('Country tabs already initialized, skipping...');
-          return;
-        }
-        
-        console.log('=== Initializing Country Tabs (Event Delegation) ===');
-        
-        // Función para actualizar la información de la oficina
-        function updateOfficeInfo(button) {
-          try {
-            const name = button.getAttribute('data-office-name');
-            const address = button.getAttribute('data-office-address');
-            const phonesStr = button.getAttribute('data-office-phones');
-            const image = button.getAttribute('data-office-image');
-            
-            const officeName = document.getElementById('officeName');
-            const officeAddress = document.getElementById('officeAddress');
-            const officePhones = document.getElementById('officePhones');
-            const officeImage = document.getElementById('officeImage');
-            
-            // Actualizar nombre
-            if (officeName && name) {
-              officeName.textContent = name;
-            }
-            
-            // Actualizar dirección
-            if (officeAddress && address) {
-              officeAddress.textContent = '+ ' + address;
-            }
-            
-            // Actualizar teléfonos
-            if (officePhones && phonesStr) {
-              try {
-                const phones = JSON.parse(phonesStr);
-                officePhones.innerHTML = '';
-                
-                phones.forEach(function(phone) {
-                  const phoneDiv = document.createElement('div');
-                  const phoneLink = document.createElement('a');
-                  phoneLink.href = 'tel:' + phone;
-                  phoneLink.className = 'text-black text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[24px] hover:text-primary transition-colors';
-                  phoneLink.textContent = phone;
-                  phoneDiv.appendChild(phoneLink);
-                  officePhones.appendChild(phoneDiv);
-                });
-              } catch (e) {
-                console.error('Error parsing phones:', e);
-              }
-            }
-            
-            // Actualizar imagen
-            if (officeImage && image) {
-              officeImage.src = image;
-              officeImage.alt = name || 'Office Image';
-            }
-          } catch (error) {
-            console.error('Error updating office info:', error);
-          }
-        }
-        
-        // Función para actualizar la visibilidad del mapa
-        function updateMapVisibility(countryCode) {
-          try {
-            const mapContainers = document.querySelectorAll('[data-map-country]');
-            
-            // Ocultar todos los mapas
-            mapContainers.forEach(function(container) {
-              container.style.display = 'none';
-            });
-            
-            // Mostrar el mapa seleccionado
-            const selectedMap = document.querySelector('[data-map-country="' + countryCode + '"]');
-            if (selectedMap) {
-              selectedMap.style.display = 'block';
-            }
-          } catch (error) {
-            console.error('Error updating map visibility:', error);
-          }
-        }
-        
-        // Función para manejar el click en un tab
-        function handleTabClick(clickedButton) {
-          try {
-            // Obtener todos los tabs actuales
-            const allTabs = document.querySelectorAll('.country-tab');
-            
-            // Desactivar todos los tabs
-            allTabs.forEach(function(tab) {
-              tab.classList.remove('bg-orange', 'border', 'border-white', 'opacity-100', 'text-white');
-              tab.classList.add('bg-[#DAD9D9]', '!text-black', 'opacity-75');
-            });
-            
-            // Activar el tab clickeado
-            clickedButton.classList.remove('bg-[#DAD9D9]', '!text-black', 'opacity-75');
-            clickedButton.classList.add('bg-orange', 'text-white', 'border', 'border-white', 'opacity-100');
-            
-            // Actualizar información
-            updateOfficeInfo(clickedButton);
-            
-            // Actualizar mapa
-            const countryCode = clickedButton.getAttribute('data-country-code');
-            if (countryCode) {
-              updateMapVisibility(countryCode);
-            }
-            
-            console.log('Tab switched to:', countryCode);
-          } catch (error) {
-            console.error('Error handling tab click:', error);
-          }
-        }
-        
-        // Usar event delegation en el documento
-        function setupEventDelegation() {
-          // Remover listener previo si existe
-          if (window.countryTabClickHandler) {
-            document.removeEventListener('click', window.countryTabClickHandler);
-          }
-          
-          // Crear nuevo handler
-          window.countryTabClickHandler = function(event) {
-            // Buscar si el click fue en un tab o en un hijo de un tab
-            const target = event.target;
-            const tabButton = target.closest('.country-tab');
-            
-            if (tabButton) {
-              event.preventDefault();
-              event.stopPropagation();
-              handleTabClick(tabButton);
-            }
-          };
-          
-          // Agregar el listener al documento (event delegation)
-          document.addEventListener('click', window.countryTabClickHandler);
-          
-          console.log('Event delegation setup complete');
-        }
-        
-        // Inicializar
-        function initialize() {
-          // Setup event delegation
-          setupEventDelegation();
-          
-          // Mostrar el mapa del primer país por defecto
-          const firstTab = document.querySelector('.country-tab');
-          if (firstTab) {
-            const firstCountryCode = firstTab.getAttribute('data-country-code');
-            if (firstCountryCode) {
-              updateMapVisibility(firstCountryCode);
-            }
-          }
-          
-          // Marcar como inicializado
-          window.countryTabsInitialized = true;
-          
-          console.log('=== Country Tabs Initialized Successfully ===');
-        }
-        
-        // Ejecutar cuando el DOM esté listo
-        if (document.readyState === 'loading') {
-          document.addEventListener('DOMContentLoaded', initialize);
-        } else {
-          initialize();
-        }
-        
-      })();
-    </script>
   </div>
+
+  <script is:inline>
+    (function() {
+      'use strict';
+      
+      // Variable global para evitar múltiples inicializaciones
+      if (window.countryTabsInitialized) {
+        console.log('Country tabs already initialized, skipping...');
+        return;
+      }
+      
+      console.log('=== Initializing Country Tabs (Event Delegation) ===');
+      
+      // Función para actualizar la información de la oficina
+      function updateOfficeInfo(button) {
+        try {
+          const name = button.getAttribute('data-office-name');
+          const address = button.getAttribute('data-office-address');
+          const phonesStr = button.getAttribute('data-office-phones');
+          const image = button.getAttribute('data-office-image');
+          
+          const officeName = document.getElementById('officeName');
+          const officeAddress = document.getElementById('officeAddress');
+          const officePhones = document.getElementById('officePhones');
+          const officeImage = document.getElementById('officeImage');
+          
+          // Actualizar nombre
+          if (officeName && name) {
+            officeName.textContent = name;
+          }
+          
+          // Actualizar dirección
+          if (officeAddress && address) {
+            officeAddress.textContent = '+ ' + address;
+          }
+          
+          // Actualizar teléfonos
+          if (officePhones && phonesStr) {
+            try {
+              const phones = JSON.parse(phonesStr);
+              officePhones.innerHTML = '';
+              
+              phones.forEach(function(phone) {
+                const phoneDiv = document.createElement('div');
+                const phoneLink = document.createElement('a');
+                phoneLink.href = 'tel:' + phone;
+                phoneLink.className = 'text-black text-base sm:text-lg md:text-xl lg:text-2xl xl:text-[24px] hover:text-primary transition-colors';
+                phoneLink.textContent = phone;
+                phoneDiv.appendChild(phoneLink);
+                officePhones.appendChild(phoneDiv);
+              });
+            } catch (e) {
+              console.error('Error parsing phones:', e);
+            }
+          }
+          
+          // Actualizar imagen
+          if (officeImage && image) {
+            officeImage.src = image;
+            officeImage.alt = name || 'Office Image';
+          }
+        } catch (error) {
+          console.error('Error updating office info:', error);
+        }
+      }
+      
+      // Función para actualizar la visibilidad del mapa
+      function updateMapVisibility(countryCode) {
+        try {
+          const mapContainers = document.querySelectorAll('[data-map-country]');
+          
+          // Ocultar todos los mapas
+          mapContainers.forEach(function(container) {
+            container.style.display = 'none';
+          });
+          
+          // Mostrar el mapa seleccionado
+          const selectedMap = document.querySelector('[data-map-country="' + countryCode + '"]');
+          if (selectedMap) {
+            selectedMap.style.display = 'block';
+          }
+        } catch (error) {
+          console.error('Error updating map visibility:', error);
+        }
+      }
+      
+      // Función para manejar el click en un tab
+      function handleTabClick(clickedButton) {
+        try {
+          // Obtener todos los tabs actuales
+          const allTabs = document.querySelectorAll('.country-tab');
+          
+          // Desactivar todos los tabs
+          allTabs.forEach(function(tab) {
+            tab.classList.remove('bg-orange', 'border', 'border-white', 'opacity-100', 'text-white');
+            tab.classList.add('bg-[#DAD9D9]', '!text-black', 'opacity-75');
+          });
+          
+          // Activar el tab clickeado
+          clickedButton.classList.remove('bg-[#DAD9D9]', '!text-black', 'opacity-75');
+          clickedButton.classList.add('bg-orange', 'text-white', 'border', 'border-white', 'opacity-100');
+          
+          // Actualizar información
+          updateOfficeInfo(clickedButton);
+          
+          // Actualizar mapa
+          const countryCode = clickedButton.getAttribute('data-country-code');
+          if (countryCode) {
+            updateMapVisibility(countryCode);
+          }
+          
+          console.log('Tab switched to:', countryCode);
+        } catch (error) {
+          console.error('Error handling tab click:', error);
+        }
+      }
+      
+      // Usar event delegation en el documento
+      function setupEventDelegation() {
+        // Remover listener previo si existe
+        if (window.countryTabClickHandler) {
+          document.removeEventListener('click', window.countryTabClickHandler);
+        }
+        
+        // Crear nuevo handler
+        window.countryTabClickHandler = function(event) {
+          // Buscar si el click fue en un tab o en un hijo de un tab
+          const target = event.target;
+          const tabButton = target.closest('.country-tab');
+          
+          if (tabButton) {
+            event.preventDefault();
+            event.stopPropagation();
+            handleTabClick(tabButton);
+          }
+        };
+        
+        // Agregar el listener al documento (event delegation)
+        document.addEventListener('click', window.countryTabClickHandler);
+        
+        console.log('Event delegation setup complete');
+      }
+      
+      // Inicializar
+      function initialize() {
+        // Setup event delegation
+        setupEventDelegation();
+        
+        // Mostrar el mapa del primer país por defecto
+        const firstTab = document.querySelector('.country-tab');
+        if (firstTab) {
+          const firstCountryCode = firstTab.getAttribute('data-country-code');
+          if (firstCountryCode) {
+            updateMapVisibility(firstCountryCode);
+          }
+        }
+        
+        // Marcar como inicializado
+        window.countryTabsInitialized = true;
+        
+        console.log('=== Country Tabs Initialized Successfully ===');
+      }
+      
+      // Ejecutar cuando el DOM esté listo
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', initialize);
+      } else {
+        initialize();
+      }
+      
+    })();
+  </script>
 </MainLayout>
