@@ -107,11 +107,6 @@
       "href": "/en/recipes"
     },
     {
-      "id": "news",
-      "text": "News",
-      "href": "/en/blog"
-    },
-    {
       "id": "contact",
       "text": "Contact Us",
       "href": "/en/contact"

@@ -112,11 +112,6 @@
       "href": "/es/recetas"
     },
     {
-      "id": "news",
-      "text": "Noticias",
-      "href": "/es/blog"
-    },
-    {
       "id": "contact",
       "text": "Contáctanos",
       "href": "/es/contacto"
