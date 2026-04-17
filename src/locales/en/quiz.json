@@ -20,86 +20,116 @@
     "questions": [
       {
         "id": "q1",
-        "text": "What do you do when you have some free time?",
+        "text": "In your group of friends, you are...?",
         "options": [
-          { "id": "q1a", "text": "Go explore new places", "scores": { "adventurer": 2 } },
-          { "id": "q1b", "text": "Relax at home with friends", "scores": { "social": 2 } },
-          { "id": "q1c", "text": "Workout and stay active", "scores": { "intense": 2 } },
-          { "id": "q1d", "text": "Create something new and fun", "scores": { "creative": 2 } }
+          { "id": "q1a", "text": "The international one, the one who always brings something different 🌎", "scores": { "aventurero": 2 } },
+          { "id": "q1b", "text": "The one who brings excitement even on a Monday 😏", "scores": { "social": 2 } },
+          { "id": "q1c", "text": "The charming one… everyone melts for YOU 🧀", "scores": { "intenso": 2 } },
+          { "id": "q1d", "text": "The fresh one, the one who always calms everyone down 🌿", "scores": { "creativo": 2 } }
         ]
       },
       {
         "id": "q2",
-        "text": "Choose your ideal weekend plan",
+        "text": "How do you flirt with your crush?",
         "options": [
-          { "id": "q2a", "text": "An improvised road trip", "scores": { "adventurer": 2 } },
-          { "id": "q2b", "text": "Movie night with snacks", "scores": { "social": 2 } },
-          { "id": "q2c", "text": "A sporty challenge with friends", "scores": { "intense": 2 } },
-          { "id": "q2d", "text": "Cook something different", "scores": { "creative": 2 } }
+          { "id": "q2a", "text": "I'm their first like of the day 😏", "scores": { "aventurero": 2 } },
+          { "id": "q2b", "text": "Direct and fearless 🔥", "scores": { "social": 2 } },
+          { "id": "q2c", "text": "I don't flirt, they flirt with me 🧀", "scores": { "intenso": 2 } },
+          { "id": "q2d", "text": "I write something different, something that stands out 🌎", "scores": { "creativo": 2 } }
         ]
       },
       {
         "id": "q3",
-        "text": "How would you describe your personality?",
+        "text": "In summer, you are the one who…",
         "options": [
-          { "id": "q3a", "text": "I love trying new things", "scores": { "adventurer": 2 } },
-          { "id": "q3b", "text": "I’m the life of the party", "scores": { "social": 2 } },
-          { "id": "q3c", "text": "I go all in, no fear", "scores": { "intense": 2 } },
-          { "id": "q3d", "text": "I always have original ideas", "scores": { "creative": 2 } }
+          { "id": "q3a", "text": "Plans the trip without thinking twice 🌎", "scores": { "aventurero": 2 } },
+          { "id": "q3b", "text": "The hottest of the hot 🔥", "scores": { "social": 2 } },
+          { "id": "q3c", "text": "Melts from the heat 🧀", "scores": { "intenso": 2 } },
+          { "id": "q3d", "text": "Relaxed and cool 🥑", "scores": { "creativo": 2 } }
         ]
       },
       {
         "id": "q4",
-        "text": "Pick a flavor that represents you",
+        "text": "You're invited to a party and you…",
         "options": [
-          { "id": "q4a", "text": "Unexpected and different", "scores": { "adventurer": 2 } },
-          { "id": "q4b", "text": "Classic for sharing", "scores": { "social": 2 } },
-          { "id": "q4c", "text": "Spicy and extreme", "scores": { "intense": 2 } },
-          { "id": "q4d", "text": "Creative mixes", "scores": { "creative": 2 } }
+          { "id": "q4a", "text": "Show up with something different that everyone wants to try 🌎", "scores": { "aventurero": 2 } },
+          { "id": "q4b", "text": "Are the one who lights up the room effortlessly 🔥", "scores": { "social": 2 } },
+          { "id": "q4c", "text": "If there's no cheese, I'm not going 🧀", "scores": { "intenso": 2 } },
+          { "id": "q4d", "text": "I'm the portable guacamole for the party 🥑", "scores": { "creativo": 2 } }
         ]
       },
       {
         "id": "q5",
-        "text": "What motivates you the most?",
+        "text": "Your aunt asks: 'So, any boyfriend/girlfriend?'…",
         "options": [
-          { "id": "q5a", "text": "Adventure", "scores": { "adventurer": 2 } },
-          { "id": "q5b", "text": "Connection", "scores": { "social": 2 } },
-          { "id": "q5c", "text": "Intensity", "scores": { "intense": 2 } },
-          { "id": "q5d", "text": "Creativity", "scores": { "creative": 2 } }
+          { "id": "q5a", "text": "'Working on it, exploring options' 🌎", "scores": { "aventurero": 2 } },
+          { "id": "q5b", "text": "'The hottest match of my life hasn't arrived yet' 🔥", "scores": { "social": 2 } },
+          { "id": "q5c", "text": "'They melt for me or next' 🧀", "scores": { "intenso": 2 } },
+          { "id": "q5d", "text": "Aunt, I'm lucky if I find myself 🥑", "scores": { "creativo": 2 } }
+        ]
+      },
+      {
+        "id": "q6",
+        "text": "If you were a type of vibe, you'd be…",
+        "options": [
+          { "id": "q6a", "text": "'Different, with an international flow' 🌎", "scores": { "aventurero": 2 } },
+          { "id": "q6b", "text": "'Intense, fun, and noticeable' 🔥", "scores": { "social": 2 } },
+          { "id": "q6c", "text": "'Classic, reliable, and always good' 🧀", "scores": { "intenso": 2 } },
+          { "id": "q6d", "text": "'Fresh, relaxed, and stylish' 🥑", "scores": { "creativo": 2 } }
+        ]
+      },
+      {
+        "id": "q7",
+        "text": "When you meet new people, you…",
+        "options": [
+          { "id": "q7a", "text": "Stand out because you're different 🌎", "scores": { "aventurero": 2 } },
+          { "id": "q7b", "text": "Connect because you have energy 🔥", "scores": { "social": 2 } },
+          { "id": "q7c", "text": "Are liked without effort 🧀", "scores": { "intenso": 2 } },
+          { "id": "q7d", "text": "Go with the flow without pressure 🥑", "scores": { "creativo": 2 } }
+        ]
+      },
+      {
+        "id": "q8",
+        "text": "You receive a 5-minute voice message, you:",
+        "options": [
+          { "id": "q8a", "text": "Listen to it at 2x speed… and still don't understand anything 🌎", "scores": { "aventurero": 2 } },
+          { "id": "q8b", "text": "Listen to ALL of it and even reply with another voice message 🔥", "scores": { "social": 2 } },
+          { "id": "q8c", "text": "Read the transcript… if there is one 🧀", "scores": { "intenso": 2 } },
+          { "id": "q8d", "text": "Leave it on read… whatever 🥑", "scores": { "creativo": 2 } }
         ]
       }
     ],
     "results": [
       {
-        "id": "creative",
-        "title": "The One-of-a-kind Creative",
-        "emoji": "🎨",
-        "description": "You love to stand out and you always find creative ways to express yourself and surprise others.",
-        "suggestedProductId": "ranchitas-pizza",
-        "suggestedRecipes": ["nachos-horneados-nacho-queso", "nachos-horneados-nacho-queso"]
-      },
-      {
-        "id": "intense",
-        "title": "The Fearless Intense",
-        "emoji": "🔥",
-        "description": "You go all in. You like bold flavors and big challenges. No half measures.",
-        "suggestedProductId": "ranchitas-extremo",
+        "id": "aventurero",
+        "title": "YOU ARE BUFFALO RANCH",
+        "emoji": "🌎",
+        "description": "You are the different one in the group. You like to try new things, break away from the typical, and always bring something unexpected. 👉 You are that flavor you didn't know you needed… until you try it.",
+        "suggestedProductId": "ranchitas-buffalo-ranch",
         "suggestedRecipes": ["nachos-horneados-nacho-queso", "nachos-horneados-nacho-queso"]
       },
       {
         "id": "social",
-        "title": "The Social Starter",
-        "emoji": "🧡",
-        "description": "You’re all about sharing. Where there are friends, there’s a plan. Your energy is contagious.",
-        "suggestedProductId": "ranchitas-queso",
+        "title": "YOU ARE NACHO EXCITANTE",
+        "emoji": "🔥",
+        "description": "You are the one who brings everything to life. Energy, excitement, and moments that are truly felt. 👉 If the plan needs excitement… that's where you come in.",
+        "suggestedProductId": "ranchitas-nacho-excitante",
         "suggestedRecipes": ["nachos-horneados-nacho-queso", "nachos-horneados-nacho-queso"]
       },
       {
-        "id": "adventurer",
-        "title": "The Curious Adventurer",
-        "emoji": "🧭",
-        "description": "You’re driven by discovery. Always ready to try something new and break the routine.",
-        "suggestedProductId": "ranchitas-excitante",
+        "id": "intenso",
+        "title": "YOU ARE NACHO QUESO",
+        "emoji": "🧀",
+        "description": "You are the reliable one. The one who never fails. The irresistible one. The one everyone chooses and the one who always fits in. 👉 You are that flavor that is always there… and always enjoyed.",
+        "suggestedProductId": "ranchitas-nacho-queso",
+        "suggestedRecipes": ["nachos-horneados-nacho-queso", "nachos-horneados-nacho-queso"]
+      },
+      {
+        "id": "creativo",
+        "title": "YOU ARE GUACAMOLE",
+        "emoji": "🥑",
+        "description": "You are a fresh and stylish flow. A green flag in every sense. 👉 You are that flavor that surprises and becomes a favorite.",
+        "suggestedProductId": "ranchitas-nacho-guacamole",
         "suggestedRecipes": ["nachos-horneados-nacho-queso", "nachos-horneados-nacho-queso"]
       }
     ]
