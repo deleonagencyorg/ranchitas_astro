@@ -86,8 +86,8 @@
    
       {
         "id": "slide1",
-        "desktop": "https://snack.yummiespromociones.com/zibas/ZIBAS-360_TVC2.mp4",
-        "mobile": "https://snack.yummiespromociones.com/zibas/ZIBAS-360_TVC2.mp4",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/banner_crunch.webp",
+        "mobile": "https://snack.yummiespromociones.com/zibas/bgzibasnuevo.webp",
         "alt": "Ranchitas",
         "title": "",
         "description": "",
@@ -210,7 +210,7 @@
     "titleHighlight" : "Somos?",
     "description1" : "Conoce todas las formas de Cronchear tu mundo con recetas y contenidos con sabores explosivos. Entra y enciende el fuego del Cronch!",
     "description2" : "",
-    "videoSrc" : "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ranchitas_loop.mp4",
+    "videoSrc" : "https://snack.yummiespromociones.com/SnacksyummiesAssets/2_buffalo_ranch_online.webm",
     "backgroundColor" : "#B91C1C"
   },
   "cardQuiz": {
@@ -219,7 +219,7 @@
     "titleHighlight" : "eres?",
     "description1" : "Cronchea con actitud y deja que el sabor diga quién eres. ¿Listo para el reto? Descubre tu esencia Ranchitas en cada mordida.",
     "titleButton": "Hacer Quiz",
-    "imageSrc" : "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ranchitas_loop.mp4",
+    "imageSrc" : "https://snack.yummiespromociones.com/SnacksyummiesAssets/3_nacho_exitante_online.webm",
     "backgroundColor": "#0041CD"
   }
 }

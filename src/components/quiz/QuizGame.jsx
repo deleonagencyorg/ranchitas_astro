@@ -211,20 +211,25 @@ export default function QuizGame({ lang, quizData, products, recipes, shareId })
                 </div>
 
                 <div className="mt-6 grid grid-cols-1 sm:grid-cols-2 gap-4">
-                  {currentQuestion.options.map((opt) => {
+                  {currentQuestion.options.map((opt, index) => {
                     const active = answers[currentQuestion.id] === opt.id;
+                    const letter = String.fromCharCode(97 + index);
                     return (
                       <button
                         key={opt.id}
                         type="button"
                         onClick={() => onSelect(opt.id)}
-                        className={`text-left bg-white/10 border border-white/20 rounded-xl px-5 py-4 transition touch-manipulation ${active ? 'ring-2 ring-white/60' : 'hover:bg-white/15 active:bg-white/20'}`}
-                        aria-pressed={active}
-                      >
-                        <div className="flex items-start gap-3">
-                          <span className={`mt-1 w-2.5 h-2.5 rounded-full ${active ? 'bg-white' : 'bg-white/70'}`} />
-                          <span className="text-white font-semibold">{opt.text}</span>
-                        </div>
+                        className={`text-left bg-white/10 border border-white/20 rounded-2xl px-6 py-5 transition-all touch-manipulation flex items-start gap-4 group text-white
+                          ${active 
+                            ? 'ring-2 ring-white/70 bg-white/15' 
+                            : 'hover:bg-white/15 active:bg-white/20'
+                          }`}aria-pressed={active}>
+                        <span className={`flex-shrink-0 w-8 h-8 flex items-center justify-center text-base font-semibold transition-colors text-white}`}>
+                          {letter})
+                        </span>
+                        <span className="text-white font-semibold leading-tight pt-1">
+                          {opt.text}
+                        </span>
                       </button>
                     );
                   })}
