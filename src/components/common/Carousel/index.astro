@@ -16,28 +16,26 @@ export interface Props {
 }
 
 const { slides = [], loading = false } = Astro.props;
+const slideCount = Array.isArray(slides) ? slides.length : 0;
+const showControls = slideCount > 1;
+const safeSlides = slideCount > 0
+  ? slides
+  : [
+      {
+        desktop: 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp',
+        mobile: 'https://snack.yummiespromociones.com/SnacksyummiesAssets/placeholder.webp',
+        alt: 'Snacks Yummies',
+        title: '',
+        subtitle: '',
+        link: ''
+      }
+    ];
 
 // Log de depuración
 
 
 // Identificar la primera imagen para cargarla con prioridad
-const firstSlide = slides[0] || {};
-
-const resolvedSlides = Array.isArray(slides) ? slides : [];
-const hasNoSlides = resolvedSlides.length === 0;
-const carouselSlides = hasNoSlides
-  ? [
-      {
-        desktop: '/images/es/placeholder.jpg',
-        mobile: '/images/es/placeholder.jpg',
-        alt: 'Placeholder',
-        title: '',
-        subtitle: '',
-        link: ''
-      }
-    ]
-  : resolvedSlides;
-const showControls = carouselSlides.length > 1;
+const firstSlide = safeSlides[0] || {};
 
 // Log del primer slide
 
@@ -51,74 +49,111 @@ const preloadFirstImage = true && firstSlide.mobile && firstSlide.desktop;
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 <script is:inline src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
 
-<!-- Importar script para manejo de videos -->
-<script is:inline src="/src/components/common/Carousel/videoHandler.js"></script>
-
 <!-- Cargar scripts del carrusel solo en el cliente -->
-<script is:inline define:vars={{ carouselSelector: '.swiper-container.main-carousel' }}>
-  document.addEventListener('DOMContentLoaded', () => {
-    setTimeout(() => {
+<script is:inline define:vars={{ carouselSelector: '.swiper-container.main-carousel', slideCount, showControls }}>
+  // Variable global para almacenar la instancia de Swiper
+  window.mainCarouselInstance = window.mainCarouselInstance || null;
+  
+  function initMainCarousel() {
+    // Destruir instancia previa si existe
+    if (window.mainCarouselInstance && typeof window.mainCarouselInstance.destroy === 'function') {
       try {
-        const el = document.querySelector(carouselSelector);
-        const slidesCount = el?.querySelectorAll('.swiper-slide')?.length || 0;
-        const enableControls = slidesCount > 1;
-        const swiper = new Swiper(carouselSelector, {
-          loop: enableControls,
-          autoplay: enableControls
-            ? {
-                delay: 5000,
-                disableOnInteraction: false,
-              }
-            : false,
-          navigation: enableControls
-            ? {
-                nextEl: '.swiper-button-next',
-                prevEl: '.swiper-button-prev',
-              }
-            : undefined,
-          pagination: enableControls
-            ? {
-                el: '.swiper-pagination',
-                clickable: true,
-              }
-            : undefined,
-          // Mejorar la respuesta táctil en móviles
+        window.mainCarouselInstance.destroy(true, true);
+        window.mainCarouselInstance = null;
+      } catch (e) {
+        console.warn('Error al destruir Swiper previo:', e);
+      }
+    }
+    
+    // Esperar a que el DOM esté listo y Swiper esté disponible
+    const attemptInit = () => {
+      if (typeof Swiper === 'undefined') {
+        // Swiper aún no está cargado, reintentar
+        setTimeout(attemptInit, 100);
+        return;
+      }
+      
+      const container = document.querySelector(carouselSelector);
+      if (!container) {
+        console.warn('Contenedor del carrusel no encontrado');
+        return;
+      }
+      
+      try {
+        // Ocultar controles si no son necesarios
+        if (!showControls) {
+          const nextBtn = container.querySelector('.swiper-button-next');
+          const prevBtn = container.querySelector('.swiper-button-prev');
+          const pagination = container.querySelector('.swiper-pagination');
+          if (nextBtn) nextBtn.style.display = 'none';
+          if (prevBtn) prevBtn.style.display = 'none';
+          if (pagination) pagination.style.display = 'none';
+        }
+        
+        // Configuración de Swiper
+        const swiperConfig = {
+          loop: showControls,
+          autoplay: showControls ? {
+            delay: 5000,
+            disableOnInteraction: false,
+            pauseOnMouseEnter: false,
+          } : false,
+          navigation: showControls ? {
+            nextEl: `${carouselSelector} .swiper-button-next`,
+            prevEl: `${carouselSelector} .swiper-button-prev`,
+          } : false,
+          pagination: showControls ? {
+            el: `${carouselSelector} .swiper-pagination`,
+            clickable: true,
+          } : false,
           touchRatio: 1.5,
           touchAngle: 45,
           touchMoveStopPropagation: true,
           touchStartPreventDefault: false,
           touchStartForcePreventDefault: false,
-          threshold: 5, // Umbral más bajo para detectar deslizamientos
-          on: {
-            init: function() {
-              console.log('Swiper inicializado correctamente');
+          threshold: 5,
+          speed: 600,
+          preventClicks: false,
+          preventClicksPropagation: false,
+          observer: true,
+          observeParents: true,
+          on: {}
+        };
+        
+        // Inicializar Swiper
+        window.mainCarouselInstance = new Swiper(carouselSelector, swiperConfig);
+        
+        // Actualizar al cambiar orientación
+        const handleOrientationChange = () => {
+          setTimeout(() => {
+            if (window.mainCarouselInstance && typeof window.mainCarouselInstance.update === 'function') {
+              window.mainCarouselInstance.update();
             }
-          }
-        });
-
-        const nextEl = document.querySelector('.swiper-button-next');
-        const prevEl = document.querySelector('.swiper-button-prev');
-        const pagEl = document.querySelector('.swiper-pagination');
-        if (!enableControls) {
-          if (nextEl) nextEl.style.display = 'none';
-          if (prevEl) prevEl.style.display = 'none';
-          if (pagEl) pagEl.style.display = 'none';
-        }
+          }, 200);
+        };
         
-        // Eliminar los event listeners adicionales para evitar conflictos
-        // y dejar que Swiper maneje directamente los eventos táctiles
+        window.removeEventListener('orientationchange', handleOrientationChange);
+        window.addEventListener('orientationchange', handleOrientationChange);
         
-        window.addEventListener('load', () => swiper.update());
-        
-        // Asegurar que el swiper se actualice cuando cambie la orientación del dispositivo
-        window.addEventListener('orientationchange', () => {
-          setTimeout(() => swiper.update(), 200);
-        });
       } catch (error) {
-        console.error('Error al inicializar Swiper:', error);
+        console.error('❌ Error al inicializar Swiper:', error);
       }
-    }, 500);
-  });
+    };
+    
+    // Iniciar con un pequeño delay para asegurar que el DOM esté completamente listo
+    setTimeout(attemptInit, 300);
+  }
+  
+  // Inicializar en carga inicial
+  if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initMainCarousel);
+  } else {
+    initMainCarousel();
+  }
+  
+  // Reinicializar en navegaciones de Astro (cambio de idioma)
+  document.addEventListener('astro:page-load', initMainCarousel);
+  document.addEventListener('astro:after-swap', initMainCarousel);
 </script>
 
 {loading ? (
@@ -137,7 +172,7 @@ const preloadFirstImage = true && firstSlide.mobile && firstSlide.desktop;
     <!-- Swiper container -->
     <div class="swiper-container main-carousel">
       <div class="swiper-wrapper">
-        {carouselSlides.map((slide, index) => (
+        {safeSlides.map((slide, index) => (
           <CarouselSlide 
             slide={{
               desktop: slide.desktop,
@@ -153,13 +188,9 @@ const preloadFirstImage = true && firstSlide.mobile && firstSlide.desktop;
       </div>
       
       <!-- Controles de navegación -->
-      {showControls && (
-        <>
-          <div class="swiper-button-next"></div>
-          <div class="swiper-button-prev"></div>
-          <div class="swiper-pagination"></div>
-        </>
-      )}
+      {showControls && <div class="swiper-button-next"></div>}
+      {showControls && <div class="swiper-button-prev"></div>}
+      {showControls && <div class="swiper-pagination"></div>}
     </div>
   </div>
 )}

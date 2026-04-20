@@ -11,7 +11,7 @@ import BlogCard from '../../components/blog/BlogCard.astro';
 import CardVideo from '../../components/common/cardVideo/index.astro';
 import CardQuiz from '../../components/common/cardQuiz/index.astro';
 import QuizModal from '../../components/quiz/QuizModal.astro';
-
+import Carousel from '../../components/common/Carousel/index.astro';   // ← Agregado
 
 // Style Imports
 import './styles.css';
@@ -48,15 +48,15 @@ const zibasProducts = zibasBrand?.products || [];
 const commonAssets = t('assets.slider', { namespace: 'common', locale: currentLang }) || [];
 const slides = Array.isArray(commonAssets)
   ? commonAssets
-    .filter(asset => asset && typeof asset === 'object' && asset.desktop && asset.mobile)
-    .map(asset => ({
-      desktop: asset.desktop,
-      mobile: asset.mobile,
-      alt: asset.alt || "Ranchitas",
-      title: asset.title || '',
-      subtitle: asset.description || '',
-      link: asset.url || asset.link || ''
-    }))
+      .filter((asset: any) => asset && typeof asset === 'object' && asset.desktop && asset.mobile)
+      .map((asset: any) => ({
+        desktop: asset.desktop,
+        mobile: asset.mobile,
+        alt: asset.alt || "Ranchitas",
+        title: asset.title || '',
+        subtitle: asset.description || '',
+        link: asset.url || asset.link || '#'
+      }))
   : [];
 
 // Load latest blog posts by current language from markdown
@@ -91,7 +91,13 @@ const featuredLabel = currentLang==='es' ? 'DESTACADOS' : 'FEATURED';
 
 ---
 
-  <main class="w-full flex flex-col items-center justify-center mt-0">
+<main class="w-full flex flex-col items-center justify-center mt-0">
+  <!-- Slider Section -->
+  <div class="relative w-full overflow-hidden">
+        <Carousel slides={slides} />
+      </div>
+    </div>
+    </div>
     <!-- Slider Section con VideoCarousel -->
     <div class="relative w-full overflow-hidden">
       <VideoCarousel 
