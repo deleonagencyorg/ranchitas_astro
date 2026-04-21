@@ -72,8 +72,8 @@
     "slider": [
       {
         "id": "slide2",
-        "desktop": "https://snack.yummiespromociones.com/zibas/banner.webp",
-        "mobile": "https://snack.yummiespromociones.com/zibas/banner-m.webp",
+        "desktop": "",
+        "mobile": "",
         "alt": "Ranchitas",
         "title": "",
         "description": "",
@@ -81,8 +81,8 @@
       },
       {
         "id": "slide1",
-        "desktop": "https://snack.yummiespromociones.com/zibas/ZIBAS-360_TVC2.mp4",
-        "mobile": "https://snack.yummiespromociones.com/zibas/ZIBAS-360_TVC2.mp4",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/banner_crunch2.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/banner_cruch.webp",
         "alt": "Ranchitas",
         "title": "",
         "description": "",
