@@ -72,8 +72,8 @@
     "slider": [
       {
         "id": "slide2",
-        "desktop": "https://snack.yummiespromociones.com/zibas/banner.webp",
-        "mobile": "https://snack.yummiespromociones.com/zibas/banner-m.webp",
+        "desktop": "",
+        "mobile": "",
         "alt": "Ranchitas",
         "title": "",
         "description": "",
@@ -81,8 +81,8 @@
       },
       {
         "id": "slide1",
-        "desktop": "https://snack.yummiespromociones.com/zibas/ZIBAS-360_TVC2.mp4",
-        "mobile": "https://snack.yummiespromociones.com/zibas/ZIBAS-360_TVC2.mp4",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/banner_crunch2.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/banner_cruch.webp",
         "alt": "Ranchitas",
         "title": "",
         "description": "",
@@ -105,11 +105,6 @@
       "id": "recipes",
       "text": "Recipes",
       "href": "/en/recipes"
-    },
-    {
-      "id": "news",
-      "text": "News",
-      "href": "/en/blog"
     },
     {
       "id": "contact",
@@ -210,7 +205,7 @@
     "titleHighlight": "We Are?",
     "description1": "Discover all the ways to crunch your world with recipes and content with explosive flavors. Come in and ignite the crunch fire!",
     "description2": "",
-    "videoSrc" : "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ranchitas_loop.mp4",
+    "videoSrc" : "https://snack.yummiespromociones.com/SnacksyummiesAssets/2_buffalo_ranch_online.webm",
     "backgroundColor": "#B91C1C"
   },
   "cardQuiz": {
@@ -219,7 +214,7 @@
     "titleHighlight" : "are you?",
     "description1" : "Crunch with attitude and let the flavor say who you are. Ready for the challenge? Discover your Ranchitas essence in every bite.",
     "titleButton": "Take Quiz",
-    "imageSrc" : "https://snack.yummiespromociones.com/SnacksyummiesAssets/Ranchitas_loop.mp4",
+    "imageSrc" : "https://snack.yummiespromociones.com/SnacksyummiesAssets/3_nacho_exitante_online.webm",
     "backgroundColor": "#0041CD"
   }
 }

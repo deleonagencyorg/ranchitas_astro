@@ -5,17 +5,10 @@
   --swiper-pagination-color: #ffffff;
   --swiper-navigation-sides-offset: 30px;
 }
-.related-products-swiper {
-  overflow: visible !important;
-}
-
-.related-products-swiper .swiper-wrapper {
-  overflow: visible !important;
-}
 
 .swiper-container.main-carousel {
   width: 100%;
-  overflow: visible;
+  overflow: hidden;
   position: relative;
   margin: 0;
   padding: 0;
@@ -26,6 +19,48 @@
   .swiper-container.main-carousel {
     height: auto;
     aspect-ratio: 1/1 /* Proporción más adecuada para imágenes horizontales */
+  }
+
+  /* Móvil: ocultar los puntos/paginación para no tapar el banner */
+  .swiper-container.main-carousel .swiper-pagination {
+    display: none !important;
+    visibility: hidden !important;
+    opacity: 0 !important;
+    height: 0 !important;
+  }
+
+  .swiper-container.main-carousel .swiper-button-next,
+  .swiper-container.main-carousel .swiper-button-prev {
+    position: absolute;
+    top: 50% !important;
+    transform: translateY(-50%) !important;
+    width: 36px;
+    height: 36px;
+    background: rgba(0,0,0,0.35);
+    border-radius: 9999px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 60;
+    color: #fff;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+    backdrop-filter: blur(4px);
+    pointer-events: auto;
+  }
+
+  .swiper-container.main-carousel .swiper-button-prev {
+    left: 20px;
+  }
+
+  .swiper-container.main-carousel .swiper-button-next {
+    right: 20px;
+  }
+
+  .swiper-container.main-carousel .swiper-button-next:after,
+  .swiper-container.main-carousel .swiper-button-prev:after {
+    font-size: 18px;
+    color: #fff;
+    text-shadow: none;
   }
 }
 
