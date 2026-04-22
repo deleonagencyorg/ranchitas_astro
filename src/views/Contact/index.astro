@@ -54,7 +54,7 @@ const headerColors = {
         <div class="w-full flex flex-col justify-center px-0 sm:px-6 lg:px-12 items-center lg:items-start lg:flex-row gap-10 sm:gap-12 relative z-10">
           
           <!-- Left Column - Contact Info -->
-          <div class="w-[100%] lg:w-[50%] px-4 lg:pl-2 flex flex-col justify-center items-center lg:items-start text-center lg:text-left h-[100%] lg:h-[600px]">
+          <div class="w-full xl:w-[50%] px-4 xl:pl-2 flex flex-col justify-center items-center xl:items-start text-center xl:text-left h-auto xl:h-[600px]">
             <div class="text-[#F99F33] pb-4 text-base md:text-lg lg:text-[20px]">
               {contact.title}
             </div>
@@ -69,7 +69,7 @@ const headerColors = {
           </div>
           
           <!-- Right Column - Contact Form -->
-          <div class="w-[100%] lg:w-[40%]">
+          <div class="w-[80%] lg:w-[40%]">
             <FormContact currentLang={locale} />
           </div>
         </div>
