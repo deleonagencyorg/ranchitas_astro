@@ -10,6 +10,7 @@ interface Recipe {
   difficulty?: string;
   category?: string;
   video?: string;
+  date?: string;
 }
 
 interface Props {
@@ -19,6 +20,23 @@ interface Props {
 
 const { recipes, title } = Astro.props;
 const currentLang = getLocale();
+
+// Ordenar recetas: primero las más recientes (con fecha), al final las sin fecha
+const sortedRecipes = [...recipes].sort((a, b) => {
+  const dateA = a.date;
+  const dateB = b.date;
+  
+  // Si ambos tienen fecha, ordenar descendente (más reciente primero)
+  if (dateA && dateB) {
+    return new Date(dateB).getTime() - new Date(dateA).getTime();
+  }
+  // Si solo A tiene fecha, va primero
+  if (dateA && !dateB) return -1;
+  // Si solo B tiene fecha, va primero
+  if (!dateA && dateB) return 1;
+  // Si ninguno tiene fecha, mantener orden original
+  return 0;
+});
 
 const defaultTitle = currentLang === 'es' ? 'Más recetas para ti' : 'More recipes for you';
 const displayTitle = title || defaultTitle;
@@ -65,7 +83,7 @@ function getDifficultyDisplay(difficulty: string | undefined): string {
 
   <!-- Recipes List -->
   <div class="space-y-6">
-    {recipes.map((recipe) => (
+    {sortedRecipes.map((recipe) => (
       <a 
         href={`/${currentLang}/${currentLang === 'es' ? 'recetas' : 'recipes'}/${recipe.id}`}
         class="block group"
