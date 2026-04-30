@@ -16,6 +16,7 @@ interface Props {
   servings?: number;
   rating?: number;
   isMainCard?: boolean;
+  video?: string;
 }
 
 const { 
@@ -29,7 +30,8 @@ const {
   difficulty = "---",
   servings = 0,
   rating = 0,
-  isMainCard = false
+  isMainCard = false,
+  video = ""
 } = Astro.props;
 
 const currentLocale = getLocale();
@@ -62,6 +64,17 @@ const viewRecipeText = currentLocale === 'es' ? 'Ver Receta' : 'View Recipe';
         class="w-full h-full object-cover"
         transition:name={`recipe-image-${id}`}
       />
+      
+      <!-- Icono de play si hay video (indicativo) -->
+      {video && (
+        <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+          <div class="w-16 h-16 rounded-full bg-black/40 flex items-center justify-center">
+            <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+      )}
     </div>
     
     <!-- Información -->

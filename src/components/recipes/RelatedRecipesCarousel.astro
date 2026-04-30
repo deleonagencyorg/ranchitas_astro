@@ -11,6 +11,7 @@ interface RecipeItem {
   servings?: number;
   rating?: number;
   product?: string | string[];
+  video?: string;
 }
 
 export interface Props {
@@ -38,6 +39,7 @@ const currentLang = getLocale();
                 time={`${recipe.preparation_time}MIN`}
                 id={recipe.id}
                 product={Array.isArray(recipe.product) ? recipe.product[0] : recipe.product}
+                video={recipe.video}
               />
             </div>
           </div>

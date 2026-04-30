@@ -9,6 +9,7 @@ interface Recipe {
   preparation_time: number;
   difficulty?: string;
   category?: string;
+  video?: string;
 }
 
 interface Props {
@@ -77,6 +78,18 @@ function getDifficultyDisplay(difficulty: string | undefined): string {
               alt={recipe.title}
               class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
             />
+            
+            <!-- Icono de play si hay video (indicativo) -->
+            {recipe.video && (
+              <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                <div class="w-10 h-10 rounded-full bg-black/40 flex items-center justify-center">
+                  <svg class="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+                    <path d="M8 5v14l11-7z"/>
+                  </svg>
+                </div>
+              </div>
+            )}
+            
             <!-- Category Badge -->
             <div class="absolute top-2 left-2 sm:top-3 sm:left-3 bg-[#F86509] text-white px-3 py-1 rounded-full text-[10px] sm:text-xs font-bold shadow-md">
               {getCategoryDisplay(recipe.category)}

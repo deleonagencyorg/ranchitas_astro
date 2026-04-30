@@ -16,6 +16,7 @@ interface Props {
   servings?: number;
   rating?: number;
   product?: string;
+  video?: string;
 }
 
 const { 
@@ -29,7 +30,8 @@ const {
   difficulty = "Fácil",
   servings = 0,
   rating = 0,
-  product = ""
+  product = "",
+  video = ""
 } = Astro.props;
 
 const currentLocale = getLocale();
@@ -61,6 +63,17 @@ const displayProduct = product ? formatProductName(product) : '';
     />
     <!-- Overlay con gradiente sutil -->
     <div class="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-400"></div>
+    
+    <!-- Icono de play si hay video (indicativo) -->
+    {video && (
+      <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+        <div class="w-16 h-16 rounded-full bg-black/40 flex items-center justify-center">
+          <svg class="w-8 h-8 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </div>
+    )}
   </div>
   
   <!-- Contenido inferior -->

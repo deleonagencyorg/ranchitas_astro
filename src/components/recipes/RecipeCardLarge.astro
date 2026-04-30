@@ -10,6 +10,7 @@ interface Props {
   difficulty?: string;
   product?: string;
   category?: string;
+  video?: string;
 }
 
 const { 
@@ -19,7 +20,8 @@ const {
   id,
   difficulty = "Fácil",
   product = "",
-  category = "Cena"
+  category = "Cena",
+  video = ""
 } = Astro.props;
 
 const currentLocale = getLocale();
@@ -60,14 +62,25 @@ const displayProduct = product ? formatProductName(product) : '';
       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
     />
     
+    <!-- Icono de play si hay video (indicativo) -->
+    {video && (
+      <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+        <div class="w-20 h-20 rounded-full bg-black/40 flex items-center justify-center">
+          <svg class="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </div>
+    )}
+    
     <!-- Badge de categoría (Cena, Almuerzo, etc) -->
-    <div class="absolute top-6 left-6 bg-[#F04F00] text-white px-5 py-2 rounded-full text-sm font-bold shadow-md">
+    <div class="absolute top-6 left-6 bg-[#F04F00] text-white px-5 py-2 rounded-full text-sm font-bold shadow-md z-10">
       {displayCategory}
     </div>
     
     <!-- Badge de tiempo -->
     {time && (
-      <div class="absolute top-6 right-6 bg-white text-gray-800 px-5 py-2 rounded-full text-sm font-bold shadow-md">
+      <div class="absolute top-6 right-6 bg-white text-gray-800 px-5 py-2 rounded-full text-sm font-bold shadow-md z-10">
         {time}
       </div>
     )}

@@ -8,6 +8,7 @@ import ShareModal from '../../../components/common/ShareModal.astro';
 import ProductCarousel from '../../../components/recipes/ProductCarousel.astro';
 import RelatedRecipesCarousel from '../../../components/recipes/RelatedRecipesCarousel.astro';
 import SocialShare from '../../../components/common/SocialShare.astro';
+import VideoModal from '../../../components/common/VideoModal.astro';
 
 interface RecipeItem {
   id: string;
@@ -22,6 +23,7 @@ interface RecipeItem {
   image?: string;
   tags?: string[];
   product?: string | string[];
+  video?: string;
 }
 
 const { currentLang, recipeId } = Astro.props;
@@ -129,6 +131,24 @@ const relatedRecipesTitle = currentLang === 'es' ? 'Recetas recomendadas' : 'Rec
               onerror="this.onerror=null;this.src='/images/placeholder.jpg';"
               transition:name={`recipe-image-${recipe.id}`}
             />
+            
+            <!-- Icono de play si hay video -->
+            {recipe.video && (
+              <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+                <button 
+                  type="button"
+                  class="pointer-events-auto group/play cursor-pointer"
+                  onclick={`if(window.openVideoModal) window.openVideoModal('${recipe.video}');`}
+                  aria-label="Ver video"
+                >
+                  <div class="w-24 h-24 rounded-full bg-black/40 flex items-center justify-center transition-all duration-300 group-hover/play:bg-black/60 group-hover/play:scale-110">
+                    <svg class="w-12 h-12 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+                      <path d="M8 5v14l11-7z"/>
+                    </svg>
+                  </div>
+                </button>
+              </div>
+            )}
           </div>
         )}
 
@@ -327,6 +347,9 @@ const relatedRecipesTitle = currentLang === 'es' ? 'Recetas recomendadas' : 'Rec
     });
   });
 </script>
+
+<!-- Video Modal -->
+<VideoModal />
 
 <!-- Share Modal instance -->
 <ShareModal

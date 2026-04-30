@@ -8,6 +8,7 @@ interface Props {
   id: string;
   product?: string;
   category?: string;
+  video?: string;
 }
 
 const { 
@@ -15,7 +16,8 @@ const {
   title, 
   id,
   product = "",
-  category = "Almuerzo"
+  category = "Almuerzo",
+  video = ""
 } = Astro.props;
 
 const currentLocale = getLocale();
@@ -50,12 +52,23 @@ const displayProduct = product ? formatProductName(product) : '';
 >
   <!-- Imagen circular con badge -->
   <div class="relative flex-shrink-0">
-    <div class="w-[160px] h-[120px] rounded-xl overflow-hidden">
+    <div class="w-[160px] h-[120px] rounded-xl overflow-hidden relative">
       <img 
         src={image} 
         alt={title}
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
       />
+      
+      <!-- Icono de play si hay video (indicativo) -->
+      {video && (
+        <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+          <div class="w-10 h-10 rounded-full bg-black/40 flex items-center justify-center">
+            <svg class="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+      )}
     </div>
     
     <!-- Badge de categoría -->
