@@ -1,0 +1,38 @@
+{
+  "date": "2025-09-11",
+  "id": "ranchitas-queso-creamy-corn-casserole",
+  "slug": "ranchitas-queso-creamy-corn-casserole",
+  "title": "Ranchitas Queso Creamy Corn Casserole",
+  "difficulty": "Easy",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-queso-cazuela-elote-cremoso.webp",
+  "gallery": [
+    "ranchitas-queso-cazuela-elote-cremoso.webp"
+  ],
+  "type": "image",
+  "video": {
+  },
+  "preparation_time": 22,
+  "cooking_time": 12,
+  "ingredients": [
+    "2 cups corn kernels",
+    "2 tablespoons butter",
+    "1/2 cup Mexican crema or sour cream",
+    "1/2 cup shredded cheese",
+    "Chili powder to taste",
+    "Salt to taste",
+    "1 bag of Ranchitas Queso chips for serving"
+  ],
+  "instructions": [
+    "Step 1. In a small skillet or casserole, melt the butter over medium heat.",
+    "Step 2. Add the corn kernels and sauté until hot and lightly golden.",
+    "Step 3. Add the crema and mix until well combined.",
+    "Step 4. Stir in the shredded cheese and cook, stirring constantly, until melted and creamy.",
+    "Step 5. Season with salt and chili powder to taste.",
+    "Step 6. Serve the warm casserole with Ranchitas Queso chips to use as scoops."
+  ],
+  "brand": ["ranchitas"],
+  "product": ["ranchitas-queso"],
+  "category": "snack",
+  "servings": 4,
+  "description": "A creamy and comforting Mexican-style corn casserole, perfect for dipping with crispy Ranchitas Queso chips. Easy, quick, and full of flavor."
+}
