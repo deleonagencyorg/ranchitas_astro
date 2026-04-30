@@ -1,0 +1,37 @@
+{
+  "date": "2026-04-30",
+  "id": "ranchitas-buffalo-ranch-dip-pollo-picante-queso",
+  "slug": "ranchitas-buffalo-ranch-dip-pollo-picante-queso",
+  "title": "Ranchitas Buffalo Ranch Dip de Pollo Picante y Queso",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-buffalo-ranch-dip-pollo-picante-queso.webp",
+  "gallery": [
+    "ranchitas-buffalo-ranch-dip-pollo-picante-queso.webp"
+  ],
+  "type": "image",
+  "video": {
+  },
+  "preparation_time": 20,
+  "cooking_time": 10,
+  "ingredients": [
+    "2 tazas de pollo cocido y desmenuzado",
+    "1/4 de taza de salsa picante",
+    "1/2 taza de queso crema",
+    "1 taza de queso rallado para gratinar",
+    "1/4 de taza de crema",
+    "1 bolsa de Ranchitas Buffalo Ranch para servir",
+    "Cebollín o perejil picado para servir"
+  ],
+  "instructions": [
+    "Paso 1. En una sartén, calienta el pollo desmenuzado a fuego medio y agrega la salsa picante, mezclando hasta que el pollo esté bien cubierto y caliente.",
+    "Paso 2. Incorpora el queso crema y cocina moviendo constantemente hasta que se derrita y la mezcla esté cremosa.",
+    "Paso 3. Agrega el queso rallado y continúa cocinando hasta que se derrita por completo.",
+    "Paso 4. Retira del fuego y añade la crema, mezclando suavemente para balancear el picor.",
+    "Paso 5. Sirve caliente con Ranchitas Buffalo Ranch y termina con cebollín o perejil picado antes de servir."
+  ],
+  "brand": ["ranchitas"],
+  "product": ["ranchitas-buffalo-ranch"],
+  "category": "snack",
+  "servings": 4,
+  "description": "Un dip cremoso y picante de pollo con salsa buffalo y queso, perfecto para dippear con las crujientes Ranchitas Buffalo Ranch. Ideal para compartir en cualquier reunión."
+}

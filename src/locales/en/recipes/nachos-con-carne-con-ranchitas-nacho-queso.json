@@ -1,0 +1,43 @@
+{
+  "date": "2025-09-11",
+  "id": "nachos-con-carne-con-ranchitas-nacho-queso",
+  "slug": "nachos-con-carne-con-ranchitas-nacho-queso",
+  "title": "Nachos with Meat and Ranchitas Nacho Queso",
+  "difficulty": "Advanced",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/nachos-con-carne-con-ranchitas.webp",
+  "gallery": [
+    "nachos-con-carne-con-ranchitas.webp"
+  ],
+  "type": "image",
+  "preparation_time": 25,
+  "ingredients": [
+    "One tablespoon of oil",
+    "Salt and pepper to taste",
+    "One pound of ground beef",
+    "1 jar of sofrito (Creole seasoning base)",
+    "1/2 cup of water",
+    "One cup of chopped tomato",
+    "Half a cup of chopped red onion",
+    "Half a cup of chopped cilantro",
+    "Half a cup of mozzarella or cheddar cheese for melting",
+    "1 family-size bag of Ranchitas Nacho Queso"
+  ],
+  "instructions": [
+    "Step 1: Season the meat with salt and pepper.",
+    "Step 2: Place the tablespoon of oil in a skillet and cook the meat until well done.",
+    "Step 3: Add the sofrito and stir well. Then add the water and cook gently until the meat is slightly saucy.",
+    "Step 4: Mix the tomato, onion, and cilantro in a bowl. Set aside.",
+    "Step 5: Place the Ranchitas Nacho Queso as the base on the plate, then add a generous portion of the meat.",
+    "Step 6: Sprinkle the cheese on top and microwave until melted.",
+    "Step 7: Remove from microwave and add the tomato, onion, and cilantro mixture on top."
+  ],
+  "brand": [
+    "ranchitas"
+  ],
+  "product": [
+    "ranchitas-nacho-queso"
+  ],
+  "category": "dinner",
+  "servings": 5,
+  "description": "Loaded nachos with seasoned ground beef, melted cheese, and all your favorite toppings on top of Ranchitas Nacho Queso."
+}

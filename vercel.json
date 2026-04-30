@@ -1,4 +1,16 @@
 {
+  "redirects": [
+    {
+      "source": "/es/ranchitas-caldosas",
+      "destination": "/es/recetas/ranchitas-caldosas-con-ranchitas-nacho-excitante",
+      "permanent": true
+    },
+    {
+      "source": "/es/ranchitas-caldosas/",
+      "destination": "/es/recetas/ranchitas-caldosas-con-ranchitas-nacho-excitante",
+      "permanent": true
+    }
+  ],
   "headers": [
     {
       "source": "/assets/(.*)",
