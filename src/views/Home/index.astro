@@ -4,6 +4,7 @@ import LazyImage from '../../components/common/LazyImage.astro';
 // Component Imports
 import VideoCarousel from '../../components/common/VideoCarousel/index.astro';
 import RecipesCarousel from "../../components/recipes/RecipesCarousel.astro";
+import VideoModal from "../../components/common/VideoModal.astro";
 import ProductsCarousel from '../../components/common/ProductsCarousel/index.astro';
 import MasonryGallery from '../../components/gallery/MasonryGallery.astro';
 import PixelGrid from '../../components/atoms/PixelGrid.astro';
@@ -228,3 +229,4 @@ const featuredLabel = currentLang==='es' ? 'DESTACADOS' : 'FEATURED';
   </main>
 
   <QuizModal currentLang={currentLang} />
+  <VideoModal />

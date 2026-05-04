@@ -6,6 +6,7 @@ import './styles.css';
 import LocalizedImage from '../../../components/common/LazyImage.astro';
 import { logos } from '../../../config/assets';
 import RecipesCarousel from '../../../components/recipes/RecipesCarousel.astro';
+import VideoModal from '../../../components/common/VideoModal.astro';
 
 
 // Interfaces locales
@@ -335,3 +336,5 @@ if (allProductsArray.length > 1) {
     initProductDetail();
   });
 </script>
+
+<VideoModal />

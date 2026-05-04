@@ -1,5 +1,5 @@
 {
-  "date": "2025-09-11",
+  "date": "2026-04-30",
   "id": "ranchitas-queso-creamy-corn-casserole",
   "slug": "ranchitas-queso-creamy-corn-casserole",
   "title": "Ranchitas Queso Creamy Corn Casserole",
@@ -9,8 +9,7 @@
     "ranchitas-queso-cazuela-elote-cremoso.webp"
   ],
   "type": "image",
-  "video": {
-  },
+  "video":"https://www.youtube.com/shorts/-Tu7fRzJad4",
   "preparation_time": 22,
   "cooking_time": 12,
   "ingredients": [

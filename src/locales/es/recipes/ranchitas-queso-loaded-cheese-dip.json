@@ -1,5 +1,5 @@
 {
-  "date": "2025-09-11",
+  "date": "2026-04-30",
   "id": "ranchitas-queso-loaded-cheese-dip",
   "slug": "ranchitas-queso-loaded-cheese-dip",
   "title": "Ranchitas Queso Loaded Cheese Dip",
@@ -9,8 +9,7 @@
     "ranchitas-queso-loaded-cheese-dip.webp"
   ],
   "type": "image",
-  "video": {
-  },
+  "video":  "https://www.youtube.com/shorts/w8wagzRzsy8",
   "preparation_time": 20,
   "cooking_time": 10,
   "ingredients": [

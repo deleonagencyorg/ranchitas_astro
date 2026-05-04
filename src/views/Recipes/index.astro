@@ -5,6 +5,7 @@ import './styles.css';
 import RecipeCardLarge from '../../components/recipes/RecipeCardLarge.astro';
 import RecipeCardSmall from '../../components/recipes/RecipeCardSmall.astro';
 import RecipeCard from '../../components/recipes/RecipeCard.astro';
+import VideoModal from '../../components/common/VideoModal.astro';
 
 interface Recipe {
   id: string;
@@ -15,6 +16,8 @@ interface Recipe {
   category?: string;
   product?: string | string[];
   difficulty?: string;
+  video?: string;
+  date?: string;
 }
 
 const currentLang = getLocale();
@@ -31,6 +34,23 @@ for (const path in recipeModules) {
     allRecipes.push(module.default);
   }
 }
+
+// Ordenar recetas: primero las más recientes (con fecha), al final las sin fecha
+allRecipes.sort((a, b) => {
+  const dateA = a.date;
+  const dateB = b.date;
+  
+  // Si ambos tienen fecha, ordenar descendente (más reciente primero)
+  if (dateA && dateB) {
+    return new Date(dateB).getTime() - new Date(dateA).getTime();
+  }
+  // Si solo A tiene fecha, va primero
+  if (dateA && !dateB) return -1;
+  // Si solo B tiene fecha, va primero
+  if (!dateA && dateB) return 1;
+  // Si ninguno tiene fecha, mantener orden original
+  return 0;
+});
 
 // Shared translations
 const noRecipesText = currentLang === 'es' 
@@ -232,6 +252,7 @@ const gridRecipes = allRecipes.slice(4);
                 difficulty={featuredRecipe.difficulty || (currentLang === 'es' ? 'Fácil' : 'Easy')}
                 product={Array.isArray(featuredRecipe.product) ? featuredRecipe.product[0] : featuredRecipe.product}
                 category={normalizeType(featuredRecipe)}
+                video={featuredRecipe.video}
               />
             </div>
           )}
@@ -250,6 +271,7 @@ const gridRecipes = allRecipes.slice(4);
                   id={recipe.id}
                   product={Array.isArray(recipe.product) ? recipe.product[0] : recipe.product}
                   category={normalizeType(recipe)}
+                  video={recipe.video}
                 />
               </div>
             ))}
@@ -280,6 +302,7 @@ const gridRecipes = allRecipes.slice(4);
             textColor="text-white"
             iconColor="text-white"
             product={Array.isArray(recipe.product) ? recipe.product[0] : recipe.product}
+            video={recipe.video}
           />
         </div>
       ))}
@@ -572,3 +595,6 @@ const gridRecipes = allRecipes.slice(4);
     transition: opacity 0.3s ease;
   }
 </style>
+
+<!-- Video Modal para las cards de recetas -->
+<VideoModal />
