@@ -18,6 +18,7 @@ interface Recipe {
   difficulty?: string;
   video?: string;
   date?: string;
+  previewImage?: string
 }
 
 const currentLang = getLocale();
@@ -246,6 +247,7 @@ const gridRecipes = allRecipes.slice(4);
             >
               <RecipeCardLarge
                 image={featuredRecipe.image || '/images/placeholder.jpg'}
+                previewImage={featuredRecipe['preview-image']}
                 title={featuredRecipe.title}
                 time={`${featuredRecipe.preparation_time} min`}
                 id={featuredRecipe.id}
@@ -267,6 +269,7 @@ const gridRecipes = allRecipes.slice(4);
               >
                 <RecipeCardSmall
                   image={recipe.image || '/images/placeholder.jpg'}
+                  previewImage={recipe['preview-image']}
                   title={recipe.title}
                   id={recipe.id}
                   product={Array.isArray(recipe.product) ? recipe.product[0] : recipe.product}
@@ -296,6 +299,7 @@ const gridRecipes = allRecipes.slice(4);
              data-title={recipe.title.toLowerCase()}>
           <RecipeCard
             image={recipe.image || '/images/placeholder.jpg'}
+            previewImage={recipe['preview-image']}
             title={recipe.title}
             time={`${recipe.preparation_time}MIN`}
             id={recipe.id}
