@@ -1,0 +1,37 @@
+{
+  "date": "2026-04-30",
+  "id": "dip-de-elote-cremoso-con-puro-crunch",
+  "slug": "dip-de-elote-cremoso-con-puro-crunch",
+  "title": "Dip de elote cremoso con puro crunch",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-queso-cazuela-elote-cremoso.webp",
+  "gallery": [
+    "ranchitas-queso-cazuela-elote-cremoso.webp"
+  ],
+  "type": "image",
+  "video": "https://www.youtube.com/shorts/-Tu7fRzJad4",
+  "preparation_time": 22,
+  "cooking_time": 12,
+  "ingredients": [
+    "2 tazas de granos de elote",
+    "2 cucharadas de mantequilla",
+    "1/2 taza de crema",
+    "1/2 taza de queso rallado",
+    "Chile en polvo al gusto",
+    "Sal al gusto",
+    "1 bolsa de Ranchitas de queso para servir"
+  ],
+  "instructions": [
+    "Paso:  En una sartén o cazuela pequeña, derrite la mantequilla a fuego medio.",
+    "Paso:  Agrega los granos de elote y saltea hasta que estén bien calientes y ligeramente dorados.",
+    "Paso:  Añade la crema y mezcla hasta integrar.",
+    "Paso:  Incorpora el queso rallado y cocina moviendo constantemente hasta que se derrita y la mezcla esté cremosa.",
+    "Paso:  Sazona con sal y chile en polvo al gusto.",
+    "Paso:  Sirve la cazuelita caliente acompañada de Ranchitas de queso para usar como scoop."
+  ],
+  "brand": ["ranchitas"],
+  "product": ["ranchitas-nacho-queso"],
+  "category": "snack",
+  "servings": 4,
+  "description": "Una cremosa y reconfortante cazuela de elote estilo mexicano, perfecta para disfrutar como dip con unas crujientes Ranchitas de Queso. Fácil, rápida y llena de sabor."
+}
