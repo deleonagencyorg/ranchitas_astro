@@ -1,8 +1,8 @@
 {
   "date": "2026-04-30",
-  "id": "ranchitas-queso-loaded-cheese-dip",
-  "slug": "ranchitas-queso-loaded-cheese-dip",
-  "title": "Ranchitas Queso Loaded Cheese Dip",
+  "id": "loaded-cheese-dip",
+  "slug": "loaded-cheese-dip",
+  "title": "Loaded Cheese Dip",
   "difficulty": "Easy",
   "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-queso-loaded-cheese-dip.webp",
   "gallery": [
@@ -21,11 +21,11 @@
     "Chopped chives to taste"
   ],
   "instructions": [
-    "Step 1. Preheat the oven to 200 °C (400 °F). Arrange the Ranchitas Queso chips in a single layer on a baking sheet.",
-    "Step 2. Sprinkle the shredded cheese evenly over the chips.",
-    "Step 3. Add the crumbled bacon and distribute the jalapeño slices on top.",
-    "Step 4. Bake for 8 to 10 minutes until the cheese is completely melted and lightly golden.",
-    "Step 5. Remove from the oven and serve immediately, finishing with a drizzle of crema and chopped chives before bringing to the table."
+    "Step: Preheat the oven to 200 °C (400 °F). Arrange the Ranchitas Queso chips in a single layer on a baking sheet.",
+    "Step: Sprinkle the shredded cheese evenly over the chips.",
+    "Step: Add the crumbled bacon and distribute the jalapeño slices on top.",
+    "Step: Bake for 8 to 10 minutes until the cheese is completely melted and lightly golden.",
+    "Step: Remove from the oven and serve immediately, finishing with a drizzle of crema and chopped chives before bringing to the table."
   ],
   "brand": ["ranchitas"],
   "product": ["ranchitas-nacho-queso"],
