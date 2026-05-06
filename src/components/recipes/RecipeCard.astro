@@ -17,6 +17,7 @@ interface Props {
   rating?: number;
   product?: string;
   video?: string;
+  previewImage?: string; 
 }
 
 const { 
@@ -31,7 +32,8 @@ const {
   servings = 0,
   rating = 0,
   product = "",
-  video = ""
+  video = "",
+  previewImage,
 } = Astro.props;
 
 const currentLocale = getLocale();
@@ -56,7 +58,7 @@ const displayProduct = product ? formatProductName(product) : '';
     onclick={video ? `event.stopPropagation(); if(window.openVideoModal) window.openVideoModal('${video}');` : undefined}
   >
     <LazyImage
-      src={image}
+      src={previewImage || image}
       alt={title}
       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500 ease-out"
       transition:name={`recipe-image-${id}`}
