@@ -13,6 +13,7 @@ interface RecipeItem {
   product?: string | string[];
   video?: string;
   date?: string;
+  'preview-image'?: string;
 }
 
 export interface Props {
@@ -53,6 +54,7 @@ const sortedItems = [...items].sort((a, b) => {
             <div class="h-full">
               <RecipeCard
                 image={recipe.image || '/images/placeholder.jpg'}
+                previewImage={recipe['preview-image']}
                 title={recipe.title}
                 time={`${recipe.preparation_time}MIN`}
                 id={recipe.id}
