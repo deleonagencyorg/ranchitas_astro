@@ -8,6 +8,7 @@ interface Props {
   id: string;
   product?: string;
   category?: string;
+  video?: string;
 }
 
 const { 
@@ -15,7 +16,8 @@ const {
   title, 
   id,
   product = "",
-  category = "Almuerzo"
+  category = "Almuerzo",
+  video = ""
 } = Astro.props;
 
 const currentLocale = getLocale();
@@ -44,34 +46,45 @@ function formatProductName(slug: string): string {
 const displayProduct = product ? formatProductName(product) : '';
 ---
 
-<a 
-  href={recipeLink} 
-  class="flex items-start gap-4 p-3 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group h-[150px]"
->
+<div class="flex items-start gap-4 p-3 bg-white rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 group h-[150px]">
   <!-- Imagen circular con badge -->
   <div class="relative flex-shrink-0">
-    <div class="w-[160px] h-[120px] rounded-xl overflow-hidden">
+    <div 
+      class={`w-[160px] h-[120px] rounded-xl overflow-hidden relative ${video ? 'cursor-pointer' : ''}`}
+      onclick={video ? `event.stopPropagation(); if(window.openVideoModal) window.openVideoModal('${video}');` : undefined}
+    >
       <img 
         src={image} 
         alt={title}
         class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
       />
+
+      <!-- Icono de play si hay video (indicativo) -->
+      {video && (
+        <div class="absolute inset-0 flex items-center justify-center z-10 pointer-events-none">
+          <div class="w-10 h-10 rounded-full bg-black/40 flex items-center justify-center">
+            <svg class="w-5 h-5 text-white ml-0.5" fill="currentColor" viewBox="0 0 24 24">
+              <path d="M8 5v14l11-7z"/>
+            </svg>
+          </div>
+        </div>
+      )}
     </div>
-    
+
     <!-- Badge de categoría -->
     <div class="absolute top-2 left-2 bg-[#F04F00] text-white px-3 py-1 rounded-full text-xs font-bold shadow-md">
       {displayCategory}
     </div>
   </div>
-  
+
   <!-- Contenido -->
-  <div class="flex-1 min-w-0 py-1 flex flex-col justify-between">
+  <a href={recipeLink} class="flex-1 min-w-0 py-1 flex flex-col justify-between">
     <!-- Título en itálica -->
     <div>
       <h3 class="text-xl font-bold text-black mb-1 leading-tight italic line-clamp-2">
         {title}
       </h3>
-      
+
       <!-- Producto -->
       {displayProduct && (
         <p class="text-gray-500 text-sm font-normal">
@@ -79,10 +92,10 @@ const displayProduct = product ? formatProductName(product) : '';
         </p>
       )}
     </div>
-    
+
     <!-- Ver receta link -->
     <div class="flex items-center text-[#F04F00] font-bold text-sm group-hover:translate-x-2 transition-transform">
       {viewRecipeText} →
     </div>
-  </div>
-</a>
+  </a>
+</div>

@@ -1,0 +1,37 @@
+{
+  "date": "2026-04-30",
+  "id": "spicy-chicken-cheese-dip",
+  "slug": "spicy-chicken-cheese-dip",
+  "title": "Spicy Chicken and Cheese Dip",
+  "difficulty": "Easy",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/04-ranchitas-bufalo-ranch-dip-de-pollo-picante-y-queso800x800.webp",
+  "gallery": [
+    "04-ranchitas-bufalo-ranch-dip-de-pollo-picante-y-queso800x800.webp"
+  ],
+  "type": "image",
+  "preview-image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/04-ranchitas-bufalo-ranch-dip-de-pollo-picante-y-queso1920x840.webp",
+  "video": "https://www.youtube.com/shorts/ex4ECzHWYb0",
+  "preparation_time": 20,
+  "cooking_time": 10,
+  "ingredients": [
+    "2 cups cooked and shredded chicken",
+    "1/4 cup hot sauce",
+    "1/2 cup cream cheese",
+    "1 cup shredded melting cheese",
+    "1/4 cup Mexican crema or sour cream",
+    "1 bag of Ranchitas Buffalo Ranch chips for serving",
+    "Chopped chives or parsley for serving"
+  ],
+  "instructions": [
+    "Step: In a skillet, heat the shredded chicken over medium heat and add the hot sauce, mixing until the chicken is well coated and hot.",
+    "Step: Add the cream cheese and cook, stirring constantly, until melted and creamy.",
+    "Step: Add the shredded cheese and continue cooking until completely melted.",
+    "Step: Remove from heat and stir in the crema to balance the spiciness.",
+    "Step: Serve hot with Ranchitas Buffalo Ranch chips and finish with chopped chives or parsley before serving."
+  ],
+  "brand": ["ranchitas"],
+  "product": ["ranchitas-buffalo-ranch"],
+  "category": "snack",
+  "servings": 4,
+  "description": "A creamy and spicy buffalo chicken and cheese dip, perfect for dipping with crunchy Ranchitas Buffalo Ranch chips. Ideal for sharing at any gathering."
+}

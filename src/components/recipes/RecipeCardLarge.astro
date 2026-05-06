@@ -10,6 +10,7 @@ interface Props {
   difficulty?: string;
   product?: string;
   category?: string;
+  video?: string;
 }
 
 const { 
@@ -19,7 +20,8 @@ const {
   id,
   difficulty = "Fácil",
   product = "",
-  category = "Cena"
+  category = "Cena",
+  video = ""
 } = Astro.props;
 
 const currentLocale = getLocale();
@@ -48,38 +50,49 @@ function formatProductName(slug: string): string {
 const displayProduct = product ? formatProductName(product) : '';
 ---
 
-<a 
-  href={recipeLink} 
-  class="block group overflow-hidden rounded-[2.5rem] bg-white shadow-lg hover:shadow-2xl transition-all duration-300"
->
+<div class="group overflow-hidden rounded-[2.5rem] bg-white shadow-lg hover:shadow-2xl transition-all duration-300 flex flex-col">
   <!-- Imagen principal -->
-  <div class="relative h-[400px] lg:h-[400px] overflow-hidden">
+  <div 
+    class={`relative h-[400px] lg:h-[400px] overflow-hidden ${video ? 'cursor-pointer' : ''}`}
+    onclick={video ? `event.stopPropagation(); if(window.openVideoModal) window.openVideoModal('${video}');` : undefined}
+  >
     <img 
       src={image} 
       alt={title}
       class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
     />
-    
+
+    <!-- Icono de play si hay video (indicativo) -->
+    {video && (
+      <div class="absolute inset-0 flex items-center justify-center z-20 pointer-events-none">
+        <div class="w-20 h-20 rounded-full bg-black/40 flex items-center justify-center">
+          <svg class="w-10 h-10 text-white ml-1" fill="currentColor" viewBox="0 0 24 24">
+            <path d="M8 5v14l11-7z"/>
+          </svg>
+        </div>
+      </div>
+    )}
+
     <!-- Badge de categoría (Cena, Almuerzo, etc) -->
-    <div class="absolute top-6 left-6 bg-[#F04F00] text-white px-5 py-2 rounded-full text-sm font-bold shadow-md">
+    <div class="absolute top-6 left-6 bg-[#F04F00] text-white px-5 py-2 rounded-full text-sm font-bold shadow-md z-10">
       {displayCategory}
     </div>
-    
+
     <!-- Badge de tiempo -->
     {time && (
-      <div class="absolute top-6 right-6 bg-white text-gray-800 px-5 py-2 rounded-full text-sm font-bold shadow-md">
+      <div class="absolute top-6 right-6 bg-white text-gray-800 px-5 py-2 rounded-full text-sm font-bold shadow-md z-10">
         {time}
       </div>
     )}
   </div>
-  
+
   <!-- Contenido inferior -->
-  <div class="p-8 bg-white">
+  <a href={recipeLink} class="block p-8 bg-white">
     <!-- Título -->
     <h3 class="text-3xl font-bold text-black mb-4 leading-tight">
       {title}
     </h3>
-    
+
     <!-- Dificultad y Producto en líneas separadas -->
     <div class="flex items-center gap-3 mb-4">
       <span class="text-[#F04F00] font-bold text-lg">
@@ -91,10 +104,10 @@ const displayProduct = product ? formatProductName(product) : '';
         </span>
       )}
     </div>
-    
+
     <!-- Ver receta link -->
     <div class="flex items-center text-[#F04F00] font-bold text-base group-hover:translate-x-2 transition-transform">
       {viewRecipeText} →
     </div>
-  </div>
-</a>
+  </a>
+</div>

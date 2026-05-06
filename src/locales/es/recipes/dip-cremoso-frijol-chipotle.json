@@ -1,0 +1,43 @@
+{
+  "date": "2026-04-30",
+  "id": "dip-cremoso-frijol-chipotle",
+  "slug": "dip-cremoso-frijol-chipotle",
+  "title": "Dip cremoso de Frijol y Chipotle",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/03-ranchitas-excitante-dip-de-frijol-y-chipotle800x800.webp",
+  "gallery": [
+    "03-ranchitas-excitante-dip-de-frijol-y-chipotle800x800.webp"
+  ],
+  "type": "image",
+  "preview-image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/03-ranchitas-excitante-dip-de-frijol-y-chipotle1920x840.webp",
+  "video": "https://www.youtube.com/shorts/D7K_pGST6QI",
+  "preparation_time": 25,
+  "cooking_time": 15,
+  "ingredients": [
+    "1 taza de frijoles cocidos y escurridos",
+    "1/2 taza de crema",
+    "1/2 taza de queso crema a temperatura ambiente",
+    "1-2 chiles chipotle adobados finamente picados",
+    "1 cucharada de adobo de chipotle",
+    "1/2 taza de queso rallado",
+    "Sal al gusto",
+    "1 pan campesino redondo",
+    "1/2 taza de queso rallado para gratinar",
+    "Cebollín picado al gusto",
+    "1 bolsa de Ranchitas Excitante para servir"
+  ],
+  "instructions": [
+    "Paso:  Precalienta el horno a 200 °C (400 °F).",
+    "Paso:  Licúa o procesa los frijoles con la crema y el queso crema hasta obtener una mezcla suave y cremosa.",
+    "Paso:  Pasa la mezcla a una sartén o cacerola pequeña, agrega los chiles chipotle, el adobo y cocina a fuego medio bajo durante 5 minutos, moviendo constantemente hasta que esté bien caliente.",
+    "Paso:  Incorpora el queso rallado y mezcla hasta que se derrita y el dip esté espeso y cremoso. Ajusta de sal al gusto.",
+    "Paso:  Corta la parte superior del pan campesino y retira con cuidado parte del migajón para formar un hueco.",
+    "Paso:  Rellena el pan con el dip caliente, espolvorea el queso para gratinar por encima y hornea durante 8 a 10 minutos o hasta que el queso esté derretido y dorado.",
+    "Paso:  Retira del horno, termina con cebollín picado y sirve de inmediato acompañado de Ranchitas Excitante para dipear."
+  ],
+  "brand": ["ranchitas"],
+  "product": ["ranchitas-nacho-excitante"],
+  "category": "snack",
+  "servings": 6,
+  "description": "Un dip cremoso y ahumado de frijol con chipotle, servido dentro de un bol de pan campesino horneado y gratinado. Perfecto para compartir con unas crujientes Ranchitas Excitante."
+}

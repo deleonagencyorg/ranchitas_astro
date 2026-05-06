@@ -1,0 +1,36 @@
+{
+  "date": "2026-04-30",
+  "id": "cheese-dip-ranchitas",
+  "slug": "cheese-dip-ranchitas",
+  "title": "Cheese Dip Ranchitas",
+  "difficulty": "Fácil",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/01-ranchitas-queso-loaded-cheese-dip800x800.webp",
+  "gallery": [
+    "ranchitas-queso-loaded-cheese-dip.webp"
+  ],
+  "type": "image",
+  "preview-image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/01-ranchitas-queso-loaded-cheese-dip1920x840.webp",
+  "video":  "https://youtube.com/shorts/w8wagzRzsy8?si=OTgxLqBmv3nZruD2",
+  "preparation_time": 20,
+  "cooking_time": 10,
+  "ingredients": [
+    "1 bolsa de Ranchitas de Queso",
+    "1 taza de queso rallado tipo mozzarella o mezcla para gratinar",
+    "1/4 de taza de tocino frito y picado",
+    "1 jalapeño en rodajas",
+    "Crema al gusto",
+    "Cebollín picado al gusto"
+  ],
+  "instructions": [
+    "Paso:  Precalienta el horno a 200 °C (400 °F) y coloca las Ranchitas de Queso en una bandeja para horno formando una sola capa.",
+    "Paso:  Espolvorea el queso rallado de manera uniforme sobre las Ranchitas.",
+    "Paso:  Agrega el tocino picado y distribuye las rodajas de jalapeño.",
+    "Paso:  Hornea de 8 a 10 minutos o hasta que el queso esté completamente derretido y ligeramente dorado.",
+    "Paso:  Retira del horno y sirve de inmediato, terminando con crema por encima y cebollín picado antes de llevar a la mesa."
+  ],
+  "brand": ["ranchitas"],
+  "product": ["ranchitas-nacho-queso"],
+  "category": "snack",
+  "servings": 4,
+  "description": "Un dip horneado súper cremoso y cargado de sabor con Ranchitas de Queso, mucho queso gratinado, tocino crujiente y un toque picante de jalapeño. Perfecto para compartir."
+}

@@ -9,6 +9,7 @@
     "monster-sandwich-con-ranchitas.webp"
   ],
   "type": "image",
+  "preview-image": "",
   "preparation_time": 20,
   "ingredients": [
     "1 portion sandwich bread.",
@@ -21,11 +22,11 @@
     "Ranchitas Nacho Excitante."
   ],
   "instructions": [
-    "Step 1. Take a sandwich and spread mayonnaise, mustard, and ketchup (or another sauce of your choice).",
-    "Step 2. Disinfect the lettuce in a bowl with salt and let it sit for 5 minutes. Then cut it into small pieces.",
-    "Step 3. Place a small piece of lettuce on the bread and add a couple of tomato slices.",
-    "Step 4. Add ham and cheese, then top with Ranchitas Nacho Excitante.",
-    "Step 5. Repeat the same process until you have a Monster Sandwich."
+    "Step: Take a sandwich and spread mayonnaise, mustard, and ketchup (or another sauce of your choice).",
+    "Step: Disinfect the lettuce in a bol with salt and let it sit for 5 minutes. Then cut it into small pieces.",
+    "Step: Place a small piece of lettuce on the bread and add a couple of tomato slices.",
+    "Step: Add ham and cheese, then top with Ranchitas Nacho Excitante.",
+    "Step: Repeat the same process until you have a Monster Sandwich."
   ],
   "brand": [
     "ranchitas"
