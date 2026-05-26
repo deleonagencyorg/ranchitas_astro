@@ -1,0 +1,38 @@
+{
+  "date": "2025-09-11",
+  "id": "ranchitas-caldosas-with-ranchitas-nacho-excitante",
+  "slug": "ranchitas-caldosas-with-ranchitas-nacho-excitante",
+  "title": "Ranchitas Caldosas with Ranchitas Nacho Excitante",
+  "people": "12",
+  "difficulty": "Easy",
+  "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas-caldosas.webp",
+  "gallery": [
+    "ranchitas-caldosas.webp"
+  ],
+  "type": "image",
+  "preparation_time": 10,
+  "ingredients": [
+    "1 fish fillet (Tilapia).",
+    "½ cup onion.",
+    "½ cup red bell pepper.",
+    "Cilantro.",
+    "Salt.",
+    "Pepper.",
+    "Lime to taste.",
+    "1 cup lime juice.",
+    "1 cup orange juice.",
+    "1 pack Ranchitas Nacho Excitante (or the flavor of your choice)."
+  ],
+  "instructions": [
+    "Step: Cut the fillet into cubes.",
+    "Step: Place the fish in a bowl, add lime juice and orange juice, and season with pepper.",
+    "Step: Let rest for at least 8 hours in the refrigerator.",
+    "Step: Add ½ cup onion and ½ cup red bell pepper inside the Ranchitas package.",
+    "Step: Mix the ingredients.",
+    "Step: Add the fish cubes and finely chopped cilantro to the package.",
+    "Step: Serve with lime to taste."
+  ],
+  "brand": ["ranchitas"],
+  "product": ["ranchitas-nacho-excitante"],
+  "category": "snack"
+}
