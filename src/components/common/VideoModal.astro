@@ -1,5 +1,5 @@
 ---
-// VideoModal.astro - Modal para reproducir videos de YouTube
+// src/components/common/VideoModal.astro
 interface Props {
   id?: string;
 }
@@ -8,28 +8,26 @@ const { id = 'videoModal' } = Astro.props;
 ---
 
 <div id={id} class="fixed inset-0 z-[2147483647] hidden" aria-hidden="true">
-  <div class="absolute inset-0 bg-black/80 backdrop-blur-sm" data-video-backdrop></div>
+  <!-- Backdrop con opacidad-->
+  <div class="absolute inset-0 bg-black/80 backdrop-blur-sm hidden md:block" data-video-backdrop></div>
 
-  <div class="absolute inset-0 flex items-center justify-center p-4 sm:p-6">
-    <div class="w-full max-w-5xl bg-black rounded-[20px] shadow-2xl overflow-hidden">
-      <!-- Header with close button -->
-      <div class="flex items-center justify-between px-4 py-3 bg-black">
-        <span class="text-white/70 text-sm font-medium">YouTube Video</span>
-        <button
-          type="button"
-          class="w-10 h-10 rounded-full bg-white/10 text-white flex items-center justify-center hover:bg-white/20 transition"
-          aria-label="Cerrar"
-          data-video-close
-        >
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-            <path d="M18 6 6 18" />
-            <path d="M6 6 18 18" />
-          </svg>
-        </button>
-      </div>
-
-      <!-- Video container with responsive iframe -->
-      <div class="relative w-full aspect-video bg-black">
+  <div class="absolute inset-0 flex items-center justify-center p-0 md:p-6 bg-black md:bg-transparent">
+    <div id="modal-content" class="w-full h-full md:h-auto md:max-w-5xl bg-black md:rounded-[20px] overflow-hidden relative">
+      
+      <!-- Botón Cerrar -->
+      <button
+        type="button"
+        id="close-btn"
+        class="absolute top-4 right-4 z-[2150000000] w-11 h-11 rounded-full bg-black/70 hover:bg-black/90 text-white flex items-center justify-center transition-all md:top-3 md:right-3 md:w-10 md:h-10"
+        aria-label="Cerrar video"
+      >
+        <svg xmlns="http://www.w3.org/2000/svg" width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+          <path d="M18 6 6 18" />
+          <path d="M6 6 18 18" />
+        </svg>
+      </button>
+      <!-- Video -->
+      <div class="relative w-full h-full md:aspect-video bg-black">
         <iframe
           id={`${id}-iframe`}
           class="w-full h-full"
@@ -48,19 +46,23 @@ const { id = 'videoModal' } = Astro.props;
   (function () {
     function initVideoModal() {
       const modal = document.getElementById('videoModal');
-      if (!(modal instanceof HTMLElement)) return;
+      if (!modal) return;
 
       if (modal.dataset.videoInit === '1') return;
       modal.dataset.videoInit = '1';
 
-      const closeBtn = modal.querySelector('[data-video-close]');
-      const backdrop = modal.querySelector('[data-video-backdrop]');
       const iframe = document.getElementById('videoModal-iframe');
+      const closeBtn = document.getElementById('close-btn');
+      const backdrop = modal.querySelector('[data-video-backdrop]');
 
-      const open = (videoUrl) => {
+      function isMobile() {
+        return window.matchMedia('(max-width: 767px)').matches;
+      }
+
+      window.openVideoModal = function(videoUrl) {
         if (!videoUrl) return;
-        
-        // Convertir URL de YouTube a formato embed
+
+        // Converti a embed
         let embedUrl = videoUrl;
         if (videoUrl.includes('youtube.com/watch?v=')) {
           const videoId = new URL(videoUrl).searchParams.get('v');
@@ -68,39 +70,35 @@ const { id = 'videoModal' } = Astro.props;
         } else if (videoUrl.includes('youtu.be/')) {
           const videoId = videoUrl.split('youtu.be/')[1]?.split('?')[0];
           embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+        } else if (videoUrl.includes('youtube.com/shorts/')) {
+          const videoId = videoUrl.split('youtube.com/shorts/')[1]?.split('?')[0];
+          embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
         } else if (videoUrl.includes('youtube.com/embed/')) {
           embedUrl = videoUrl.includes('?') ? `${videoUrl}&autoplay=1` : `${videoUrl}?autoplay=1`;
-        } else if (videoUrl.includes('youtube.com/shorts/')) {
-        const videoId = videoUrl.split('youtube.com/shorts/')[1]?.split('?')[0];
-        embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
         }
 
-        if (iframe) {
-          iframe.src = embedUrl;
-        }
-        
+        iframe.src = embedUrl;
         modal.classList.remove('hidden');
-        modal.setAttribute('aria-hidden', 'false');
         document.body.style.overflow = 'hidden';
       };
 
       const close = () => {
         modal.classList.add('hidden');
-        modal.setAttribute('aria-hidden', 'true');
         document.body.style.overflow = '';
-        
-        // Limpiar el iframe para detener el video
-        if (iframe) {
-          iframe.src = '';
-        }
+        if (iframe) iframe.src = '';
       };
 
-      // Exponer función global para abrir el modal
-      window.openVideoModal = open;
+      // Eventos del botón cerrar
+      if (closeBtn) {
+        closeBtn.addEventListener('click', close);
+      }
 
-      if (closeBtn) closeBtn.addEventListener('click', close);
-      if (backdrop) backdrop.addEventListener('click', close);
+      // Cerrar con backdrop (desktop)
+      if (backdrop) {
+        backdrop.addEventListener('click', close);
+      }
 
+      // Cerrar con Escape
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') close();
       });
@@ -115,22 +113,3 @@ const { id = 'videoModal' } = Astro.props;
     document.addEventListener('astro:page-load', initVideoModal);
   })();
 </script>
-
-<style>
-  #videoModal {
-    transition: opacity 0.3s ease;
-  }
-  
-  #videoModal:not(.hidden) {
-    animation: fadeIn 0.3s ease;
-  }
-  
-  @keyframes fadeIn {
-    from {
-      opacity: 0;
-    }
-    to {
-      opacity: 1;
-    }
-  }
-</style>
