@@ -61,6 +61,14 @@ const { id = 'videoModal' } = Astro.props;
         if (!videoUrl) return;
         
         // Convertir URL de YouTube a formato embed
+        const isMobile = window.innerWidth < 768;
+
+        if (isMobile) {
+          // En móviles → redirigir 
+          window.open(videoUrl, '_blank', 'noopener,noreferrer');
+          return; // No abre el modal--
+        }
+        // En tablet y PC abrir modal normal
         let embedUrl = videoUrl;
         if (videoUrl.includes('youtube.com/watch?v=')) {
           const videoId = new URL(videoUrl).searchParams.get('v');
@@ -71,8 +79,8 @@ const { id = 'videoModal' } = Astro.props;
         } else if (videoUrl.includes('youtube.com/embed/')) {
           embedUrl = videoUrl.includes('?') ? `${videoUrl}&autoplay=1` : `${videoUrl}?autoplay=1`;
         } else if (videoUrl.includes('youtube.com/shorts/')) {
-        const videoId = videoUrl.split('youtube.com/shorts/')[1]?.split('?')[0];
-        embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+          const videoId = videoUrl.split('youtube.com/shorts/')[1]?.split('?')[0];
+          embedUrl = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
         }
 
         if (iframe) {
