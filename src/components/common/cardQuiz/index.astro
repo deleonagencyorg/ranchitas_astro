@@ -30,7 +30,7 @@ const mediaSrc = cardQuiz.videoSrc || cardQuiz.imageSrc;
 const mediaPoster = cardQuiz.videoPoster;
 ---
 
-<section class="hidden md:block xl:block w-full py-6 md:py-12 px-4 md:px-8 xl:-mt-[100px] md:-mt-[90px]">
+<section data-card-quiz class="hidden md:block xl:block w-full py-6 md:py-12 px-4 md:px-8 xl:-mt-[100px] md:-mt-[90px]">
     <div class="max-w-7xl mx-auto">
         <div
             class="bg-[#0041CD] rounded-[20px] md:rounded-[20px] shadow-xl p-6 md:p-8 xl:p-12"
@@ -45,10 +45,11 @@ const mediaPoster = cardQuiz.videoPoster;
                         style={`background-color: ${cardQuiz.backgroundColor}`}
                     >
                         <video
+                            data-card-quiz-video
                             class="w-full h-full object-cover"
                             src={mediaSrc}
                             poster={mediaPoster}
-                            autoplay
+                            preload="auto"
                             muted
                             loop
                             playsinline
@@ -84,7 +85,7 @@ const mediaPoster = cardQuiz.videoPoster;
     </div>
 </section>
 
-<section class="block md:hidden px-4 py-6 mx-auto max-w-full -mt-[80px]">
+<section data-card-quiz class="block md:hidden px-4 py-6 mx-auto max-w-full -mt-[80px]">
     <div class="bg-[#0041CD] rounded-3xl p-4 space-y-4">
         
         <div class="w-full">
@@ -93,10 +94,11 @@ const mediaPoster = cardQuiz.videoPoster;
                 style={`background-color: ${cardQuiz.backgroundColor}`}
             >
             <video
+                data-card-quiz-video
                 class="w-full h-full object-cover"
                 src={mediaSrc}
                 poster={mediaPoster}
-                autoplay
+                preload="auto"
                 muted
                 loop
                 playsinline
@@ -118,5 +120,56 @@ const mediaPoster = cardQuiz.videoPoster;
   
     </div>
 </section>
+
+<script>
+  const cardQuizObservers = new WeakMap();
+
+  function initCardQuizVideos() {
+    document.querySelectorAll('[data-card-quiz]').forEach((section) => {
+      if (cardQuizObservers.has(section)) return;
+
+      const videos = section.querySelectorAll('video[data-card-quiz-video]');
+      if (!videos.length) return;
+
+      const playVideos = () => {
+        videos.forEach((video) => {
+          (video as HTMLVideoElement).play().catch(() => {});
+        });
+      };
+
+      const pauseVideos = () => {
+        videos.forEach((video) => {
+          const el = video as HTMLVideoElement;
+          if (!el.paused) el.pause();
+        });
+      };
+
+      if (!('IntersectionObserver' in window)) {
+        playVideos();
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              playVideos();
+            } else {
+              pauseVideos();
+            }
+          });
+        },
+        { threshold: 0.35 }
+      );
+
+      observer.observe(section);
+      cardQuizObservers.set(section, observer);
+    });
+  }
+
+  initCardQuizVideos();
+  document.addEventListener('astro:page-load', initCardQuizVideos);
+  document.addEventListener('astro:after-swap', initCardQuizVideos);
+</script>
   
   
