@@ -38,6 +38,7 @@ const galleryAssets = t('', { namespace: 'gallery', locale: currentLang }) || {}
 const aboutAssets = t('', { namespace: 'aboutus', locale: currentLang }) || {};
 const brandsAssets = t('', { namespace: 'brands', locale: currentLang }) || {};
 const cardQuizAssets = t('cardQuiz', { namespace: 'common', locale: currentLang }) || {};
+const cardQuizVideoSrc = cardQuizAssets.videoSrc || cardQuizAssets.imageSrc;
 const newsAssets =  t('', { namespace: 'news', locale: currentLang }) || {};
 const products = t('items', { namespace: 'products', locale: currentLang }) || [];
 const textHome = t('home.text_home', { namespace: 'common', locale: currentLang }) || {};
@@ -91,6 +92,10 @@ const featuredLabel = currentLang==='es' ? 'DESTACADOS' : 'FEATURED';
 
 
 ---
+
+{cardQuizVideoSrc && (
+  <link rel="preload" as="video" href={cardQuizVideoSrc} type="video/webm" />
+)}
 
 <main class="w-full flex flex-col items-center justify-center mt-0">
   <!-- Slider Section -->
