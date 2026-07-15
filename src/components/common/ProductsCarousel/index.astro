@@ -72,7 +72,12 @@ const newBadge = getNewBadge(currentLang);
             <div class="product-card-container flex items-center gap-0 w-full max-w-[900px]">
 
               <!-- Imagen -->
-              <div class="product-image-wrapper relative flex-shrink-0 -mr-14 sm:-mr-20 md:-mr-24 xl:-mr-28 z-10">
+              <a 
+                href={`/${currentLang}/${currentLang === 'es' ? 'productos' : 'products'}/${product.id}`}
+                class="product-image-wrapper relative flex-shrink-0 -mr-14 sm:-mr-20 md:-mr-24 xl:-mr-28 z-10"
+                data-no-swipe="true"
+                data-no-animation="true"
+              >
                 <LazyImage 
                   src={product.imageMobile || product.image} 
                   alt={product.name}
@@ -85,7 +90,7 @@ const newBadge = getNewBadge(currentLang);
                     class="absolute top-0 right-0 w-14 sm:w-16 z-20"
                   />
                 )}
-              </div>
+              </a>
 
               <!-- Tarjeta más ancha -->
               <div class="product-card bg-white rounded-[10px] pt-2 pb-2 sm:pt-3 sm:pb-3 md:pb-4 xl:pb-5 pl-16 sm:pl-16 md:pl-20 xl:pl-22 pr-3 sm:pr-4 flex-1 min-w-[240px] sm:min-w-[280px] md:min-w-[305px] flex">

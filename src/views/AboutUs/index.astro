@@ -16,7 +16,7 @@ export interface Props {
   headerColorConfig: HeaderColorConfig;
 }
 
-const { currentLang, headerColorConfig } = Astro.props;
+const { currentLang = 'es', headerColorConfig } = Astro.props;
 
 // Get translations from common.json
 const title = t('about_us.title', { namespace: 'common', locale: currentLang });
