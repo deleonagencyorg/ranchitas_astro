@@ -24,6 +24,51 @@
   ],
   "items": [
     {
+      "id": "ranchitas-chili-beans",
+      "name": "Ranchitas Chili Beans",
+      "is_new": true,
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas_chili_beans.webp",
+      "background_color": "#F5C23A",
+      "header_color": "#FFFFFF",
+      "text_color": "#FFFFFF",
+      "header_background": "#F5C23A",
+      "header_text_color": "#FFFFFF",
+      "color_button": "#FFFFFF",
+      "description": "Crispy corn tortilla chips bursting with savory chili bean flavor.",
+      "short_description": "Crispy corn chips with chili bean flavor.",
+      "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
+      "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
+      "sizes": [
+        {
+          "value": "150",
+          "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp"
+        }
+      ],
+      "weight": ["33g", "75g"],
+      "nutrition": {
+        "title": "Nutritional Facts",
+        "serving": "Serving Size: 1oz (28g). Servings per container: 0.89",
+        "rows": [
+          { "label": "Energy", "value": "650 kJ (150 kcal)" },
+          { "label": "Energy from Fat", "value": "300 kJ (70 kcal)" },
+          { "label": "Total Fat", "value": "8g (10% DV)" },
+          { "label": "Saturated Fat", "value": "3.5g (18% DV)" },
+          { "label": "Trans Fat", "value": "0g (0% DV)" },
+          { "label": "Cholesterol", "value": "0mg (0% DV)" },
+          { "label": "Sodium", "value": "220mg (10% DV)" },
+          { "label": "Total Carbohydrates", "value": "17g (6% DV)" },
+          { "label": "Dietary Fiber", "value": "1g (4% DV)" },
+          { "label": "Sugars", "value": "less than 1g" },
+          { "label": "Protein", "value": "2g" },
+          { "label": "Vitamin D", "value": "0% DV" },
+          { "label": "Calcium", "value": "2% DV" },
+          { "label": "Iron", "value": "2% DV" },
+          { "label": "Potassium", "value": "0% DV" }
+        ],
+        "disclaimer": "Percent Daily Values are based on a diet of 8,378 kJ (2,000 calories). Your daily values may be higher or lower depending on your calorie needs."
+      }
+    },
+    {
       "id": "ranchitas-buffalo-ranch",
       "name": "Ranchitas Buffalo Ranch",
       "is_new": true,
@@ -65,7 +110,7 @@
           { "label": "Iron", "value": "2% DV" },
           { "label": "Potassium", "value": "1% DV" }
         ],
-        "disclaimer": "Percent Daily Values are based on a 8,378 kJ (2,000 cal) diet. Your daily values may be higher or lower depending on your caloric needs.   "
+        "disclaimer": "Percent Daily Values are based on a 8,378 kJ (2,000 cal) diet. Your daily values may be higher or lower depending on your caloric needs."
       }
     },
     {
