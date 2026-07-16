@@ -24,6 +24,51 @@
   ],
   "items": [
     {
+      "id": "ranchitas-chili-beans",
+      "name": "Ranchitas Chili Beans",
+      "is_new": true,
+      "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas_chili_beans.webp",
+      "background_color": "#F5C23A",
+      "header_color": "#FFFFFF",
+      "text_color": "#FFFFFF",
+      "header_background": "#F5C23A",
+      "header_text_color": "#FFFFFF",
+      "color_button": "#FFFFFF",
+      "description": "Nachos de maíz crujientes con sabor a Chili Beans",
+      "short_description": "Nachos de maíz crujientes con sabor a Chili Beans",
+      "available": "https://snack.yummiespromociones.com/taqueritos/banderas.webp",
+      "background_image": "https://snack.yummiespromociones.com/snacksyummies/zibas-grande2.webp",
+      "sizes": [
+        {
+          "value": "150",
+          "image": "https://snack.yummiespromociones.com/SnacksyummiesAssets/zibas-clasicas-2.webp"
+        }
+      ],
+      "weight": ["33g", "75g"],
+      "nutrition": {
+        "title": "Datos Nutricionales",
+        "serving": "Tamaño de la Porción: 1oz (28g). Porciones por envase: 0.89",
+        "rows": [
+          { "label": "Energía", "value": "650 kJ (150 kcal)" },
+          { "label": "Energía de Grasa", "value": "300 kJ (70 kcal)" },
+          { "label": "Grasa Total", "value": "8g (10% VD)" },
+          { "label": "Grasa Saturada", "value": "3.5g (18% VD)" },
+          { "label": "Grasa Trans", "value": "0g (0% VD)" },
+          { "label": "Colesterol", "value": "0mg (0% VD)" },
+          { "label": "Sodio", "value": "220mg (10% VD)" },
+          { "label": "Carbohidratos Totales", "value": "17g (6% VD)" },
+          { "label": "Fibra Dietética", "value": "1g (4% VD)" },
+          { "label": "Azúcares", "value": "menos de 1g" },
+          { "label": "Proteínas", "value": "2g" },
+          { "label": "Vitamina D", "value": "0% VD" },
+          { "label": "Calcio", "value": "2% VD" },
+          { "label": "Hierro", "value": "2% VD" },
+          { "label": "Potasio", "value": "0% VD" }
+        ],
+        "disclaimer": "Los Valores de los Porcentajes Diarios están basados en una dieta de 8,378 kJ (2,000 cal). Sus Valores diarios pueden ser mayor o menor dependiendo de sus necesidades calóricas.   "
+      }
+    },
+    {
       "id": "ranchitas-buffalo-ranch",
       "name": "Ranchitas Buffalo Ranch",
       "is_new": true,
