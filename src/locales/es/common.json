@@ -76,14 +76,13 @@
     "slider": [
       {
         "id": "slide2",
-        "desktop": "",
-        "mobile": "",
-        "alt": "Ranchitas",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas_Desktop_Home.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/ranchitas_mobil_395x395.webp",
+        "alt": "Único snack",
         "title": "",
         "description": "",
         "link": "#"
       },
-   
       {
         "id": "slide1",
         "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/banner_crunch2.webp",
