@@ -27,6 +27,8 @@ const cityLabel = locale === 'es' ? 'Ciudad' : 'City';
 const countryPlaceholder = locale === 'es' ? 'Selecciona tu país' : 'Select your country';
 const departmentPlaceholder = locale === 'es' ? 'Primero selecciona un país' : 'First select a country';
 const contactReasonPlaceholder = locale === 'es' ? 'Selecciona el tipo de consulta' : 'Select the type of inquiry';
+const countryInputPlaceholder = locale === 'es' ? 'ESCRIBE TU PAÍS' : 'WRITE YOUR COUNTRY';
+const cityInputPlaceholder = locale === 'es' ? 'ESCRIBE TU CIUDAD' : 'WRITE YOUR CITY';
 
 // Get API configuration from environment variables
 const apiHost = import.meta.env.PUBLIC_CONTACT_API_HOST || 'https://api-crm.yummiespromociones.com/api';
@@ -155,6 +157,14 @@ const options = dynamicOptions[locale];
       >
         <option value="">{countryPlaceholder}</option>
       </select>
+      <input 
+        type="text" 
+        name="country" 
+        id="countryInput"
+        placeholder={countryInputPlaceholder}
+        class="hidden w-full font-semibold uppercase flex justify-center text-white items-center gap-5 p-[15px_20px] border-[1.5px] border-white rounded-full bg-orange placeholder:text-white/70 text-white focus:text-black focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+        disabled
+      />
     </div>
   </div>
 
@@ -166,14 +176,22 @@ const options = dynamicOptions[locale];
         {cityLabel} *
       </label>
       <select 
-        name="citySelect" 
+        name="city" 
         id="departmentSelect"
         required
         disabled
-        class="w-full font-semibold uppercase flex justify-center text-white items-center gap-5 p-[15px_20px] border-[1.5px] border-white rounded-full bg-orange focus:text-black focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+        class="w-full font-semibold uppercase flex justify-center text-white items-center gap-5 p-[15px_20px] border-[1.5px] border-white rounded-full bg-orange focus:text-black focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all disabled:opacity-50 disabled:cursor-not-allowed"
       >
         <option value="">{departmentPlaceholder}</option>
       </select>
+      <input 
+        type="text" 
+        name="city" 
+        id="departmentInput"
+        placeholder={cityInputPlaceholder}
+        class="hidden w-full font-semibold uppercase flex justify-center text-white items-center gap-5 p-[15px_20px] border-[1.5px] border-white rounded-full bg-orange placeholder:text-white/70 text-white focus:text-black focus:bg-white focus:ring-2 focus:ring-primary focus:border-transparent transition-all"
+        disabled
+      />
     </div>
     
     <!-- Name -->
@@ -482,7 +500,9 @@ const options = dynamicOptions[locale];
   function initFormFunctionality() {
     const contactReasonSelect = document.getElementById('contactReasonSelect');
     const countrySelect = document.getElementById('countrySelect');
+    const countryInput = document.getElementById('countryInput');
     const citySelect = document.getElementById('departmentSelect');
+    const cityInput = document.getElementById('departmentInput');
     const dynamicFields = document.getElementById('dynamicFields');
     const form = document.getElementById('contactForm');
 
@@ -490,7 +510,9 @@ const options = dynamicOptions[locale];
     console.log('Form elements found:', {
       contactReasonSelect: !!contactReasonSelect,
       countrySelect: !!countrySelect,
+      countryInput: !!countryInput,
       citySelect: !!citySelect,
+      cityInput: !!cityInput,
       dynamicFields: !!dynamicFields,
       form: !!form
     });
@@ -502,6 +524,68 @@ const options = dynamicOptions[locale];
     if (!contactReasonSelect || !countrySelect || !citySelect || !dynamicFields || !form) {
       console.error('Required form elements not found');
       return;
+    }
+
+    function toggleExportLocationFields(selectedReason) {
+      const isExports = selectedReason === 'Exportaciones' || selectedReason === 'Exports';
+
+      if (isExports) {
+        if (countrySelect && countryInput) {
+          countrySelect.classList.add('hidden');
+          countrySelect.disabled = true;
+          countrySelect.removeAttribute('required');
+
+          countryInput.classList.remove('hidden');
+          countryInput.disabled = false;
+          countryInput.setAttribute('required', 'required');
+        }
+
+        if (citySelect && cityInput) {
+          citySelect.classList.add('hidden');
+          citySelect.disabled = true;
+          citySelect.removeAttribute('required');
+
+          cityInput.classList.remove('hidden');
+          cityInput.disabled = false;
+          cityInput.setAttribute('required', 'required');
+        }
+      } else {
+        if (countrySelect && countryInput) {
+          countryInput.classList.add('hidden');
+          countryInput.disabled = true;
+          countryInput.removeAttribute('required');
+          countryInput.value = '';
+
+          countrySelect.classList.remove('hidden');
+          countrySelect.setAttribute('required', 'required');
+
+          if (!selectedReason) {
+            countrySelect.disabled = true;
+            countrySelect.classList.add('disabled:opacity-50', 'disabled:cursor-not-allowed');
+          } else {
+            countrySelect.disabled = false;
+            countrySelect.classList.remove('disabled:opacity-50', 'disabled:cursor-not-allowed');
+          }
+        }
+
+        if (citySelect && cityInput) {
+          cityInput.classList.add('hidden');
+          cityInput.disabled = true;
+          cityInput.removeAttribute('required');
+          cityInput.value = '';
+
+          citySelect.classList.remove('hidden');
+          citySelect.setAttribute('required', 'required');
+
+          if (!countrySelect || !countrySelect.value) {
+            citySelect.disabled = true;
+            citySelect.classList.add('disabled:opacity-50', 'disabled:cursor-not-allowed');
+          } else {
+            citySelect.disabled = false;
+            citySelect.classList.remove('disabled:opacity-50', 'disabled:cursor-not-allowed');
+          }
+        }
+      }
     }
 
     // Populate countries
@@ -522,15 +606,7 @@ const options = dynamicOptions[locale];
       const selectedReason = this.value;
       console.log('Contact reason changed to:', selectedReason);
       
-      // Enable country selector when a contact reason is selected
-      if (selectedReason && countrySelect) {
-        countrySelect.disabled = false;
-        countrySelect.classList.remove('disabled:opacity-50', 'disabled:cursor-not-allowed');
-      } else if (countrySelect) {
-        countrySelect.disabled = true;
-        countrySelect.classList.add('disabled:opacity-50', 'disabled:cursor-not-allowed');
-      }
-      
+      toggleExportLocationFields(selectedReason);
       updateDynamicFields(selectedReason);
     };
 
@@ -544,7 +620,7 @@ const options = dynamicOptions[locale];
       if (selectedCountry && countriesData[selectedCountry]) {
         // Enable city select
         citySelect.disabled = false;
-        citySelect.classList.remove('disabled:bg-gray-100', 'disabled:cursor-not-allowed');
+        citySelect.classList.remove('disabled:opacity-50', 'disabled:cursor-not-allowed');
         
         // Add cities for selected country
         countriesData[selectedCountry].forEach(function(city) {
@@ -556,7 +632,7 @@ const options = dynamicOptions[locale];
       } else {
         // Disable city select if no country selected
         citySelect.disabled = true;
-        citySelect.classList.add('disabled:bg-gray-100', 'disabled:cursor-not-allowed');
+        citySelect.classList.add('disabled:opacity-50', 'disabled:cursor-not-allowed');
       }
     };
 
@@ -607,9 +683,10 @@ const options = dynamicOptions[locale];
           
           // Reset form
           this.reset();
+          toggleExportLocationFields('');
           if (citySelect) {
             citySelect.disabled = true;
-            citySelect.classList.add('disabled:bg-gray-100', 'disabled:cursor-not-allowed');
+            citySelect.classList.add('disabled:opacity-50', 'disabled:cursor-not-allowed');
             citySelect.innerHTML = `<option value="">${departmentPlaceholder}</option>`;
           }
           if (dynamicFields) {
@@ -634,6 +711,7 @@ const options = dynamicOptions[locale];
     
     // Initialize dynamic fields with default contact reason if selected
     if (contactReasonSelect.value) {
+      toggleExportLocationFields(contactReasonSelect.value);
       updateDynamicFields(contactReasonSelect.value);
     }
   }
