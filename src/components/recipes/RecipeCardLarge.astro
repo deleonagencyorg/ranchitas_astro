@@ -1,6 +1,7 @@
 ---
 // RecipeCardLarge.astro - Tarjeta grande para recetas destacadas
 import { getLocale } from '../../i18n/i18n';
+import { buildVideoModalOnclick } from '../../utils/video';
 
 interface Props {
   image: string;
@@ -11,6 +12,7 @@ interface Props {
   product?: string;
   category?: string;
   video?: string;
+  videoHost?: string;
 }
 
 const { 
@@ -21,7 +23,8 @@ const {
   difficulty = "Fácil",
   product = "",
   category = "Cena",
-  video = ""
+  video = "",
+  videoHost = "",
 } = Astro.props;
 
 const currentLocale = getLocale();
@@ -54,7 +57,7 @@ const displayProduct = product ? formatProductName(product) : '';
   <!-- Imagen principal -->
   <div 
     class={`relative h-[400px] lg:h-[400px] overflow-hidden ${video ? 'cursor-pointer' : ''}`}
-    onclick={video ? `event.stopPropagation(); if(window.openVideoModal) window.openVideoModal('${video}');` : undefined}
+    onclick={video ? buildVideoModalOnclick(video, videoHost) : undefined}
   >
     <img 
       src={image} 
