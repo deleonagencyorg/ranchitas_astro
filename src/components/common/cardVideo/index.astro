@@ -37,6 +37,7 @@ const {
                         style={`background-color: ${cardVideo.backgroundColor}`}
                     >
                         <video
+                            data-card-video
                             class="w-full h-full object-cover"
                             autoplay
                             loop
@@ -69,6 +70,7 @@ const {
                 style={`background-color: ${cardVideo.backgroundColor}`}
             >
                 <video
+                    data-card-video
                     class="w-full h-full object-cover"
                     autoplay
                     loop
@@ -83,5 +85,101 @@ const {
         </div>
     </div>
 </section>
-  
-  
+<script>
+  const cardVideoObservers = new WeakMap();
+
+  function initCardVideos() {
+    document.querySelectorAll('[data-card-video]').forEach((video) => {
+      const parentSection = video.closest('section');
+      if (parentSection) {
+        const observer = cardVideoObservers.get(parentSection);
+        if (observer) {
+          observer.disconnect();
+          cardVideoObservers.delete(parentSection);
+        }
+      }
+    });
+
+    document.querySelectorAll('section').forEach((section) => {
+      const videos = section.querySelectorAll('video[data-card-video]');
+      if (!videos.length) return;
+
+      if (cardVideoObservers.has(section)) return;
+
+      const playVideos = () => {
+        videos.forEach((video) => {
+          const el = video as HTMLVideoElement;
+          
+          // Verificar si el video necesita reiniciarse!
+          if (el.ended || el.currentTime >= el.duration - 0.1) {
+            el.currentTime = 0;
+          }
+          
+          // Si el video está pausado o no se está reproduciendo
+          if (el.paused) {
+            el.play().catch(() => {
+              // Si falla intentar recargar
+              el.load();
+              setTimeout(() => {
+                el.currentTime = 0;
+                el.play().catch(() => {});
+              }, 100);
+            });
+          }
+        });
+      };
+
+      const pauseVideos = () => {
+        videos.forEach((video) => {
+          const el = video as HTMLVideoElement;
+          if (!el.paused) el.pause();
+        });
+      };
+
+      const isVisible = (el: Element) => {
+        const rect = el.getBoundingClientRect();
+        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
+        return rect.top <= windowHeight * 0.8 && rect.bottom >= 0;
+      };
+      if (isVisible(section)) {
+        playVideos();
+      }
+
+      if (!('IntersectionObserver' in window)) {
+        playVideos();
+        return;
+      }
+
+      const observer = new IntersectionObserver(
+        (entries) => {
+          entries.forEach((entry) => {
+            if (entry.isIntersecting) {
+              playVideos();
+            } else {
+              pauseVideos();
+            }
+          });
+        }
+      );
+
+      observer.observe(section);
+      cardVideoObservers.set(section, observer);
+    });
+  }
+
+  initCardVideos();
+  document.addEventListener('astro:page-load', initCardVideos);
+  document.addEventListener('astro:after-swap', initCardVideos);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      setTimeout(initCardVideos, 200);
+    }
+  });
+
+  // Manejar resize de ventana
+  let resizeTimeout: ReturnType<typeof setTimeout> | undefined;
+  window.addEventListener('resize', () => {
+    clearTimeout(resizeTimeout);
+    resizeTimeout = setTimeout(initCardVideos, 300);
+  });
+</script>
