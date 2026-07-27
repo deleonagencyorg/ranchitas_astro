@@ -6,6 +6,7 @@ import RecipeCardLarge from '../../components/recipes/RecipeCardLarge.astro';
 import RecipeCardSmall from '../../components/recipes/RecipeCardSmall.astro';
 import RecipeCard from '../../components/recipes/RecipeCard.astro';
 import VideoModal from '../../components/common/VideoModal.astro';
+import { getRecipeVideoHost } from '../../utils/video';
 
 interface Recipe {
   id: string;
@@ -17,6 +18,8 @@ interface Recipe {
   product?: string | string[];
   difficulty?: string;
   video?: string;
+  video_host?: string;
+  host?: string;
   date?: string;
   previewImage?: string
 }
@@ -255,6 +258,7 @@ const gridRecipes = allRecipes.slice(4);
                 product={Array.isArray(featuredRecipe.product) ? featuredRecipe.product[0] : featuredRecipe.product}
                 category={normalizeType(featuredRecipe)}
                 video={featuredRecipe.video}
+                videoHost={getRecipeVideoHost(featuredRecipe)}
               />
             </div>
           )}
@@ -275,6 +279,7 @@ const gridRecipes = allRecipes.slice(4);
                   product={Array.isArray(recipe.product) ? recipe.product[0] : recipe.product}
                   category={normalizeType(recipe)}
                   video={recipe.video}
+                  videoHost={getRecipeVideoHost(recipe)}
                 />
               </div>
             ))}
@@ -307,6 +312,7 @@ const gridRecipes = allRecipes.slice(4);
             iconColor="text-white"
             product={Array.isArray(recipe.product) ? recipe.product[0] : recipe.product}
             video={recipe.video}
+            videoHost={getRecipeVideoHost(recipe)}
           />
         </div>
       ))}

@@ -12,6 +12,8 @@ interface RecipeItem {
   rating?: number;
   product?: string | string[];
   video?: string;
+  video_host?: string;
+  host?: string;
   date?: string;
   'preview-image'?: string;
 }
@@ -60,6 +62,7 @@ const sortedItems = [...items].sort((a, b) => {
                 id={recipe.id}
                 product={Array.isArray(recipe.product) ? recipe.product[0] : recipe.product}
                 video={recipe.video}
+                videoHost={recipe.video_host || recipe.host || ''}
               />
             </div>
           </div>

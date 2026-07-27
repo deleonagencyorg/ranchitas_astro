@@ -3,6 +3,7 @@ import LazyImage from '../common/LazyImage.astro';
 import { getLocale } from '../../i18n/i18n';
 import { Image } from 'astro:assets';
 import { fade } from 'astro:transitions';
+import { buildVideoModalOnclick } from '../../utils/video';
 
 interface Props {
   image: string;
@@ -17,6 +18,7 @@ interface Props {
   rating?: number;
   product?: string;
   video?: string;
+  videoHost?: string;
   previewImage?: string; 
 }
 
@@ -33,6 +35,7 @@ const {
   rating = 0,
   product = "",
   video = "",
+  videoHost = "",
   previewImage,
 } = Astro.props;
 
@@ -55,7 +58,7 @@ const displayProduct = product ? formatProductName(product) : '';
   <!-- Imagen principal con efectos suaves -->
   <div 
     class={`relative h-[250px] overflow-hidden ${video ? 'cursor-pointer' : ''}`}
-    onclick={video ? `event.stopPropagation(); if(window.openVideoModal) window.openVideoModal('${video}');` : undefined}
+    onclick={video ? buildVideoModalOnclick(video, videoHost) : undefined}
   >
     <LazyImage
       src={previewImage || image}
