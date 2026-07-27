@@ -134,7 +134,16 @@ const mediaPoster = cardQuiz.videoPoster;
 
       const playVideos = () => {
         videos.forEach((video) => {
-          (video as HTMLVideoElement).play().catch(() => {});
+          const el = video as HTMLVideoElement;
+          // Si el video está en estado finalizado o pausado, reiniciarlo antes de reproducir
+          if (el.ended || el.currentTime >= el.duration - 0.1) {
+            el.currentTime = 0;
+          }
+          el.play().catch(() => {
+            // Si falla, intentar recargar
+            el.load();
+            setTimeout(() => el.play().catch(() => {}), 100);
+          });
         });
       };
 
@@ -171,6 +180,11 @@ const mediaPoster = cardQuiz.videoPoster;
   initCardQuizVideos();
   document.addEventListener('astro:page-load', initCardQuizVideos);
   document.addEventListener('astro:after-swap', initCardQuizVideos);
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden) {
+      setTimeout(initCardQuizVideos, 300);
+    }
+  });
 </script>
   
   
