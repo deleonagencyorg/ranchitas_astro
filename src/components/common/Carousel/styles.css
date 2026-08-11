@@ -99,6 +99,14 @@
   }
 }
 
+/* Media query para desktop */
+@media (min-width: 1024px) {
+  .swiper-container.main-carousel {
+    height: 940px;
+    aspect-ratio: auto;
+  }
+}
+
 .swiper-slide {
   text-align: center;
   display: flex;
