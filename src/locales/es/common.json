@@ -85,6 +85,15 @@
       },
       {
         "id": "slide2",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/RANCHITAS_BANNER-HOME_02.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/RANCHITAS_BANNER-MOBILE_02.webp",
+        "alt": "Ranchitas",
+        "title": "",
+        "description": "",
+        "link": "#"
+      },
+      {
+        "id": "slide3",
         "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/RANCHITAS-CALDOSAS_BANNERSp.webp",
         "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/RANCHITAS-CALDOSAS_BANNERS-W2.webp",
         "alt": "Ranchitas Caldosas",
