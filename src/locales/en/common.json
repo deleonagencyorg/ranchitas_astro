@@ -72,17 +72,17 @@
     "slider": [
       {
         "id": "slide1",
-         "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/RANCHITAS_BANNER-HOMEsn.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/RANCHITAS_BANNER-MOBILEN.webp",
-        "alt": "Ramchitas",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/RANCHITAS_BANNER-HOME_02.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/RANCHITAS_BANNER-MOBILE_02.webp",
+        "alt": "Ranchitas",
         "title": "",
         "description": "",
         "link": "#"
       },
       {
         "id": "slide2",
-        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/RANCHITAS_BANNER-HOME_02.webp",
-        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/RANCHITAS_BANNER-MOBILE_02.webp",
+        "desktop": "https://snack.yummiespromociones.com/SnacksyummiesAssets/RANCHITAS_BANNER-HOMEsn.webp",
+        "mobile": "https://snack.yummiespromociones.com/SnacksyummiesAssets/RANCHITAS_BANNER-MOBILEN.webp",
         "alt": "Ranchitas",
         "title": "",
         "description": "",
