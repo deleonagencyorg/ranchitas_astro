@@ -21,6 +21,8 @@ import './styles.css';
 import { t, getLocale } from '../../i18n/i18n';
 import { InstagramEmbed } from 'react-social-media-embed';
 import { main } from 'framer-motion/client';
+import { detectLocale } from '../../services/geoService';
+import { enrichSlidesWithRegions, filterSlidesByCountry } from '../../utils/sliderUtils';
 
 
 
@@ -48,7 +50,7 @@ const zibasBrand = brandsList.find((brand: any) => brand.id === 'ranchitas');
 const zibasProducts = zibasBrand?.products || [];
 
 const commonAssets = t('assets.slider', { namespace: 'common', locale: currentLang }) || [];
-const slides = Array.isArray(commonAssets)
+const slidesRaw = Array.isArray(commonAssets)
   ? commonAssets
       .filter((asset: any) => asset && typeof asset === 'object' && asset.desktop && asset.mobile)
       .map((asset: any) => ({
@@ -60,6 +62,11 @@ const slides = Array.isArray(commonAssets)
         link: asset.url || asset.link || '#'
       }))
   : [];
+
+// Detectar país y filtrar slides según ubicación
+const { country: countryCode } = detectLocale(Astro.request);
+const slidesWithRegions = enrichSlidesWithRegions(slidesRaw);
+const slides = filterSlidesByCountry(slidesWithRegions, countryCode);
 
 // Load latest blog posts by current language from markdown
 const blogModules = import.meta.glob('../../locales/*/blog/*.md');
