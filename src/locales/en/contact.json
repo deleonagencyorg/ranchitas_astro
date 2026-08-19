@@ -35,7 +35,7 @@
     },
     "phone": {
       "label": "Mobile Number",
-      "placeholder": "1324-5678",
+      "placeholder": "Phone number",
       "required": false
     },
     "message": {
