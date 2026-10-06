@@ -31,9 +31,9 @@ const {
                 class="flex flex-col xl:flex-row items-center gap-6 md:gap-8 xl:gap-12"
             >
                 <!-- Video Container -->
-                <div class="w-full">
+                <div class="w-full relative">
                     <div
-                        class="rounded-[20px] md:rounded-[40px] flex items-center justify-center shadow-lg overflow-hidden aspect-video"
+                        class="rounded-[20px] md:rounded-[40px] flex items-center justify-center shadow-lg overflow-hidden aspect-video relative group"
                         style={`background-color: ${cardVideo.backgroundColor}`}
                     >
                         <video
@@ -43,17 +43,19 @@ const {
                             loop
                             muted
                             playsinline
+                            preload="auto"
                             poster={cardVideo.videoPoster}
                         >
-                            <source src={cardVideo.videoSrc} type="video/mp4" />
-                            {cardVideo.videoSrc ? (
-                                <>
-                                    <source src={cardVideo.videoSrc} type="video/mp4" />
-                                    <source src={cardVideo.videoSrc?.replace('.mp4', '.webm')} type="video/webm" />
-                                </>
-                            ) : null}
+                            <source src={cardVideo.videoSrc} type="video/webm" />
                             {Astro.url.pathname.startsWith('/en') ? 'Your browser does not support the video element.' : 'Tu navegador no soporta el elemento de video.'}
                         </video>
+                        <button
+                            type="button"
+                            class="absolute bottom-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white shadow-lg backdrop-blur-sm transition hover:bg-black/70"
+                            data-card-video-toggle
+                            aria-label="Activar sonido"
+                            data-muted="true"
+                        ></button>
                     </div>
                 </div>
             </div>
@@ -64,29 +66,94 @@ const {
 <section class="block md:hidden px-4 py-6 mx-auto max-w-full mt-6">
     <div class="bg-[#FFFFFF] rounded-3xl p-4 space-y-4">
         
-        <div class="w-full">
+        <div class="w-full relative">
             <div
-            class="rounded-[20px] flex items-center justify-center shadow-lg overflow-hidden h-[240px] sm:h-[280px]"
+            class="rounded-[20px] flex items-center justify-center shadow-lg overflow-hidden h-[240px] sm:h-[280px] relative group"
                 style={`background-color: ${cardVideo.backgroundColor}`}
             >
                 <video
                     data-card-video
                     class="w-full h-full object-cover"
+                    src={cardVideo.videoSrc}
                     autoplay
                     loop
                     muted
                     playsinline
+                    preload="auto"
                     poster={cardVideo.videoPoster}
                 >
-                    <source src={cardVideo.videoSrc} type="video/mp4" />
                     {Astro.url.pathname.startsWith('/en') ? 'Your browser does not support the video element.' : 'Tu navegador no soporta el elemento de video.'}
                 </video>
+                <button
+                    type="button"
+                    class="absolute bottom-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white shadow-lg backdrop-blur-sm transition hover:bg-black/70"
+                    data-card-video-toggle
+                    aria-label="Activar sonido"
+                    data-muted="true"
+                ></button>
             </div>
         </div>
     </div>
 </section>
 <script>
   const cardVideoObservers = new WeakMap();
+
+  function getMuteIcon(muted: boolean) {
+    if (muted) {
+      return `
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M11 5 6 9H2v6h4l5 4V5Z"/>
+          <path d="M15.5 8.5a5 5 0 0 1 0 7"/>
+          <path d="M18.5 6a8.5 8.5 0 0 1 0 12"/>
+          <path d="M4 4 20 20"/>
+        </svg>`;
+    }
+
+    return `
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M11 5 6 9H2v6h4l5 4V5Z"/>
+        <path d="M15.5 8.5a5 5 0 0 1 0 7"/>
+        <path d="M18.5 6a8.5 8.5 0 0 1 0 12"/>
+      </svg>`;
+  }
+
+  function setVideoMuteState(video: HTMLVideoElement, button: HTMLButtonElement, muted: boolean) {
+    video.muted = muted;
+    video.volume = muted ? 0 : 1;
+    button.setAttribute('data-muted', String(muted));
+    button.setAttribute('aria-label', muted ? 'Activar sonido' : 'Silenciar');
+    button.innerHTML = getMuteIcon(muted);
+  }
+
+  function setupCardVideo(video: HTMLVideoElement, button: HTMLButtonElement) {
+    video.loop = true;
+    video.autoplay = true;
+    video.playsInline = true;
+    video.preload = 'auto';
+    video.muted = true;
+    setVideoMuteState(video, button, true);
+
+    const startPlayback = () => {
+      if (video.dataset.playStarted === 'true') return;
+      video.dataset.playStarted = 'true';
+      video.play().catch(() => {});
+    };
+
+    button.addEventListener('click', (e) => {
+      e.preventDefault();
+      e.stopPropagation();
+      const nextMuted = button.getAttribute('data-muted') !== 'true';
+      setVideoMuteState(video, button, nextMuted);
+      video.play().catch(() => {});
+    });
+
+    video.addEventListener('loadeddata', startPlayback, { once: true });
+    video.addEventListener('canplay', startPlayback, { once: true });
+
+    if (video.readyState >= 2) {
+      startPlayback();
+    }
+  }
 
   function initCardVideos() {
     document.querySelectorAll('[data-card-video]').forEach((video) => {
@@ -106,61 +173,34 @@ const {
 
       if (cardVideoObservers.has(section)) return;
 
-      const playVideos = () => {
-        videos.forEach((video) => {
-          const el = video as HTMLVideoElement;
-          
-          // Verificar si el video necesita reiniciarse!
-          if (el.ended || el.currentTime >= el.duration - 0.1) {
-            el.currentTime = 0;
-          }
-          
-          // Si el video está pausado o no se está reproduciendo
-          if (el.paused) {
-            el.play().catch(() => {
-              // Si falla intentar recargar
-              el.load();
-              setTimeout(() => {
-                el.currentTime = 0;
-                el.play().catch(() => {});
-              }, 100);
-            });
-          }
-        });
-      };
-
-      const pauseVideos = () => {
-        videos.forEach((video) => {
-          const el = video as HTMLVideoElement;
-          if (!el.paused) el.pause();
-        });
-      };
-
-      const isVisible = (el: Element) => {
-        const rect = el.getBoundingClientRect();
-        const windowHeight = window.innerHeight || document.documentElement.clientHeight;
-        return rect.top <= windowHeight * 0.8 && rect.bottom >= 0;
-      };
-      if (isVisible(section)) {
-        playVideos();
-      }
+      const toggleButtons = section.querySelectorAll('[data-card-video-toggle]');
+      toggleButtons.forEach((btn) => {
+        const video = (btn.closest('div')?.querySelector('video[data-card-video]') as HTMLVideoElement | null) || (section.querySelector('video[data-card-video]') as HTMLVideoElement | null);
+        if (!video) return;
+        setupCardVideo(video, btn as HTMLButtonElement);
+      });
 
       if (!('IntersectionObserver' in window)) {
-        playVideos();
+        videos.forEach((el) => {
+          const video = el as HTMLVideoElement;
+          video.loop = true;
+          video.muted = true;
+          if (video.paused) video.play().catch(() => {});
+        });
         return;
       }
 
-      const observer = new IntersectionObserver(
-        (entries) => {
-          entries.forEach((entry) => {
-            if (entry.isIntersecting) {
-              playVideos();
-            } else {
-              pauseVideos();
-            }
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (!entry.isIntersecting) return;
+          videos.forEach((el) => {
+            const video = el as HTMLVideoElement;
+            video.loop = true;
+            video.muted = true;
+            if (video.paused) video.play().catch(() => {});
           });
-        }
-      );
+        });
+      }, { threshold: 0.35 });
 
       observer.observe(section);
       cardVideoObservers.set(section, observer);
