@@ -39,9 +39,9 @@ const mediaPoster = cardQuiz.videoPoster;
                 class="flex flex-col xl:flex-row items-center gap-6 md:gap-8 xl:gap-12"
             >
                 <!-- image Container -->
-                <div class="w-full xl:w-1/2">
+                <div class="w-full xl:w-1/2 relative">
                     <div
-                        class="rounded-[20px] md:rounded-[20px] flex items-center justify-center shadow-lg overflow-hidden aspect-video"
+                        class="rounded-[20px] md:rounded-[20px] flex items-center justify-center shadow-lg overflow-hidden aspect-video relative group"
                         style={`background-color: ${cardQuiz.backgroundColor}`}
                     >
                         <video
@@ -55,6 +55,13 @@ const mediaPoster = cardQuiz.videoPoster;
                             playsinline
                             autoplay
                         ></video>
+                        <button
+                            type="button"
+                            class="absolute bottom-4 right-4 z-10 flex h-11 w-11 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white shadow-lg backdrop-blur-sm transition hover:bg-black/70"
+                            data-card-quiz-toggle
+                            aria-label="Activar sonido"
+                            data-muted="true"
+                        ></button>
                     </div>
                 </div>
 
@@ -89,9 +96,9 @@ const mediaPoster = cardQuiz.videoPoster;
 <section data-card-quiz class="block md:hidden px-4 py-6 mx-auto max-w-full -mt-[80px]">
     <div class="bg-[#0041CD] rounded-3xl p-4 space-y-4">
         
-        <div class="w-full">
+        <div class="w-full relative">
             <div
-            class="rounded-[20px] flex items-center justify-center shadow-lg overflow-hidden h-[240px] sm:h-[280px]"
+            class="rounded-[20px] flex items-center justify-center shadow-lg overflow-hidden h-[240px] sm:h-[280px] relative group"
                 style={`background-color: ${cardQuiz.backgroundColor}`}
             >
             <video
@@ -104,9 +111,16 @@ const mediaPoster = cardQuiz.videoPoster;
                 loop
                 playsinline
             ></video>
+            <button
+                type="button"
+                class="absolute bottom-4 right-4 z-10 flex h-10 w-10 items-center justify-center rounded-full border border-white/20 bg-black/50 text-white shadow-lg backdrop-blur-sm transition hover:bg-black/70"
+                data-card-quiz-toggle
+                aria-label="Activar sonido"
+                data-muted="true"
+            ></button>
             </div>
         </div>
-      <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight mt-4">
+        <h2 class="text-3xl sm:text-4xl font-extrabold leading-tight mt-4">
         <span class="text-white">{cardQuiz.title} </span> <br />
         <span class="text-white">{cardQuiz.titleHighlight}</span>
       </h2>
@@ -125,12 +139,55 @@ const mediaPoster = cardQuiz.videoPoster;
 <script>
   const cardQuizObservers = new WeakMap();
 
+  function getMuteIcon(muted: boolean) {
+    if (muted) {
+      return `
+        <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+          <path d="M11 5 6 9H2v6h4l5 4V5Z"/>
+          <path d="M15.5 8.5a5 5 0 0 1 0 7"/>
+          <path d="M18.5 6a8.5 8.5 0 0 1 0 12"/>
+          <path d="M4 4 20 20"/>
+        </svg>`;
+    }
+
+    return `
+      <svg class="h-5 w-5" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+        <path d="M11 5 6 9H2v6h4l5 4V5Z"/>
+        <path d="M15.5 8.5a5 5 0 0 1 0 7"/>
+        <path d="M18.5 6a8.5 8.5 0 0 1 0 12"/>
+      </svg>`;
+  }
+
+  function setVideoMuteState(video: HTMLVideoElement, button: HTMLButtonElement, muted: boolean) {
+    video.muted = muted;
+    video.volume = muted ? 0 : 1;
+    button.setAttribute('data-muted', String(muted));
+    button.setAttribute('aria-label', muted ? 'Activar sonid' : 'Silenciar');
+    button.innerHTML = getMuteIcon(muted);
+  }
+
   function initCardQuizVideos() {
     document.querySelectorAll('[data-card-quiz]').forEach((section) => {
       if (cardQuizObservers.has(section)) return;
 
       const videos = section.querySelectorAll('video[data-card-quiz-video]');
       if (!videos.length) return;
+
+      const toggleButtons = section.querySelectorAll('[data-card-quiz-toggle]');
+      toggleButtons.forEach((btn) => {
+        const video = (btn.closest('div')?.querySelector('video[data-card-quiz-video]') as HTMLVideoElement | null) || (section.querySelector('video[data-card-quiz-video]') as HTMLVideoElement | null);
+        if (!video) return;
+
+        setVideoMuteState(video, btn as HTMLButtonElement, true);
+
+        btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          e.stopPropagation();
+          const nextMuted = btn.getAttribute('data-muted') !== 'true';
+          setVideoMuteState(video, btn as HTMLButtonElement, nextMuted);
+          video.play().catch(() => {});
+        });
+      });
 
       const playVideos = () => {
         videos.forEach((video) => {
