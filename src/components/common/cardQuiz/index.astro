@@ -192,12 +192,7 @@ const mediaPoster = cardQuiz.videoPoster;
       const playVideos = () => {
         videos.forEach((video) => {
           const el = video as HTMLVideoElement;
-          // Si el video está en estado finalizado o pausado, reiniciarlo antes de reproducir
-          if (el.ended || el.currentTime >= el.duration - 0.1) {
-            el.currentTime = 0;
-          }
           el.play().catch(() => {
-            // Si falla, intentar recargar
             el.load();
             setTimeout(() => el.play().catch(() => {}), 100);
           });
