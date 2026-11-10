@@ -3,6 +3,8 @@
 import { t, setLocale, type Locale } from '../../../i18n/i18n';
 import MainLayout from '../../../layouts/MainLayout.astro';
 import ProductDetail from '../../../views/Products/Detail/index.astro';
+import { absoluteUrl } from '../../../config/seo';
+import { productJsonLd, productPageSeo } from '../../../utils/productSeo';
 
 export function getStaticPaths() {
   // Obtener todos los idiomas y productos disponibles
@@ -43,8 +45,16 @@ const headerColors = {
   // Propiedad personalizada para indicar si es un fondo especial
   isSpecialBackground: isSpecialBackground
 };
+const seo = productPageSeo('es', product);
+const pageUrl = absoluteUrl(`/es/productos/${product.id}/`);
 ---
 
-<MainLayout title={product.name} headerColors={headerColors}>
+<MainLayout
+  title={seo.title}
+  description={seo.description}
+  headerColors={headerColors}
+  jsonLd={productJsonLd('es', product, pageUrl)}
+  breadcrumbName={product.name}
+>
   <ProductDetail currentLang={currentLang} productId={productId} />
 </MainLayout>

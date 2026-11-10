@@ -40,7 +40,6 @@ const galleryAssets = t('', { namespace: 'gallery', locale: currentLang }) || {}
 const aboutAssets = t('', { namespace: 'aboutus', locale: currentLang }) || {};
 const brandsAssets = t('', { namespace: 'brands', locale: currentLang }) || {};
 const cardQuizAssets = t('cardQuiz', { namespace: 'common', locale: currentLang }) || {};
-const cardQuizVideoSrc = cardQuizAssets.videoSrc || cardQuizAssets.imageSrc;
 const newsAssets =  t('', { namespace: 'news', locale: currentLang }) || {};
 const products = t('items', { namespace: 'products', locale: currentLang }) || [];
 const textHome = t('home.text_home', { namespace: 'common', locale: currentLang }) || {};
@@ -100,10 +99,6 @@ const featuredLabel = currentLang==='es' ? 'DESTACADOS' : 'FEATURED';
 
 ---
 
-{cardQuizVideoSrc && (
-  <link rel="preload" as="video" href={cardQuizVideoSrc} type="video/webm" />
-)}
-
 <main class="w-full flex flex-col items-center justify-center mt-0">
   <!-- Slider Section -->
   <div class="w-full h-full object-cover object-center">
@@ -131,9 +126,9 @@ const featuredLabel = currentLang==='es' ? 'DESTACADOS' : 'FEATURED';
               {brandsAssets.home?.title}
             </h2>
             {brandsAssets.home?.subtitle && (
-              <h1 class="text-4xl md:text-7xl font-bold " style={`color: black`}>
+              <h2 class="text-4xl md:text-7xl font-bold " style={`color: black`}>
                 {brandsAssets.home?.subtitle}
-              </h1>
+              </h2>
             )}
           </div>
           <ProductsCarousel 

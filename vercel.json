@@ -1,15 +1,36 @@
 {
+  "trailingSlash": true,
   "redirects": [
-    {
-      "source": "/es/ranchitas-caldosas",
-      "destination": "/es/recetas/ranchitas-caldosas-con-ranchitas-nacho-excitante",
-      "permanent": true
-    },
-    {
-      "source": "/es/ranchitas-caldosas/",
-      "destination": "/es/recetas/ranchitas-caldosas-con-ranchitas-nacho-excitante",
-      "permanent": true
-    }
+    { "source": "/", "destination": "/es/", "statusCode": 301 },
+    { "source": "/producto", "destination": "/es/productos/", "statusCode": 301 },
+    { "source": "/producto/", "destination": "/es/productos/", "statusCode": 301 },
+    { "source": "/en/producto", "destination": "/en/products/", "statusCode": 301 },
+    { "source": "/en/producto/", "destination": "/en/products/", "statusCode": 301 },
+    { "source": "/producto/:slug", "destination": "/es/productos/:slug/", "statusCode": 301 },
+    { "source": "/producto/:slug/", "destination": "/es/productos/:slug/", "statusCode": 301 },
+    { "source": "/en/producto/:slug", "destination": "/en/products/:slug/", "statusCode": 301 },
+    { "source": "/en/producto/:slug/", "destination": "/en/products/:slug/", "statusCode": 301 },
+    { "source": "/receta/nachos-con-carne-ranchitas-queso", "destination": "/es/recetas/nachos-con-carne-con-ranchitas-nacho-queso/", "statusCode": 301 },
+    { "source": "/receta/nachos-con-carne-ranchitas-queso/", "destination": "/es/recetas/nachos-con-carne-con-ranchitas-nacho-queso/", "statusCode": 301 },
+    { "source": "/es/recetas/04-ranchitas-bufalo-ranch-dip-de-pollo-picante-y-queso800x800", "destination": "/es/recetas/dip-de-pollo-picante-y-queso-ranchitas-buffalo-ranch/", "statusCode": 301 },
+    { "source": "/es/recetas/04-ranchitas-bufalo-ranch-dip-de-pollo-picante-y-queso800x800/", "destination": "/es/recetas/dip-de-pollo-picante-y-queso-ranchitas-buffalo-ranch/", "statusCode": 301 },
+    { "source": "/es/ranchitas-caldosas", "destination": "/es/recetas/ranchitas-caldosas-con-ranchitas-nacho-excitante/", "statusCode": 301 },
+    { "source": "/es/ranchitas-caldosas/", "destination": "/es/recetas/ranchitas-caldosas-con-ranchitas-nacho-excitante/", "statusCode": 301 },
+    { "source": "/receta", "destination": "/es/recetas/", "statusCode": 301 },
+    { "source": "/receta/", "destination": "/es/recetas/", "statusCode": 301 },
+    { "source": "/receta/:slug", "destination": "/es/recetas/", "statusCode": 301 },
+    { "source": "/receta/:slug/", "destination": "/es/recetas/", "statusCode": 301 },
+    { "source": "/en/receta", "destination": "/en/recipes/", "statusCode": 301 },
+    { "source": "/en/receta/", "destination": "/en/recipes/", "statusCode": 301 },
+    { "source": "/en/receta/:slug", "destination": "/en/recipes/", "statusCode": 301 },
+    { "source": "/en/receta/:slug/", "destination": "/en/recipes/", "statusCode": 301 },
+    { "source": "/es/politica-privacidad", "destination": "https://www.snacksyummies.com/es/politica-privacidad/", "statusCode": 301 },
+    { "source": "/es/politica-privacidad/", "destination": "https://www.snacksyummies.com/es/politica-privacidad/", "statusCode": 301 },
+    { "source": "/es/politica-de-privacidad", "destination": "https://www.snacksyummies.com/es/politica-privacidad/", "statusCode": 301 },
+    { "source": "/es/politica-de-privacidad/", "destination": "https://www.snacksyummies.com/es/politica-privacidad/", "statusCode": 301 },
+    { "source": "/en/privacy-policy", "destination": "https://www.snacksyummies.com/es/politica-privacidad/", "statusCode": 301 },
+    { "source": "/en/privacy-policy/", "destination": "https://www.snacksyummies.com/es/politica-privacidad/", "statusCode": 301 },
+    { "source": "/sitemap.xml", "destination": "/sitemap-index.xml", "statusCode": 301 }
   ],
   "headers": [
     {

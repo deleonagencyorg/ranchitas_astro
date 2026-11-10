@@ -82,7 +82,7 @@ const shareId = `quiz-share-${currentLang}`;
 
       <div class="relative z-10 w-full max-w-5xl mx-auto p-4 pt-20 sm:pt-6 md:p-6 lg:p-8">
         <QuizGame
-          client:load
+          client:idle
           lang={currentLang}
           quizData={(quizData as any).default || (quizData as any)}
           products={products}

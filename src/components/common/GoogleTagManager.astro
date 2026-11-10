@@ -1,36 +1,79 @@
 ---
-// Replace with your actual GTM ID
-const gtmId = import.meta.env.PUBLIC_GTM_ID || 'GTM-XXXXXXX';
+import { resolveGtmId } from '../../config/gtm';
 
-// Validar que el GTM ID esté configurado
-if (!gtmId || gtmId === 'GTM-XXXXXXX') {
-  console.warn('GTM ID no está configurado correctamente. Verifica tu archivo .env');
+interface Props {
+  part?: 'all' | 'script' | 'noscript';
 }
+
+const { part = 'all' } = Astro.props;
+const gtmId = resolveGtmId(import.meta.env.PUBLIC_GTM_ID);
+const showScript = part === 'all' || part === 'script';
+const showNoscript = part === 'all' || part === 'noscript';
 ---
 
-<!-- Google Tag Manager (noscript) -->
-<noscript>
-  <iframe 
-    src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
-    height="0" 
-    width="0" 
-    style="display:none;visibility:hidden">
-  </iframe>
-</noscript>
+{showNoscript && (
+  <noscript>
+    <iframe
+      src={`https://www.googletagmanager.com/ns.html?id=${gtmId}`}
+      height="0"
+      width="0"
+      style="display:none;visibility:hidden"
+    ></iframe>
+  </noscript>
+)}
 
-<!-- Google Tag Manager -->
-<script is:inline define:vars={{ gtmId }}>
-  if (gtmId && gtmId !== 'GTM-XXXXXXX') {
-    (function(w,d,s,l,i){
-      w[l]=w[l]||[];
-      w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
-      var f=d.getElementsByTagName(s)[0],
-      j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
-      j.async=true;
-      j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
-      f.parentNode.insertBefore(j,f);
-    })(window,document,'script','dataLayer',gtmId);
-  } else {
-    console.warn('GTM no inicializado: ID no válido');
-  }
-</script>
+{showScript && (
+  <script is:inline define:vars={{ gtmId }} data-astro-rerun>
+    (function () {
+      var id = gtmId;
+      if (!id) return;
+
+      function ensureGtm() {
+        window.dataLayer = window.dataLayer || [];
+        var runtime = window.google_tag_manager && window.google_tag_manager[id];
+        if (runtime) return;
+        if (document.querySelector('script[data-gtm-loader="' + id + '"]')) return;
+
+        window.dataLayer.push({
+          'gtm.start': new Date().getTime(),
+          event: 'gtm.js',
+        });
+
+        var script = document.createElement('script');
+        script.async = true;
+        script.src = 'https://www.googletagmanager.com/gtm.js?id=' + id;
+        script.setAttribute('data-gtm-loader', id);
+
+        var parent = document.head || document.body || document.documentElement;
+        try {
+          parent.appendChild(script);
+        } catch {
+          document.documentElement.appendChild(script);
+        }
+      }
+
+      function onPageLoad() {
+        ensureGtm();
+        var path = location.pathname + location.search;
+        if (window.__ranchitasGtmPath === path) return;
+        var hadPath = typeof window.__ranchitasGtmPath === 'string';
+        window.__ranchitasGtmPath = path;
+        if (!hadPath) return;
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+          event: 'page_view',
+          page_path: path,
+          page_location: location.href,
+          page_title: document.title,
+        });
+      }
+
+      if (!window.__ranchitasGtmBound) {
+        window.__ranchitasGtmBound = true;
+        document.addEventListener('astro:page-load', onPageLoad);
+      }
+
+      onPageLoad();
+    })();
+  </script>
+)}
