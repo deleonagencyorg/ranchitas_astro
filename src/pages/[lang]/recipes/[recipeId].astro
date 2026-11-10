@@ -6,7 +6,6 @@ import RecipeDetail from '../../../views/Recipes/Detail/index.astro';
 
 export async function getStaticPaths() {
   const paths: any[] = [];
-  // Cargar recetas EN
   const enModules = import.meta.glob('../../../locales/en/recipes/*.json', { eager: true });
   const enFiles = Object.values(enModules) as any[];
   for (const mod of enFiles) {
@@ -15,17 +14,6 @@ export async function getStaticPaths() {
     paths.push({
       params: { lang: 'en', recipeId: recipe.id },
       props: { recipe, currentLang: 'en' }
-    });
-  }
-  // Cargar recetas ES
-  const esModules = import.meta.glob('../../../locales/es/recipes/*.json', { eager: true });
-  const esFiles = Object.values(esModules) as any[];
-  for (const mod of esFiles) {
-    const recipe = (mod as any).default;
-    if (!recipe?.id) continue;
-    paths.push({
-      params: { lang: 'es', recipeId: recipe.id },
-      props: { recipe, currentLang: 'es' }
     });
   }
   return paths;

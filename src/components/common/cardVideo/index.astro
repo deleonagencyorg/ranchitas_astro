@@ -43,7 +43,7 @@ const {
                             loop
                             muted
                             playsinline
-                            preload="auto"
+                            preload="none"
                             poster={cardVideo.videoPoster}
                         >
                             <source src={cardVideo.videoSrc} type="video/webm" />
@@ -79,7 +79,7 @@ const {
                     loop
                     muted
                     playsinline
-                    preload="auto"
+                    preload="none"
                     poster={cardVideo.videoPoster}
                 >
                     {Astro.url.pathname.startsWith('/en') ? 'Your browser does not support the video element.' : 'Tu navegador no soporta el elemento de video.'}

@@ -10,6 +10,7 @@ import I18nProvider from '../components/i18n/I18nProvider.astro';
 import { routesConfig } from '../config/routes';
 import { getHeaderColors } from '../config/headerColors';
 import SEO from '../components/SEO.astro';
+import { absoluteUrl } from '../config/seo';
 import { ViewTransitions } from 'astro:transitions';
 import "../styles/global.css";
 
@@ -21,16 +22,18 @@ export interface Props {
     backgroundColor?: string;
     textColor?: string;
   };
+  jsonLd?: Record<string, unknown> | null;
+  breadcrumbName?: string;
 }
 
-const { title, description, class: className, headerColors } = Astro.props;
+const { title, description, class: className, headerColors, jsonLd = null, breadcrumbName } = Astro.props;
 
 const pathSegments = Astro.url.pathname.split('/');
 const langFromUrl = pathSegments[1] as Locale;
 const validLocales: Locale[] = ['es', 'en'];
 const currentLang = validLocales.includes(langFromUrl) ? langFromUrl : 'es';
 
-const canonicalUrl = `https://ranchitas.com${Astro.url.pathname}`;
+const canonicalUrl = absoluteUrl(Astro.url.pathname);
 
 const { pathname } = Astro.url;
 const shouldHideHeader = pathname.startsWith('/es/resultados') || pathname.startsWith('/en/results');
@@ -51,8 +54,8 @@ const tiktokPixelId = import.meta.env.PUBLIC_TIKTOK_PIXEL_ID;
 ---
 <html lang={currentLang}>
   <head>
+    <GoogleTagManager part="script" />
     <Favicon />
-    <GoogleTagManager />
 
     <!-- Meta Pixel Code -->
     {metaPixelId && (
@@ -95,11 +98,14 @@ const tiktokPixelId = import.meta.env.PUBLIC_TIKTOK_PIXEL_ID;
       description={description}
       canonicalUrl={canonicalUrl}
       pathname={Astro.url.pathname}
+      jsonLd={jsonLd}
+      breadcrumbName={breadcrumbName}
     />
     <ViewTransitions />
     <slot name="head" />
   </head>
   <body class={`font-sans min-h-screen flex flex-col ${className || ''}`}>
+    <GoogleTagManager part="noscript" />
     <I18nProvider>
       {!shouldHideHeader && (
         <slot name="header">

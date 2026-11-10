@@ -1,0 +1,49 @@
+# Ranchitas
+
+> Ranchitas es una marca de snacks de tortilla de maíz de Snacks Yummies, en Centroamérica. El sitio oficial es https://www.ranchitas.com/ y el eslogan es «Cronchea tu mundo». Este archivo resume las páginas que se pueden citar.
+
+Las fichas no venden en línea. Cada sabor indica descripción, tamaños e información nutricional. Las recetas usan Ranchitas como ingrediente. El idioma principal es español; el inglés está en las rutas `/en/`.
+
+## Páginas principales
+
+- [Inicio](https://www.ranchitas.com/es/): home en español, sabores y recetas destacadas.
+- [Home](https://www.ranchitas.com/en/): home in English.
+- [Productos](https://www.ranchitas.com/es/productos/): catálogo de sabores.
+- [Products](https://www.ranchitas.com/en/products/): flavor catalog in English.
+- [Recetas](https://www.ranchitas.com/es/recetas/): recetas con Ranchitas.
+- [Recipes](https://www.ranchitas.com/en/recipes/): recipes in English.
+- [Contacto](https://www.ranchitas.com/es/contacto/): formulario de contacto.
+- [Contact](https://www.ranchitas.com/en/contact/): contact form in English.
+- [Nosotros](https://www.ranchitas.com/es/nosotros/): historia de Snacks Yummies, empresa dueña de Ranchitas.
+- [About us](https://www.ranchitas.com/en/about-us/): company history in English.
+
+## Sabores
+
+- [Ranchitas Buffalo Ranch](https://www.ranchitas.com/es/productos/ranchitas-buffalo-ranch/): nachos de maíz crujientes con sabor a buffalo ranch.
+- [Ranchitas Nacho Pizza](https://www.ranchitas.com/es/productos/ranchitas-nacho-pizza/): nachos de maíz crujientes con sabor a pizza.
+- [Ranchitas Nacho Excitante](https://www.ranchitas.com/es/productos/ranchitas-nacho-excitante/): nachos fritos crujientes con sabor picante.
+- [Ranchitas Nacho Queso](https://www.ranchitas.com/es/productos/ranchitas-nacho-queso/): nachos fritos de maíz con sabor a queso.
+- [Ranchitas Naturales](https://www.ranchitas.com/es/productos/ranchitas-naturales/): nachos de maíz crujientes con sabor natural.
+- [Ranchitas Nacho Extremo](https://www.ranchitas.com/es/productos/ranchitas-nacho-extremo/): nachos de maíz con sabor a chiles toreados.
+- [Ranchitas Nacho Guacamole](https://www.ranchitas.com/es/productos/ranchitas-nacho-guacamole/): nachos de maíz crujientes con sabor a guacamole.
+- [Ranchitas Nacho Cinema](https://www.ranchitas.com/es/productos/ranchitas-nacho-cinema/): nachos de maíz crujientes con sabor a mantequilla.
+- [Ranchitas Chile Toreado](https://www.ranchitas.com/es/productos/ranchitas-chile-toreado/): nachos de maíz crujientes con sabor a chile toreado.
+
+## Recetas
+
+- [Nachos con Carne con Ranchitas Nacho Queso](https://www.ranchitas.com/es/recetas/nachos-con-carne-con-ranchitas-nacho-queso/)
+- [Nachos Rancheros con Ranchitas Nacho Excitante](https://www.ranchitas.com/es/recetas/nachos-rancheros-con-ranchitas-nacho-excitante/)
+- [Ranchitas Caldosas con Ranchitas Nacho Excitante](https://www.ranchitas.com/es/recetas/ranchitas-caldosas-con-ranchitas-nacho-excitante/)
+- [Guacamole con Ranchitas Naturales](https://www.ranchitas.com/es/recetas/guacamole-con-ranchitas-naturales/)
+- [Dip cremoso de frijol y chipotle](https://www.ranchitas.com/es/recetas/dip-cremoso-frijol-chipotle/)
+- [Dip de elote cremoso](https://www.ranchitas.com/es/recetas/dip-de-elote-cremoso-con-puro-crunch/)
+- [Dip de pollo picante y queso con Ranchitas Buffalo Ranch](https://www.ranchitas.com/es/recetas/dip-de-pollo-picante-y-queso-ranchitas-buffalo-ranch/)
+- [Cheese Dip Ranchitas](https://www.ranchitas.com/es/recetas/cheese-dip-ranchitas/)
+- [Monster sándwich con Ranchitas Nacho Excitante](https://www.ranchitas.com/es/recetas/monster-sandwich-con-ranchitas-nacho-excitante/)
+
+## Optional
+
+- [Snacks Yummies](https://www.snacksyummies.com/es/): empresa dueña de la marca.
+- [Promociones](https://www.ranchitas.com/es/promociones/): concursos vigentes.
+- [Blog](https://www.ranchitas.com/es/blog/): noticias de la marca.
+- [Sitemap](https://www.ranchitas.com/sitemap-index.xml): índice de URLs canónicas.
